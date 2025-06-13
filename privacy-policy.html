@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light">
+  <title>Debtbox | ديبيت بوكس</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-directional>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container" data-directional>
+      <div class="logo">
+        <a href="/"><img src="assets/logo3.svg" alt="Logo" /></a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="lang-button-menu">
+          <a href="#" onclick="toggleLanguage()"><img src="assets/en.svg" id="langIconMenu" alt="language"></a>
+        </div>
+        <button class="burger-menu" id="burger">&#9776;</button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="/contact-us.html" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a>
+        <a href="/product.html" data-en="Product" data-ar="المنتج">المنتج</a>
+        <a href="/about.html" data-en="About Us" data-ar="من نحن">من نحن</a>
+      </nav>
+
+      <div class="header-buttons">
+        <div class="cta-button">
+          <a href="/contact-us.html" data-en="Get Started" data-ar="ابدأ معنا">ابدأ معنا</a>
+        </div>
+        <div class="lang-button">
+          <a href="#" onclick="toggleLanguage()"><img src="assets/en.svg" id="langIcon" alt="language"> <span
+              class="lang-toggle">English</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Slide Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="logo">
+        <a href="/"><img src="assets/logo3.svg" alt="Logo" /></a>
+      </div>
+      <nav>
+        <a href="/contact-us.html" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a>
+        <a href="/product.html" data-en="Product" data-ar="المنتج">المنتج</a>
+        <a href="/about.html" data-en="About Us" data-ar="من نحن">من نحن</a>
+        <a href="/contact-us.html" class="mobile-cta" data-en="Get Started" data-ar="ابدأ معنا">ابدأ معنا</a>
+      </nav>
+    </div>
+
+    <!-- Backdrop -->
+    <div class="overlay" id="overlay"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 data-en="Smart Platform for Managing Deferred Purchases" data-ar="منصة ذكية لإدارة المشتريات المؤجلة">منصة
+        ذكية لإدارة المشتريات المؤجلة</h1>
+      <p data-en="Debt Box provides an integrated system that enables customers to buy on credit, while giving stores a dashboard to track all invoices, customers, and outstanding amounts easily and transparently."
+        data-ar="Debt Box توفر نظامًا متكاملًا يمكّن العملاء من الشراء بالأجل، وتمنح المتاجر لوحة تحكم لمتابعة كل الفواتير، العملاء، والمبالغ المستحقة بسهولة وشفافية.">
+        Debt Box توفر نظامًا متكاملًا يمكّن العملاء من الشراء بالأجل، وتمنح المتاجر لوحة تحكم
+        لمتابعة كل الفواتير، العملاء، والمبالغ المستحقة بسهولة وشفافية.</p>
+    </div>
+  </section>
+
+  <section class="privacy" data-directional dir="rtl">
+    <div class="translations-content-container">
+      <div class="container">
+        <div class="tab-content translations-content-item" id="ar-content">
+          <h1 data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</h1>
+          <p data-ar="آخر تحديث: 13 يونيو 2025" data-en="Last updated: June 13, 2025">آخر تحديث: 13 يونيو 2025</p>
+          <p data-ar="تصف سياسة الخصوصية هذه سياساتنا وإجراءاتنا بشأن جمع واستخدام والكشف عن معلوماتك عند استخدامك للخدمة وتخبرك عن حقوق الخصوصية الخاصة بك وكيف يحميك القانون."
+            data-en="This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.">
+            تصف سياسة الخصوصية هذه سياساتنا وإجراءاتنا بشأن جمع واستخدام والكشف عن معلوماتك عند استخدامك للخدمة وتخبرك
+            عن حقوق الخصوصية الخاصة بك وكيف يحميك القانون.</p>
+          <p data-ar="نحن نستخدم بياناتك الشخصية لتوفير وتحسين الخدمة. باستخدامك للخدمة، فإنك توافق على جمع واستخدام المعلومات وفقًا لسياسة الخصوصية هذه. تم إنشاء سياسة الخصوصية هذه بمساعدة "
+            data-en="We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the ">
+            نحن نستخدم بياناتك الشخصية لتوفير وتحسين الخدمة. باستخدامك للخدمة، فإنك توافق على جمع واستخدام المعلومات
+            وفقًا لسياسة الخصوصية هذه.</p>
+
+          <h2 data-ar="التفسير والتعريفات" data-en="Interpretation and Definitions">التفسير والتعريفات</h2>
+          <h3 data-ar="التفسير" data-en="Interpretation">التفسير</h3>
+          <p data-ar="الكلمات التي يبدأ حرفها الأول بالكتابة الكبيرة (Capitalized) لها معانٍ محددة بموجب الشروط التالية. يكون للتعريفات التالية نفس المعنى بغض النظر عما إذا كانت تظهر بصيغة المفرد أو الجمع."
+            data-en="The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.">
+            الكلمات التي يبدأ حرفها الأول بالكتابة الكبيرة (Capitalized) لها معانٍ محددة بموجب الشروط التالية. يكون
+            للتعريفات التالية نفس المعنى بغض النظر عما إذا كانت تظهر بصيغة المفرد أو الجمع.</p>
+          <h3 data-ar="التعريفات" data-en="Definitions">التعريفات</h3>
+          <p data-ar="لأغراض سياسة الخصوصية هذه:" data-en="For the purposes of this Privacy Policy:">لأغراض سياسة
+            الخصوصية هذه:</p>
+          <ul>
+            <li>
+              <p><strong data-ar="الحساب" data-en="Account">الحساب</strong><span
+                  data-ar=" يعني حسابًا فريدًا تم إنشاؤه لك للوصول إلى خدمتنا أو أجزاء من خدمتنا."
+                  data-en=" means a unique account created for You to access our Service or parts of our Service."> يعني
+                  حسابًا فريدًا تم إنشاؤه لك للوصول إلى خدمتنا أو أجزاء من خدمتنا.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="الشركة التابعة" data-en="Affiliate">الشركة التابعة</strong><span
+                  data-ar=" تعني كيانًا يسيطر على طرف أو يخضع لسيطرته أو يخضع لسيطرة مشتركة معه، حيث تعني &quot;السيطرة&quot; ملكية 50٪ أو أكثر من الأسهم أو حصص الملكية أو الأوراق المالية الأخرى التي يحق لها التصويت لانتخاب أعضاء مجلس الإدارة أو سلطة إدارية أخرى."
+                  data-en=" means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.">
+                  تعني كيانًا يسيطر على طرف أو يخضع لسيطرته أو يخضع لسيطرة مشتركة معه، حيث تعني "السيطرة" ملكية 50٪ أو
+                  أكثر من الأسهم أو حصص الملكية أو الأوراق المالية الأخرى التي يحق لها التصويت لانتخاب أعضاء مجلس
+                  الإدارة أو سلطة إدارية أخرى.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="الشركة" data-en="Company">الشركة</strong><span
+                  data-ar=" (يشار إليها إما باسم &quot;الشركة&quot;، &quot;نحن&quot;، &quot;لنا&quot; في هذه الاتفاقية) تشير إلى debtbox."
+                  data-en=" (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to debtbox.">
+                  (يشار إليها إما باسم "الشركة"، "نحن"، "لنا" في هذه الاتفاقية) تشير إلى debtbox.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="ملفات تعريف الارتباط (الكوكيز)" data-en="Cookies">ملفات تعريف الارتباط
+                  (الكوكيز)</strong><span
+                  data-ar=" هي ملفات صغيرة توضع على جهاز الكمبيوتر الخاص بك، أو جهازك المحمول، أو أي جهاز آخر بواسطة موقع ويب، وتحتوي على تفاصيل سجل التصفح الخاص بك على هذا الموقع من بين استخداماتها العديدة."
+                  data-en=" are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your Browse history on that website among its many uses.">
+                  هي ملفات صغيرة توضع على جهاز الكمبيوتر الخاص بك، أو جهازك المحمول، أو أي جهاز آخر بواسطة موقع ويب،
+                  وتحتوي على تفاصيل سجل التصفح الخاص بك على هذا الموقع من بين استخداماتها العديدة.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="البلد" data-en="Country">البلد</strong><span
+                  data-ar=" يشير إلى: المملكة العربية السعودية" data-en=" refers to: Saudi Arabia"> يشير إلى: المملكة
+                  العربية السعودية</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="الجهاز" data-en="Device">الجهاز</strong><span
+                  data-ar=" يعني أي جهاز يمكنه الوصول إلى الخدمة مثل جهاز كمبيوتر أو هاتف محمول أو جهاز لوحي رقمي."
+                  data-en=" means any device that can access the Service such as a computer, a cellphone or a digital tablet.">
+                  يعني أي جهاز يمكنه الوصول إلى الخدمة مثل جهاز كمبيوتر أو هاتف محمول أو جهاز لوحي رقمي.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="البيانات الشخصية" data-en="Personal Data">البيانات الشخصية</strong><span
+                  data-ar=" هي أي معلومات تتعلق بفرد محدد أو يمكن تحديده."
+                  data-en=" is any information that relates to an identified or identifiable individual."> هي أي معلومات
+                  تتعلق بفرد محدد أو يمكن تحديده.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="الخدمة" data-en="Service">الخدمة</strong><span data-ar=" تشير إلى الموقع الإلكتروني."
+                  data-en=" refers to the Website."> تشير إلى الموقع الإلكتروني.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="مزود الخدمة" data-en="Service Provider">مزود الخدمة</strong><span
+                  data-ar=" يعني أي شخص طبيعي أو اعتباري يقوم بمعالجة البيانات نيابة عن الشركة. ويشير إلى شركات أو أفراد من أطراف ثالثة توظفهم الشركة لتسهيل الخدمة، أو لتقديم الخدمة نيابة عن الشركة، أو لأداء خدمات متعلقة بالخدمة، أو لمساعدة الشركة في تحليل كيفية استخدام الخدمة."
+                  data-en=" means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.">
+                  يعني أي شخص طبيعي أو اعتباري يقوم بمعالجة البيانات نيابة عن الشركة. ويشير إلى شركات أو أفراد من أطراف
+                  ثالثة توظفهم الشركة لتسهيل الخدمة، أو لتقديم الخدمة نيابة عن الشركة، أو لأداء خدمات متعلقة بالخدمة، أو
+                  لمساعدة الشركة في تحليل كيفية استخدام الخدمة.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="بيانات الاستخدام" data-en="Usage Data">بيانات الاستخدام</strong><span
+                  data-ar=" تشير إلى البيانات التي يتم جمعها تلقائيًا، إما عن طريق استخدام الخدمة أو من البنية التحتية للخدمة نفسها (على سبيل المثال، مدة زيارة الصفحة)."
+                  data-en=" refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).">
+                  تشير إلى البيانات التي يتم جمعها تلقائيًا، إما عن طريق استخدام الخدمة أو من البنية التحتية للخدمة
+                  نفسها (على سبيل المثال، مدة زيارة الصفحة).</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="الموقع الإلكتروني" data-en="Website">الموقع الإلكتروني</strong><span
+                  data-ar=" يشير إلى debtbox.sa، ويمكن الوصول إليه من "
+                  data-en=" refers to debtbox.sa, accessible from "> يشير إلى debtbox.sa، ويمكن الوصول إليه من </span><a
+                  href="https://www.debtbox.sa/" rel="external nofollow noopener"
+                  target="_blank">https://www.debtbox.sa/</a></p>
+            </li>
+            <li>
+              <p><strong data-ar="أنت" data-en="You">أنت</strong><span
+                  data-ar=" تعني الفرد الذي يصل إلى الخدمة أو يستخدمها، أو الشركة، أو الكيان القانوني الآخر الذي يقوم هذا الفرد بالوصول إلى الخدمة أو استخدامها نيابة عنه، حسب الاقتضاء."
+                  data-en=" means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.">
+                  تعني الفرد الذي يصل إلى الخدمة أو يستخدمها، أو الشركة، أو الكيان القانوني الآخر الذي يقوم هذا الفرد
+                  بالوصول إلى الخدمة أو استخدامها نيابة عنه، حسب الاقتضاء.</span></p>
+            </li>
+          </ul>
+
+          <h2 data-ar="جمع واستخدام بياناتك الشخصية" data-en="Collecting and Using Your Personal Data">جمع واستخدام
+            بياناتك الشخصية</h2>
+          <h3 data-ar="أنواع البيانات المجمعة" data-en="Types of Data Collected">أنواع البيانات المجمعة</h3>
+          <h4 data-ar="البيانات الشخصية" data-en="Personal Data">البيانات الشخصية</h4>
+          <p data-ar="أثناء استخدام خدمتنا، قد نطلب منك تزويدنا ببعض المعلومات الشخصية التي يمكن استخدامها للاتصال بك أو التعرف عليك. قد تتضمن المعلومات الشخصية، على سبيل المثال لا الحصر:"
+            data-en="While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:">
+            أثناء استخدام خدمتنا، قد نطلب منك تزويدنا ببعض المعلومات الشخصية التي يمكن استخدامها للاتصال بك أو التعرف
+            عليك. قد تتضمن المعلومات الشخصية، على سبيل المثال لا الحصر:</p>
+          <ul>
+            <li>
+              <p data-ar="الاسم الأول والاسم الأخير" data-en="First name and last name">الاسم الأول والاسم الأخير</p>
+            </li>
+            <li>
+              <p data-ar="رقم الهاتف" data-en="Phone number">رقم الهاتف</p>
+            </li>
+            <li>
+              <p data-ar="العنوان، الولاية، المقاطعة، الرمز البريدي، المدينة"
+                data-en="Address, State, Province, ZIP/Postal code, City">العنوان، الولاية، المقاطعة، الرمز البريدي،
+                المدينة</p>
+            </li>
+            <li>
+              <p data-ar="بيانات الاستخدام" data-en="Usage Data">بيانات الاستخدام</p>
+            </li>
+          </ul>
+
+          <h4 data-ar="بيانات الاستخدام" data-en="Usage Data">بيانات الاستخدام</h4>
+          <p data-ar="يتم جمع بيانات الاستخدام تلقائيًا عند استخدام الخدمة."
+            data-en="Usage Data is collected automatically when using the Service.">يتم جمع بيانات الاستخدام تلقائيًا
+            عند استخدام الخدمة.</p>
+          <p data-ar="قد تتضمن بيانات الاستخدام معلومات مثل عنوان بروتوكول الإنترنت الخاص بجهازك (مثل عنوان IP)، ونوع المتصفح، وإصدار المتصفح، وصفحات خدمتنا التي تزورها، ووقت وتاريخ زيارتك، والوقت الذي تقضيه على تلك الصفحات، ومعرفات الجهاز الفريدة وبيانات التشخيص الأخرى."
+            data-en="Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.">
+            قد تتضمن بيانات الاستخدام معلومات مثل عنوان بروتوكول الإنترنت الخاص بجهازك (مثل عنوان IP)، ونوع المتصفح،
+            وإصدار المتصفح، وصفحات خدمتنا التي تزورها، ووقت وتاريخ زيارتك، والوقت الذي تقضيه على تلك الصفحات، ومعرفات
+            الجهاز الفريدة وبيانات التشخيص الأخرى.</p>
+          <p data-ar="عندما تصل إلى الخدمة عن طريق أو من خلال جهاز محمول، قد نقوم بجمع معلومات معينة تلقائيًا، بما في ذلك، على سبيل المثال لا الحصر، نوع الجهاز المحمول الذي تستخدمه، والمعرف الفريد لجهازك المحمول، وعنوان IP لجهازك المحمول، ونظام تشغيل هاتفك المحمول، ونوع متصفح الإنترنت المحمول الذي تستخدمه، ومعرفات الجهاز الفريدة وبيانات التشخيص الأخرى."
+            data-en="When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.">
+            عندما تصل إلى الخدمة عن طريق أو من خلال جهاز محمول، قد نقوم بجمع معلومات معينة تلقائيًا، بما في ذلك، على
+            سبيل المثال لا الحصر، نوع الجهاز المحمول الذي تستخدمه، والمعرف الفريد لجهازك المحمول، وعنوان IP لجهازك
+            المحمول، ونظام تشغيل هاتفك المحمول، ونوع متصفح الإنترنت المحمول الذي تستخدمه، ومعرفات الجهاز الفريدة وبيانات
+            التشخيص الأخرى.</p>
+          <p data-ar="قد نقوم أيضًا بجمع المعلومات التي يرسلها متصفحك كلما قمت بزيارة خدمتنا أو عندما تصل إلى الخدمة عن طريق أو من خلال جهاز محمول."
+            data-en="We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.">
+            قد نقوم أيضًا بجمع المعلومات التي يرسلها متصفحك كلما قمت بزيارة خدمتنا أو عندما تصل إلى الخدمة عن طريق أو من
+            خلال جهاز محمول.</p>
+
+          <h4 data-ar="تقنيات التتبع وملفات تعريف الارتباط" data-en="Tracking Technologies and Cookies">تقنيات التتبع
+            وملفات تعريف الارتباط</h4>
+          <p data-ar="نحن نستخدم ملفات تعريف الارتباط وتقنيات التتبع المماثلة لتتبع النشاط على خدمتنا وتخزين معلومات معينة. تقنيات التتبع المستخدمة هي الإشارات والعلامات والبرامج النصية لجمع وتتبع المعلومات ولتحسين وتحليل خدمتنا. قد تشمل التقنيات التي نستخدمها:"
+            data-en="We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information. Tracking technologies used are beacons, tags, and scripts to collect and track information and to improve and analyze Our Service. The technologies We use may include:">
+            نحن نستخدم ملفات تعريف الارتباط وتقنيات التتبع المماثلة لتتبع النشاط على خدمتنا وتخزين معلومات معينة. تقنيات
+            التتبع المستخدمة هي الإشارات والعلامات والبرامج النصية لجمع وتتبع المعلومات ولتحسين وتحليل خدمتنا. قد تشمل
+            التقنيات التي نستخدمها:</p>
+          <ul>
+            <li
+              data-ar="ملفات تعريف الارتباط أو ملفات تعريف ارتباط المتصفح. ملف تعريف الارتباط هو ملف صغير يوضع على جهازك. يمكنك توجيه متصفحك لرفض جميع ملفات تعريف الارتباط أو للإشارة عند إرسال ملف تعريف ارتباط. ومع ذلك، إذا لم تقبل ملفات تعريف الارتباط، فقد لا تتمكن من استخدام بعض أجزاء خدمتنا. ما لم تقم بتعديل إعدادات متصفحك بحيث يرفض ملفات تعريف الارتباط، فقد تستخدم خدمتنا ملفات تعريف الارتباط."
+              data-en="Cookies or Browser Cookies. A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies, our Service may use Cookies.">
+              <strong>ملفات تعريف الارتباط أو ملفات تعريف ارتباط المتصفح.</strong> ملف تعريف الارتباط هو ملف صغير يوضع
+              على جهازك. يمكنك توجيه متصفحك لرفض جميع ملفات تعريف الارتباط أو للإشارة عند إرسال ملف تعريف ارتباط. ومع
+              ذلك، إذا لم تقبل ملفات تعريف الارتباط، فقد لا تتمكن من استخدام بعض أجزاء خدمتنا. ما لم تقم بتعديل إعدادات
+              متصفحك بحيث يرفض ملفات تعريف الارتباط، فقد تستخدم خدمتنا ملفات تعريف الارتباط.</li>
+            <li
+              data-ar="إشارات الويب. قد تحتوي أقسام معينة من خدمتنا ورسائل البريد الإلكتروني الخاصة بنا على ملفات إلكترونية صغيرة تُعرف باسم إشارات الويب (يشار إليها أيضًا باسم clear gifs و pixel tags و single-pixel gifs) التي تسمح للشركة، على سبيل المثال، بحساب المستخدمين الذين زاروا تلك الصفحات أو فتحوا بريدًا إلكترونيًا ولإحصاءات مواقع الويب الأخرى ذات الصلة (على سبيل المثال، تسجيل شعبية قسم معين والتحقق من سلامة النظام والخادم)."
+              data-en="Web Beacons. Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).">
+              <strong>إشارات الويب.</strong> قد تحتوي أقسام معينة من خدمتنا ورسائل البريد الإلكتروني الخاصة بنا على
+              ملفات إلكترونية صغيرة تُعرف باسم إشارات الويب (يشار إليها أيضًا باسم clear gifs و pixel tags و
+              single-pixel gifs) التي تسمح للشركة، على سبيل المثال، بحساب المستخدمين الذين زاروا تلك الصفحات أو فتحوا
+              بريدًا إلكترونيًا ولإحصاءات مواقع الويب الأخرى ذات الصلة (على سبيل المثال، تسجيل شعبية قسم معين والتحقق من
+              سلامة النظام والخادم).</li>
+          </ul>
+          <p data-ar="يمكن أن تكون ملفات تعريف الارتباط 'دائمة' أو 'مؤقتة'. تبقى ملفات تعريف الارتباط الدائمة على جهاز الكمبيوتر الشخصي أو الجهاز المحمول الخاص بك عند عدم الاتصال بالإنترنت، بينما يتم حذف ملفات تعريف الارتباط المؤقتة بمجرد إغلاق متصفح الويب الخاص بك. يمكنك معرفة المزيد عن ملفات تعريف الارتباط في مقال موقع "
+            data-en="Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. You can learn more about cookies on ">
+            يمكن أن تكون ملفات تعريف الارتباط 'دائمة' أو 'مؤقتة'. تبقى ملفات تعريف الارتباط الدائمة على جهاز الكمبيوتر
+            الشخصي أو الجهاز المحمول الخاص بك عند عدم الاتصال بالإنترنت، بينما يتم حذف ملفات تعريف الارتباط المؤقتة
+            بمجرد إغلاق متصفح الويب الخاص بك. يمكنك معرفة المزيد عن ملفات تعريف الارتباط في مقال موقع <a
+              href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies" target="_blank">TermsFeed</a>.</p>
+          <p data-ar="نحن نستخدم كلاً من ملفات تعريف الارتباط المؤقتة والدائمة للأغراض الموضحة أدناه:"
+            data-en="We use both Session and Persistent Cookies for the purposes set out below:">نحن نستخدم كلاً من
+            ملفات تعريف الارتباط المؤقتة والدائمة للأغراض الموضحة أدناه:</p>
+          <ul>
+            <li>
+              <p><strong data-ar="ملفات تعريف ارتباط ضرورية / أساسية" data-en="Necessary / Essential Cookies">ملفات
+                  تعريف ارتباط ضرورية / أساسية</strong></p>
+              <p data-ar="النوع: ملفات تعريف ارتباط مؤقتة" data-en="Type: Session Cookies">النوع: ملفات تعريف ارتباط
+                مؤقتة</p>
+              <p data-ar="تدار بواسطة: نحن" data-en="Administered by: Us">تدار بواسطة: نحن</p>
+              <p data-ar="الغرض: هذه الملفات ضرورية لتزويدك بالخدمات المتاحة عبر الموقع الإلكتروني ولتمكينك من استخدام بعض ميزاته. فهي تساعد على مصادقة المستخدمين ومنع الاستخدام الاحتيالي لحسابات المستخدمين. بدون هذه الملفات، لا يمكن تقديم الخدمات التي طلبتها، ونحن نستخدم هذه الملفات فقط لتزويدك بهذه الخدمات."
+                data-en="Purpose: These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. They help to authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.">
+                الغرض: هذه الملفات ضرورية لتزويدك بالخدمات المتاحة عبر الموقع الإلكتروني ولتمكينك من استخدام بعض ميزاته.
+                فهي تساعد على مصادقة المستخدمين ومنع الاستخدام الاحتيالي لحسابات المستخدمين. بدون هذه الملفات، لا يمكن
+                تقديم الخدمات التي طلبتها، ونحن نستخدم هذه الملفات فقط لتزويدك بهذه الخدمات.</p>
+            </li>
+            <li>
+              <p><strong data-ar="ملفات تعريف ارتباط سياسة / إشعار القبول"
+                  data-en="Cookies Policy / Notice Acceptance Cookies">ملفات تعريف ارتباط سياسة / إشعار القبول</strong>
+              </p>
+              <p data-ar="النوع: ملفات تعريف ارتباط دائمة" data-en="Type: Persistent Cookies">النوع: ملفات تعريف ارتباط
+                دائمة</p>
+              <p data-ar="تدار بواسطة: نحن" data-en="Administered by: Us">تدار بواسطة: نحن</p>
+              <p data-ar="الغرض: تحدد هذه الملفات ما إذا كان المستخدمون قد قبلوا استخدام ملفات تعريف الارتباط على الموقع الإلكتروني."
+                data-en="Purpose: These Cookies identify if users have accepted the use of cookies on the Website.">
+                الغرض: تحدد هذه الملفات ما إذا كان المستخدمون قد قبلوا استخدام ملفات تعريف الارتباط على الموقع
+                الإلكتروني.</p>
+            </li>
+            <li>
+              <p><strong data-ar="ملفات تعريف ارتباط الوظائف" data-en="Functionality Cookies">ملفات تعريف ارتباط
+                  الوظائف</strong></p>
+              <p data-ar="النوع: ملفات تعريف ارتباط دائمة" data-en="Type: Persistent Cookies">النوع: ملفات تعريف ارتباط
+                دائمة</p>
+              <p data-ar="تدار بواسطة: نحن" data-en="Administered by: Us">تدار بواسطة: نحن</p>
+              <p data-ar="الغرض: تتيح لنا هذه الملفات تذكر الخيارات التي تقوم بها عند استخدام الموقع الإلكتروني، مثل تذكر تفاصيل تسجيل الدخول أو تفضيلات اللغة. الغرض من هذه الملفات هو تزويدك بتجربة شخصية أكثر وتجنب الحاجة إلى إعادة إدخال تفضيلاتك في كل مرة تستخدم فيها الموقع الإلكتروني."
+                data-en="Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.">
+                الغرض: تتيح لنا هذه الملفات تذكر الخيارات التي تقوم بها عند استخدام الموقع الإلكتروني، مثل تذكر تفاصيل
+                تسجيل الدخول أو تفضيلات اللغة. الغرض من هذه الملفات هو تزويدك بتجربة شخصية أكثر وتجنب الحاجة إلى إعادة
+                إدخال تفضيلاتك في كل مرة تستخدم فيها الموقع الإلكتروني.</p>
+            </li>
+          </ul>
+          <p data-ar="لمزيد من المعلومات حول ملفات تعريف الارتباط التي نستخدمها وخياراتك بشأنها، يرجى زيارة سياسة ملفات تعريف الارتباط الخاصة بنا أو قسم ملفات تعريف الارتباط في سياسة الخصوصية الخاصة بنا."
+            data-en="For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy.">
+            لمزيد من المعلومات حول ملفات تعريف الارتباط التي نستخدمها وخياراتك بشأنها، يرجى زيارة سياسة ملفات تعريف
+            الارتباط الخاصة بنا أو قسم ملفات تعريف الارتباط في سياسة الخصوصية الخاصة بنا.</p>
+
+          <h3 data-ar="استخدام بياناتك الشخصية" data-en="Use of Your Personal Data">استخدام بياناتك الشخصية</h3>
+          <p data-ar="قد تستخدم الشركة البيانات الشخصية للأغراض التالية:"
+            data-en="The Company may use Personal Data for the following purposes:">قد تستخدم الشركة البيانات الشخصية
+            للأغراض التالية:</p>
+          <ul>
+            <li>
+              <p><strong data-ar="لتوفير وصيانة خدمتنا" data-en="To provide and maintain our Service">لتوفير وصيانة
+                  خدمتنا</strong><span data-ar="، بما في ذلك مراقبة استخدام خدمتنا."
+                  data-en=", including to monitor the usage of our Service.">، بما في ذلك مراقبة استخدام خدمتنا.</span>
+              </p>
+            </li>
+            <li>
+              <p><strong data-ar="لإدارة حسابك:" data-en="To manage Your Account:">لإدارة حسابك:</strong><span
+                  data-ar=" لإدارة تسجيلك كمستخدم للخدمة. يمكن للبيانات الشخصية التي تقدمها أن تمنحك الوصول إلى وظائف مختلفة للخدمة المتاحة لك كمستخدم مسجل."
+                  data-en=" to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.">
+                  لإدارة تسجيلك كمستخدم للخدمة. يمكن للبيانات الشخصية التي تقدمها أن تمنحك الوصول إلى وظائف مختلفة
+                  للخدمة المتاحة لك كمستخدم مسجل.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="لتنفيذ عقد:" data-en="For the performance of a contract:">لتنفيذ عقد:</strong><span
+                  data-ar=" تطوير والامتثال وتنفيذ عقد الشراء للمنتجات أو العناصر أو الخدمات التي اشتريتها أو أي عقد آخر معنا من خلال الخدمة."
+                  data-en=" the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.">
+                  تطوير والامتثال وتنفيذ عقد الشراء للمنتجات أو العناصر أو الخدمات التي اشتريتها أو أي عقد آخر معنا من
+                  خلال الخدمة.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="للاتصال بك:" data-en="To contact You:">للاتصال بك:</strong><span
+                  data-ar=" للاتصال بك عن طريق البريد الإلكتروني أو المكالمات الهاتفية أو الرسائل القصيرة أو أشكال أخرى معادلة من الاتصالات الإلكترونية، مثل إشعارات الدفع لتطبيق الهاتف المحمول بشأن التحديثات أو الاتصالات الإعلامية المتعلقة بالوظائف أو المنتجات أو الخدمات المتعاقد عليها، بما في ذلك التحديثات الأمنية، عند الضرورة أو المعقولية لتنفيذها."
+                  data-en=" To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.">
+                  للاتصال بك عن طريق البريد الإلكتروني أو المكالمات الهاتفية أو الرسائل القصيرة أو أشكال أخرى معادلة من
+                  الاتصالات الإلكترونية، مثل إشعارات الدفع لتطبيق الهاتف المحمول بشأن التحديثات أو الاتصالات الإعلامية
+                  المتعلقة بالوظائف أو المنتجات أو الخدمات المتعاقد عليها، بما في ذلك التحديثات الأمنية، عند الضرورة أو
+                  المعقولية لتنفيذها.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="لتزويدك" data-en="To provide You">لتزويدك</strong><span
+                  data-ar=" بالأخبار والعروض الخاصة والمعلومات العامة حول السلع والخدمات والأحداث الأخرى التي نقدمها والتي تشبه تلك التي اشتريتها بالفعل أو استفسرت عنها ما لم تكن قد اخترت عدم تلقي مثل هذه المعلومات."
+                  data-en=" with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.">
+                  بالأخبار والعروض الخاصة والمعلومات العامة حول السلع والخدمات والأحداث الأخرى التي نقدمها والتي تشبه
+                  تلك التي اشتريتها بالفعل أو استفسرت عنها ما لم تكن قد اخترت عدم تلقي مثل هذه المعلومات.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="لإدارة طلباتك:" data-en="To manage Your requests:">لإدارة طلباتك:</strong><span
+                  data-ar=" لحضور وإدارة طلباتك إلينا." data-en=" To attend and manage Your requests to Us."> لحضور
+                  وإدارة طلباتك إلينا.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="لعمليات نقل الأعمال:" data-en="For business transfers:">لعمليات نقل
+                  الأعمال:</strong><span
+                  data-ar=" قد نستخدم معلوماتك لتقييم أو إجراء عملية دمج أو تصفية أو إعادة هيكلة أو إعادة تنظيم أو حل أو بيع أو نقل آخر لبعض أو كل أصولنا، سواء كمنشأة مستمرة أو كجزء من إجراءات الإفلاس أو التصفية أو إجراءات مماثلة، حيث تكون البيانات الشخصية التي نحتفظ بها حول مستخدمي خدمتنا من بين الأصول المنقولة."
+                  data-en=" We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.">
+                  قد نستخدم معلوماتك لتقييم أو إجراء عملية دمج أو تصفية أو إعادة هيكلة أو إعادة تنظيم أو حل أو بيع أو
+                  نقل آخر لبعض أو كل أصولنا، سواء كمنشأة مستمرة أو كجزء من إجراءات الإفلاس أو التصفية أو إجراءات مماثلة،
+                  حيث تكون البيانات الشخصية التي نحتفظ بها حول مستخدمي خدمتنا من بين الأصول المنقولة.</span></p>
+            </li>
+            <li>
+              <p><strong data-ar="لأغراض أخرى" data-en="For other purposes">لأغراض أخرى</strong><span
+                  data-ar=": قد نستخدم معلوماتك لأغراض أخرى، مثل تحليل البيانات، وتحديد اتجاهات الاستخدام، وتحديد فعالية حملاتنا الترويجية، وتقييم وتحسين خدمتنا ومنتجاتنا وخدماتنا وتسويقنا وتجربتك."
+                  data-en=": We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.">:
+                  قد نستخدم معلوماتك لأغراض أخرى، مثل تحليل البيانات، وتحديد اتجاهات الاستخدام، وتحديد فعالية حملاتنا
+                  الترويجية، وتقييم وتحسين خدمتنا ومنتجاتنا وخدماتنا وتسويقنا وتجربتك.</span></p>
+            </li>
+          </ul>
+          <p data-ar="قد نشارك معلوماتك الشخصية في الحالات التالية:"
+            data-en="We may share Your personal information in the following situations:">قد نشارك معلوماتك الشخصية في
+            الحالات التالية:</p>
+          <ul>
+            <li
+              data-ar="مع مزودي الخدمة: قد نشارك معلوماتك الشخصية مع مزودي الخدمة لمراقبة وتحليل استخدام خدمتنا، وللاتصال بك."
+              data-en="With Service Providers: We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.">
+              <strong>مع مزودي الخدمة:</strong> قد نشارك معلوماتك الشخصية مع مزودي الخدمة لمراقبة وتحليل استخدام خدمتنا،
+              وللاتصال بك.</li>
+            <li
+              data-ar="لعمليات نقل الأعمال: قد نشارك أو ننقل معلوماتك الشخصية فيما يتعلق بأي عملية دمج أو بيع لأصول الشركة أو تمويل أو استحواذ على كل أو جزء من أعمالنا إلى شركة أخرى، أو أثناء المفاوضات بشأنها."
+              data-en="For business transfers: We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.">
+              <strong>لعمليات نقل الأعمال:</strong> قد نشارك أو ننقل معلوماتك الشخصية فيما يتعلق بأي عملية دمج أو بيع
+              لأصول الشركة أو تمويل أو استحواذ على كل أو جزء من أعمالنا إلى شركة أخرى، أو أثناء المفاوضات بشأنها.</li>
+            <li
+              data-ar="مع الشركات التابعة: قد نشارك معلوماتك مع الشركات التابعة لنا، وفي هذه الحالة سنطلب من تلك الشركات التابعة احترام سياسة الخصوصية هذه. تشمل الشركات التابعة شركتنا الأم وأي شركات فرعية أخرى أو شركاء في مشاريع مشتركة أو شركات أخرى نسيطر عليها أو تخضع لسيطرة مشتركة معنا."
+              data-en="With Affiliates: We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.">
+              <strong>مع الشركات التابعة:</strong> قد نشارك معلوماتك مع الشركات التابعة لنا، وفي هذه الحالة سنطلب من تلك
+              الشركات التابعة احترام سياسة الخصوصية هذه. تشمل الشركات التابعة شركتنا الأم وأي شركات فرعية أخرى أو شركاء
+              في مشاريع مشتركة أو شركات أخرى نسيطر عليها أو تخضع لسيطرة مشتركة معنا.</li>
+            <li
+              data-ar="مع شركاء الأعمال: قد نشارك معلوماتك مع شركاء أعمالنا لنقدم لك منتجات أو خدمات أو عروض ترويجية معينة."
+              data-en="With business partners: We may share Your information with Our business partners to offer You certain products, services or promotions.">
+              <strong>مع شركاء الأعمال:</strong> قد نشارك معلوماتك مع شركاء أعمالنا لنقدم لك منتجات أو خدمات أو عروض
+              ترويجية معينة.</li>
+            <li
+              data-ar="مع مستخدمين آخرين: عندما تشارك معلومات شخصية أو تتفاعل بطريقة أخرى في المناطق العامة مع مستخدمين آخرين، قد يتم عرض هذه المعلومات من قبل جميع المستخدمين وقد يتم توزيعها علنًا في الخارج."
+              data-en="With other users: when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.">
+              <strong>مع مستخدمين آخرين:</strong> عندما تشارك معلومات شخصية أو تتفاعل بطريقة أخرى في المناطق العامة مع
+              مستخدمين آخرين، قد يتم عرض هذه المعلومات من قبل جميع المستخدمين وقد يتم توزيعها علنًا في الخارج.</li>
+            <li data-ar="بموافقتك: قد نكشف عن معلوماتك الشخصية لأي غرض آخر بموافقتك."
+              data-en="With Your consent: We may disclose Your personal information for any other purpose with Your consent.">
+              <strong>بموافقتك:</strong> قد نكشف عن معلوماتك الشخصية لأي غرض آخر بموافقتك.</li>
+          </ul>
+
+          <h3 data-ar="الاحتفاظ ببياناتك الشخصية" data-en="Retention of Your Personal Data">الاحتفاظ ببياناتك الشخصية
+          </h3>
+          <p data-ar="ستحتفظ الشركة ببياناتك الشخصية فقط طالما كان ذلك ضروريًا للأغراض المنصوص عليها في سياسة الخصوصية هذه. سنحتفظ ببياناتك الشخصية ونستخدمها بالقدر اللازم للامتثال لالتزاماتنا القانونية (على سبيل المثال، إذا طُلب منا الاحتفاظ ببياناتك للامتثال للقوانين المعمول بها)، وحل النزاعات، وإنفاذ اتفاقياتنا وسياساتنا القانونية."
+            data-en="The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.">
+            ستحتفظ الشركة ببياناتك الشخصية فقط طالما كان ذلك ضروريًا للأغراض المنصوص عليها في سياسة الخصوصية هذه. سنحتفظ
+            ببياناتك الشخصية ونستخدمها بالقدر اللازم للامتثال لالتزاماتنا القانونية (على سبيل المثال، إذا طُلب منا
+            الاحتفاظ ببياناتك للامتثال للقوانين المعمول بها)، وحل النزاعات، وإنفاذ اتفاقياتنا وسياساتنا القانونية.</p>
+          <p data-ar="ستحتفظ الشركة أيضًا ببيانات الاستخدام لأغراض التحليل الداخلي. يتم الاحتفاظ ببيانات الاستخدام بشكل عام لفترة زمنية أقصر، إلا عندما يتم استخدام هذه البيانات لتعزيز الأمان أو لتحسين وظائف خدمتنا، أو عندما نكون ملزمين قانونًا بالاحتفاظ بهذه البيانات لفترات زمنية أطول."
+            data-en="The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.">
+            ستحتفظ الشركة أيضًا ببيانات الاستخدام لأغراض التحليل الداخلي. يتم الاحتفاظ ببيانات الاستخدام بشكل عام لفترة
+            زمنية أقصر، إلا عندما يتم استخدام هذه البيانات لتعزيز الأمان أو لتحسين وظائف خدمتنا، أو عندما نكون ملزمين
+            قانونًا بالاحتفاظ بهذه البيانات لفترات زمنية أطول.</p>
+
+          <h3 data-ar="نقل بياناتك الشخصية" data-en="Transfer of Your Personal Data">نقل بياناتك الشخصية</h3>
+          <p data-ar="تتم معالجة معلوماتك، بما في ذلك البيانات الشخصية، في مكاتب تشغيل الشركة وفي أي أماكن أخرى حيث يوجد الأطراف المشاركة في المعالجة. هذا يعني أنه قد يتم نقل هذه المعلومات إلى أجهزة كمبيوتر موجودة خارج ولايتك أو مقاطعتك أو بلدك أو أي ولاية قضائية حكومية أخرى حيث قد تختلف قوانين حماية البيانات عن تلك الموجودة في ولايتك القضائية."
+            data-en="Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.">
+            تتم معالجة معلوماتك، بما في ذلك البيانات الشخصية، في مكاتب تشغيل الشركة وفي أي أماكن أخرى حيث يوجد الأطراف
+            المشاركة في المعالجة. هذا يعني أنه قد يتم نقل هذه المعلومات إلى أجهزة كمبيوتر موجودة خارج ولايتك أو مقاطعتك
+            أو بلدك أو أي ولاية قضائية حكومية أخرى حيث قد تختلف قوانين حماية البيانات عن تلك الموجودة في ولايتك
+            القضائية.</p>
+          <p data-ar="موافقتك على سياسة الخصوصية هذه متبوعة بتقديمك لهذه المعلومات تمثل موافقتك على هذا النقل."
+            data-en="Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.">
+            موافقتك على سياسة الخصوصية هذه متبوعة بتقديمك لهذه المعلومات تمثل موافقتك على هذا النقل.</p>
+          <p data-ar="ستتخذ الشركة جميع الخطوات اللازمة بشكل معقول لضمان التعامل مع بياناتك بشكل آمن ووفقًا لسياسة الخصوصية هذه ولن يتم نقل بياناتك الشخصية إلى منظمة أو بلد ما لم تكن هناك ضوابط كافية، بما في ذلك أمان بياناتك وغيرها من المعلومات الشخصية."
+            data-en="The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.">
+            ستتخذ الشركة جميع الخطوات اللازمة بشكل معقول لضمان التعامل مع بياناتك بشكل آمن ووفقًا لسياسة الخصوصية هذه
+            ولن يتم نقل بياناتك الشخصية إلى منظمة أو بلد ما لم تكن هناك ضوابط كافية، بما في ذلك أمان بياناتك وغيرها من
+            المعلومات الشخصية.</p>
+
+          <h3 data-ar="حذف بياناتك الشخصية" data-en="Delete Your Personal Data">حذف بياناتك الشخصية</h3>
+          <p data-ar="لديك الحق في حذف أو طلب المساعدة في حذف البيانات الشخصية التي جمعناها عنك."
+            data-en="You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You.">
+            لديك الحق في حذف أو طلب المساعدة في حذف البيانات الشخصية التي جمعناها عنك.</p>
+          <p data-ar="قد تمنحك خدمتنا القدرة على حذف معلومات معينة عنك من داخل الخدمة."
+            data-en="Our Service may give You the ability to delete certain information about You from within the Service.">
+            قد تمنحك خدمتنا القدرة على حذف معلومات معينة عنك من داخل الخدمة.</p>
+          <p data-ar="يمكنك تحديث معلوماتك أو تعديلها أو حذفها في أي وقت عن طريق تسجيل الدخول إلى حسابك، إذا كان لديك حساب، وزيارة قسم إعدادات الحساب الذي يسمح لك بإدارة معلوماتك الشخصية. يمكنك أيضًا الاتصال بنا لطلب الوصول إلى أي معلومات شخصية قدمتها لنا أو تصحيحها أو حذفها."
+            data-en="You may update, amend, or delete Your information at any time by signing in to Your Account, if you have one, and visiting the account settings section that allows you to manage Your personal information. You may also contact Us to request access to, correct, or delete any personal information that You have provided to Us.">
+            يمكنك تحديث معلوماتك أو تعديلها أو حذفها في أي وقت عن طريق تسجيل الدخول إلى حسابك، إذا كان لديك حساب، وزيارة
+            قسم إعدادات الحساب الذي يسمح لك بإدارة معلوماتك الشخصية. يمكنك أيضًا الاتصال بنا لطلب الوصول إلى أي معلومات
+            شخصية قدمتها لنا أو تصحيحها أو حذفها.</p>
+          <p data-ar="يرجى ملاحظة، مع ذلك، أننا قد نحتاج إلى الاحتفاظ بمعلومات معينة عندما يكون لدينا التزام قانوني أو أساس قانوني للقيام بذلك."
+            data-en="Please note, however, that We may need to retain certain information when we have a legal obligation or lawful basis to do so.">
+            يرجى ملاحظة، مع ذلك، أننا قد نحتاج إلى الاحتفاظ بمعلومات معينة عندما يكون لدينا التزام قانوني أو أساس قانوني
+            للقيام بذلك.</p>
+
+          <h3 data-ar="الكشف عن بياناتك الشخصية" data-en="Disclosure of Your Personal Data">الكشف عن بياناتك الشخصية
+          </h3>
+          <h4 data-ar="المعاملات التجارية" data-en="Business Transactions">المعاملات التجارية</h4>
+          <p data-ar="إذا كانت الشركة متورطة في عملية دمج أو استحواذ أو بيع أصول، فقد يتم نقل بياناتك الشخصية. سنوفر إشعارًا قبل نقل بياناتك الشخصية وقبل أن تصبح خاضعة لسياسة خصوصية مختلفة."
+            data-en="If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.">
+            إذا كانت الشركة متورطة في عملية دمج أو استحواذ أو بيع أصول، فقد يتم نقل بياناتك الشخصية. سنوفر إشعارًا قبل
+            نقل بياناتك الشخصية وقبل أن تصبح خاضعة لسياسة خصوصية مختلفة.</p>
+          <h4 data-ar="إنفاذ القانون" data-en="Law enforcement">إنفاذ القانون</h4>
+          <p data-ar="في ظل ظروف معينة، قد يُطلب من الشركة الكشف عن بياناتك الشخصية إذا طُلب منها ذلك بموجب القانون أو استجابة لطلبات صالحة من السلطات العامة (مثل محكمة أو وكالة حكومية)."
+            data-en="Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).">
+            في ظل ظروف معينة، قد يُطلب من الشركة الكشف عن بياناتك الشخصية إذا طُلب منها ذلك بموجب القانون أو استجابة
+            لطلبات صالحة من السلطات العامة (مثل محكمة أو وكالة حكومية).</p>
+          <h4 data-ar="متطلبات قانونية أخرى" data-en="Other legal requirements">متطلبات قانونية أخرى</h4>
+          <p data-ar="قد تكشف الشركة عن بياناتك الشخصية بحسن نية معتقدة أن هذا الإجراء ضروري من أجل:"
+            data-en="The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:">
+            قد تكشف الشركة عن بياناتك الشخصية بحسن نية معتقدة أن هذا الإجراء ضروري من أجل:</p>
+          <ul>
+            <li data-ar="الامتثال لالتزام قانوني" data-en="Comply with a legal obligation">الامتثال لالتزام قانوني</li>
+            <li data-ar="حماية والدفاع عن حقوق أو ممتلكات الشركة"
+              data-en="Protect and defend the rights or property of the Company">حماية والدفاع عن حقوق أو ممتلكات الشركة
+            </li>
+            <li data-ar="منع أو التحقيق في أي مخالفات محتملة تتعلق بالخدمة"
+              data-en="Prevent or investigate possible wrongdoing in connection with the Service">منع أو التحقيق في أي
+              مخالفات محتملة تتعلق بالخدمة</li>
+            <li data-ar="حماية السلامة الشخصية لمستخدمي الخدمة أو الجمهور"
+              data-en="Protect the personal safety of Users of the Service or the public">حماية السلامة الشخصية لمستخدمي
+              الخدمة أو الجمهور</li>
+            <li data-ar="الحماية من المسؤولية القانونية" data-en="Protect against legal liability">الحماية من المسؤولية
+              القانونية</li>
+          </ul>
+
+          <h3 data-ar="أمان بياناتك الشخصية" data-en="Security of Your Personal Data">أمان بياناتك الشخصية</h3>
+          <p data-ar="أمان بياناتك الشخصية مهم لنا، ولكن تذكر أنه لا توجد طريقة نقل عبر الإنترنت أو طريقة تخزين إلكترونية آمنة بنسبة 100٪. بينما نسعى جاهدين لاستخدام وسائل مقبولة تجاريًا لحماية بياناتك الشخصية، لا يمكننا ضمان أمانها المطلق."
+            data-en="The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.">
+            أمان بياناتك الشخصية مهم لنا، ولكن تذكر أنه لا توجد طريقة نقل عبر الإنترنت أو طريقة تخزين إلكترونية آمنة
+            بنسبة 100٪. بينما نسعى جاهدين لاستخدام وسائل مقبولة تجاريًا لحماية بياناتك الشخصية، لا يمكننا ضمان أمانها
+            المطلق.</p>
+
+          <h2 data-ar="خصوصية الأطفال" data-en="Children's Privacy">خصوصية الأطفال</h2>
+          <p data-ar="خدمتنا لا تستهدف أي شخص دون سن 13 عامًا. نحن لا نجمع عن قصد معلومات تعريف شخصية من أي شخص دون سن 13 عامًا. إذا كنت والدًا أو وصيًا وكنت على علم بأن طفلك قد زودنا ببيانات شخصية، فيرجى الاتصال بنا. إذا علمنا أننا قد جمعنا بيانات شخصية من أي شخص دون سن 13 عامًا دون التحقق من موافقة الوالدين، فإننا نتخذ خطوات لإزالة تلك المعلومات من خوادمنا."
+            data-en="Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.">
+            خدمتنا لا تستهدف أي شخص دون سن 13 عامًا. نحن لا نجمع عن قصد معلومات تعريف شخصية من أي شخص دون سن 13 عامًا.
+            إذا كنت والدًا أو وصيًا وكنت على علم بأن طفلك قد زودنا ببيانات شخصية، فيرجى الاتصال بنا. إذا علمنا أننا قد
+            جمعنا بيانات شخصية من أي شخص دون سن 13 عامًا دون التحقق من موافقة الوالدين، فإننا نتخذ خطوات لإزالة تلك
+            المعلومات من خوادمنا.</p>
+          <p data-ar="إذا احتجنا إلى الاعتماد على الموافقة كأساس قانوني لمعالجة معلوماتك وتتطلب بلدك موافقة أحد الوالدين، فقد نطلب موافقة والديك قبل جمع تلك المعلومات واستخدامها."
+            data-en="If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.">
+            إذا احتجنا إلى الاعتماد على الموافقة كأساس قانوني لمعالجة معلوماتك وتتطلب بلدك موافقة أحد الوالدين، فقد نطلب
+            موافقة والديك قبل جمع تلك المعلومات واستخدامها.</p>
+
+          <h2 data-ar="روابط لمواقع أخرى" data-en="Links to Other Websites">روابط لمواقع أخرى</h2>
+          <p data-ar="قد تحتوي خدمتنا على روابط لمواقع أخرى لا نديرها. إذا قمت بالنقر فوق رابط جهة خارجية، فسيتم توجيهك إلى موقع تلك الجهة الخارجية. ننصحك بشدة بمراجعة سياسة الخصوصية لكل موقع تزوره."
+            data-en="Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.">
+            قد تحتوي خدمتنا على روابط لمواقع أخرى لا نديرها. إذا قمت بالنقر فوق رابط جهة خارجية، فسيتم توجيهك إلى موقع
+            تلك الجهة الخارجية. ننصحك بشدة بمراجعة سياسة الخصوصية لكل موقع تزوره.</p>
+          <p data-ar="ليس لدينا أي سيطرة ولا نتحمل أي مسؤولية عن المحتوى أو سياسات الخصوصية أو الممارسات الخاصة بأي مواقع أو خدمات تابعة لجهات خارجية."
+            data-en="We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.">
+            ليس لدينا أي سيطرة ولا نتحمل أي مسؤولية عن المحتوى أو سياسات الخصوصية أو الممارسات الخاصة بأي مواقع أو خدمات
+            تابعة لجهات خارجية.</p>
+
+          <h2 data-ar="تغييرات على سياسة الخصوصية هذه" data-en="Changes to this Privacy Policy">تغييرات على سياسة
+            الخصوصية هذه</h2>
+          <p data-ar="قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. سنخطرك بأي تغييرات عن طريق نشر سياسة الخصوصية الجديدة على هذه الصفحة."
+            data-en="We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.">
+            قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. سنخطرك بأي تغييرات عن طريق نشر سياسة الخصوصية الجديدة
+            على هذه الصفحة.</p>
+          <p data-ar="سنعلمك عبر البريد الإلكتروني و / أو إشعار بارز على خدمتنا، قبل أن يصبح التغيير ساري المفعول وتحديث تاريخ &quot;آخر تحديث&quot; في الجزء العلوي من سياسة الخصوصية هذه."
+            data-en="We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the &quot;Last updated&quot; date at the top of this Privacy Policy.">
+            سنعلمك عبر البريد الإلكتروني و / أو إشعار بارز على خدمتنا، قبل أن يصبح التغيير ساري المفعول وتحديث تاريخ
+            "آخر تحديث" في الجزء العلوي من سياسة الخصوصية هذه.</p>
+          <p data-ar="يُنصح بمراجعة سياسة الخصوصية هذه بشكل دوري لأي تغييرات. تكون التغييرات على سياسة الخصوصية هذه فعالة عند نشرها على هذه الصفحة."
+            data-en="You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.">
+            يُنصح بمراجعة سياسة الخصوصية هذه بشكل دوري لأي تغييرات. تكون التغييرات على سياسة الخصوصية هذه فعالة عند
+            نشرها على هذه الصفحة.</p>
+
+          <h2 data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</h2>
+          <p data-ar="إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك الاتصال بنا:"
+            data-en="If you have any questions about this Privacy Policy, You can contact us:">إذا كان لديك أي أسئلة حول
+            سياسة الخصوصية هذه، يمكنك الاتصال بنا:</p>
+          <ul>
+            <li data-ar="عن طريق زيارة هذه الصفحة على موقعنا:" data-en="By visiting this page on our website:">عن طريق
+              زيارة هذه الصفحة على موقعنا: <a href="https://www.debtbox.sa/" rel="external nofollow noopener"
+                target="_blank">https://www.debtbox.sa/</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container container" data-directional dir="rtl">
+      <div class="footer-section footer-logo">
+        <a href="/"><img src="assets/logo3.svg" alt="Logo" /></a>
+      </div>
+      <div class="footer-section links">
+        <div class="links-column">
+          <h3 data-en="Site Information" data-ar="معلومات الموقع">معلومات الموقع</h3>
+          <ul>
+            <li><a href="/privacy-policy.html" data-en="Privacy Policy" data-ar="سياسة الخصوصية">سياسة الخصوصية</a></li>
+            <li><a href="/terms-conditions.html" data-en="Terms and Conditions" data-ar="الشروط و الأحكام">الشروط و
+                الأحكام</a></li>
+          </ul>
+        </div>
+        <div class="links-column">
+          <h3 data-en="About Debt Box" data-ar="عن ديبت بوكس">عن ديبت بوكس</h3>
+          <ul>
+            <li><a href="/about.html" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+            <li><a href="/product.html" data-en="Product" data-ar="المنتج">المنتج</a></li>
+            <li><a href="/contact-us.html" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section social-media">
+        <div class="social-icons">
+          <a href="#"><img src="assets/ig.svg" alt="Instagram"></a>
+          <a href="#"><img src="assets/in.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="assets/fb.svg" alt="Facebook"></a>
+          <a href="#"><img src="assets/x.svg" alt="Twitter"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <footer class="footer-small">
+    <div class="container">
+      <p data-en="© All rights reserved to Debt Box" data-ar="© جميع الحقوق محفوظة، لشركة ديبيت بوكس">© جميع الحقوق
+        محفوظة، لشركة ديبيت بوكس</p>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById("burger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
+
+    burger.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      overlay.classList.add("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      overlay.classList.remove("show");
+    });
+    function toggleLanguage() {
+      const isArabic = document.documentElement.dir === 'rtl';
+      const html = document.documentElement;
+      document.documentElement.lang = isArabic ? 'en' : 'ar';
+      document.documentElement.dir = isArabic ? 'ltr' : 'rtl';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = isArabic ? el.dataset.en : el.dataset.ar;
+      });
+      document.querySelectorAll('[data-directional]').forEach(el => {
+        el.setAttribute('dir', isArabic ? 'ltr' : 'rtl');
+        el.setAttribute('lang', isArabic ? 'en' : 'ar');
+      });
+      document.querySelector('.lang-toggle').textContent = isArabic ? 'عربي' : 'English';
+
+      const logoImg = document.getElementById('langIcon');
+      logoImg.src = isArabic ? 'assets/ar.svg' : 'assets/en.svg';
+
+      const logoImgMenu = document.getElementById('langIconMenu');
+      logoImgMenu.src = isArabic ? 'assets/ar.svg' : 'assets/en.svg';
+    }
+  </script>
+
+
+</body>
+
+</html>
