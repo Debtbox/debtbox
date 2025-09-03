@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/debtbox/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/' : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

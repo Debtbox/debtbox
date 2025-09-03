@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1-dev",
   "type": "module",
-  "homepage": "https://mostafafathi.github.io/debtbox",
+  "homepage": "https://debtbox.sa",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
