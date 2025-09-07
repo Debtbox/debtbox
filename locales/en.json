@@ -1,0 +1,59 @@
+{
+  "home": "Home",
+  "contactUs": "Contact Us",
+  "aboutUs": "About Us",
+  "getStarted": "Get Started",
+  "arabic": "العربية",
+  "english": "English",
+  "logoAlt": "Logo",
+  "languageAlt": "language",
+  "toggleMenuAriaLabel": "Toggle menu",
+
+  "title": "Smart Platform for Managing Deferred Purchases",
+  "description": "Debt Box provides an integrated system that enables customers to buy on credit, while giving stores a dashboard to track all invoices, customers, and outstanding amounts easily and transparently.",
+  "showcase": {
+    "card1": {
+      "title": "Store Dashboard for Debt Tracking",
+      "description": "A smart dashboard that allows you to track customer debts, payment status, and due dates at a glance, with the ability to send reminders and organize invoices efficiently."
+    },
+    "card2": {
+      "title": "Secure and Easy to Use",
+      "description": "A system designed with the highest security standards to protect your data and transactions, with a simple interface that enables any user to interact with it easily without the need for any technical expertise."
+    }
+  },
+  "howItWorks": {
+    "subtitle": "We Explain Simply",
+    "title": "How We Work?",
+    "description": "Debt Box provides a complete system that allows customers to buy on credit, while giving stores a dashboard to easily and transparently track all invoices, customers, and outstanding amounts."
+  },
+  "features": {
+    "bothParties": {
+      "title": "For Both Parties",
+      "description": "Monitor payment processes and due dates from one place. A transparent system keeps both the customer and the seller informed about the financial status."
+    },
+    "businesses": {
+      "title": "For Businesses and Stores",
+      "description": "Track all customer invoices. Know who hasn't paid yet and get alerts before due dates."
+    },
+    "customers": {
+      "title": "For Customers",
+      "description": "You can buy your needs now from any store that supports Debt Box, and pay later according to the agreement. Easy tracking of all your purchases."
+    },
+    "subHeading": "Our Features",
+    "title": "Benefits of using Debt Box",
+    "list": {
+      "automaticReminders": "Automatic payment due date reminders",
+      "storeDashboard": "Store dashboard for debt tracking",
+      "multiClientManagement": "Multi-client and invoice management",
+      "paymentIntegration": "Integration with electronic payment methods"
+    },
+    "signUpButton": "Sign Up"
+  },
+  "footer": {
+    "siteInformation": "Site Information",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms and Conditions",
+    "aboutDebtBox": "About Debt Box",
+    "copyright": "© All rights reserved to Debt Box"
+  }
+}
