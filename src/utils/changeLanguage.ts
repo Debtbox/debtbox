@@ -5,6 +5,4 @@ export const changeLanguage = (language: string) => {
   const i18n = getI18n();
   setCookie('language', language);
   void i18n.changeLanguage(language);
-  document.dir = i18n.dir();
-  document.documentElement.lang = i18n.language;
 };

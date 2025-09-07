@@ -1,0 +1,14 @@
+export { default as headerLogo } from './logos/logo4.svg';
+export { default as enFlag } from './flags/en.svg';
+export { default as arFlag } from './flags/ar.svg';
+export { default as redIcon } from './icons/red-icon.svg';
+export { default as blueIcon } from './icons/blue-icon.svg';
+export { default as phone } from './phone.png';
+export { default as both } from './icons/both.svg';
+export { default as merchant } from './icons/merchant.svg';
+export { default as customer } from './icons/customer.svg';
+export { default as featuresPhone } from './features-phone4.png';
+export { default as ig } from './icons/ig.svg';
+export { default as ln } from './icons/in.svg';
+export { default as fb } from './icons/fb.svg';
+export { default as x } from './icons/x.svg';

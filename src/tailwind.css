@@ -1,1 +1,61 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #06101c;
+  --color-primary-70: rgba(6, 16, 28, 0.7);
+  --color-primary-90: rgba(6, 16, 28, 0.9);
+  --color-primary-02: rgba(6, 16, 28, 0.02);
+  --color-primary-08: rgba(6, 16, 28, 0.08);
+
+  --color-background: #f8f8f8;
+  --color-background-alt: #f9f9f9;
+  --color-background-alt-2: #f8fafa;
+  --color-background-white: #ffffff;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #383838;
+  --color-text-tertiary: #555555;
+  --color-text-quaternary: #666666;
+  --color-text-quinary: #333333;
+  --color-text-senary: #343a40;
+
+  --color-accent-green: #28a57e;
+  --color-accent-green-bg: #f3fcf9;
+  --color-accent-green-shadow: rgba(40, 165, 126, 0.2);
+
+  --color-footer-bg: #eeeff2;
+  --color-footer-text: #253551;
+
+  --color-shadow-light: rgba(0, 0, 0, 0.03);
+  --color-shadow-medium: rgba(0, 0, 0, 0.04);
+  --color-shadow-dark: rgba(0, 0, 0, 0.08);
+  --color-shadow-darker: rgba(0, 0, 0, 0.1);
+  --color-overlay: rgba(0, 0, 0, 0.3);
+
+  --color-text-secondary: #383838;
+  --color-text-tertiary: #555555;
+  --color-text-quaternary: #666666;
+  --color-text-quinary: #333333;
+  --color-text-senary: #343a40;
+
+  --font-cairo: 'Cairo', sans-serif;
+}
+
+.container {
+  width: 100%;
+  @media (width >= 40rem /* 640px */) {
+    max-width: 40rem /* 640px */;
+  }
+  @media (width >= 48rem /* 768px */) {
+    max-width: 48rem /* 768px */;
+  }
+  @media (width >= 64rem /* 1024px */) {
+    max-width: 64rem /* 1024px */;
+  }
+  @media (width >= 80rem /* 1280px */) {
+    max-width: 80rem /* 1280px */;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    max-width: 116rem /* 1536px */;
+  }
+}
