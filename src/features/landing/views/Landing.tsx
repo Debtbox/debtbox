@@ -5,6 +5,7 @@ import FeaturesSection from '../Sections/Home/FeaturesSection';
 import HeroSection from '../Sections/Home/HeroSection';
 import HowItWorksSection from '../Sections/Home/HowItWorksSection';
 import ShowCaseSection from '../Sections/Home/ShowCaseSection';
+
 import '../styles/styles.css';
 
 export const Landing = () => {

@@ -7,22 +7,12 @@ const HowItWorksSection = () => {
   return (
     <>
       <section className="how-we-work">
-        <div
-          className="container how-we-work__container"
-          data-directional
-          dir="rtl"
-        >
+        <div className="container_css how-we-work__container">
           <div className="how-we-work__text">
-            <h4>
-              {t('howItWorks.subtitle')}
-            </h4>
-            <h2>
-              {t('howItWorks.title')}
-            </h2>
+            <h4>{t('howItWorks.subtitle')}</h4>
+            <h2>{t('howItWorks.title')}</h2>
           </div>
-          <p className="how-we-work__desc">
-            {t('howItWorks.description')}
-          </p>
+          <p className="how-we-work__desc">{t('howItWorks.description')}</p>
         </div>
       </section>
       <section className="features-container" data-directional dir="rtl">
@@ -30,9 +20,7 @@ const HowItWorksSection = () => {
           <div className="icon-wrapper">
             <img src={both} alt="Logo" />
           </div>
-          <h3>
-            {t('features.bothParties.title')}
-          </h3>
+          <h3>{t('features.bothParties.title')}</h3>
           <p data-directional dir="rtl">
             {t('features.bothParties.description')}
           </p>
@@ -42,9 +30,7 @@ const HowItWorksSection = () => {
           <div className="icon-wrapper">
             <img src={merchant} alt="Logo" />
           </div>
-          <h3>
-            {t('features.businesses.title')}
-          </h3>
+          <h3>{t('features.businesses.title')}</h3>
           <p data-directional dir="rtl">
             {t('features.businesses.description')}
           </p>
@@ -54,9 +40,7 @@ const HowItWorksSection = () => {
           <div className="icon-wrapper">
             <img src={customer} alt="Logo" />
           </div>
-          <h3>
-            {t('features.customers.title')}
-          </h3>
+          <h3>{t('features.customers.title')}</h3>
           <p data-directional dir="rtl">
             {t('features.customers.description')}
           </p>

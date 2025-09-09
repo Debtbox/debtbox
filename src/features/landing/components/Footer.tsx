@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <footer className="footer">
-        <div className="footer-container container">
+        <div className="footer-container container_css">
           <div className="footer-section footer-logo">
             <Link to="/">
               <img src={headerLogo} alt="Logo" />
@@ -63,7 +63,7 @@ const Footer = () => {
       </footer>
 
       <footer className="footer-small">
-        <div className="container">
+        <div className="container_css">
           <p>{t('footer.copyright')}</p>
         </div>
       </footer>

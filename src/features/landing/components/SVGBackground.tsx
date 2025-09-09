@@ -10,7 +10,7 @@ const SVGBackground = () => {
         width: '100%',
         height: 'auto',
         position: 'absolute',
-        zIndex: 4,
+        zIndex: 1,
         top: '-240px',
       }}
     >

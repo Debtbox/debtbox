@@ -11,7 +11,7 @@
 .landing-page,
 * {
   /* Reset all child elements */
-  all: unset;
+  /* all: unset; */
   display: revert;
   box-sizing: border-box;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 /* Container */
-.container {
+.container_css {
   /* max-width: 1200px; */
   margin: 0 104px;
   padding: 20px;
@@ -50,7 +50,7 @@ body {
   z-index: 10;
 }
 
-.main-header .container {
+.main-header .container_css {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -149,7 +149,7 @@ body {
   padding: 24px 20px 0 20px;
   text-align: center;
 }
-.hero .container {
+.hero .container_css {
   padding: 0 20px;
 }
 
@@ -263,7 +263,6 @@ body {
 .how-we-work {
   background-color: #f8fafa;
   padding: 4rem 1rem;
-  direction: ltr;
   padding-top: 0;
 }
 
@@ -575,19 +574,18 @@ body {
 
 /* Burger Menu */
 .burger-menu {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #06101c;
+  display: none !important;
+  font-size: 28px !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: #06101c !important;
 }
 .lang-button-menu {
   display: none;
 }
 .lang-button-menu a {
   position: relative;
-  top: 4px;
 }
 
 /* Mobile Slide Menu */
@@ -755,7 +753,7 @@ body {
 
   .burger-menu,
   .lang-button-menu {
-    display: block;
+    display: block !important;
   }
 
   .nav-links,
@@ -764,15 +762,15 @@ body {
     display: none !important;
   }
 
-  .container {
+  .container_css {
     margin: 0;
   }
 
-  .main-header .container {
+  .main-header .container_css {
     justify-content: space-between;
   }
 
-  .main-header .container {
+  .main-header .container_css {
     /* flex-direction: column; */
     align-items: stretch;
     text-align: center;

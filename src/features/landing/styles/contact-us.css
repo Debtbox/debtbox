@@ -1,28 +1,28 @@
 /* Hero */
-.hero {
+.contact-us-page .hero {
     padding: 24px 20px 0 20px;
     text-align: center;
 }
 
-.hero .container {
+.contact-us-page .hero .container_css {
     padding: 0 20px;
 }
 
-.hero h1 {
+.contact-us-page .hero h1 {
     width: unset;
     line-height: unset;
 }
 
-.hero p {
+.contact-us-page .hero p {
     margin: auto;
     width: 778px;
 }
 
-.contact-section {
+.contact-us-page .contact-section {
     padding: 56px 20px;
 }
 
-.contact-container {
+.contact-us-page .contact-container {
     max-width: 1100px;
     margin: auto;
     display: flex;
@@ -34,7 +34,7 @@
     padding: 10px;
 }
 
-.contact-info {
+.contact-us-page .contact-info {
     background: #012c3b;
     color: #fff;
     flex: 1 1 300px;
@@ -42,48 +42,48 @@
     border-radius: 0 0 0 12px;
 }
 
-.contact-info h2 {
+.contact-us-page .contact-info h2 {
     margin-bottom: 10px;
     font-size: 22px;
 }
 
-.contact-info p {
+.contact-us-page .contact-info p {
     margin-bottom: 25px;
     font-size: 14px;
     color: #ccc;
 }
 
-.info-item {
+.contact-us-page .info-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
     font-size: 15px;
 }
 
-.info-item i.icon {
+.contact-us-page .info-item i.icon {
     margin-left: 10px;
     font-size: 16px;
 }
 
-.contact-form {
+.contact-us-page .contact-form {
     flex: 2 1 500px;
     padding: 30px;
 }
 
-.form-row {
+.contact-us-page .form-row {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
 
-.form-group {
+.contact-us-page .form-group {
     flex: 1;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-.form-group label {
+.contact-us-page .form-group label {
     margin-bottom: 6px;
     color: var(--Gray-700, #414651);
     font-family: Cairo;
@@ -93,8 +93,8 @@
     line-height: 20px; /* 142.857% */
 }
 
-.form-group input,
-.form-group textarea {
+.contact-us-page .form-group input,
+.contact-us-page .form-group textarea {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -119,12 +119,12 @@
     line-height: 24px;
 }
 
-textarea {
+.contact-us-page textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-button {
+.contact-us-page button {
     padding: 12px 32px;
     background: #001b2e;
     color: white;
@@ -140,26 +140,26 @@ button {
         width: 100%;
     }
 
-    .contact-container {
+    .contact-us-page .contact-container {
         flex-direction: column;
     }
 
-    .contact-info {
+    .contact-us-page .contact-info {
         border-radius: 12px 12px 0 0;
         text-align: center;
     }
 
-    .contact-form {
+    .contact-us-page .contact-form {
         border-radius: 0 0 12px 12px;
         width: 100%;
         padding: 16px;
     }
 
-    .form-row {
+    .contact-us-page .form-row {
         flex-direction: column;
     }
 
-    .frame .div-6 {
+    .contact-us-page .frame .div-6 {
         left: 140px !important;
         align-items: flex-start !important;
         /* direction: ltr; */
@@ -171,7 +171,7 @@ button {
         left: unset; */
     }
 
-    .frame .div-2{
+    .contact-us-page .frame .div-2{
         top: 230px !important;
         left: 95px !important;
     }
@@ -189,7 +189,7 @@ button {
 
 
 
-.frame {
+.contact-us-page .frame {
     position: relative;
     /* width: 491px;
     height: 546px; */
@@ -198,7 +198,7 @@ button {
     overflow: hidden;
 }
 
-.frame .overlap-group {
+.contact-us-page .frame .overlap-group {
     position: absolute;
     width: 596px;
     height: 633px;
@@ -206,7 +206,7 @@ button {
     left: -105px;
 }
 
-.frame .rectangle {
+.contact-us-page .frame .rectangle {
     position: absolute;
     width: 491px;
     height: 546px;
@@ -215,7 +215,7 @@ button {
     object-fit: cover;
 }
 
-.frame .ellipse {
+.contact-us-page .frame .ellipse {
     position: absolute;
     width: 269px;
     height: 269px;
@@ -225,7 +225,7 @@ button {
     border-radius: 134.5px;
 }
 
-.frame .div {
+.contact-us-page .frame .div {
     position: absolute;
     width: 138px;
     height: 138px;
@@ -235,7 +235,7 @@ button {
     border-radius: 69px;
 }
 
-.frame .div-2 {
+.contact-us-page .frame .div-2 {
     display: flex;
     flex-direction: column;
     width: 324px;
@@ -247,7 +247,7 @@ button {
     direction: rtl;
 }
 
-.frame .div-3 {
+.contact-us-page .frame .div-3 {
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;
@@ -256,7 +256,7 @@ button {
     flex: 0 0 auto;
 }
 
-.frame .text-wrapper {
+.contact-us-page .frame .text-wrapper {
     width: fit-content;
     margin-top: -1.00px;
     font-family: "Poppins-Regular", Helvetica;
@@ -268,13 +268,13 @@ button {
     line-height: normal;
 }
 
-.frame .img {
+.contact-us-page .frame .img {
     position: relative;
     width: 24px;
     height: 24px;
 }
 
-.frame .div-4 {
+.contact-us-page .frame .div-4 {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -282,7 +282,7 @@ button {
     flex: 0 0 auto;
 }
 
-.frame .group {
+.contact-us-page .frame .group {
     position: absolute;
     width: 20px;
     height: 16px;
@@ -290,7 +290,7 @@ button {
     left: 2px;
 }
 
-.frame .div-5 {
+.contact-us-page .frame .div-5 {
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -300,7 +300,7 @@ button {
     flex: 0 0 auto;
 }
 
-.frame .p {
+.contact-us-page .frame .p {
     position: relative;
     width: 288px;
     margin-top: -1.00px;
@@ -313,7 +313,7 @@ button {
     line-height: normal;
 }
 
-.frame .div-6 {
+.contact-us-page .frame .div-6 {
     display: flex;
     flex-direction: column;
     width: 204px;
@@ -324,7 +324,7 @@ button {
     left: 270px;
 }
 
-.frame .text-wrapper-2 {
+.contact-us-page .frame .text-wrapper-2 {
     /* align-self: stretch; */
     margin-top: -1.00px;
     font-family: "Cairo-SemiBold", Helvetica;
@@ -337,7 +337,7 @@ button {
     line-height: normal;
 }
 
-.frame .text-wrapper-3 {
+.contact-us-page .frame .text-wrapper-3 {
     /* align-self: stretch; */
     font-family: "Cairo-Regular", Helvetica;
     font-weight: 400;
@@ -349,7 +349,7 @@ button {
     line-height: normal;
 }
 
-.frame .vector {
+.contact-us-page .frame .vector {
     position: absolute;
     width: 6px;
     height: 5px;
@@ -357,7 +357,7 @@ button {
     left: -14345px;
 }
 
-button:focus-visible {
+.contact-us-page button:focus-visible {
     outline: 2px solid #4a90e2 !important;
     outline: -webkit-focus-ring-color auto 5px !important;
 }
