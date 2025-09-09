@@ -62,7 +62,9 @@ const Header = () => {
                 id="langIcon"
                 alt="language"
               />{' '}
-              <span className="lang-toggle">{t('english')}</span>
+              <span className="lang-toggle">
+                {i18n.language === 'en' ? 'العربية' : 'English'}
+              </span>
             </a>
           </div>
         </div>
