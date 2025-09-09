@@ -55,5 +55,89 @@
     "termsConditions": "Terms and Conditions",
     "aboutDebtBox": "About Debt Box",
     "copyright": "© All rights reserved to Debt Box"
+  },
+  "contactUsPage": {
+    "hero": {
+      "title": "We are here to help you at any time.",
+      "description": "If you have any questions or need support, please don't hesitate to contact us."
+    },
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Your Message",
+      "firstNamePlaceholder": "Mohammed",
+      "lastNamePlaceholder": "Ali",
+      "emailPlaceholder": "yourgmail.com",
+      "phonePlaceholder": "+966",
+      "messagePlaceholder": "Write to us here...",
+      "submitButton": "Send"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "subtitle": "You can find us here",
+      "location": "Riyadh, Kingdom of Saudi Arabia"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Debt Box Platform",
+      "description": "The Smart Solution for Managing Deferred Purchases"
+    },
+    "aboutSection": {
+      "title": "About Our Platform",
+      "description1": "At Debt Box, we offer an innovative solution that enables customers to buy products now and pay later, while providing stores with advanced tools to manage debts and track repayments with ease and transparency.",
+      "description2": "Our platform is developed to serve the Saudi market in line with the Kingdom's Vision 2030 towards digital transformation and facilitating financial transactions between individuals and stores."
+    },
+    "visionSection": {
+      "title": "Our Vision",
+      "description": "At Debt Box, we believe that buying and deferred payment should be easy and secure for everyone. Our vision is to create an integrated digital financial system that makes deferred payment processes a seamless, reliable, and accessible experience across Saudi Arabia. We aspire to be the first choice for every store looking to organize its debts, and for every customer wanting to control their payments without complications.",
+      "goalsTitle": "Our Goals are:",
+      "goals": {
+        "goal1": "Empowering stores to easily organize and manage customer debts.",
+        "goal2": "Facilitating users' lives through flexible payment solutions that align with their lifestyles.",
+        "goal3": "Supporting digital transformation in the Kingdom in line with Vision 2030."
+      }
+    },
+    "missionSection": {
+      "title": "Our Mission",
+      "description": "Our mission at Debt Box is to develop an integrated system that contributes to building a transparent relationship between the seller and the buyer, through an intelligent, user-friendly dashboard that allows stores to issue invoices and track payments, while enabling customers to manage their purchases and pay later with confidence and security.",
+      "goalsTitle": "We are working on:",
+      "goals": {
+        "goal1": "Providing reliable technical solutions for issuing and tracking deferred invoices.",
+        "goal2": "Ensuring data security and confidentiality of transactions for all users. Promoting a culture of financial commitment between merchants and customers.",
+        "goal3": "Providing a user experience based on simplicity, clarity, and integration."
+      }
+    },
+    "whyUsSection": {
+      "title": "Why Digit Box?",
+      "features": {
+        "easeOfUse": {
+          "title": "Ease of Use",
+          "description": "The Debt Box interface is designed to be simple and clear, whether you are a customer wanting to track your payments or a store owner looking to manage invoices easily."
+        },
+        "highSecurity": {
+          "title": "High Security",
+          "description": "We use the latest encryption technologies to ensure the protection of your data and transactions, with full compliance with security and privacy standards in Saudi Arabia."
+        },
+        "advancedDashboard": {
+          "title": "Advanced Dashboard",
+          "description": "Track your invoices, customer records, outstanding amounts, and due dates from one place in a smart and organized way."
+        },
+        "instantNotifications": {
+          "title": "Instant Notifications",
+          "description": "We send you automatic reminders before due dates to ensure no delays in payment or collection, maintaining the relationship between the customer and the merchant."
+        },
+        "buyOnCredit": {
+          "title": "Buy on Credit",
+          "description": "Offer flexible options for your customers to boost sales, and increase their satisfaction with practical and secure financial facilities."
+        },
+        "buildingTrust": {
+          "title": "Building Trust Between Parties",
+          "description": "We aim to enhance trust and transparency between the seller and the buyer, through a system that shows all details and provides an accurate record of each transaction."
+        }
+      }
+    }
   }
 }

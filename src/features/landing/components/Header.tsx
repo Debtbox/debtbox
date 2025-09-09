@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { enFlag, headerLogo } from '@/assets/images';
+import { arFlag, enFlag, headerLogo } from '@/assets/images';
 import { changeLanguage } from '@/utils/changeLanguage';
 
 const Header = () => {
@@ -24,7 +24,11 @@ const Header = () => {
                 changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
               }
             >
-              <img src={enFlag} id="langIconMenu" alt="language" />
+              <img
+                src={i18n.language === 'en' ? arFlag : enFlag}
+                id="langIconMenu"
+                alt="language"
+              />
             </a>
           </div>
           <button
@@ -53,7 +57,11 @@ const Header = () => {
                 changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
               }
             >
-              <img src={enFlag} id="langIcon" alt="language" />{' '}
+              <img
+                src={i18n.language === 'en' ? arFlag : enFlag}
+                id="langIcon"
+                alt="language"
+              />{' '}
               <span className="lang-toggle">{t('english')}</span>
             </a>
           </div>
