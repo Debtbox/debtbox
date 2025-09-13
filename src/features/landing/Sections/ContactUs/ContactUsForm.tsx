@@ -20,7 +20,7 @@ const ContactUsForm = () => {
           >
             <div className="form-row">
               <div className="form-group">
-                <label>{t('contactUsPage.form.firstName')}</label>
+                <label>{t('common.fields.firstName')}</label>
                 <input
                   type="text"
                   placeholder={t('contactUsPage.form.firstNamePlaceholder')}
@@ -28,7 +28,7 @@ const ContactUsForm = () => {
                 />
               </div>
               <div className="form-group">
-                <label>{t('contactUsPage.form.lastName')}</label>
+                <label>{t('common.fields.lastName')}</label>
                 <input
                   type="text"
                   placeholder={t('contactUsPage.form.lastNamePlaceholder')}
@@ -39,7 +39,7 @@ const ContactUsForm = () => {
 
             <div className="form-row">
               <div className="form-group">
-                <label>{t('contactUsPage.form.email')}</label>
+                <label>{t('common.fields.email')}</label>
                 <input
                   type="email"
                   placeholder={t('contactUsPage.form.emailPlaceholder')}
@@ -47,7 +47,7 @@ const ContactUsForm = () => {
                 />
               </div>
               <div className="form-group">
-                <label>{t('contactUsPage.form.phone')}</label>
+                <label>{t('common.fields.phone')}</label>
                 <input
                   type="text"
                   placeholder={t('contactUsPage.form.phonePlaceholder')}
@@ -57,7 +57,7 @@ const ContactUsForm = () => {
             </div>
 
             <div className="form-group">
-              <label>{t('contactUsPage.form.message')}</label>
+              <label>{t('common.fields.message')}</label>
               <textarea
                 placeholder={t('contactUsPage.form.messagePlaceholder')}
                 name="message"
@@ -65,7 +65,7 @@ const ContactUsForm = () => {
             </div>
 
             <button type="submit">
-              {t('contactUsPage.form.submitButton')}
+              {t('common.buttons.send')}
             </button>
           </form>
           <div className="frame contact-info">

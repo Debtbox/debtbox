@@ -1,16 +1,64 @@
 {
-  "home": "Home",
-  "contactUs": "Contact Us",
-  "aboutUs": "About Us",
-  "getStarted": "Get Started",
-  "arabic": "العربية",
-  "english": "English",
-  "logoAlt": "Logo",
-  "languageAlt": "language",
-  "toggleMenuAriaLabel": "Toggle menu",
-
-  "title": "Smart Platform for Managing Deferred Purchases",
-  "description": "Debt Box provides an integrated system that enables customers to buy on credit, while giving stores a dashboard to track all invoices, customers, and outstanding amounts easily and transparently.",
+  "common": {
+    "fields": {
+      "identificationNumber": "Identification Number",
+      "identificationNumberPlaceholder": "e.g, 135 4687 315",
+      "identificationNumberHelper": "Enter your National ID, Iqama ID, or Commercial Register Number",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "iban": "IBAN",
+      "ibanPlaceholder": "Enter your IBAN",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Your Message"
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit",
+      "signUp": "Sign Up",
+      "signIn": "Sign In",
+      "send": "Send",
+      "getStarted": "Get Started"
+    },
+    "validation": {
+      "identificationNumberRequired": "Identification number is required",
+      "identificationNumberMinLength": "Identification number must be at least 10 characters",
+      "identificationNumberMaxLength": "Identification number must not exceed 20 characters",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Confirm password is required",
+      "confirmPasswordMinLength": "Confirm password must be at least 6 characters",
+      "ibanRequired": "IBAN is required",
+      "ibanMinLength": "IBAN must be at least 10 characters",
+      "ibanMaxLength": "IBAN must not exceed 20 characters"
+    },
+    "loading": {
+      "signingIn": "Signing in...",
+      "signingUp": "Signing up...",
+      "submitting": "Submitting...",
+      "creatingPassword": "Creating password...",
+      "sending": "Sending..."
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "arabic": "العربية",
+    "english": "English",
+    "logoAlt": "Logo",
+    "languageAlt": "language",
+    "toggleMenuAriaLabel": "Toggle menu"
+  },
+  "hero": {
+    "title": "Smart Platform for Managing Deferred Purchases",
+    "description": "Debt Box provides an integrated system that enables customers to buy on credit, while giving stores a dashboard to track all invoices, customers, and outstanding amounts easily and transparently."
+  },
   "showcase": {
     "card1": {
       "title": "Store Dashboard for Debt Tracking",
@@ -62,17 +110,11 @@
       "description": "If you have any questions or need support, please don't hesitate to contact us."
     },
     "form": {
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "message": "Your Message",
       "firstNamePlaceholder": "Mohammed",
       "lastNamePlaceholder": "Ali",
       "emailPlaceholder": "yourgmail.com",
       "phonePlaceholder": "+966",
-      "messagePlaceholder": "Write to us here...",
-      "submitButton": "Send"
+      "messagePlaceholder": "Write to us here..."
     },
     "contactInfo": {
       "title": "Contact Information",
@@ -138,6 +180,28 @@
           "description": "We aim to enhance trust and transparency between the seller and the buyer, through a system that shows all details and provides an accurate record of each transaction."
         }
       }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "forgotPassword": "Forgot Password",
+      "newToDebtbox": "New to Debtbox?"
+    },
+    "signUp": {
+      "title": "Sign Up methods",
+      "createPassword": "Create Password",
+      "passwordDescription": "Your password must be at least 8 characters long and include a number.",
+      "selectStore": "Select your store",
+      "selectStoreDescription": "We found multiple stores linked to your business record. Please choose the store(s) you want to register.",
+      "enterIBAN": "Enter your IBAN",
+      "ibanDescription": "Please enter the International Bank Account Number for your account.",
+      "accountAdded": "Account added successfully",
+      "accountAddedDescription": "You may now use the app as you wish",
+      "goToLogin": "Go to login"
+    },
+    "forgotPassword": {
+      "title": "Forgot password"
     }
   }
 }

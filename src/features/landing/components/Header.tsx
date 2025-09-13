@@ -41,14 +41,14 @@ const Header = () => {
         </div>
 
         <nav className="nav-links">
-          <Link to="/">{t('home')}</Link>
-          <Link to="/contact-us">{t('contactUs')}</Link>
-          <Link to="/about">{t('aboutUs')}</Link>
+          <Link to="/">{t('navigation.home')}</Link>
+          <Link to="/contact-us">{t('navigation.contactUs')}</Link>
+          <Link to="/about">{t('navigation.aboutUs')}</Link>
         </nav>
 
         <div className="header-buttons">
           <div className="cta-button">
-            <Link to="/contact-us">{t('getStarted')}</Link>
+            <Link to="/auth/login">{t('common.buttons.getStarted')}</Link>
           </div>
           <div className="lang-button">
             <a
@@ -63,7 +63,7 @@ const Header = () => {
                 alt="language"
               />{' '}
               <span className="lang-toggle">
-                {i18n.language === 'en' ? 'العربية' : 'English'}
+                {i18n.language === 'en' ? t('navigation.arabic') : t('navigation.english')}
               </span>
             </a>
           </div>
@@ -81,20 +81,20 @@ const Header = () => {
         </div>
         <nav>
           <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-            {t('home')}
+            {t('navigation.home')}
           </Link>
           <Link to="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
-            {t('contactUs')}
+            {t('navigation.contactUs')}
           </Link>
           <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
-            {t('aboutUs')}
+            {t('navigation.aboutUs')}
           </Link>
           <Link
-            to="/contact-us"
+            to="/auth/login"
             className="mobile-cta"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('getStarted')}
+            {t('common.buttons.getStarted')}
           </Link>
         </nav>
       </div>

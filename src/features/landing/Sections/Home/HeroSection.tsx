@@ -6,8 +6,8 @@ const HeroSection = () => {
   return (
     <section className="hero">
       <div className="container_css">
-        <h1>{t('title')}</h1>
-        <p>{t('description')}</p>
+        <h1>{t('hero.title')}</h1>
+        <p>{t('hero.description')}</p>
       </div>
     </section>
   );

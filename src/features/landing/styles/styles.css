@@ -1,6 +1,4 @@
-/* Landing Page CSS Isolation */
 .landing-page {
-  /* Isolate from Tailwind by resetting all inherited styles */
   all: initial;
   font-family: 'Cairo', sans-serif;
   overflow-x: hidden;
@@ -8,16 +6,12 @@
   display: block;
 }
 
-.landing-page,
-* {
-  /* Reset all child elements */
-  /* all: unset; */
+.landing-page {
   display: revert;
   box-sizing: border-box;
 }
 
-/* Reset and Base */
-.landing-page * {
+.landing-page {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -30,9 +24,7 @@ body {
   background-color: #f8f8f8;
 }
 
-/* Container */
 .container_css {
-  /* max-width: 1200px; */
   margin: 0 104px;
   padding: 20px;
 }
@@ -45,8 +37,6 @@ body {
 
 /* Header */
 .main-header {
-  /* background-color: #f8f8f8;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); */
   z-index: 10;
 }
 
@@ -55,10 +45,6 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-.logo img {
-  /* height: 40px; */
 }
 
 /* Navigation */
@@ -131,7 +117,7 @@ body {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px; /* 175% */
+  line-height: 28px;
   display: flex;
   height: 46px;
   padding: 12px 16px;
@@ -154,15 +140,11 @@ body {
 }
 
 .hero h1 {
-  /* font-size: 2.5em; */
-  /* margin-bottom: 10px; */
   background: linear-gradient(192deg, #06101c 3%, rgba(6, 16, 28, 0.7) 288.47%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
-  /* -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: rgba(6, 16, 28, 0.59); */
   font-family: Cairo;
   font-size: 68px;
   font-style: normal;
@@ -192,7 +174,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-height: 100vh; */
   padding: 4rem 2rem;
   flex-wrap: wrap;
   background-color: #f9f9f9;
@@ -203,7 +184,6 @@ body {
   border-radius: 16px;
   padding: 14px;
   z-index: 4;
-  /* text-align: right; */
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
 }
@@ -215,18 +195,15 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  /* 155.556% */
 }
 
 .feature-card p {
   color: #383838;
-  /* text-align: right; */
   font-family: Cairo;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
-  /* 157.143% */
 }
 
 .card-icon {
@@ -293,7 +270,6 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
-  /* 133.333% */
 }
 
 .how-we-work__text h2 {
@@ -307,7 +283,6 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: 56px;
-  /* 116.667% */
 }
 
 .how-we-work__desc {
@@ -359,8 +334,6 @@ body {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  /* direction: ltr;
-    text-align: right; */
 }
 
 .for-who-feature-card:hover {
@@ -417,7 +390,6 @@ body {
 
 /* Left Column: Phone Mockup */
 .hero-image-column {
-  /* flex: 1; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -452,13 +424,6 @@ body {
   z-index: 2;
 }
 
-/* Right Column: Content */
-.hero-content-column {
-  /* flex: 1.2; */
-  /* Give slightly more space to the text */
-  /* text-align: right; */
-}
-
 .sub-heading {
   color: #000;
   font-feature-settings:
@@ -469,12 +434,10 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
-  /* 133.333% */
 }
 
 .hero-content-column h1 {
   color: #000;
-  /* text-align: right; */
   font-feature-settings:
     'liga' off,
     'clig' off;
@@ -487,7 +450,6 @@ body {
 }
 
 .hero-content-column h1 span {
-  /* 116.667% */
   color: #000;
   font-feature-settings:
     'liga' off,
@@ -505,13 +467,9 @@ body {
   padding: 0;
   margin: 0 0 40px;
 
-  /* Create a 2-column grid */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
-  /* Define spacing between grid items */
   gap: 0 25px;
-  /* 20px row-gap, 30px column-gap */
 }
 
 .features-list li {
@@ -539,7 +497,6 @@ body {
   align-items: center;
   font-size: 14px;
   margin: 0 15px;
-  /* Space between icon and text */
   flex-shrink: 0;
 }
 
@@ -771,7 +728,6 @@ body {
   }
 
   .main-header .container_css {
-    /* flex-direction: column; */
     align-items: stretch;
     text-align: center;
   }
@@ -810,7 +766,6 @@ body {
   .hero-content-column {
     text-align: center;
     max-width: 500px;
-    /* Constrain width for readability */
   }
 
   .features-list {
@@ -912,14 +867,6 @@ body {
     max-width: 100%;
     min-width: 100%;
   }
-  /* .hero-section {
-      flex-direction: unset;
-      gap: unset;
-    } */
-  /* .footer-container {
-      flex-direction: unset;
-      justify-content: unset;
-    } */
 }
 
 @media (max-width: 1280px) {

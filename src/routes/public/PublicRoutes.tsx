@@ -1,11 +1,14 @@
 import AuthLayout from '@/components/layout/AuthLayout';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const PublicRoutes = () => {
-  return (
+  const pathname = useLocation();
+  return pathname.pathname.includes('auth') ? (
     <AuthLayout>
       <Outlet />
     </AuthLayout>
+  ) : (
+    <Outlet />
   );
 };
 
