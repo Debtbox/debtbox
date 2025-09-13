@@ -1,16 +1,64 @@
 {
-  "home": "الرئيسية",
-  "contactUs": "تواصل معنا",
-  "aboutUs": "من نحن",
-  "getStarted": "ابدأ معنا",
-  "arabic": "العربية",
-  "english": "English",
-  "logoAlt": "الشعار",
-  "languageAlt": "اللغة",
-  "toggleMenuAriaLabel": "تبديل القائمة",
-
-  "title": "منصة ذكية لإدارة المشتريات المؤجلة",
-  "description": "Debt Box توفر نظامًا متكاملًا يمكّن العملاء من الشراء بالأجل، وتمنح المتاجر لوحة تحكم لمتابعة كل الفواتير، العملاء، والمبالغ المستحقة بسهولة وشفافية.",
+  "common": {
+    "fields": {
+      "identificationNumber": "رقم الهوية",
+      "identificationNumberPlaceholder": "مثال: 135 4687 315",
+      "identificationNumberHelper": "أدخل رقم الهوية الوطنية، أو رقم الإقامة، أو رقم السجل التجاري",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+      "iban": "رقم الآيبان",
+      "ibanPlaceholder": "أدخل رقم الآيبان",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الثاني",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الجوال",
+      "message": "رسالتك"
+    },
+    "buttons": {
+      "next": "التالي",
+      "back": "رجوع",
+      "submit": "إرسال",
+      "signUp": "إنشاء حساب",
+      "signIn": "تسجيل الدخول",
+      "send": "إرسال",
+      "getStarted": "ابدأ معنا"
+    },
+    "validation": {
+      "identificationNumberRequired": "رقم الهوية مطلوب",
+      "identificationNumberMinLength": "رقم الهوية يجب أن يكون 10 أحرف على الأقل",
+      "identificationNumberMaxLength": "رقم الهوية يجب ألا يتجاوز 20 حرف",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+      "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+      "confirmPasswordMinLength": "تأكيد كلمة المرور يجب أن يكون 6 أحرف على الأقل",
+      "ibanRequired": "رقم الآيبان مطلوب",
+      "ibanMinLength": "رقم الآيبان يجب أن يكون 10 أحرف على الأقل",
+      "ibanMaxLength": "رقم الآيبان يجب ألا يتجاوز 20 حرف"
+    },
+    "loading": {
+      "signingIn": "جاري تسجيل الدخول...",
+      "signingUp": "جاري التسجيل...",
+      "submitting": "جاري الإرسال...",
+      "creatingPassword": "جاري إنشاء كلمة المرور...",
+      "sending": "جاري الإرسال..."
+    }
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "contactUs": "تواصل معنا",
+    "aboutUs": "من نحن",
+    "arabic": "العربية",
+    "english": "English",
+    "logoAlt": "الشعار",
+    "languageAlt": "اللغة",
+    "toggleMenuAriaLabel": "تبديل القائمة"
+  },
+  "hero": {
+    "title": "منصة ذكية لإدارة المشتريات المؤجلة",
+    "description": "Debt Box توفر نظامًا متكاملًا يمكّن العملاء من الشراء بالأجل، وتمنح المتاجر لوحة تحكم لمتابعة كل الفواتير، العملاء، والمبالغ المستحقة بسهولة وشفافية."
+  },
   "showcase": {
     "card1": {
       "title": "لوحة تحكم للمتجر لمتابعة الديون",
@@ -62,17 +110,11 @@
       "description": "إذا كان لديك أي استفسار أو تحتاج إلى دعم، لا تتردد في التواصل معنا"
     },
     "form": {
-      "firstName": "الاسم الأول",
-      "lastName": "الاسم الثاني",
-      "email": "البريد الإلكتروني",
-      "phone": "رقم الجوال",
-      "message": "رسالتك",
       "firstNamePlaceholder": "محمد",
       "lastNamePlaceholder": "علي",
       "emailPlaceholder": "yourgmail.com",
       "phonePlaceholder": "+966",
-      "messagePlaceholder": "اكتب لنا هنا...",
-      "submitButton": "إرسال"
+      "messagePlaceholder": "اكتب لنا هنا..."
     },
     "contactInfo": {
       "title": "معلومات الاتصال",
@@ -138,6 +180,28 @@
           "description": "نهدف إلى تعزيز الثقة والوضوح بين البائع والمشتري، من خلال نظام يُظهر كل التفاصيل ويوفر سجلًا دقيقًا لكل معاملة."
         }
       }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "newToDebtbox": "جديد على ديبت بوكس؟"
+    },
+    "signUp": {
+      "title": "طرق التسجيل",
+      "createPassword": "إنشاء كلمة مرور",
+      "passwordDescription": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتتضمن رقمًا.",
+      "selectStore": "اختر متجرك",
+      "selectStoreDescription": "وجدنا متاجر متعددة مرتبطة بسجل عملك. يرجى اختيار المتجر(ات) التي تريد التسجيل فيها.",
+      "enterIBAN": "أدخل رقم الآيبان",
+      "ibanDescription": "يرجى إدخال رقم الحساب المصرفي الدولي لحسابك.",
+      "accountAdded": "تم إضافة الحساب بنجاح",
+      "accountAddedDescription": "يمكنك الآن استخدام التطبيق كما تشاء",
+      "goToLogin": "الذهاب لتسجيل الدخول"
+    },
+    "forgotPassword": {
+      "title": "نسيت كلمة المرور"
     }
   }
 }
