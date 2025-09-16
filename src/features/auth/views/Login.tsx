@@ -62,26 +62,26 @@ export const Login = () => {
           <div className="flex flex-col w-full mb-4">
             <Input
               {...register('identificationNumber')}
-            label={t('common.fields.identificationNumber')}
-            placeholder={t('common.fields.identificationNumberPlaceholder')}
-            type="text"
-            id="identification-number"
-            helperText={t('common.fields.identificationNumberHelper')}
+              label={t('common.fields.identificationNumber')}
+              placeholder={t('common.fields.identificationNumberPlaceholder')}
+              type="text"
+              id="identification-number"
+              helperText={t('common.fields.identificationNumberHelper')}
               error={errors.identificationNumber?.message}
             />
           </div>
           <div className="flex flex-col w-full mb-4">
             <Input
               {...register('password')}
-            label={t('common.fields.password')}
-            placeholder={t('common.fields.passwordPlaceholder')}
+              label={t('common.fields.password')}
+              placeholder={t('common.fields.passwordPlaceholder')}
               type="password"
               id="password"
               error={errors.password?.message}
             />
           </div>
 
-          <div className="flex flex-col w-full mb-8">
+          <div className="relative z-10 flex flex-col w-full mb-8">
             <Link to="/auth/forgot-password" className="font-bold text-primary">
               {t('auth.login.forgotPassword')}
             </Link>
@@ -97,11 +97,11 @@ export const Login = () => {
                 : t('common.buttons.signIn')
             }
           />
-          <p className="text-sm text-gray-700 text-center font-medium">
+          <p className="relative z-10 text-sm text-gray-700 text-center font-medium">
             {t('auth.login.newToDebtbox')}{' '}
-                        <Link className="text-primary font-bold" to="/auth/sign-up">
-                          {t('common.buttons.signUp')}
-                        </Link>
+            <Link className="text-primary font-bold" to="/auth/sign-up">
+              {t('common.buttons.signUp')}
+            </Link>
           </p>
         </form>
       </div>

@@ -61,7 +61,11 @@ const SignUpForm = ({
           type="submit"
           disabled={isSubmitting}
           className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          text={isSubmitting ? t('common.loading.signingUp') : t('common.buttons.signUp')}
+          text={
+            isSubmitting
+              ? t('common.loading.signingUp')
+              : t('common.buttons.signUp')
+          }
         />
       </form>
     </div>
