@@ -1,0 +1,42 @@
+services:
+  # Development service
+  debtbox-dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    profiles:
+      - dev
+
+  # Production service
+  debtbox-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod
+
+  # Production service with SSL (optional)
+  debtbox-prod-ssl:
+    build:
+      context: .
+      target: production
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - ssl
