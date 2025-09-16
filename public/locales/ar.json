@@ -27,8 +27,9 @@
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
-      "identificationNumberMinLength": "رقم الهوية يجب أن يكون 10 أحرف على الأقل",
-      "identificationNumberMaxLength": "رقم الهوية يجب ألا يتجاوز 20 حرف",
+      "identificationNumberLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط",
+      "identificationNumberFormat": "رقم الهوية يجب أن يكون رقمي ويبدأ بـ 1، 2، أو 3",
+      "identificationNumberType": "نوع رقم الهوية غير صحيح",
       "passwordRequired": "كلمة المرور مطلوبة",
       "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
       "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",

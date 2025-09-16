@@ -5,17 +5,23 @@ import Input from '@/components/shared/Input';
 import { z } from 'zod';
 import Button from '@/components/shared/Button';
 import type { Dispatch, SetStateAction } from 'react';
+import { useSignUp } from '../../api/signUp';
+import { toast } from 'sonner';
 
 type SignUpFormData = z.infer<ReturnType<typeof createSignUpSchema>>;
 
-// TODO: The validation will be changed when the backend is ready
 const createSignUpSchema = (t: (key: string) => string) =>
   z.object({
-    identificationNumber: z
+    nationalId: z
       .string()
       .min(1, t('common.validation.identificationNumberRequired'))
-      .min(10, t('common.validation.identificationNumberMinLength'))
-      .max(20, t('common.validation.identificationNumberMaxLength')),
+      .length(10, t('common.validation.identificationNumberLength'))
+      .regex(/^[1-3]\d{9}$/, t('common.validation.identificationNumberFormat'))
+      .refine((val) => {
+        // Additional validation for Saudi NIC format
+        const firstDigit = parseInt(val[0]);
+        return [1, 2, 3].includes(firstDigit);
+      }, t('common.validation.identificationNumberType')),
   });
 
 const SignUpForm = ({
@@ -33,14 +39,23 @@ const SignUpForm = ({
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = async (data: SignUpFormData) => {
-    try {
-      console.log('Form data:', data);
+  const { mutate, isPending } = useSignUp({
+    onSuccess: (response) => {
+      console.log('Sign up successful:', response);
+      toast.success(t('auth.signUp.accountAdded'));
       setActiveStep(1);
-      // TODO: Implement actual sign up logic here
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error('Sign up error:', error);
-    }
+      // Extract error message from the API response
+      const errorMessage =
+        error?.error?.[0] || 'Sign up failed. Please try again.';
+      toast.error(errorMessage);
+    },
+  });
+
+  const onSubmit = async (data: SignUpFormData) => {
+    mutate(data);
   };
   return (
     <div className="flex flex-col w-full">
@@ -48,24 +63,20 @@ const SignUpForm = ({
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
         <div className="flex flex-col w-full mb-4">
           <Input
-            {...register('identificationNumber')}
+            {...register('nationalId')}
             label={t('common.fields.identificationNumber')}
             placeholder={t('common.fields.identificationNumberPlaceholder')}
             type="text"
-            id="identification-number"
+            id="national-id"
             helperText={t('common.fields.identificationNumberHelper')}
-            error={errors.identificationNumber?.message}
+            error={errors.nationalId?.message}
           />
         </div>
         <Button
           type="submit"
-          disabled={isSubmitting}
           className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          text={
-            isSubmitting
-              ? t('common.loading.signingUp')
-              : t('common.buttons.signUp')
-          }
+          text={t('common.buttons.signUp')}
+          isLoading={isSubmitting || isPending}
         />
       </form>
     </div>

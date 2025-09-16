@@ -27,8 +27,9 @@
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
-      "identificationNumberMinLength": "Identification number must be at least 10 characters",
-      "identificationNumberMaxLength": "Identification number must not exceed 20 characters",
+      "identificationNumberLength": "Identification number must be exactly 10 digits",
+      "identificationNumberFormat": "Identification number must be numeric and start with 1, 2, or 3",
+      "identificationNumberType": "Invalid identification number type",
       "passwordRequired": "Password is required",
       "passwordMinLength": "Password must be at least 6 characters",
       "confirmPasswordRequired": "Confirm password is required",

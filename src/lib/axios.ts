@@ -52,7 +52,7 @@ axios.interceptors.response.use(
 
     switch (status) {
       case 400:
-        toast.error('Bad request. Please check your input.');
+        // Don't show generic toast for 400 errors - let components handle specific error messages
         break;
       case 401:
         clearCookie('access-token');
