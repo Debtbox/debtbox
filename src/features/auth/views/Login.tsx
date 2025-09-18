@@ -2,11 +2,15 @@ import { authLogo } from '@/assets/images';
 import Button from '@/components/shared/Button';
 import Input from '@/components/shared/Input';
 import LanguageDropdown from '@/components/shared/LanguageDropdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'sonner';
+import { useLogin } from '../api/login';
+import { setCookie } from '@/utils/storage';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 type LoginFormData = z.infer<ReturnType<typeof createLoginSchema>>;
 
@@ -27,6 +31,8 @@ const createLoginSchema = (t: (key: string) => string) =>
 export const Login = () => {
   const { t } = useTranslation();
   const loginSchema = createLoginSchema(t);
+  const navigate = useNavigate();
+  const { setUser } = useAuthFlowStore();
 
   const {
     register,
@@ -36,13 +42,23 @@ export const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      console.log('Form data:', data);
-      // TODO: Implement actual login logic here
-    } catch (error) {
+  const { mutate, isPending } = useLogin({
+    onSuccess: (data) => {
+      navigate('/');
+      setCookie('access-token', data.accessToken);
+      setUser(data);
+    },
+    onError: (error) => {
       console.error('Login error:', error);
-    }
+      toast.error(error.response?.data?.error?.[0] || 'Login error');
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    mutate({
+      nationalId: data.identificationNumber,
+      password: data.password,
+    });
   };
 
   return (
@@ -89,13 +105,9 @@ export const Login = () => {
 
           <Button
             type="submit"
-            disabled={isSubmitting}
             className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-            text={
-              isSubmitting
-                ? t('common.loading.signingIn')
-                : t('common.buttons.signIn')
-            }
+            text={t('common.buttons.signIn')}
+            isLoading={isSubmitting || isPending}
           />
           <p className="relative z-10 text-sm text-gray-700 text-center font-medium">
             {t('auth.login.newToDebtbox')}{' '}
