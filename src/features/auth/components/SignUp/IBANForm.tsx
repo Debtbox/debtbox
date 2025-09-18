@@ -5,43 +5,77 @@ import Input from '@/components/shared/Input';
 import { z } from 'zod';
 import Button from '@/components/shared/Button';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import {
+  validateIBAN,
+  formatIBAN,
+  getCountryName,
+} from '@/utils/ibanValidation';
+import { toast } from 'sonner';
+import { useRegisterIBAN } from '../../api/registerIBAN';
 
 type IBANFormData = z.infer<ReturnType<typeof createIBANSchema>>;
 
-// TODO: The validation will be changed when the backend is ready
 const createIBANSchema = (t: (key: string) => string) =>
   z.object({
     iban: z
       .string()
       .min(1, t('common.validation.ibanRequired'))
-      .min(10, t('common.validation.ibanMinLength'))
-      .max(20, t('common.validation.ibanMaxLength')),
+      .refine(
+        (value) => {
+          const validation = validateIBAN(value);
+          return validation.isValid;
+        },
+        {
+          message: t('common.validation.ibanInvalid'),
+        },
+      ),
   });
 
 const IBANForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep } = useAuthFlowStore();
+  const { setActiveStep, user } = useAuthFlowStore();
   const ibanSchema = createIBANSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
+    watch,
   } = useForm<IBANFormData>({
     resolver: zodResolver(ibanSchema),
   });
 
-  const onSubmit = async (data: IBANFormData) => {
-    try {
-      console.log('Form data:', data);
+  const ibanValue = watch('iban');
+
+  const { mutate, isPending } = useRegisterIBAN({
+    onSuccess: () => {
+      toast.success(t('auth.signUp.ibanAdded'));
       setActiveStep(4);
-      // TODO: Implement actual IBAN logic here
-    } catch (error) {
-      console.error('IBAN error:', error);
-    }
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.error?.[0] || 'IBAN error');
+    },
+  });
+
+  const handleIbanChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const formattedValue = formatIBAN(value);
+    setValue('iban', formattedValue);
   };
+
+  const onSubmit = async (data: IBANFormData) => {
+    mutate({
+      id: user.id.toString(),
+      accessToken: user.accessToken,
+      iban: data.iban.replace(/\s/g, ''),
+    });
+  };
+
   return (
     <div className="flex flex-col w-full">
-      <h1 className="text-[28px] font-bold mb-2">{t('auth.signUp.enterIBAN')}</h1>
+      <h1 className="text-[28px] font-bold mb-2">
+        {t('auth.signUp.enterIBAN')}
+      </h1>
       <p className="text-sm text-[#828282] mb-4">
         {t('auth.signUp.ibanDescription')}
       </p>
@@ -49,18 +83,23 @@ const IBANForm = () => {
         <div className="flex flex-col w-full mb-4">
           <Input
             {...register('iban')}
+            onChange={handleIbanChange}
             label={t('common.fields.iban')}
             placeholder={t('common.fields.ibanPlaceholder')}
             type="text"
             id="iban"
             error={errors.iban?.message}
+            helperText={
+              ibanValue ? getCountryName(ibanValue.substring(0, 2)) : undefined
+            }
           />
         </div>
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || isPending}
           className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          text={isSubmitting ? t('common.loading.submitting') : t('common.buttons.submit')}
+          text={t('common.buttons.submit')}
+          isLoading={isSubmitting || isPending}
         />
       </form>
     </div>

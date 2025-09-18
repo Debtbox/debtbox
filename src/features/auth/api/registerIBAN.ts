@@ -4,21 +4,19 @@ import type { ApiError } from '@/types/ApiError';
 import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
-export type CreatePasswordCredentialsDTO = {
+export type RegisterIBANCredentialsDTO = {
   id: string;
-  appActor: 'CUSTOMER' | 'MERCHANT';
-  password: string;
+  iban: string;
   accessToken: string;
 };
 
-export const createPassword = (data: CreatePasswordCredentialsDTO) => {
+export const registerIBAN = (data: RegisterIBANCredentialsDTO) => {
   const language = getLanguageFromCookie();
   return axios.post(
-    '/auth/create-password',
+    '/merchant/register-iban',
     {
       id: data.id,
-      appActor: data.appActor,
-      password: data.password,
+      iban: data.iban,
     },
     {
       headers: {
@@ -29,20 +27,20 @@ export const createPassword = (data: CreatePasswordCredentialsDTO) => {
   );
 };
 
-type UseCreatePassword = {
-  config?: MutationConfig<typeof createPassword>;
+type UseRegisterIBAN = {
+  config?: MutationConfig<typeof registerIBAN>;
   onSuccess: () => void;
   onError: (error: ApiError) => void;
 };
 
-export const useCreatePassword = ({
+export const useRegisterIBAN = ({
   config,
   onError,
   onSuccess,
-}: UseCreatePassword) => {
+}: UseRegisterIBAN) => {
   return useMutation({
     ...config,
-    mutationFn: createPassword,
+    mutationFn: registerIBAN,
     onSuccess: () => {
       onSuccess();
     },

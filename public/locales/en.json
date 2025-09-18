@@ -9,7 +9,7 @@
       "confirmPassword": "Confirm Password",
       "confirmPasswordPlaceholder": "Re-enter your password",
       "iban": "IBAN",
-      "ibanPlaceholder": "Enter your IBAN",
+      "ibanPlaceholder": "e.g., SA03 8000 0000 6080 1016 7519",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
@@ -39,8 +39,10 @@
       "confirmPasswordRequired": "Confirm password is required",
       "passwordMismatch": "Passwords do not match",
       "ibanRequired": "IBAN is required",
-      "ibanMinLength": "IBAN must be at least 10 characters",
-      "ibanMaxLength": "IBAN must not exceed 20 characters"
+      "ibanInvalid": "Invalid IBAN format",
+      "ibanCountryCode": "IBAN must start with a valid country code",
+      "ibanLength": "IBAN length is incorrect for this country",
+      "ibanCheckDigits": "Invalid IBAN check digits"
     },
     "loading": {
       "signingIn": "Signing in...",
@@ -204,7 +206,8 @@
       "accountAdded": "Account added successfully",
       "accountAddedDescription": "You may now use the app as you wish",
       "goToLogin": "Go to login",
-      "passwordCreated": "Password created successfully"
+      "passwordCreated": "Password created successfully",
+      "ibanAdded": "IBAN added successfully"
     },
     "forgotPassword": {
       "title": "Forgot password"

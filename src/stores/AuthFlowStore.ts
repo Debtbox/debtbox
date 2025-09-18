@@ -30,11 +30,17 @@ export const useAuthFlowStore = create<AuthFlowStore>()(
       setActiveStep: (step: number) => set({ activeStep: step }),
       updateFormData: (data: Partial<SignUpFormData>) =>
         set((state) => ({ formData: { ...state.formData, ...data } })),
-      resetFlow: () => set({ activeStep: 0, formData: {} }),
       setAccessToken: (token: string) => set({ accessToken: token }),
       accessToken: '',
       user: {} as UserDto,
       setUser: (user: UserDto) => set({ user }),
+      resetFlow: () =>
+        set({
+          activeStep: 0,
+          formData: {},
+          accessToken: '',
+          user: {} as UserDto,
+        }),
     }),
     {
       name: 'debtbox-auth-flow',

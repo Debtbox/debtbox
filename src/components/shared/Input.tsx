@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, type InputHTMLAttributes } from 'react';
 import EyeIcon from '../icons/EyeIcon';
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   placeholder?: string;
   type: string;

@@ -9,7 +9,7 @@
       "confirmPassword": "تأكيد كلمة المرور",
       "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
       "iban": "رقم الآيبان",
-      "ibanPlaceholder": "أدخل رقم الآيبان",
+      "ibanPlaceholder": "مثال: SA03 8000 0000 6080 1016 7519",
       "firstName": "الاسم الأول",
       "lastName": "الاسم الثاني",
       "email": "البريد الإلكتروني",
@@ -39,8 +39,10 @@
       "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
       "passwordMismatch": "كلمات المرور غير متطابقة",
       "ibanRequired": "رقم الآيبان مطلوب",
-      "ibanMinLength": "رقم الآيبان يجب أن يكون 10 أحرف على الأقل",
-      "ibanMaxLength": "رقم الآيبان يجب ألا يتجاوز 20 حرف"
+      "ibanInvalid": "تنسيق رقم الآيبان غير صحيح",
+      "ibanCountryCode": "رقم الآيبان يجب أن يبدأ برمز دولة صحيح",
+      "ibanLength": "طول رقم الآيبان غير صحيح لهذه الدولة",
+      "ibanCheckDigits": "أرقام التحقق من الآيبان غير صحيحة"
     },
     "loading": {
       "signingIn": "جاري تسجيل الدخول...",
@@ -204,7 +206,8 @@
       "accountAdded": "تم إضافة الحساب بنجاح",
       "accountAddedDescription": "يمكنك الآن استخدام التطبيق كما تشاء",
       "goToLogin": "الذهاب لتسجيل الدخول",
-      "passwordCreated": "تم إنشاء كلمة المرور بنجاح"
+      "passwordCreated": "تم إنشاء كلمة المرور بنجاح",
+      "ibanAdded": "تم إضافة الآيبان بنجاح"
     },
     "forgotPassword": {
       "title": "نسيت كلمة المرور"

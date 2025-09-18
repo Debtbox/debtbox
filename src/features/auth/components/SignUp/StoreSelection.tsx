@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Button from '@/components/shared/Button';
 import CheckBox from '@/components/shared/CheckBox';
 import { useState } from 'react';
