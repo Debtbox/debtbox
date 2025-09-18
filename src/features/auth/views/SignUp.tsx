@@ -5,17 +5,17 @@ import LanguageDropdown from '@/components/shared/LanguageDropdown';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import SignUpForm from '../components/SignUp/SignUpForm';
-import { useState } from 'react';
 import FirstPasswordForm from '../components/SignUp/FirstPasswordForm';
 import StoreSelection from '../components/SignUp/StoreSelection';
 import IBANForm from '../components/SignUp/IBANForm';
 import AccountAdded from '../components/SignUp/AccountAdded';
 import { useTranslation } from 'react-i18next';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 export const SignUp = () => {
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
-  const [activeStep, setActiveStep] = useState(0);
+  const { activeStep, setActiveStep, resetFlow } = useAuthFlowStore();
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full mx-auto max-w-screen-md px-4">
@@ -30,6 +30,7 @@ export const SignUp = () => {
           text={t('common.buttons.back')}
           onClick={() => {
             if (activeStep === 0) {
+              resetFlow();
               navigate('/auth/login');
             } else {
               setActiveStep(activeStep - 1);
@@ -43,10 +44,10 @@ export const SignUp = () => {
           }
         />
       )}
-      {activeStep === 0 && <SignUpForm setActiveStep={setActiveStep} />}
-      {activeStep === 1 && <FirstPasswordForm setActiveStep={setActiveStep} />}
-      {activeStep === 2 && <StoreSelection setActiveStep={setActiveStep} />}
-      {activeStep === 3 && <IBANForm setActiveStep={setActiveStep} />}
+      {activeStep === 0 && <SignUpForm />}
+      {activeStep === 1 && <FirstPasswordForm />}
+      {activeStep === 2 && <StoreSelection />}
+      {activeStep === 3 && <IBANForm />}
       {activeStep === 4 && <AccountAdded />}
     </div>
   );

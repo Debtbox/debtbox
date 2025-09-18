@@ -31,9 +31,13 @@
       "identificationNumberFormat": "رقم الهوية يجب أن يكون رقمي ويبدأ بـ 1، 2، أو 3",
       "identificationNumberType": "نوع رقم الهوية غير صحيح",
       "passwordRequired": "كلمة المرور مطلوبة",
-      "passwordMinLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+      "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+      "passwordUppercase": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل",
+      "passwordLowercase": "كلمة المرور يجب أن تحتوي على حرف صغير واحد على الأقل",
+      "passwordNumber": "كلمة المرور يجب أن تحتوي على رقم واحد على الأقل",
+      "passwordSpecialChar": "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل",
       "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
-      "confirmPasswordMinLength": "تأكيد كلمة المرور يجب أن يكون 6 أحرف على الأقل",
+      "passwordMismatch": "كلمات المرور غير متطابقة",
       "ibanRequired": "رقم الآيبان مطلوب",
       "ibanMinLength": "رقم الآيبان يجب أن يكون 10 أحرف على الأقل",
       "ibanMaxLength": "رقم الآيبان يجب ألا يتجاوز 20 حرف"
@@ -192,14 +196,15 @@
     "signUp": {
       "title": "طرق التسجيل",
       "createPassword": "إنشاء كلمة مرور",
-      "passwordDescription": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتتضمن رقمًا.",
+      "passwordDescription": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتتضمن حرف كبير، حرف صغير، رقم، ورمز خاص.",
       "selectStore": "اختر متجرك",
       "selectStoreDescription": "وجدنا متاجر متعددة مرتبطة بسجل عملك. يرجى اختيار المتجر(ات) التي تريد التسجيل فيها.",
       "enterIBAN": "أدخل رقم الآيبان",
       "ibanDescription": "يرجى إدخال رقم الحساب المصرفي الدولي لحسابك.",
       "accountAdded": "تم إضافة الحساب بنجاح",
       "accountAddedDescription": "يمكنك الآن استخدام التطبيق كما تشاء",
-      "goToLogin": "الذهاب لتسجيل الدخول"
+      "goToLogin": "الذهاب لتسجيل الدخول",
+      "passwordCreated": "تم إنشاء كلمة المرور بنجاح"
     },
     "forgotPassword": {
       "title": "نسيت كلمة المرور"

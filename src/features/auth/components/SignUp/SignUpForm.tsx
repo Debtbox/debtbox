@@ -1,12 +1,13 @@
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import Input from '@/components/shared/Input';
 import { z } from 'zod';
 import Button from '@/components/shared/Button';
-import type { Dispatch, SetStateAction } from 'react';
 import { useSignUp } from '../../api/signUp';
 import { toast } from 'sonner';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 type SignUpFormData = z.infer<ReturnType<typeof createSignUpSchema>>;
 
@@ -18,36 +19,50 @@ const createSignUpSchema = (t: (key: string) => string) =>
       .length(10, t('common.validation.identificationNumberLength'))
       .regex(/^[1-3]\d{9}$/, t('common.validation.identificationNumberFormat'))
       .refine((val) => {
-        // Additional validation for Saudi NIC format
         const firstDigit = parseInt(val[0]);
         return [1, 2, 3].includes(firstDigit);
       }, t('common.validation.identificationNumberType')),
   });
 
-const SignUpForm = ({
-  setActiveStep,
-}: {
-  setActiveStep: Dispatch<SetStateAction<number>>;
-}) => {
+const SignUpForm = () => {
   const { t } = useTranslation();
+  const { setActiveStep, formData, updateFormData, setAccessToken, setUser } =
+    useAuthFlowStore();
   const signUpSchema = createSignUpSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      nationalId: formData.nationalId || '',
+    },
   });
+
+  useEffect(() => {
+    if (formData.nationalId) {
+      setValue('nationalId', formData.nationalId);
+    }
+  }, [formData.nationalId, setValue]);
+
+  const handleInputChange = useCallback(
+    (value: string) => {
+      updateFormData({ nationalId: value });
+    },
+    [updateFormData],
+  );
 
   const { mutate, isPending } = useSignUp({
     onSuccess: (response) => {
-      console.log('Sign up successful:', response);
       toast.success(t('auth.signUp.accountAdded'));
       setActiveStep(1);
+      setAccessToken(response.accessToken);
+      setUser(response);
     },
     onError: (error) => {
       console.error('Sign up error:', error);
-      // Extract error message from the API response
       const errorMessage =
         error?.error?.[0] || 'Sign up failed. Please try again.';
       toast.error(errorMessage);
@@ -55,6 +70,7 @@ const SignUpForm = ({
   });
 
   const onSubmit = async (data: SignUpFormData) => {
+    updateFormData({ nationalId: data.nationalId });
     mutate(data);
   };
   return (
@@ -63,7 +79,9 @@ const SignUpForm = ({
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
         <div className="flex flex-col w-full mb-4">
           <Input
-            {...register('nationalId')}
+            {...register('nationalId', {
+              onChange: (e) => handleInputChange(e.target.value),
+            })}
             label={t('common.fields.identificationNumber')}
             placeholder={t('common.fields.identificationNumberPlaceholder')}
             type="text"

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Input from '@/components/shared/Input';
 import { z } from 'zod';
 import Button from '@/components/shared/Button';
-import type { Dispatch, SetStateAction } from 'react';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 type IBANFormData = z.infer<ReturnType<typeof createIBANSchema>>;
 
@@ -18,12 +18,9 @@ const createIBANSchema = (t: (key: string) => string) =>
       .max(20, t('common.validation.ibanMaxLength')),
   });
 
-const IBANForm = ({
-  setActiveStep,
-}: {
-  setActiveStep: Dispatch<SetStateAction<number>>;
-}) => {
+const IBANForm = () => {
   const { t } = useTranslation();
+  const { setActiveStep } = useAuthFlowStore();
   const ibanSchema = createIBANSchema(t);
   const {
     register,

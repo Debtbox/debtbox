@@ -1,14 +1,13 @@
+import React, { useEffect } from 'react';
 import Button from '@/components/shared/Button';
 import CheckBox from '@/components/shared/CheckBox';
-import { useState, type Dispatch, type SetStateAction } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
-const StoreSelection = ({
-  setActiveStep,
-}: {
-  setActiveStep: Dispatch<SetStateAction<number>>;
-}) => {
+const StoreSelection = () => {
   const { t } = useTranslation();
+  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
   // TODO: Get stores from the backend
   const stores = [
     {
@@ -27,10 +26,20 @@ const StoreSelection = ({
       address: '789 Main St, Anytown, USA',
     },
   ];
-  const [selectedStores, setSelectedStores] = useState<number[]>([]);
+  const [selectedStores, setSelectedStores] = useState<number[]>(
+    formData.selectedStores || [],
+  );
+
+  useEffect(() => {
+    if (formData.selectedStores) {
+      setSelectedStores(formData.selectedStores);
+    }
+  }, [formData.selectedStores]);
   return (
     <div className="flex flex-col w-full">
-      <h1 className="text-[28px] font-bold mb-2">{t('auth.signUp.selectStore')}</h1>
+      <h1 className="text-[28px] font-bold mb-2">
+        {t('auth.signUp.selectStore')}
+      </h1>
       <p className="text-sm text-[#828282] mb-4">
         {t('auth.signUp.selectStoreDescription')}
       </p>
@@ -38,11 +47,16 @@ const StoreSelection = ({
         {stores.map((store) => {
           const isChecked = selectedStores.includes(store.id);
           const handleToggle = () => {
+            let newSelectedStores;
             if (isChecked) {
-              setSelectedStores(selectedStores.filter((id) => id !== store.id));
+              newSelectedStores = selectedStores.filter(
+                (id) => id !== store.id,
+              );
             } else {
-              setSelectedStores([...selectedStores, store.id]);
+              newSelectedStores = [...selectedStores, store.id];
             }
+            setSelectedStores(newSelectedStores);
+            updateFormData({ selectedStores: newSelectedStores });
           };
           return (
             <div

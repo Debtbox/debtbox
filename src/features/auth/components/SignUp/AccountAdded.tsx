@@ -2,10 +2,12 @@ import Button from '@/components/shared/Button';
 import Success from '@/components/shared/Success';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 const AccountAdded = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { resetFlow } = useAuthFlowStore();
   return (
     <div className="flex flex-col w-full">
       <Success
@@ -15,6 +17,7 @@ const AccountAdded = () => {
       <Button
         text={t('auth.signUp.goToLogin')}
         onClick={() => {
+          resetFlow();
           navigate('/auth/login');
         }}
         className="mt-10 w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"

@@ -31,9 +31,13 @@
       "identificationNumberFormat": "Identification number must be numeric and start with 1, 2, or 3",
       "identificationNumberType": "Invalid identification number type",
       "passwordRequired": "Password is required",
-      "passwordMinLength": "Password must be at least 6 characters",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecialChar": "Password must contain at least one special character",
       "confirmPasswordRequired": "Confirm password is required",
-      "confirmPasswordMinLength": "Confirm password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
       "ibanRequired": "IBAN is required",
       "ibanMinLength": "IBAN must be at least 10 characters",
       "ibanMaxLength": "IBAN must not exceed 20 characters"
@@ -192,14 +196,15 @@
     "signUp": {
       "title": "Sign Up methods",
       "createPassword": "Create Password",
-      "passwordDescription": "Your password must be at least 8 characters long and include a number.",
+      "passwordDescription": "Your password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
       "selectStore": "Select your store",
       "selectStoreDescription": "We found multiple stores linked to your business record. Please choose the store(s) you want to register.",
       "enterIBAN": "Enter your IBAN",
       "ibanDescription": "Please enter the International Bank Account Number for your account.",
       "accountAdded": "Account added successfully",
       "accountAddedDescription": "You may now use the app as you wish",
-      "goToLogin": "Go to login"
+      "goToLogin": "Go to login",
+      "passwordCreated": "Password created successfully"
     },
     "forgotPassword": {
       "title": "Forgot password"

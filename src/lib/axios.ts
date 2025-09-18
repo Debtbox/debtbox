@@ -59,6 +59,7 @@ axios.interceptors.response.use(
         queryClient.clear();
         window.location.replace('/auth/login');
         toast.error('Session expired. Please login again.');
+        localStorage.clear();
         break;
       case 403:
         toast.error(
