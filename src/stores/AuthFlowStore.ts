@@ -1,4 +1,4 @@
-import type { UserDto } from '@/types/UserDto';
+import type { BusinessDto, UserDto } from '@/types/UserDto';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -6,7 +6,7 @@ interface SignUpFormData {
   nationalId?: string;
   password?: string;
   confirmPassword?: string;
-  selectedStores?: number[];
+  selectedStores?: BusinessDto[];
   iban?: string;
 }
 

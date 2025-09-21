@@ -1,10 +1,15 @@
+export type BusinessDto = {
+  cr_number: string;
+  business_name_ar: string;
+  business_name_en: string;
+  activity: string;
+  city: string;
+  status: string;
+};
+
 export type UserDto = {
   accessToken: string;
-  businesses: {
-    cr_number: string;
-    business_name_ar: string;
-    business_name_en: string;
-  }[];
+  businesses: BusinessDto[];
   commercial_register_number: string;
   dob: string;
   full_name_ar: string;

@@ -94,11 +94,7 @@ const FirstPasswordForm = () => {
         <Button
           type="submit"
           className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          text={
-            isSubmitting || isPending
-              ? t('common.loading.creatingPassword')
-              : t('common.buttons.next')
-          }
+          text={t('common.buttons.next')}
           isLoading={isSubmitting || isPending}
         />
       </form>

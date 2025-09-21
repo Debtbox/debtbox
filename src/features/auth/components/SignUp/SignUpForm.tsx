@@ -58,8 +58,8 @@ const SignUpForm = () => {
     onSuccess: (response) => {
       toast.success(t('auth.signUp.accountAdded'));
       setActiveStep(1);
-      setAccessToken(response.accessToken);
-      setUser(response);
+      setAccessToken(response.data.accessToken);
+      setUser(response.data);
     },
     onError: (error) => {
       console.error('Sign up error:', error);

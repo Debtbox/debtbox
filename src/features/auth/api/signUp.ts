@@ -9,7 +9,13 @@ export type SignUpCredentialsDTO = {
   nationalId: string;
 };
 
-export const signUp = (data: SignUpCredentialsDTO): Promise<UserDto> => {
+export type SignUpResponse = {
+  data: UserDto;
+  message: string;
+  success: boolean;
+};
+
+export const signUp = (data: SignUpCredentialsDTO): Promise<SignUpResponse> => {
   const language = getLanguageFromCookie();
   return axios.post('/auth/merchant/merchant-signup', data, {
     headers: {
@@ -20,7 +26,7 @@ export const signUp = (data: SignUpCredentialsDTO): Promise<UserDto> => {
 
 type UseSignUp = {
   config?: MutationConfig<typeof signUp>;
-  onSuccess: (data: UserDto) => void;
+  onSuccess: (data: SignUpResponse) => void;
   onError: (error: ApiError) => void;
 };
 
@@ -29,7 +35,7 @@ export const useSignUp = ({ config, onError, onSuccess }: UseSignUp) => {
     ...config,
     mutationFn: signUp,
     onSuccess: (data) => {
-      onSuccess(data);
+      onSuccess(data as SignUpResponse);
     },
     onError: (error: ApiError) => {
       onError(error);
