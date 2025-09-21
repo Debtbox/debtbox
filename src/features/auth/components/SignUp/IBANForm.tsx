@@ -53,7 +53,7 @@ const IBANForm = () => {
       setActiveStep(4);
     },
     onError: (error) => {
-      toast.error(error.response?.data?.error?.[0] || 'IBAN error');
+      toast.error(error?.response?.data?.message || 'IBAN error');
     },
   });
 

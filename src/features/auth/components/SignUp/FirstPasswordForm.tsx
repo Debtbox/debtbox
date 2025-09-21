@@ -50,7 +50,7 @@ const FirstPasswordForm = () => {
       toast.success(t('auth.signUp.passwordCreated'));
     },
     onError: (error) => {
-      toast.error(error.response?.data?.error?.[0] || 'First password error');
+      toast.error(error?.response?.data?.message || 'First password error');
     },
   });
 

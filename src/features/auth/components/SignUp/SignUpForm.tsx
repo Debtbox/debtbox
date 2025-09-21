@@ -64,7 +64,7 @@ const SignUpForm = () => {
     onError: (error) => {
       console.error('Sign up error:', error);
       const errorMessage =
-        error?.error?.[0] || 'Sign up failed. Please try again.';
+        error?.response?.data?.message || 'Sign up failed. Please try again.';
       toast.error(errorMessage);
     },
   });

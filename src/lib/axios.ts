@@ -62,18 +62,21 @@ axios.interceptors.response.use(
         localStorage.clear();
         break;
       case 403:
-        toast.error(
-          "Access denied. You don't have permission for this action.",
-        );
+        // toast.error(
+        //   "Access denied. You don't have permission for this action.",
+        // );
         break;
       case 404:
-        toast.error('Resource not found.');
+        // toast.error('Resource not found.');
         break;
+      // break;
       case 500:
-        toast.error('Server error. Please try again later.');
+        // toast.error('Server error. Please try again later.');
         break;
+      // break;
       default:
-        toast.error(`An error occurred (${status}). Please try again.`);
+        break;
+      // toast.error(`An error occurred (${status}). Please try again.`);
     }
 
     return Promise.reject(error);

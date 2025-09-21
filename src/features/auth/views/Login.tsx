@@ -49,8 +49,7 @@ export const Login = () => {
       setUser(data);
     },
     onError: (error) => {
-      console.error('Login error:', error);
-      toast.error(error.response?.data?.error?.[0] || 'Login error');
+      toast.error(error?.response?.data?.message || 'Login error');
     },
   });
 

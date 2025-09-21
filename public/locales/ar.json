@@ -42,7 +42,9 @@
       "ibanInvalid": "تنسيق رقم الآيبان غير صحيح",
       "ibanCountryCode": "رقم الآيبان يجب أن يبدأ برمز دولة صحيح",
       "ibanLength": "طول رقم الآيبان غير صحيح لهذه الدولة",
-      "ibanCheckDigits": "أرقام التحقق من الآيبان غير صحيحة"
+      "ibanCheckDigits": "أرقام التحقق من الآيبان غير صحيحة",
+      "identificationNumberMinLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط",
+      "identificationNumberMaxLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط"
     },
     "loading": {
       "signingIn": "جاري تسجيل الدخول...",
