@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
+import { isDevelopment } from '@/utils/environment';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +35,9 @@ export const queryClient = new QueryClient({
       
       // Error handling
       onError: (error) => {
-        console.error('Mutation error:', error);
+        if (isDevelopment()) {
+          console.error('Mutation error:', error);
+        }
       },
     },
   },

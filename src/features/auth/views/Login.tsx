@@ -9,7 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { useLogin } from '../api/login';
-import { setCookie } from '@/utils/storage';
+import { setAuthToken, setSessionTimeout } from '@/utils/secureStorage';
+import { RateLimiter, sanitizeInput } from '@/utils/securityValidation';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 type LoginFormData = z.infer<ReturnType<typeof createLoginSchema>>;
@@ -28,6 +29,9 @@ const createLoginSchema = (t: (key: string) => string) =>
       .min(6, t('common.validation.passwordMinLength')),
   });
 
+// Rate limiter instance
+const loginRateLimiter = new RateLimiter(5, 15 * 60 * 1000); // 5 attempts per 15 minutes
+
 export const Login = () => {
   const { t } = useTranslation();
   const loginSchema = createLoginSchema(t);
@@ -45,8 +49,10 @@ export const Login = () => {
   const { mutate, isPending } = useLogin({
     onSuccess: (data) => {
       navigate('/');
-      setCookie('access-token', data.accessToken);
+      setAuthToken(data.accessToken);
+      setSessionTimeout();
       setUser(data);
+      toast.success('Login successful');
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message || 'Login error');
@@ -54,10 +60,21 @@ export const Login = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    mutate({
-      nationalId: data.identificationNumber,
-      password: data.password,
-    });
+    // Sanitize inputs
+    const sanitizedData = {
+      nationalId: sanitizeInput(data.identificationNumber),
+      password: data.password, // Don't sanitize password as it might contain special chars
+    };
+
+    // Check rate limiting
+    const clientId = sanitizedData.nationalId; // Use national ID as identifier
+    if (!loginRateLimiter.isAllowed(clientId)) {
+      const remainingTime = Math.ceil(loginRateLimiter.getTimeUntilReset(clientId) / 60000);
+      toast.error(`Too many login attempts. Please try again in ${remainingTime} minutes.`);
+      return;
+    }
+
+    mutate(sanitizedData);
   };
 
   return (

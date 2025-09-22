@@ -8,6 +8,7 @@ import Button from '@/components/shared/Button';
 import { useSignUp } from '../../api/signUp';
 import { toast } from 'sonner';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { isDevelopment } from '@/utils/environment';
 
 type SignUpFormData = z.infer<ReturnType<typeof createSignUpSchema>>;
 
@@ -62,7 +63,9 @@ const SignUpForm = () => {
       setUser(response.data);
     },
     onError: (error) => {
-      console.error('Sign up error:', error);
+      if (isDevelopment()) {
+        console.error('Sign up error:', error);
+      }
       const errorMessage =
         error?.response?.data?.message || 'Sign up failed. Please try again.';
       toast.error(errorMessage);

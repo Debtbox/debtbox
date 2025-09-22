@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Input from '@/components/shared/Input';
 import Button from '@/components/shared/Button';
+import { isDevelopment } from '@/utils/environment';
 
 type ForgotPasswordFormData = z.infer<
   ReturnType<typeof createForgotPasswordSchema>
@@ -30,12 +31,14 @@ const ForgotPasswordForm = () => {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const onSubmit = async (data: ForgotPasswordFormData) => {
+  const onSubmit = async (_data: ForgotPasswordFormData) => {
     try {
-      console.log('Form data:', data);
       // TODO: Implement actual forgot password logic here
+      // Form data is validated and ready for API call
     } catch (error) {
-      console.error('Forgot password error:', error);
+      if (isDevelopment()) {
+        console.error('Forgot password error:', error);
+      }
     }
   };
   return (
