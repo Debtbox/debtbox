@@ -7,7 +7,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <button
         className="bg-primary text-white p-2 rounded-md cursor-pointer"
         onClick={() => {
-          clearCookie('access-token');
+          clearCookie('access_token');
           clearCookie('language');
           localStorage.clear();
           window.location.reload();

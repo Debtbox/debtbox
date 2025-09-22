@@ -12,7 +12,7 @@ import { API_BASE_URL } from '@/utils/const';
 function authRequestInterceptor(
   config: InternalAxiosRequestConfig,
 ): InternalAxiosRequestConfig {
-  const token = getCookie('access-token');
+  const token = getCookie('access_token');
 
   if (token) {
     config.headers.authorization = `Bearer ${token}`;
@@ -55,7 +55,7 @@ axios.interceptors.response.use(
         // Don't show generic toast for 400 errors - let components handle specific error messages
         break;
       case 401:
-        clearCookie('access-token');
+        clearCookie('access_token');
         queryClient.clear();
         window.location.replace('/auth/login');
         toast.error('Session expired. Please login again.');

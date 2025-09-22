@@ -5,12 +5,32 @@ import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 import type { UserDto } from '@/types/UserDto';
 
+export type Device = {
+  platform: 'android' | 'ios' | 'web' | 'pos';
+  token: string;
+  p256dh?: string;
+  auth?: string;
+  appVersion?: string;
+  deviceModel?: string;
+  osVersion?: string;
+  locale?: string;
+};
+
 export type LoginCredentialsDTO = {
   nationalId: string;
+  commercialRegister: string;
+  iqamaId: string;
+  device: Device;
   password: string;
 };
 
-export const login = (data: LoginCredentialsDTO): Promise<UserDto> => {
+export type LoginResponse = {
+  message: string;
+  success: boolean;
+  data: UserDto;
+};
+
+export const login = (data: LoginCredentialsDTO): Promise<LoginResponse> => {
   const language = getLanguageFromCookie();
   return axios.post('/auth/merchant/merchant-sign-in', data, {
     headers: {
@@ -21,7 +41,7 @@ export const login = (data: LoginCredentialsDTO): Promise<UserDto> => {
 
 type UseLogin = {
   config?: MutationConfig<typeof login>;
-  onSuccess: (data: UserDto) => void;
+  onSuccess: (data: LoginResponse) => void;
   onError: (error: ApiError) => void;
 };
 

@@ -14,7 +14,6 @@ import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 
 type LoginFormData = z.infer<ReturnType<typeof createLoginSchema>>;
 
-// TODO: The validation will be changed when the backend is ready
 const createLoginSchema = (t: (key: string) => string) =>
   z.object({
     identificationNumber: z
@@ -43,9 +42,9 @@ export const Login = () => {
   });
 
   const { mutate, isPending } = useLogin({
-    onSuccess: (data) => {
+    onSuccess: ({ data }) => {
       navigate('/');
-      setCookie('access-token', data.accessToken);
+      setCookie('access_token', data.accessToken);
       setUser(data);
     },
     onError: (error) => {
@@ -56,6 +55,12 @@ export const Login = () => {
   const onSubmit = async (data: LoginFormData) => {
     mutate({
       nationalId: data.identificationNumber,
+      commercialRegister: data.identificationNumber,
+      iqamaId: data.identificationNumber,
+      device: {
+        platform: 'web',
+        token: '',
+      },
       password: data.password,
     });
   };

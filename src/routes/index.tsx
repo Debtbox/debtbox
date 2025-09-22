@@ -4,7 +4,7 @@ import { publicRoutes } from './public';
 import { getCookie } from '@/utils/storage';
 
 export const AppRoutes = () => {
-  const isLoggedIn = getCookie('access-token');
+  const isLoggedIn = getCookie('access_token');
   const routes = isLoggedIn ? protectedRoutes : publicRoutes;
 
   const element = useRoutes([

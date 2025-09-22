@@ -18,4 +18,5 @@ export type UserDto = {
   iqama_id: string;
   national_id: string;
   nationality: string;
+  appActor: 'CUSTOMER' | 'MERCHANT';
 };
