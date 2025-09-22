@@ -42,7 +42,9 @@
       "ibanInvalid": "Invalid IBAN format",
       "ibanCountryCode": "IBAN must start with a valid country code",
       "ibanLength": "IBAN length is incorrect for this country",
-      "ibanCheckDigits": "Invalid IBAN check digits"
+      "ibanCheckDigits": "Invalid IBAN check digits",
+      "identificationNumberMinLength": "Identification number must be exactly 10 digits",
+      "identificationNumberMaxLength": "Identification number must be exactly 10 digits"
     },
     "loading": {
       "signingIn": "Signing in...",
