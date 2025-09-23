@@ -62,7 +62,11 @@
     "english": "English",
     "logoAlt": "Logo",
     "languageAlt": "language",
-    "toggleMenuAriaLabel": "Toggle menu"
+    "toggleMenuAriaLabel": "Toggle menu",
+    "dashboard": "Dashboard"
+  },
+  "navbar": {
+    "welcome": "Welcome!"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Purchases",

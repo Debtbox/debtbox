@@ -62,7 +62,11 @@
     "english": "English",
     "logoAlt": "الشعار",
     "languageAlt": "اللغة",
-    "toggleMenuAriaLabel": "تبديل القائمة"
+    "toggleMenuAriaLabel": "تبديل القائمة",
+    "dashboard": "لوحة التحكم"
+  },
+  "navbar": {
+    "welcome": "مرحبا!"
   },
   "hero": {
     "title": "منصة ذكية لإدارة المشتريات المؤجلة",
