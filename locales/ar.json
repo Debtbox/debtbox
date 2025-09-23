@@ -23,7 +23,8 @@
       "signUp": "إنشاء حساب",
       "signIn": "تسجيل الدخول",
       "send": "إرسال",
-      "getStarted": "ابدأ معنا"
+      "getStarted": "ابدأ معنا",
+      "logout": "تسجيل الخروج"
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
@@ -72,7 +73,14 @@
     "welcome": "مرحبا!"
   },
   "dashboard": {
-    "title": "لوحة التحكم"
+    "title": "لوحة التحكم",
+    "total": "المجموع",
+    "unpaid": "مستحق (غير مدفوع)",
+    "paid": "مستحق (مدفوع)",
+    "total_due_amount": "مبلغ الديون الكلي",
+    "track_all_pending_customer_payments": "متابعة كل الديون المستحقة",
+    "payments_are_vital_for_cash_flow": "الدفعات ضرورية لتدفق النقد",
+    "add_payment": "إضافة الدفع"
   },
   "clients": {
     "title": "العملاء"
