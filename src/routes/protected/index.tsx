@@ -1,14 +1,17 @@
+import { DashboardRoutes } from '@/features/dashboard';
 import ProtectedRoutes from './ProtectedRoutes';
-import { AuthRoutes } from '@/features/auth';
-
 export const protectedRoutes = [
   {
     path: '/',
     element: <ProtectedRoutes />,
     children: [
       {
-        path: 'auth',
-        element: <AuthRoutes />,
+        path: '/',
+        element: <DashboardRoutes />,
+      },
+      {
+        path: '/dashboard',
+        element: <DashboardRoutes />,
       },
     ],
   },
