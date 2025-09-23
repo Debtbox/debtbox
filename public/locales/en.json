@@ -23,7 +23,8 @@
       "signUp": "Sign Up",
       "signIn": "Sign In",
       "send": "Send",
-      "getStarted": "Get Started"
+      "getStarted": "Get Started",
+      "logout": "Logout"
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
@@ -72,7 +73,14 @@
     "welcome": "Welcome!"
   },
   "dashboard": {
-    "title": "Dashboard"
+    "title": "Dashboard",
+    "total": "Total",
+    "unpaid": "Due (Unpaid)",
+    "paid": "Due (Paid)",
+    "total_due_amount": "Total Due Amount",
+    "track_all_pending_customer_payments": "Track all pending customer payments",
+    "payments_are_vital_for_cash_flow": "Payments are vital for cash flow",
+    "add_payment": "Add Payment"
   },
   "clients": {
     "title": "Clients"

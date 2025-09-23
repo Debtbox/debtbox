@@ -3,9 +3,11 @@ import { clearCookie } from '@/utils/storage';
 import { queryClient } from '@/lib/queryClient';
 import { useTranslation } from 'react-i18next';
 import { UserIcon } from 'lucide-react';
+import { changeLanguage } from '@/utils/changeLanguage';
+import { arFlag, enFlag } from '@/assets/images';
 
 const UserDropdown = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -46,10 +48,24 @@ const UserDropdown = () => {
       {isOpen && (
         <div className="absolute end-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
           <button
-            onClick={handleLogout}
-            className="block w-full text-start px-4 py-2 text-sm text-red-600 hover:bg-gray-100 cursor-pointer"
+            onClick={() => {
+              changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+              setIsOpen(false);
+            }}
+            className="w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
           >
-            {t('dashboard.logout', 'Logout')}
+            <img
+              src={i18n.language === 'ar' ? enFlag : arFlag}
+              alt="language"
+              className="w-5 h-5"
+            />
+            {i18n.language === 'ar' ? 'English' : 'العربية'}
+          </button>
+          <button
+            onClick={handleLogout}
+            className="w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer"
+          >
+            {t('common.buttons.logout', 'Logout')}
           </button>
         </div>
       )}
