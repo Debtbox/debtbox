@@ -63,10 +63,25 @@
     "logoAlt": "الشعار",
     "languageAlt": "اللغة",
     "toggleMenuAriaLabel": "تبديل القائمة",
-    "dashboard": "لوحة التحكم"
+    "dashboard": "لوحة التحكم",
+    "clients": "العملاء",
+    "transactions": "المعاملات",
+    "settings": "الإعدادات"
   },
   "navbar": {
     "welcome": "مرحبا!"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم"
+  },
+  "clients": {
+    "title": "العملاء"
+  },
+  "transactions": {
+    "title": "المعاملات"
+  },
+  "settings": {
+    "title": "الإعدادات"
   },
   "hero": {
     "title": "منصة ذكية لإدارة المشتريات المؤجلة",
