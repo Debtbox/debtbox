@@ -27,7 +27,11 @@ export { default as dashboard } from './icons/ico_dashboard.svg';
 export { default as clockFill } from './icons/ico_clock_fill.svg';
 export { default as cart } from './icons/ico_cart.svg';
 export { default as handsHelping } from './icons/ico_hands_helping.svg';
-export { default as clients } from './icons/clients.svg';
+
+export { default as clientsSidebar } from './icons/sidebar/clients.svg';
+export { default as dashboardSidebar } from './icons/sidebar/dashboard.svg';
+export { default as settingsSidebar } from './icons/sidebar/settings.svg';
+export { default as usersListSidebar } from './icons/sidebar/user-list.svg';
 
 //LANDING
 export { default as featuresPhone } from './landing/features-phone4.png';

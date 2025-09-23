@@ -63,10 +63,25 @@
     "logoAlt": "Logo",
     "languageAlt": "language",
     "toggleMenuAriaLabel": "Toggle menu",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "transactions": "Transactions",
+    "settings": "Settings"
   },
   "navbar": {
     "welcome": "Welcome!"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "clients": {
+    "title": "Clients"
+  },
+  "transactions": {
+    "title": "Transactions"
+  },
+  "settings": {
+    "title": "Settings"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Purchases",

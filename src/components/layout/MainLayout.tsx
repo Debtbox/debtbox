@@ -23,12 +23,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           'hidden md:block transition-all duration-300 flex-shrink-0',
         )}
       >
-        <Sidebar isCollapsed={isSidebarCollapsed} onToggle={toggleSidebar} />
+        <Sidebar isCollapsed={isSidebarCollapsed} />
       </div>
 
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+          className="fixed inset-0 bg-black/10 z-30 md:hidden"
           onClick={toggleMobileMenu}
         />
       )}
@@ -49,7 +49,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <Sidebar isCollapsed={false} onToggle={toggleMobileMenu} />
+        <Sidebar
+          isCollapsed={false}
+          onToggle={() => {
+            toggleMobileMenu();
+            toggleSidebar();
+          }}
+        />
       </div>
     </div>
   );
