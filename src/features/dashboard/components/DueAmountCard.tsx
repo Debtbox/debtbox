@@ -4,8 +4,7 @@ import MaskIconBottomSm from './icons/MaskIconBottomSm';
 import MaskIconTop from './icons/MaskIconTop';
 import MaskIconTopSm from './icons/MaskIconTopSm';
 import { useTranslation } from 'react-i18next';
-
-const DueAmountCard = () => {
+const DueAmountCard = ({ onAddPayment }: { onAddPayment: () => void }) => {
   const { t } = useTranslation();
   return (
     <div className="w-full h-full rounded-[36px] bg-gradient-to-b from-[#9C2CF3] to-[#3A49F9] px-5 py-8 relative overflow-hidden">
@@ -33,6 +32,7 @@ const DueAmountCard = () => {
       </p>
 
       <Button
+        onClick={onAddPayment}
         text={t('dashboard.add_payment', 'Add Payment')}
         className="bg-white text-gray-800 font-semibold px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors w-full relative z-10"
       />
