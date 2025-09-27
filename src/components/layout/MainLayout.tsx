@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const { i18n } = useTranslation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -45,8 +47,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div
         className={clsx(
-          'fixed inset-y-0 left-0 z-40 w-64 bg-white transform transition-transform duration-300 ease-in-out md:hidden',
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full',
+          'fixed inset-y-0 start-0 z-40 w-64 bg-white transform transition-transform duration-300 ease-in-out md:hidden',
+          isMobileMenuOpen
+            ? 'translate-x-0'
+            : i18n.language === 'ar'
+              ? 'translate-x-full'
+              : '-translate-x-full',
         )}
       >
         <Sidebar
