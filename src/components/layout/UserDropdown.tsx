@@ -46,7 +46,7 @@ const UserDropdown = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute end-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+        <div className="absolute end-0 mt-4 w-48 bg-white shadow-lg py-1 z-50">
           <button
             onClick={() => {
               changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
