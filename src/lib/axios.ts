@@ -8,6 +8,7 @@ import Axios, {
 import { clearCookie, getCookie } from '@/utils/storage';
 import { queryClient } from './queryClient';
 import { API_BASE_URL } from '@/utils/const';
+import { useSessionStore } from '@/stores/SessionStore';
 
 function authRequestInterceptor(
   config: InternalAxiosRequestConfig,
@@ -57,9 +58,9 @@ axios.interceptors.response.use(
       case 401:
         clearCookie('access_token');
         queryClient.clear();
-        window.location.replace('/auth/login');
-        toast.error('Session expired. Please login again.');
         localStorage.clear();
+        // Show session expired modal instead of just redirecting
+        useSessionStore.getState().showSessionExpiredModal();
         break;
       case 403:
         // toast.error(
