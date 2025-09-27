@@ -3,8 +3,9 @@ import type { MutationConfig } from '@/lib/react-query';
 import type { ApiError } from '@/types/ApiError';
 import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
+import type { BusinessDto, UserDto } from '@/types/UserDto';
 
-export type AddDebtCredentialsDTO = {
+export type AddDebtDTO = {
   nationalId: string;
   iqamaId: string;
   businessId: string;
@@ -12,7 +13,7 @@ export type AddDebtCredentialsDTO = {
   dueDate: string;
 };
 
-export const addDebt = (data: AddDebtCredentialsDTO) => {
+export const addDebt = (data: AddDebtDTO): Promise<AddDebtResponse> => {
   const language = getLanguageFromCookie();
   return axios.post(
     '/debt/add-debt',
@@ -31,9 +32,23 @@ export const addDebt = (data: AddDebtCredentialsDTO) => {
   );
 };
 
+export type AddDebtResponse = {
+  message: string;
+  success: boolean;
+  data: {
+    message: string;
+    status: string;
+    business: BusinessDto;
+    customer: UserDto;
+    amount: number;
+    due_date: string;
+    id: number;
+  };
+};
+
 type UseAddDebt = {
   config?: MutationConfig<typeof addDebt>;
-  onSuccess: () => void;
+  onSuccess: (data: AddDebtResponse) => void;
   onError: (error: ApiError) => void;
 };
 
@@ -41,8 +56,8 @@ export const useAddDebt = ({ config, onError, onSuccess }: UseAddDebt) => {
   return useMutation({
     ...config,
     mutationFn: addDebt,
-    onSuccess: () => {
-      onSuccess();
+    onSuccess: (data) => {
+      onSuccess(data);
     },
     onError: (error: ApiError) => {
       onError(error);

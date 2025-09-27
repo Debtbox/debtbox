@@ -45,7 +45,11 @@
       "ibanLength": "طول رقم الآيبان غير صحيح لهذه الدولة",
       "ibanCheckDigits": "أرقام التحقق من الآيبان غير صحيحة",
       "identificationNumberMinLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط",
-      "identificationNumberMaxLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط"
+      "identificationNumberMaxLength": "رقم الهوية يجب أن يكون 10 أرقام بالضبط",
+      "amountRequired": "المبلغ مطلوب",
+      "amountFormat": "المبلغ يجب أن يكون رقماً صحيحاً مع رقمين عشريين كحد أقصى",
+      "dueDateRequired": "تاريخ الاستحقاق مطلوب",
+      "dateFormat": "التاريخ يجب أن يكون بصيغة YYYY-MM-DD"
     },
     "loading": {
       "signingIn": "جاري تسجيل الدخول...",
@@ -100,7 +104,22 @@
     "due_date": "تاريخ الاستحقاق",
     "due_date_placeholder": "مثال: 05/03/2025",
     "step": "الخطوة",
-    "step_1_of_3": "الخطوة 1/3"
+    "step_1_of_3": "الخطوة 1/3",
+    "step_2_of_3": "الخطوة 2/3",
+    "debtCreatedSuccessfully": "تم إنشاء الدين بنجاح",
+    "customerAcceptedDebt": "وافق العميل على الدين",
+    "customerRejectedDebt": "رفض العميل الدين",
+    "debtAddFailed": "فشل في إضافة الدين",
+    "debtApproved": "تم الموافقة على الدين",
+    "debtApprovedMessage": "وافق العميل على الدين وهو الآن نشط",
+    "waitingForCustomer": "في انتظار رد العميل",
+    "customerNotificationSent": "تم إرسال إشعار للعميل",
+    "connected": "متصل",
+    "connecting": "جاري الاتصال...",
+    "waitingTime": "وقت الانتظار",
+    "customerInstructions": "سيتلقى العميل إشعاراً للموافقة أو رفض هذا الدين",
+    "accept": "موافقة",
+    "reject": "رفض"
   },
   "hero": {
     "title": "منصة ذكية لإدارة المشتريات المؤجلة",
