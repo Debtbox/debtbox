@@ -26,6 +26,22 @@
       "getStarted": "Get Started",
       "logout": "Logout"
     },
+    "loading": {
+      "text": "Loading your experience...",
+      "authentication": "Loading authentication...",
+      "dashboard": "Loading dashboard...",
+      "landing": "Loading landing page...",
+      "clients": "Loading clients...",
+      "transactions": "Loading transactions...",
+      "settings": "Loading settings..."
+    },
+    "error": {
+      "title": "Something went wrong",
+      "description": "We're sorry, but something unexpected happened while loading this page.",
+      "tryAgain": "Try Again",
+      "goBack": "Go Back",
+      "help": "If this problem persists, please contact our support team."
+    },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
       "identificationNumberLength": "Identification number must be exactly 10 digits",

@@ -1,6 +1,14 @@
-import { AuthRoutes } from '@/features/auth';
-import { LandingRoutes } from '@/features/landing';
+import { lazy } from 'react';
 import PublicRoutes from './PublicRoutes';
+
+const AuthRoutes = lazy(() =>
+  import('@/features/auth').then((module) => ({ default: module.AuthRoutes })),
+);
+const LandingRoutes = lazy(() =>
+  import('@/features/landing').then((module) => ({
+    default: module.LandingRoutes,
+  })),
+);
 
 export const publicRoutes = [
   {

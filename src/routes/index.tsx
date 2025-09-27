@@ -1,7 +1,10 @@
 import { Navigate, useRoutes } from 'react-router-dom';
+import { Suspense } from 'react';
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
 import { getCookie } from '@/utils/storage';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 export const AppRoutes = () => {
   const isLoggedIn = getCookie('access_token');
@@ -15,5 +18,9 @@ export const AppRoutes = () => {
     },
   ]);
 
-  return <>{element}</>;
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<LoadingSpinner />}>{element}</Suspense>
+    </ErrorBoundary>
+  );
 };
