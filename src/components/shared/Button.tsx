@@ -9,6 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   icon?: React.ReactNode;
   isLoading?: boolean;
+  variant?: 'primary' | 'secondary' | 'no-variant';
 }
 
 const Button = ({
@@ -19,6 +20,7 @@ const Button = ({
   disabled,
   icon,
   isLoading = false,
+  variant = 'no-variant',
 }: ButtonProps) => {
   return (
     <button
@@ -28,6 +30,10 @@ const Button = ({
         'cursor-pointer active:scale-[0.99] transition-all duration-200',
         isLoading &&
           'disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2',
+        variant === 'primary' &&
+          'bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
+        variant === 'secondary' &&
+          'bg-white text-primary rounded-lg hover:bg-gray-50 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed border border-primary disabled:border-gray-300 disabled:text-gray-500',
       )}
       type={type}
       disabled={disabled || isLoading}

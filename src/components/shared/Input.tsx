@@ -1,5 +1,10 @@
 import clsx from 'clsx';
-import { forwardRef, useState, type InputHTMLAttributes } from 'react';
+import {
+  forwardRef,
+  useState,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from 'react';
 import EyeIcon from '../icons/EyeIcon';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -10,11 +15,24 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   helperText?: string;
   error?: string;
+  labelClassName?: string;
+  icon?: ReactNode;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { label, placeholder, type, id, className, helperText, error, ...props },
+    {
+      label,
+      placeholder,
+      type,
+      id,
+      className,
+      helperText,
+      error,
+      labelClassName,
+      icon,
+      ...props
+    },
     ref,
   ) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +50,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <>
         {label && (
-          <label htmlFor={id} className="text-sm text-gray-700 mb-2">
+          <label
+            htmlFor={id}
+            className={clsx('text-sm text-gray-700 mb-2', labelClassName)}
+          >
             {label}
           </label>
         )}
@@ -61,6 +82,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             >
               <EyeIcon active={showPassword} />
             </button>
+          )}
+          {icon && (
+            <div className="absolute start-3 top-1/2 transform -translate-y-1/2">
+              {icon}
+            </div>
           )}
         </div>
         {error && <span className="text-sm text-red-500 mt-1">{error}</span>}

@@ -72,16 +72,6 @@
   "navbar": {
     "welcome": "Welcome!"
   },
-  "dashboard": {
-    "title": "Dashboard",
-    "total": "Total",
-    "unpaid": "Due (Unpaid)",
-    "paid": "Due (Paid)",
-    "total_due_amount": "Total Due Amount",
-    "track_all_pending_customer_payments": "Track all pending customer payments",
-    "payments_are_vital_for_cash_flow": "Payments are vital for cash flow",
-    "add_payment": "Add Payment"
-  },
   "clients": {
     "title": "Clients"
   },
@@ -90,6 +80,27 @@
   },
   "settings": {
     "title": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "total": "Total",
+    "unpaid": "Due (Unpaid)",
+    "paid": "Due (Paid)",
+    "total_due_amount": "Total Due Amount",
+    "track_all_pending_customer_payments": "Track all pending customer payments",
+    "payments_are_vital_for_cash_flow": "Payments are vital for cash flow",
+    "add_payment": "Add Payment",
+    "add_customer_purchase": "Add Customer Purchase",
+    "customer_details": "Customer Details",
+    "purchase_details": "Purchase Details",
+    "customer_id": "Customer ID",
+    "customer_id_placeholder": "e.g 1234 6748 3158",
+    "amount": "Amount",
+    "amount_placeholder": "e.g 1354",
+    "due_date": "Due Date",
+    "due_date_placeholder": "e.g 05/03/2025",
+    "step": "Step",
+    "step_1_of_3": "Step 1/3"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Purchases",

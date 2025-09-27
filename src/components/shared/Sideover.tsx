@@ -9,6 +9,7 @@ interface SideoverProps {
   title?: string;
   width?: string;
   direction?: 'ltr' | 'rtl';
+  className?: string;
 }
 
 const Sideover = ({
@@ -16,8 +17,9 @@ const Sideover = ({
   onClose,
   children,
   title,
-  width = 'w-[30vw]',
+  width = 'w-full md:w-[60vw] xl:w-[40vw]',
   direction = 'ltr',
+  className,
 }: SideoverProps) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -61,6 +63,7 @@ const Sideover = ({
             : direction === 'rtl'
               ? '-translate-x-full'
               : 'translate-x-full',
+          className,
         )}
       >
         <div className="flex items-center justify-between py-2 px-1 border-b border-gray-200">

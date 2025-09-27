@@ -26,6 +26,7 @@ export const Dashboard = () => {
         onClose={() => setIsSideoverOpen(false)}
         title={t('dashboard.add_customer_purchase', 'Add Customer Purchase')}
         direction={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+        className="flex flex-col h-full"
       >
         <CustomerPurchaseForm />
       </Sideover>

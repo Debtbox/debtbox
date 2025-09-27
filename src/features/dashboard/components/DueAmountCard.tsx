@@ -8,10 +8,10 @@ const DueAmountCard = ({ onAddPayment }: { onAddPayment: () => void }) => {
   const { t } = useTranslation();
   return (
     <div className="w-full h-full rounded-[36px] bg-gradient-to-b from-[#9C2CF3] to-[#3A49F9] px-5 py-8 relative overflow-hidden">
-      <MaskIconTop className="absolute top-0 end-0" />
-      <MaskIconTopSm className="absolute top-0 end-0" />
-      <MaskIconBottom className="absolute bottom-0 start-0" />
-      <MaskIconBottomSm className="absolute bottom-0 start-0" />
+      <MaskIconTop className="absolute top-0 right-0" />
+      <MaskIconTopSm className="absolute top-0 right-0" />
+      <MaskIconBottom className="absolute bottom-0 left-0" />
+      <MaskIconBottomSm className="absolute bottom-0 left-0" />
       <h6 className="text-xs text-white font-medium mb-1">
         {t('dashboard.total_due_amount', 'Total Due Amount')}
       </h6>

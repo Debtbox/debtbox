@@ -32,13 +32,13 @@ const Footer = () => {
               <h3>{t('footer.aboutDebtBox')}</h3>
               <ul>
                 <li>
-                  <Link to="/">{t('home')}</Link>
+                  <Link to="/">{t('navigation.home')}</Link>
                 </li>
                 <li>
-                  <Link to="/about">{t('aboutUs')}</Link>
+                  <Link to="/about">{t('navigation.aboutUs')}</Link>
                 </li>
                 <li>
-                  <Link to="/contact-us">{t('contactUs')}</Link>
+                  <Link to="/contact-us">{t('navigation.contactUs')}</Link>
                 </li>
               </ul>
             </div>
