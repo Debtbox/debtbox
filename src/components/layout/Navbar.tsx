@@ -2,7 +2,10 @@ import { useTranslation } from 'react-i18next';
 import BurgerIcon from '../icons/BurgerIcon';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import UserDropdown from './UserDropdown';
-import NotificationDropdown from './NotificationDropdown';
+import {
+  NotificationDropdown,
+  useGetUnreadNotificationsCountData,
+} from '@/features/notifications';
 
 interface NavbarProps {
   onMenuToggle?: () => void;
@@ -12,6 +15,10 @@ interface NavbarProps {
 const Navbar = ({ onMenuToggle }: NavbarProps) => {
   const { user } = useAuthFlowStore();
   const { i18n, t } = useTranslation();
+
+  const { data: unreadNotificationsCount } = useGetUnreadNotificationsCountData(
+    {},
+  );
 
   return (
     <nav className="bg-[#FCFCFC] px-6 py-3 flex items-center justify-between sticky top-0 z-40 h-20 shadow-2xs">
@@ -35,7 +42,9 @@ const Navbar = ({ onMenuToggle }: NavbarProps) => {
       </div>
 
       <div className="flex items-center space-x-4">
-        <NotificationDropdown />
+        <NotificationDropdown
+          unreadNotificationsCount={unreadNotificationsCount?.data.count || 0}
+        />
         <UserDropdown />
       </div>
     </nav>

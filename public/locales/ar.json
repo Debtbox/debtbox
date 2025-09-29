@@ -271,5 +271,14 @@
     "forgotPassword": {
       "title": "نسيت كلمة المرور"
     }
+  },
+  "notifications": {
+    "noNotifications": "لا يوجد إشعارات",
+    "deleteAllConfirmTitle": "حذف جميع الإشعارات",
+    "deleteAllConfirmDescription": "هل أنت متأكد أنك تريد حذف جميع الإشعارات؟ هذا الإجراء لا يمكن التراجع عنه.",
+    "deleteAll": "حذف جميع الإشعارات",
+    "markAllAsRead": "تحديد كل الإشعارات كمقروءة",
+    "markAsRead": "تحديد كمقروء",
+    "delete": "حذف"
   }
 }

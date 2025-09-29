@@ -42,7 +42,6 @@ axios.interceptors.response.use(
     return response.data;
   },
   (error: AxiosError) => {
-    // Handle network errors
     if (!error.response) {
       toast.error('Network error. Please check your connection.');
       return Promise.reject(error);
@@ -55,11 +54,13 @@ axios.interceptors.response.use(
         // Don't show generic toast for 400 errors - let components handle specific error messages
         break;
       case 401:
-        clearCookie('access_token');
-        queryClient.clear();
-        window.location.replace('/auth/login');
-        toast.error('Session expired. Please login again.');
-        localStorage.clear();
+        if (window.location.pathname !== '/auth/login') {
+          clearCookie('access_token');
+          queryClient.clear();
+          window.location.replace('/auth/login');
+          toast.error('Session expired. Please login again.');
+          localStorage.clear();
+        }
         break;
       case 403:
         // toast.error(

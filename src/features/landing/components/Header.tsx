@@ -48,7 +48,7 @@ const Header = () => {
 
         <div className="header-buttons">
           <div className="cta-button">
-            <Link to="/auth/login">{t('common.buttons.getStarted')}</Link>
+            <Link to="/auth/login">{t('common.buttons.signIn')}</Link>
           </div>
           <div className="lang-button">
             <a
@@ -63,7 +63,9 @@ const Header = () => {
                 alt="language"
               />{' '}
               <span className="lang-toggle">
-                {i18n.language === 'en' ? t('navigation.arabic') : t('navigation.english')}
+                {i18n.language === 'en'
+                  ? t('navigation.arabic')
+                  : t('navigation.english')}
               </span>
             </a>
           </div>
@@ -94,7 +96,7 @@ const Header = () => {
             className="mobile-cta"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('common.buttons.getStarted')}
+            {t('common.buttons.signIn')}
           </Link>
         </nav>
       </div>

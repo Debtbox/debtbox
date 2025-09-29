@@ -270,6 +270,15 @@
     },
     "forgotPassword": {
       "title": "Forgot password"
+    },
+    "notifications": {
+      "noNotifications": "No notifications",
+      "deleteAllConfirmTitle": "Delete All Notifications",
+      "deleteAllConfirmDescription": "Are you sure you want to delete all notifications? This action cannot be undone.",
+      "deleteAll": "Delete all notifications",
+      "markAllAsRead": "Mark all as read",
+      "markAsRead": "Mark as read",
+      "delete": "Delete"
     }
   }
 }
