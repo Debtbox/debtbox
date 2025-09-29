@@ -90,7 +90,7 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
               src={item.icon}
               alt={item.name}
               className={clsx(
-                isCollapsed ? 'w-5 h-5' : 'w-5 h-5 mr-3',
+                isCollapsed ? 'w-5 h-5' : 'w-5 h-5 me-3',
                 'flex-shrink-0',
                 isActive(item.href) ? 'brightness-0 invert' : '',
               )}
