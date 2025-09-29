@@ -42,7 +42,7 @@ const StoreSelection = () => {
         {t('auth.signUp.selectStoreDescription')}
       </p>
       <div className="flex flex-col gap-2 w-full mb-8">
-        {user.businesses.map((business) => {
+        {user?.businesses.map((business) => {
           const isChecked = selectedStores.includes(business);
           const handleToggle = () => {
             let newSelectedStores;
@@ -82,8 +82,8 @@ const StoreSelection = () => {
         disabled={selectedStores.length === 0}
         onClick={() => {
           registerBusinesses({
-            id: user.id.toString(),
-            accessToken: user.accessToken,
+            id: user?.id.toString() as string,
+            accessToken: user?.accessToken as string,
             businesses: selectedStores.map((store) => ({
               cr_number: store.cr_number,
               business_name_en: store.business_name_en,
