@@ -290,5 +290,12 @@
       "markAllSelectedAsRead": "Mark all selected as read",
       "deleteAllSelected": "Delete all selected notifications"
     }
+  },
+  "sessionExpiry": {
+    "title": "Session Expired",
+    "description": "Your session has expired for security reasons. You will be redirected to the login page shortly.",
+    "redirectingIn": "Redirecting in {count} seconds...",
+    "goToLoginNow": "Go to Login Now",
+    "securityNotice": "For your security, we automatically log you out after a period of inactivity."
   }
 }
