@@ -42,7 +42,7 @@ const Navbar = ({ onMenuToggle }: NavbarProps) => {
         </div>
       </div>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2 md:space-x-4">
         <BusinessDropdown />
         <NotificationDropdown
           unreadNotificationsCount={unreadNotificationsCount?.data.count || 0}

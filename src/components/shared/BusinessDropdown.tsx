@@ -39,13 +39,11 @@ const BusinessDropdown = () => {
       : business.business_name_en;
   };
 
-  const currentBusiness = selectedBusiness || businesses[0];
-
   if (!businesses.length) {
     return (
-      <div className="py-2 px-4 flex items-center gap-2 bg-gray-100 text-sm text-gray-500">
-        <Building2 className="w-4 h-4 text-gray-400" />
-        <span>{t('business.noBusinesses', 'No businesses available')}</span>
+      <div className="w-12 h-12 md:w-auto md:h-auto md:py-3 md:px-4 rounded-full md:rounded-lg border border-gray-200 flex items-center justify-center md:justify-start bg-gray-100 text-sm text-gray-500 md:gap-2 md:min-w-[200px]">
+        <Building2 className="w-5 h-5 text-gray-400" />
+        <span className="hidden md:inline">{t('business.noBusinesses', 'No businesses available')}</span>
       </div>
     );
   }
@@ -54,16 +52,16 @@ const BusinessDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="py-3 px-4 flex items-center gap-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:shadow-xl transition-shadow min-w-[200px]"
+        className="w-12 h-12 md:w-auto md:h-auto md:py-3 md:px-4 rounded-full md:rounded-lg border border-gray-200 flex items-center justify-center md:justify-start hover:bg-gray-100 transition-colors duration-200 cursor-pointer md:gap-2 md:min-w-[200px]"
       >
-        <Building2 className="w-4 h-4 text-gray-600" />
-        <span className="text-sm text-gray-700 truncate">
-          {currentBusiness
-            ? getDisplayName(currentBusiness)
+        <Building2 className="w-5 h-5 text-gray-600" />
+        <span className="hidden md:inline text-sm text-gray-700 truncate">
+          {selectedBusiness
+            ? getDisplayName(selectedBusiness)
             : t('business.select', 'Select Business')}
         </span>
         <svg
-          className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+          className={`hidden md:block w-4 h-4 text-gray-500 transition-transform flex-shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -78,18 +76,22 @@ const BusinessDropdown = () => {
       </button>
 
       {isDropdownOpen && (
-        <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
+        <div className={`fixed md:absolute end-0 md:left-0 mt-4 w-screen md:w-80 bg-white shadow-lg z-50 flex flex-col max-h-[calc(100vh-.25rem*20)] md:max-h-60 transition-all duration-300 ease-in-out transform ${
+          isDropdownOpen
+            ? 'opacity-100 translate-y-0 scale-100'
+            : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
+        }`}>
           <div className="p-3 border-b border-gray-100">
             <h3 className="text-sm font-semibold text-gray-700">
               {t('business.selectBusiness', 'Select Business')}
             </h3>
           </div>
-          <div className="max-h-60 overflow-y-auto">
+          <div className="overflow-y-auto">
             {businesses.map((business) => (
               <button
                 key={business.cr_number}
                 onClick={() => handleBusinessSelect(business)}
-                className={`w-full px-4 py-3 flex flex-col items-start text-left hover:bg-gray-50 transition-colors ${
+                className={`w-full px-4 py-3 flex flex-col items-start text-left hover:bg-gray-50 transition-colors touch-manipulation ${
                   selectedBusiness?.cr_number === business.cr_number
                     ? 'bg-blue-50 text-blue-600'
                     : 'text-gray-700'
@@ -117,8 +119,8 @@ const BusinessDropdown = () => {
                   <div>
                     {t('business.crNumber', 'CR')}: {business.cr_number}
                   </div>
-                  <div>{business.activity}</div>
-                  <div>{business.city}</div>
+                  <div className="truncate">{business.activity}</div>
+                  <div className="truncate">{business.city}</div>
                 </div>
               </button>
             ))}
