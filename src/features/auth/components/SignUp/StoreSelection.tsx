@@ -4,13 +4,15 @@ import CheckBox from '@/components/shared/CheckBox';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 import { useRegisterBusinesses } from '../../api/registerBusinesses';
 import { toast } from 'sonner';
 import type { BusinessDto } from '@/types/UserDto';
 
 const StoreSelection = () => {
   const { t, i18n } = useTranslation();
-  const { setActiveStep, formData, updateFormData, user } = useAuthFlowStore();
+  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
+  const { user } = useUserStore();
 
   const [selectedStores, setSelectedStores] = useState<BusinessDto[]>(
     formData.selectedStores || [],

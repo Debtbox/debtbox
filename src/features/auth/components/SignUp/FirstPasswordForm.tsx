@@ -5,6 +5,7 @@ import { z } from 'zod';
 import Input from '@/components/shared/Input';
 import Button from '@/components/shared/Button';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 import { useCreatePassword } from '../../api/createPassword';
 import { toast } from 'sonner';
 
@@ -34,7 +35,8 @@ const createFirstPasswordSchema = (t: (key: string) => string) =>
 
 const FirstPasswordForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep, user } = useAuthFlowStore();
+  const { setActiveStep } = useAuthFlowStore();
+  const { user } = useUserStore();
   const firstPasswordSchema = createFirstPasswordSchema(t);
   const {
     register,
@@ -56,8 +58,8 @@ const FirstPasswordForm = () => {
 
   const onSubmit = async (data: FirstPasswordFormData) => {
     mutate({
-      id: user.id.toString(),
-      accessToken: user.accessToken,
+      id: user?.id.toString() as string,
+      accessToken: user?.accessToken as string,
       appActor: 'MERCHANT',
       password: data.password,
     });

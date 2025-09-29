@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 import { useLogin } from '../api/login';
 import { setCookie } from '@/utils/storage';
-import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 
 type LoginFormData = z.infer<ReturnType<typeof createLoginSchema>>;
 
@@ -31,7 +31,7 @@ export const Login = () => {
   const { t } = useTranslation();
   const loginSchema = createLoginSchema(t);
   const navigate = useNavigate();
-  const { setUser } = useAuthFlowStore();
+  const { setUser, setSelectedBusiness } = useUserStore();
 
   const {
     register,
@@ -46,6 +46,7 @@ export const Login = () => {
       navigate('/');
       setCookie('access_token', data.accessToken);
       setUser(data);
+      setSelectedBusiness(data.businesses[0]);
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message || 'Login error');

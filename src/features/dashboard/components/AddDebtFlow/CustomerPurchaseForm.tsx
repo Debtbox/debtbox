@@ -9,6 +9,7 @@ import DollarIcon from '@/components/icons/DollarIcon';
 import CalendarIcon from '@/components/icons/CalendarIcon';
 import { z } from 'zod';
 import { useAddDebt, type AddDebtResponse } from '../../api/addDebt';
+import { useUserStore } from '@/stores/UserStore';
 
 type CustomerPurchaseFormData = z.infer<
   ReturnType<typeof createCustomerPurchaseSchema>
@@ -45,6 +46,7 @@ const CustomerPurchaseForm = ({
   onError,
 }: CustomerPurchaseFormProps) => {
   const { t } = useTranslation();
+  const { selectedBusiness } = useUserStore();
   const customerPurchaseSchema = createCustomerPurchaseSchema(t);
   const {
     register,
@@ -79,7 +81,7 @@ const CustomerPurchaseForm = ({
     const payload = {
       nationalId: data.customerId,
       iqamaId: data.customerId,
-      businessId: '8',
+      businessId: selectedBusiness?.id.toString() as string,
       amount: parseFloat(data.amount),
       dueDate: data.dueDate,
     };

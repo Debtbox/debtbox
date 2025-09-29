@@ -5,8 +5,7 @@ import Axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios';
-import { clearCookie, getCookie } from '@/utils/storage';
-import { queryClient } from './queryClient';
+import { getCookie } from '@/utils/storage';
 import { API_BASE_URL } from '@/utils/const';
 import { useSessionStore } from '@/stores/SessionStore';
 
@@ -28,15 +27,13 @@ export const axios = Axios.create({
   paramsSerializer: {
     indexes: null,
   },
-  // Add timeout for better UX
   timeout: 10000,
-  // Add default headers
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Use proper typing for interceptors
+// Use proper typing for iterceptors
 axios.interceptors.request.use(authRequestInterceptor);
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
@@ -56,11 +53,6 @@ axios.interceptors.response.use(
         break;
       case 401:
         if (window.location.pathname !== '/auth/login') {
-          // Clear session data
-          clearCookie('access_token');
-          queryClient.clear();
-          localStorage.clear();
-          
           // Show session expiry popup instead of immediate redirect
           useSessionStore.getState().handleSessionExpiry();
         }

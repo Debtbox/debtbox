@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import BurgerIcon from '../icons/BurgerIcon';
-import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 import UserDropdown from './UserDropdown';
+import BusinessDropdown from '../shared/BusinessDropdown';
 import {
   NotificationDropdown,
   useGetUnreadNotificationsCountData,
@@ -13,7 +14,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ onMenuToggle }: NavbarProps) => {
-  const { user } = useAuthFlowStore();
+  const { user } = useUserStore();
   const { i18n, t } = useTranslation();
 
   const { data: unreadNotificationsCount } = useGetUnreadNotificationsCountData(
@@ -36,12 +37,13 @@ const Navbar = ({ onMenuToggle }: NavbarProps) => {
             {t('navbar.welcome', 'Welcome!')}
           </span>
           <h1 className="text-lg font-bold text-gray-900">
-            {i18n.language === 'en' ? user.full_name_en : user.full_name_ar}
+            {i18n.language === 'en' ? user?.full_name_en : user?.full_name_ar}
           </h1>
         </div>
       </div>
 
       <div className="flex items-center space-x-4">
+        <BusinessDropdown />
         <NotificationDropdown
           unreadNotificationsCount={unreadNotificationsCount?.data.count || 0}
         />

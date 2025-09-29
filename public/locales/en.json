@@ -297,5 +297,13 @@
     "redirectingIn": "Redirecting in {count} seconds...",
     "goToLoginNow": "Go to Login Now",
     "securityNotice": "For your security, we automatically log you out after a period of inactivity."
+  },
+  "business": {
+    "select": "Select Business",
+    "selectBusiness": "Select Business",
+    "noBusinesses": "No businesses available",
+    "crNumber": "CR",
+    "activity": "Activity",
+    "city": "City"
   }
 }

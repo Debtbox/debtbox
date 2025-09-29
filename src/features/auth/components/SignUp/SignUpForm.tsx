@@ -8,6 +8,7 @@ import Button from '@/components/shared/Button';
 import { useSignUp } from '../../api/signUp';
 import { toast } from 'sonner';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 
 type SignUpFormData = z.infer<ReturnType<typeof createSignUpSchema>>;
 
@@ -26,8 +27,8 @@ const createSignUpSchema = (t: (key: string) => string) =>
 
 const SignUpForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep, formData, updateFormData, setAccessToken, setUser } =
-    useAuthFlowStore();
+  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
+  const { setUser } = useUserStore();
   const signUpSchema = createSignUpSchema(t);
   const {
     register,
@@ -58,7 +59,6 @@ const SignUpForm = () => {
     onSuccess: (response) => {
       toast.success(t('auth.signUp.accountAdded'));
       setActiveStep(1);
-      setAccessToken(response.data.accessToken);
       setUser(response.data);
     },
     onError: (error) => {

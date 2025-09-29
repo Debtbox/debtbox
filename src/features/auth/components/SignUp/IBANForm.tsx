@@ -5,6 +5,7 @@ import Input from '@/components/shared/Input';
 import { z } from 'zod';
 import Button from '@/components/shared/Button';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { useUserStore } from '@/stores/UserStore';
 import {
   validateIBAN,
   formatIBAN,
@@ -33,7 +34,8 @@ const createIBANSchema = (t: (key: string) => string) =>
 
 const IBANForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep, user } = useAuthFlowStore();
+  const { setActiveStep } = useAuthFlowStore();
+  const { user } = useUserStore();
   const ibanSchema = createIBANSchema(t);
   const {
     register,
@@ -65,8 +67,8 @@ const IBANForm = () => {
 
   const onSubmit = async (data: IBANFormData) => {
     mutate({
-      id: user.id.toString(),
-      accessToken: user.accessToken,
+      id: user?.id.toString() as string,
+      accessToken: user?.accessToken as string,
       iban: data.iban.replace(/\s/g, ''),
     });
   };
