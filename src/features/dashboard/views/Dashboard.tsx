@@ -8,6 +8,7 @@ import { useGetBusinessTotal } from '../api/getBusinessTotal';
 import { useUserStore } from '@/stores/UserStore';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import type { Step } from '../types';
 
 export const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -15,6 +16,7 @@ export const Dashboard = () => {
   const [isSideoverOpen, toggleSideover] =
     useUrlBooleanState('purchase-sideover');
   const [totalDueAmount, setTotalDueAmount] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<Step>('form');
 
   const { mutate: getBusinessTotal } = useGetBusinessTotal({
     onSuccess: (data) => {
@@ -38,24 +40,36 @@ export const Dashboard = () => {
       <div className="flex items-stretch justify-between gap-4 flex-wrap lg:flex-nowrap">
         <div className="flex-1">
           <DueAmountCard
-            totalDueAmount={totalDueAmount.toString()}
+            totalDueAmount={totalDueAmount.toLocaleString()}
             onAddPayment={() => toggleSideover(true)}
           />
         </div>
         <div className="flex-1 flex flex-col gap-4">
-          <TotalCard value="10,550,350 SAR" type="total" />
-          <TotalCard value="10,550,350 SAR" type="unpaid" />
-          <TotalCard value="10,550,350 SAR" type="paid" />
+          <TotalCard value={10550350} type="total" />
+          <TotalCard value={10550350} type="unpaid" />
+          <TotalCard value={10550350} type="paid" />
         </div>
       </div>
       <Sideover
         isOpen={isSideoverOpen}
         onClose={() => toggleSideover(false)}
-        title={t('dashboard.add_customer_purchase', 'Add Customer Purchase')}
+        title={
+          currentStep === 'form'
+            ? t('dashboard.add_customer_purchase', 'Add Customer Purchase')
+            : currentStep === 'waiting'
+              ? t('dashboard.waiting_for_customer_response', 'Hold On')
+              : currentStep === 'completed'
+                ? t('dashboard.debt_approved', 'Successfully Payment')
+                : t('dashboard.debt_rejected', 'Payment Failed')
+        }
         direction={i18n.language === 'ar' ? 'rtl' : 'ltr'}
         className="flex flex-col h-full"
       >
-        <AddDebtFlow />
+        <AddDebtFlow
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          onClose={() => toggleSideover(false)}
+        />
       </Sideover>
     </section>
   );

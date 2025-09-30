@@ -22,7 +22,7 @@ const DueAmountCard = ({
         {t('dashboard.total_due_amount', 'Total Due Amount')}
       </h6>
       <h3 className="text-2xl text-white font-extrabold mb-4">
-        {totalDueAmount}
+        {totalDueAmount} {t('common.fields.sar', 'SAR')}
       </h3>
       <p className="text-xs text-[#C4C4C4] font-medium mb-1 relative z-10">
         {t(

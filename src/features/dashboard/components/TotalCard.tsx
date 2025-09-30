@@ -5,7 +5,7 @@ const TotalCard = ({
   value,
   type,
 }: {
-  value: string;
+  value: number;
   type: 'total' | 'unpaid' | 'paid';
 }) => {
   const { t } = useTranslation();
@@ -40,7 +40,9 @@ const TotalCard = ({
             ? t('dashboard.unpaid', 'Due (Unpaid)')
             : t('dashboard.paid', 'Due (Paid)')}
       </span>
-      <span className="text-black font-semibold text-2xl">{value}</span>
+      <span className="text-black font-semibold text-2xl">
+        {value.toLocaleString()} {t('common.fields.sar', 'SAR')}
+      </span>
     </div>
   );
 };

@@ -5,8 +5,10 @@ import CustomerPurchaseForm from './CustomerPurchaseForm';
 import WaitingForCustomerResponse from './WaitingForCustomerResponse';
 import type { AddDebtResponse } from '../../api/addDebt';
 import { useUserStore } from '@/stores/UserStore';
-
-type Step = 'form' | 'waiting' | 'completed' | 'rejected';
+import type { Step } from '../../types';
+import SuccessIcon from '@/components/icons/SuccessIcon';
+import Button from '@/components/shared/Button';
+import { XCircle } from 'lucide-react';
 
 interface DebtData {
   debtId: string;
@@ -15,9 +17,16 @@ interface DebtData {
   dueDate: string;
 }
 
-const AddDebtFlow = () => {
+const AddDebtFlow = ({
+  currentStep,
+  setCurrentStep,
+  onClose,
+}: {
+  currentStep: Step;
+  setCurrentStep: (step: Step) => void;
+  onClose: () => void;
+}) => {
   const { t } = useTranslation();
-  const [currentStep, setCurrentStep] = useState<Step>('form');
   const [debtData, setDebtData] = useState<DebtData | null>(null);
   const { user } = useUserStore();
   const handleFormSuccess = (response: AddDebtResponse) => {
@@ -65,29 +74,66 @@ const AddDebtFlow = () => {
       case 'completed':
         return (
           <div className="flex flex-col h-full">
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-green-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+            <div className="flex-1 flex flex-col items-center justify-start pt-12">
+              <SuccessIcon className="mb-6" />
+              <p className="text-sm text-[#474747] mb-3">
+                {t('dashboard.debtAddedSuccessfully')}
+              </p>
+              <h3 className="text-2xl font-bold mb-3">
+                {debtData?.amount.toLocaleString()}{' '}
+                {t('common.fields.sar', 'SAR')}
+              </h3>
+              <div className="grid grid-cols-2 text-center gap-4 w-full border-b border-gray-200 border-dashed pb-4">
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.customerId')}
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                  {t('dashboard.debtApproved')}
-                </h2>
-                <p className="text-gray-600">
-                  {t('dashboard.debtApprovedMessage')}
-                </p>
+                <div className="text-xl text-end">{debtData?.customerId}</div>
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.dueDate')}
+                </div>
+                <div className="text-xl  text-end">{debtData?.dueDate}</div>
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.amount')}
+                </div>
+                <div className="text-xl  text-end">
+                  {debtData?.amount.toLocaleString()}{' '}
+                  {t('common.fields.sar', 'SAR')}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 text-center gap-4 w-full mt-4">
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.amount')}
+                </div>
+                <div className="text-xl  text-end">
+                  {debtData?.amount.toLocaleString()}{' '}
+                  {t('common.fields.sar', 'SAR')}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between p-4 border-t border-gray-200">
+              <div className="text-sm text-gray-500 font-medium flex-1">
+                {t('dashboard.step_3_of_3')}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <Button
+                  type="button"
+                  text={t('common.buttons.export')}
+                  onClick={() => {}}
+                  className="flex-1 p-2 h-12"
+                  variant="secondary"
+                  disabled
+                />
+                <Button
+                  type="button"
+                  text={t('common.buttons.done')}
+                  className="flex-1 p-2 h-12"
+                  variant="primary"
+                  onClick={() => {
+                    setCurrentStep('form');
+                    setDebtData(null);
+                    onClose();
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -96,29 +142,66 @@ const AddDebtFlow = () => {
       case 'rejected':
         return (
           <div className="flex flex-col h-full">
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-red-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+            <div className="flex-1 flex flex-col items-center justify-start pt-12">
+              <XCircle className="mb-6 text-red-500 size-16" />
+              <p className="text-sm text-[#474747] mb-3">
+                {t('dashboard.debtRejected')}
+              </p>
+              <h3 className="text-2xl font-bold mb-3">
+                {debtData?.amount.toLocaleString()}{' '}
+                {t('common.fields.sar', 'SAR')}
+              </h3>
+              <div className="grid grid-cols-2 text-center gap-4 w-full border-b border-gray-200 border-dashed pb-4">
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.customerId')}
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                  {t('dashboard.debtRejected')}
-                </h2>
-                <p className="text-gray-600">
-                  {t('dashboard.debtRejectedMessage')}
-                </p>
+                <div className="text-xl text-end">{debtData?.customerId}</div>
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.dueDate')}
+                </div>
+                <div className="text-xl  text-end">{debtData?.dueDate}</div>
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.amount')}
+                </div>
+                <div className="text-xl  text-end">
+                  {debtData?.amount.toLocaleString()}{' '}
+                  {t('common.fields.sar', 'SAR')}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 text-center gap-4 w-full mt-4">
+                <div className="text-[#707070] text-start">
+                  {t('dashboard.amount')}
+                </div>
+                <div className="text-xl  text-end">
+                  {debtData?.amount.toLocaleString()}{' '}
+                  {t('common.fields.sar', 'SAR')}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between p-4 border-t border-gray-200">
+              <div className="text-sm text-gray-500 font-medium flex-1">
+                {t('dashboard.step_3_of_3')}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <Button
+                  type="button"
+                  text={t('common.buttons.export')}
+                  onClick={() => {}}
+                  className="flex-1 p-2 h-12"
+                  variant="secondary"
+                  disabled
+                />
+                <Button
+                  type="button"
+                  text={t('common.buttons.done')}
+                  className="flex-1 p-2 h-12"
+                  variant="primary"
+                  onClick={() => {
+                    setCurrentStep('form');
+                    setDebtData(null);
+                    onClose();
+                  }}
+                />
               </div>
             </div>
           </div>

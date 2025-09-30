@@ -14,7 +14,8 @@
       "lastName": "الاسم الثاني",
       "email": "البريد الإلكتروني",
       "phone": "رقم الجوال",
-      "message": "رسالتك"
+      "message": "رسالتك",
+      "sar": "ر.س"
     },
     "buttons": {
       "next": "التالي",
@@ -24,7 +25,10 @@
       "signIn": "تسجيل الدخول",
       "send": "إرسال",
       "getStarted": "ابدأ معنا",
-      "logout": "تسجيل الخروج"
+      "logout": "تسجيل الخروج",
+      "cancel": "إلغاء",
+      "export": "تصدير",
+      "done": "تم"
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
@@ -106,6 +110,7 @@
     "step": "الخطوة",
     "step_1_of_3": "الخطوة 1/3",
     "step_2_of_3": "الخطوة 2/3",
+    "step_3_of_3": "الخطوة 3/3",
     "debtCreatedSuccessfully": "تم إنشاء الدين بنجاح",
     "customerAcceptedDebt": "وافق العميل على الدين",
     "customerRejectedDebt": "رفض العميل الدين",
@@ -119,7 +124,16 @@
     "waitingTime": "وقت الانتظار",
     "customerInstructions": "سيتلقى العميل إشعاراً للموافقة أو رفض هذا الدين",
     "accept": "موافقة",
-    "reject": "رفض"
+    "reject": "رفض",
+    "waitingForCustomerResponse": "في انتظار رد العميل",
+    "waitingForCustomerResponseMessage": "سيتلقى العميل إشعاراً للموافقة أو رفض هذا الدين",
+    "debtAddedSuccessfully": "تم إضافة الدين بنجاح",
+    "customerId": "رقم العميل",
+    "dueDate": "تاريخ الاستحقاق",
+    "debtRejected": "تم رفض الدين",
+    "waiting_for_customer_response": "انتظر",
+    "debt_approved": "تم الدفع بنجاح",
+    "debt_rejected": "فشل الدفع"
   },
   "hero": {
     "title": "منصة ذكية لإدارة المشتريات المؤجلة",
