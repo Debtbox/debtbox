@@ -4,7 +4,13 @@ import MaskIconBottomSm from './icons/MaskIconBottomSm';
 import MaskIconTop from './icons/MaskIconTop';
 import MaskIconTopSm from './icons/MaskIconTopSm';
 import { useTranslation } from 'react-i18next';
-const DueAmountCard = ({ onAddPayment }: { onAddPayment: () => void }) => {
+const DueAmountCard = ({
+  onAddPayment,
+  totalDueAmount,
+}: {
+  onAddPayment: () => void;
+  totalDueAmount: string;
+}) => {
   const { t } = useTranslation();
   return (
     <div className="w-full h-full rounded-[36px] bg-gradient-to-b from-[#9C2CF3] to-[#3A49F9] px-5 py-8 relative overflow-hidden">
@@ -16,7 +22,7 @@ const DueAmountCard = ({ onAddPayment }: { onAddPayment: () => void }) => {
         {t('dashboard.total_due_amount', 'Total Due Amount')}
       </h6>
       <h3 className="text-2xl text-white font-extrabold mb-4">
-        10,550,350 SAR
+        {totalDueAmount}
       </h3>
       <p className="text-xs text-[#C4C4C4] font-medium mb-1 relative z-10">
         {t(
