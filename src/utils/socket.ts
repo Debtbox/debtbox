@@ -11,7 +11,7 @@ class SocketManager {
 
     this.disconnect();
     this.merchantId = merchantId;
-    
+
     this.socket = io('wss://api.debtbox.sa/debts', {
       query: { merchantId },
       transports: ['websocket'],
@@ -19,15 +19,26 @@ class SocketManager {
     });
 
     this.socket.on('connect', () => {
-      console.log('Socket connected:', this.socket?.id);
+      if (import.meta.env.VITE_ENV === 'development') {
+        console.log(
+          'Socket connected:',
+          this.socket?.id,
+          'merchantId:',
+          merchantId,
+        );
+      }
     });
 
     this.socket.on('disconnect', () => {
-      console.log('Socket disconnected');
+      if (import.meta.env.VITE_ENV === 'development') {
+        console.log('Socket disconnected:', this.socket?.id);
+      }
     });
 
     this.socket.on('connect_error', (error: Error) => {
-      console.error('Socket connection error:', error);
+      if (import.meta.env.VITE_ENV === 'development') {
+        console.error('Socket connection error:', error);
+      }
     });
 
     return this.socket;

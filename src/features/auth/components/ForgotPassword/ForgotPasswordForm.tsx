@@ -32,7 +32,9 @@ const ForgotPasswordForm = () => {
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
     try {
-      console.log('Form data:', data);
+      if (import.meta.env.VITE_ENV === 'development') {
+        console.log('Form data:', data);
+      }
       // TODO: Implement actual forgot password logic here
     } catch (error) {
       console.error('Forgot password error:', error);
@@ -40,7 +42,9 @@ const ForgotPasswordForm = () => {
   };
   return (
     <div className="flex flex-col w-full">
-      <h1 className="text-[28px] font-bold mb-4">{t('auth.forgotPassword.title')}</h1>
+      <h1 className="text-[28px] font-bold mb-4">
+        {t('auth.forgotPassword.title')}
+      </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
         <div className="flex flex-col w-full mb-4">
           <Input
@@ -57,7 +61,11 @@ const ForgotPasswordForm = () => {
           type="submit"
           disabled={isSubmitting}
           className="w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          text={isSubmitting ? t('common.loading.sending') : t('common.buttons.next')}
+          text={
+            isSubmitting
+              ? t('common.loading.sending')
+              : t('common.buttons.next')
+          }
         />
       </form>
     </div>

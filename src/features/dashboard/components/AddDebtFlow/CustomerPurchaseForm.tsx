@@ -64,7 +64,6 @@ const CustomerPurchaseForm = ({
 
   const { mutate: addDebt, isPending } = useAddDebt({
     onSuccess: (data) => {
-      toast.success(data.message);
       toast.success(data.data.message);
       onSuccess?.(data);
     },

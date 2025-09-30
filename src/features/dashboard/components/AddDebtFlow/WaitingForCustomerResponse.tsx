@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { socketManager } from '@/utils/socket';
 import Button from '@/components/shared/Button';
@@ -6,7 +6,10 @@ import Button from '@/components/shared/Button';
 interface WaitingForCustomerResponseProps {
   merchantId: string;
   debtId?: string;
-  onCustomerResponse: (response: 'accepted' | 'rejected', data?: unknown) => void;
+  onCustomerResponse: (
+    response: 'accepted' | 'rejected',
+    data?: unknown,
+  ) => void;
   onBack: () => void;
 }
 
@@ -19,11 +22,24 @@ const WaitingForCustomerResponse = ({
   const { t } = useTranslation();
   const [isConnected, setIsConnected] = useState(false);
   const [waitingTime, setWaitingTime] = useState(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const hasReceivedResponse = useRef(false);
 
   useEffect(() => {
     // Connect to socket
     socketManager.connect(merchantId);
     setIsConnected(socketManager.isConnected());
+
+    // Set up 5-minute timeout
+    timeoutRef.current = setTimeout(
+      () => {
+        if (!hasReceivedResponse.current) {
+          console.log('Timeout reached, closing connection');
+          socketManager.disconnect();
+        }
+      },
+      5 * 60 * 1000,
+    ); // 5 minutes
 
     // Set up connection status monitoring
     const checkConnection = () => {
@@ -35,12 +51,25 @@ const WaitingForCustomerResponse = ({
     // Listen for debt consent updates
     const handleDebtConsentUpdate = (data: unknown) => {
       console.log('Debt consent update received:', data);
-      
-      const responseData = data as { debtId?: string; status?: string };
-      if (responseData.debtId === debtId) {
-        if (responseData.status === 'accepted') {
+
+      const responseData = data as {
+        debtId?: string | number;
+        action?: string;
+      };
+      if (responseData.debtId?.toString() === debtId) {
+        hasReceivedResponse.current = true;
+
+        // Clear timeout since we received a response
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+
+        // Handle different action types
+        if (responseData.action === 'accepted') {
+          socketManager.disconnect();
           onCustomerResponse('accepted', data);
-        } else if (responseData.status === 'rejected') {
+        } else if (responseData.action === 'rejected') {
+          socketManager.disconnect();
           onCustomerResponse('rejected', data);
         }
       }
@@ -48,15 +77,18 @@ const WaitingForCustomerResponse = ({
 
     socketManager.onDebtConsentUpdate(handleDebtConsentUpdate);
 
-    // Start waiting timer
     const timer = setInterval(() => {
-      setWaitingTime(prev => prev + 1);
+      setWaitingTime((prev) => prev + 1);
     }, 1000);
 
     return () => {
       clearInterval(interval);
       clearInterval(timer);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       socketManager.offDebtConsentUpdate(handleDebtConsentUpdate);
+      socketManager.disconnect();
     };
   }, [merchantId, debtId, onCustomerResponse]);
 
@@ -76,19 +108,23 @@ const WaitingForCustomerResponse = ({
               <div className="w-8 h-8 bg-blue-600 rounded-full animate-pulse"></div>
             </div>
           </div>
-          
+
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             {t('dashboard.waitingForCustomer')}
           </h2>
-          
+
           <p className="text-gray-600 mb-4">
             {t('dashboard.customerNotificationSent')}
           </p>
-          
+
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
-            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
+            <div
+              className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}
+            ></div>
             <span>
-              {isConnected ? t('dashboard.connected') : t('dashboard.connecting')}
+              {isConnected
+                ? t('dashboard.connected')
+                : t('dashboard.connecting')}
             </span>
           </div>
         </div>
@@ -108,7 +144,7 @@ const WaitingForCustomerResponse = ({
           <p className="text-sm text-gray-500 mb-4">
             {t('dashboard.customerInstructions')}
           </p>
-          
+
           <div className="flex items-center justify-center space-x-4 text-xs text-gray-400">
             <div className="flex items-center space-x-1">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
