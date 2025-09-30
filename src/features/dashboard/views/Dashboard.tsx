@@ -9,6 +9,7 @@ import { useUserStore } from '@/stores/UserStore';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Step } from '../types';
+import DebtsTable from '../components/DebtsTable';
 
 export const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -50,6 +51,7 @@ export const Dashboard = () => {
           <TotalCard value={10550350} type="paid" />
         </div>
       </div>
+      <DebtsTable />
       <Sideover
         isOpen={isSideoverOpen}
         onClose={() => toggleSideover(false)}

@@ -59,7 +59,7 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
     <div
       className={clsx(
         isCollapsed ? 'w-16' : 'w-64',
-        'bg-white border-r border-gray-200 flex flex-col transition-all duration-300 h-screen',
+        'bg-white shadow-lg relative flex flex-col transition-all duration-300 h-screen',
       )}
     >
       {/* Logo Section */}
