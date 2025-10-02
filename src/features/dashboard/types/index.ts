@@ -1,1 +1,1 @@
-export type Step = 'form' | 'waiting' | 'completed' | 'rejected';
+export type Step = 'form' | 'waiting' | 'completed' | 'rejected' | 'expired';

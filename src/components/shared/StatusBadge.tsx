@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-export interface StatusBadgeProps {
+export interface DueDateStatusBadgeProps {
   status: 'normal' | 'overdue' | 'almost' | 'soon';
   label?: string;
   showDot?: boolean;
@@ -8,31 +9,32 @@ export interface StatusBadgeProps {
   className?: string;
 }
 
-const StatusBadge = ({
+export const DueDateStatusBadge = ({
   status,
   label,
   showDot = true,
   size = 'md',
   className,
-}: StatusBadgeProps) => {
+}: DueDateStatusBadgeProps) => {
+  const { t } = useTranslation();
   const statusConfig = {
     normal: {
-      label: 'Normal',
+      label: t('common.buttons.normal'),
       color: 'bg-green-100 text-green-800',
       dotColor: 'bg-green-500',
     },
     soon: {
-      label: 'Due Soon',
+      label: t('common.buttons.soon'),
       color: 'bg-yellow-100 text-yellow-800',
       dotColor: 'bg-yellow-500',
     },
     almost: {
-      label: 'Almost Due',
+      label: t('common.buttons.almost'),
       color: 'bg-orange-100 text-orange-800',
       dotColor: 'bg-orange-500',
     },
     overdue: {
-      label: 'Overdue',
+      label: t('common.buttons.overdue'),
       color: 'bg-red-100 text-red-800',
       dotColor: 'bg-red-500',
     },
@@ -59,7 +61,7 @@ const StatusBadge = ({
         'inline-flex items-center gap-2 rounded-full font-medium',
         config.color,
         sizeClasses[size],
-        className
+        className,
       )}
     >
       {showDot && (
@@ -67,7 +69,7 @@ const StatusBadge = ({
           className={clsx(
             'rounded-full',
             config.dotColor,
-            dotSizeClasses[size]
+            dotSizeClasses[size],
           )}
         />
       )}
@@ -76,4 +78,15 @@ const StatusBadge = ({
   );
 };
 
-export default StatusBadge;
+export const StatusBadge = ({
+  status,
+}: {
+  status: 'pending' | 'paid' | 'expired';
+}) => {
+  const { t } = useTranslation();
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full font-medium capitalize">
+      {t(`dashboard.${status}`, status)}
+    </span>
+  );
+};

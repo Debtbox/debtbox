@@ -1,6 +1,6 @@
 import Sideover from '@/components/shared/Sideover';
 import DueAmountCard from '../components/DueAmountCard';
-import TotalCard from '../components/TotalCard';
+// import TotalCard from '../components/TotalCard';
 import { useTranslation } from 'react-i18next';
 import { AddDebtFlow } from '../components/AddDebtFlow';
 import { useUrlBooleanState } from '@/utils/urlState';
@@ -9,7 +9,7 @@ import { useUserStore } from '@/stores/UserStore';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Step } from '../types';
-import DebtsTable from '../components/DebtsTable';
+import DebtsTable from '../components/DebtsTable/DebtsTable';
 
 export const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -34,7 +34,7 @@ export const Dashboard = () => {
         businessId: selectedBusiness?.id.toString() as string,
       });
     }
-  }, [selectedBusiness]);
+  }, [selectedBusiness, isSideoverOpen]);
 
   return (
     <section className="space-y-4">
@@ -46,12 +46,12 @@ export const Dashboard = () => {
           />
         </div>
         <div className="flex-1 flex flex-col gap-4">
-          <TotalCard value={10550350} type="total" />
+          {/* <TotalCard value={10550350} type="total" />
           <TotalCard value={10550350} type="unpaid" />
-          <TotalCard value={10550350} type="paid" />
+          <TotalCard value={10550350} type="paid" /> */}
         </div>
       </div>
-      <DebtsTable />
+      <DebtsTable isSideoverOpen={isSideoverOpen} />
       <Sideover
         isOpen={isSideoverOpen}
         onClose={() => toggleSideover(false)}

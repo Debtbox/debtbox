@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { socketManager } from '@/utils/socket';
 import Button from '@/components/shared/Button';
@@ -8,7 +8,7 @@ interface WaitingForCustomerResponseProps {
   merchantId: string;
   debtId?: string;
   onCustomerResponse: (
-    response: 'accepted' | 'rejected',
+    response: 'accepted' | 'rejected' | 'expired',
     data?: unknown,
   ) => void;
   onBack: () => void;
@@ -22,21 +22,8 @@ const WaitingForCustomerResponse = ({
 }: WaitingForCustomerResponseProps) => {
   const { t } = useTranslation();
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const hasReceivedResponse = useRef(false);
-
   useEffect(() => {
     socketManager.connect(merchantId);
-
-    timeoutRef.current = setTimeout(
-      () => {
-        if (!hasReceivedResponse.current) {
-          console.log('Timeout reached, closing connection');
-          socketManager.disconnect();
-        }
-      },
-      5 * 60 * 1000,
-    );
 
     const handleDebtConsentUpdate = (data: unknown) => {
       const responseData = data as {
@@ -44,11 +31,8 @@ const WaitingForCustomerResponse = ({
         action?: string;
       };
       if (responseData.debtId?.toString() === debtId) {
-        hasReceivedResponse.current = true;
-
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
+        socketManager.offDebtConsentUpdate(handleDebtConsentUpdate);
+        socketManager.offDisconnect();
 
         if (responseData.action === 'accepted') {
           socketManager.disconnect();
@@ -56,17 +40,25 @@ const WaitingForCustomerResponse = ({
         } else if (responseData.action === 'rejected') {
           socketManager.disconnect();
           onCustomerResponse('rejected', data);
+        } else if (responseData.action === 'expired') {
+          socketManager.disconnect();
+          onCustomerResponse('expired', data);
         }
       }
     };
 
+    const handleDisconnect = () => {
+      socketManager.offDebtConsentUpdate(handleDebtConsentUpdate);
+      socketManager.offDisconnect();
+      onCustomerResponse('expired');
+    };
+
     socketManager.onDebtConsentUpdate(handleDebtConsentUpdate);
+    socketManager.onDisconnect(handleDisconnect);
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
       socketManager.offDebtConsentUpdate(handleDebtConsentUpdate);
+      socketManager.offDisconnect();
       socketManager.disconnect();
     };
   }, [merchantId, debtId, onCustomerResponse]);

@@ -3,6 +3,8 @@ import { io, Socket } from 'socket.io-client';
 class SocketManager {
   private socket: Socket | null = null;
   private merchantId: string | null = null;
+  private onDisconnectCallback: (() => void) | null = null;
+  private isIntentionalDisconnect: boolean = false;
 
   connect(merchantId: string) {
     if (this.socket && this.merchantId === merchantId) {
@@ -29,10 +31,16 @@ class SocketManager {
       }
     });
 
-    this.socket.on('disconnect', () => {
+    this.socket.on('disconnect', (reason) => {
       if (import.meta.env.VITE_ENV === 'development') {
-        console.log('Socket disconnected:', this.socket?.id);
+        console.log('Socket disconnected:', this.socket?.id, 'reason:', reason);
       }
+      // Only call the disconnect callback if it's not an intentional disconnect
+      if (this.onDisconnectCallback && !this.isIntentionalDisconnect) {
+        this.onDisconnectCallback();
+      }
+      // Reset the flag after handling
+      this.isIntentionalDisconnect = false;
     });
 
     this.socket.on('connect_error', (error: Error) => {
@@ -46,9 +54,11 @@ class SocketManager {
 
   disconnect() {
     if (this.socket) {
+      this.isIntentionalDisconnect = true;
       this.socket.disconnect();
       this.socket = null;
       this.merchantId = null;
+      this.onDisconnectCallback = null;
     }
   }
 
@@ -86,6 +96,16 @@ class SocketManager {
     if (this.socket) {
       this.socket.off(event, callback);
     }
+  }
+
+  // Set disconnect callback
+  onDisconnect(callback: () => void) {
+    this.onDisconnectCallback = callback;
+  }
+
+  // Remove disconnect callback
+  offDisconnect() {
+    this.onDisconnectCallback = null;
   }
 }
 

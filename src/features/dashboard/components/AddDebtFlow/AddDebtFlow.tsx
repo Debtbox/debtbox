@@ -8,14 +8,10 @@ import { useUserStore } from '@/stores/UserStore';
 import type { Step } from '../../types';
 import SuccessIcon from '@/components/icons/SuccessIcon';
 import Button from '@/components/shared/Button';
-import { XCircle } from 'lucide-react';
-
-interface DebtData {
-  debtId: string;
-  customerId: string;
-  amount: number;
-  dueDate: string;
-}
+import { Clock, XCircle } from 'lucide-react';
+import { useConsentReAttempt } from '../../api/consentReAttempt';
+import type { DebtDataResponse } from '../../types/debt';
+import DebtInformation from './DebtInformation';
 
 const AddDebtFlow = ({
   currentStep,
@@ -27,24 +23,43 @@ const AddDebtFlow = ({
   onClose: () => void;
 }) => {
   const { t } = useTranslation();
-  const [debtData, setDebtData] = useState<DebtData | null>(null);
+  const [debtData, setDebtData] = useState<DebtDataResponse | null>(null);
   const { user } = useUserStore();
+
+  const { mutate: consentReAttempt } = useConsentReAttempt({
+    onSuccess: () => {
+      toast.success(t('dashboard.debtUpdatedSuccessfully'));
+      setCurrentStep('waiting');
+      setDebtData(debtData);
+    },
+    onError: (error) => {
+      toast.error(error.response.data.message);
+    },
+  });
+
   const handleFormSuccess = (response: AddDebtResponse) => {
-    const newDebtData: DebtData = {
-      debtId: response.data.id.toString(),
-      customerId: response.data.customer.id.toString(),
+    const newDebtData: DebtDataResponse = {
+      id: response.data.id,
+      business: response.data.business,
+      customer: response.data.customer,
       amount: response.data.amount,
-      dueDate: response.data.due_date,
+      due_date: response.data.due_date,
+      status: response.data.status,
     };
 
     setDebtData(newDebtData);
     setCurrentStep('waiting');
   };
 
-  const handleCustomerResponse = (response: 'accepted' | 'rejected') => {
+  const handleCustomerResponse = (
+    response: 'accepted' | 'rejected' | 'expired',
+  ) => {
     if (response === 'accepted') {
       toast.success(t('dashboard.customerAcceptedDebt'));
       setCurrentStep('completed');
+    } else if (response === 'expired') {
+      toast.error(t('dashboard.customerExpiredDebt'));
+      setCurrentStep('expired');
     } else {
       toast.error(t('dashboard.customerRejectedDebt'));
       setCurrentStep('rejected');
@@ -65,7 +80,7 @@ const AddDebtFlow = ({
         return (
           <WaitingForCustomerResponse
             merchantId={user?.id.toString() as string}
-            debtId={debtData?.debtId}
+            debtId={debtData?.id.toString()}
             onCustomerResponse={handleCustomerResponse}
             onBack={handleBackToForm}
           />
@@ -79,36 +94,7 @@ const AddDebtFlow = ({
               <p className="text-sm text-[#474747] mb-3">
                 {t('dashboard.debtAddedSuccessfully')}
               </p>
-              <h3 className="text-2xl font-bold mb-3">
-                {debtData?.amount.toLocaleString()}{' '}
-                {t('common.fields.sar', 'SAR')}
-              </h3>
-              <div className="grid grid-cols-2 text-center gap-4 w-full border-b border-gray-200 border-dashed pb-4">
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.customerId')}
-                </div>
-                <div className="text-xl text-end">{debtData?.customerId}</div>
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.dueDate')}
-                </div>
-                <div className="text-xl  text-end">{debtData?.dueDate}</div>
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.amount')}
-                </div>
-                <div className="text-xl  text-end">
-                  {debtData?.amount.toLocaleString()}{' '}
-                  {t('common.fields.sar', 'SAR')}
-                </div>
-              </div>
-              <div className="grid grid-cols-2 text-center gap-4 w-full mt-4">
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.amount')}
-                </div>
-                <div className="text-xl  text-end">
-                  {debtData?.amount.toLocaleString()}{' '}
-                  {t('common.fields.sar', 'SAR')}
-                </div>
-              </div>
+              <DebtInformation debtData={debtData as DebtDataResponse} />
             </div>
             <div className="flex items-center justify-between p-4 border-t border-gray-200">
               <div className="text-sm text-gray-500 font-medium flex-1">
@@ -147,36 +133,7 @@ const AddDebtFlow = ({
               <p className="text-sm text-[#474747] mb-3">
                 {t('dashboard.debtRejected')}
               </p>
-              <h3 className="text-2xl font-bold mb-3">
-                {debtData?.amount.toLocaleString()}{' '}
-                {t('common.fields.sar', 'SAR')}
-              </h3>
-              <div className="grid grid-cols-2 text-center gap-4 w-full border-b border-gray-200 border-dashed pb-4">
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.customerId')}
-                </div>
-                <div className="text-xl text-end">{debtData?.customerId}</div>
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.dueDate')}
-                </div>
-                <div className="text-xl  text-end">{debtData?.dueDate}</div>
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.amount')}
-                </div>
-                <div className="text-xl  text-end">
-                  {debtData?.amount.toLocaleString()}{' '}
-                  {t('common.fields.sar', 'SAR')}
-                </div>
-              </div>
-              <div className="grid grid-cols-2 text-center gap-4 w-full mt-4">
-                <div className="text-[#707070] text-start">
-                  {t('dashboard.amount')}
-                </div>
-                <div className="text-xl  text-end">
-                  {debtData?.amount.toLocaleString()}{' '}
-                  {t('common.fields.sar', 'SAR')}
-                </div>
-              </div>
+              <DebtInformation debtData={debtData as DebtDataResponse} />
             </div>
             <div className="flex items-center justify-between p-4 border-t border-gray-200">
               <div className="text-sm text-gray-500 font-medium flex-1">
@@ -207,6 +164,48 @@ const AddDebtFlow = ({
           </div>
         );
 
+      case 'expired':
+        return (
+          <div className="flex flex-col h-full">
+            <div className="flex-1 flex flex-col items-center justify-start pt-12">
+              <Clock className="mb-6 text-red-500 size-16" />
+              <p className="text-sm text-[#474747] mb-3">
+                {t('dashboard.debtExpired')}
+              </p>
+              <DebtInformation debtData={debtData as DebtDataResponse} />
+            </div>
+            <div className="flex items-center justify-between p-4 border-t border-gray-200">
+              <div className="text-sm text-gray-500 font-medium flex-1">
+                {t('dashboard.step_3_of_3')}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <Button
+                  type="button"
+                  text={t('common.buttons.cancel')}
+                  onClick={() => {
+                    setCurrentStep('form');
+                    setDebtData(null);
+                    onClose();
+                  }}
+                  className="flex-1 p-2 h-12"
+                  variant="secondary"
+                  disabled
+                />
+                <Button
+                  type="button"
+                  text={t('common.buttons.resubmit')}
+                  className="flex-1 p-2 h-12"
+                  variant="primary"
+                  onClick={() => {
+                    consentReAttempt({
+                      debtId: debtData?.id.toString() as string,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }

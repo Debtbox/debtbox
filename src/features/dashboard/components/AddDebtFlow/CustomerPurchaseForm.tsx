@@ -64,11 +64,10 @@ const CustomerPurchaseForm = ({
 
   const { mutate: addDebt, isPending } = useAddDebt({
     onSuccess: (data) => {
-      toast.success(data.data.message);
+      toast.success(data.message);
       onSuccess?.(data);
     },
     onError: (error) => {
-      console.error('Add debt error:', error);
       const errorMessage =
         error?.response?.data?.message || t('dashboard.debtAddFailed');
       toast.error(errorMessage);

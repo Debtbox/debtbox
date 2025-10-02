@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { type ReactNode, useState } from 'react';
 import { ChevronUp, ChevronDown, MoreHorizontal } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export interface TableColumn<T = Record<string, unknown>> {
   key: string;
@@ -52,7 +53,7 @@ const Table = <T extends Record<string, any>>({
   showActions = false,
 }: TableProps<T>) => {
   const [, setHoveredRow] = useState<number | null>(null);
-
+  const { t } = useTranslation();
   const getRowKey = (record: T, index: number): string => {
     if (typeof rowKey === 'function') {
       return rowKey(record);
@@ -63,21 +64,21 @@ const Table = <T extends Record<string, any>>({
   const handleSort = (column: TableColumn<T>) => {
     if (!column.sortable || !sortConfig) return;
 
-    const newDirection = 
-      sortConfig.key === column.dataIndex && sortConfig.direction === 'asc' 
-        ? 'desc' 
+    const newDirection =
+      sortConfig.key === column.dataIndex && sortConfig.direction === 'asc'
+        ? 'desc'
         : 'asc';
-    
+
     sortConfig.onChange(column.dataIndex, newDirection);
   };
 
   const renderCell = (column: TableColumn<T>, record: T, index: number) => {
     const value = record[column.dataIndex];
-    
+
     if (column.render) {
       return column.render(value, record, index);
     }
-    
+
     return value;
   };
 
@@ -131,7 +132,12 @@ const Table = <T extends Record<string, any>>({
   }
 
   return (
-    <div className={clsx('bg-white rounded-2xl border border-gray-200 overflow-hidden', className)}>
+    <div
+      className={clsx(
+        'bg-white rounded-2xl border border-gray-200 overflow-hidden',
+        className,
+      )}
+    >
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
@@ -145,7 +151,7 @@ const Table = <T extends Record<string, any>>({
                     column.align === 'center' && 'text-center',
                     column.align === 'right' && 'text-right',
                     column.sortable && 'cursor-pointer hover:bg-gray-100',
-                    column.className
+                    column.className,
                   )}
                   onClick={() => column.sortable && handleSort(column)}
                 >
@@ -156,17 +162,19 @@ const Table = <T extends Record<string, any>>({
                         <ChevronUp
                           className={clsx(
                             'w-3 h-3',
-                            sortConfig.key === column.dataIndex && sortConfig.direction === 'asc'
+                            sortConfig.key === column.dataIndex &&
+                              sortConfig.direction === 'asc'
                               ? 'text-primary'
-                              : 'text-gray-400'
+                              : 'text-gray-400',
                           )}
                         />
                         <ChevronDown
                           className={clsx(
                             'w-3 h-3 -mt-1',
-                            sortConfig.key === column.dataIndex && sortConfig.direction === 'desc'
+                            sortConfig.key === column.dataIndex &&
+                              sortConfig.direction === 'desc'
                               ? 'text-primary'
-                              : 'text-gray-400'
+                              : 'text-gray-400',
                           )}
                         />
                       </div>
@@ -176,7 +184,7 @@ const Table = <T extends Record<string, any>>({
               ))}
               {showActions && (
                 <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-20">
-                  Actions
+                  {t('common.buttons.actions')}
                 </th>
               )}
             </tr>
@@ -198,7 +206,7 @@ const Table = <T extends Record<string, any>>({
                   className={clsx(
                     'hover:bg-gray-50 transition-colors duration-150',
                     onRowClick && 'cursor-pointer',
-                    rowClassName && rowClassName(record, index)
+                    rowClassName && rowClassName(record, index),
                   )}
                   onClick={() => onRowClick?.(record, index)}
                   onMouseEnter={() => setHoveredRow(index)}
@@ -211,7 +219,7 @@ const Table = <T extends Record<string, any>>({
                         'px-6 py-4 text-sm text-gray-900',
                         column.align === 'center' && 'text-center',
                         column.align === 'right' && 'text-right',
-                        column.className
+                        column.className,
                       )}
                     >
                       {renderCell(column, record, index)}

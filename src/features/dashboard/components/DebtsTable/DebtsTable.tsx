@@ -5,17 +5,20 @@ import FilterSection, {
   type FilterConfig,
 } from '@/components/shared/FilterSection';
 import Table, { type TableColumn } from '@/components/shared/Table';
-import StatusBadge from '@/components/shared/StatusBadge';
-import { processDebtData, filterDebts, sortDebts } from '../utils/debtUtils';
-import { type DebtTableData, type Debt } from '../types/debt';
-import { useGetMerchantDebts } from '../api/getMerchantDebts';
+import { processDebtData, filterDebts, sortDebts } from '../../utils/debtUtils';
+import { type DebtTableData, type Debt } from '../../types/debt';
+import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
 import { Eye } from 'lucide-react';
 import { toast } from 'sonner';
+import {
+  DueDateStatusBadge,
+  StatusBadge,
+} from '@/components/shared/StatusBadge';
 
 type DebtStatus = 'all' | 'normal' | 'overdue' | 'almost' | 'soon';
 
-const DebtsTable = () => {
+const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const { t, i18n } = useTranslation();
   const { selectedBusiness } = useUserStore();
   const [searchTerm, setSearchTerm] = useState('');
@@ -77,18 +80,30 @@ const DebtsTable = () => {
         debtDateStatus: selectedStatus !== 'all' ? selectedStatus : undefined,
       });
     }
-  }, [selectedBusiness, currentPage, searchTerm, selectedStatus, getMerchantDebts, pageSize]);
+  }, [
+    selectedBusiness,
+    currentPage,
+    searchTerm,
+    selectedStatus,
+    getMerchantDebts,
+    pageSize,
+    isSideoverOpen,
+  ]);
 
   // Process and filter data
   const processedData = useMemo(() => {
-    const filtered = filterDebts(debts, {
-      search: searchTerm,
-      status: selectedStatus,
-    }, i18n.language);
+    const filtered = filterDebts(
+      debts,
+      {
+        search: searchTerm,
+        status: selectedStatus,
+      },
+      i18n.language,
+    );
 
     const sorted = sortDebts(filtered, sortConfig.key, sortConfig.direction);
 
-    return sorted.map(debt => processDebtData(debt, i18n.language));
+    return sorted.map((debt) => processDebtData(debt, i18n.language));
   }, [debts, searchTerm, selectedStatus, sortConfig, i18n.language]);
 
   // Pagination
@@ -141,9 +156,9 @@ const DebtsTable = () => {
       ),
     },
     {
-      key: 'dueDate',
+      key: 'due_date',
       title: t('common.buttons.dueDate'),
-      dataIndex: 'dueDate',
+      dataIndex: 'formattedDueDate',
       render: (_, record) => (
         <div>
           <div className="text-gray-900">{record.formattedDueDate}</div>
@@ -158,10 +173,24 @@ const DebtsTable = () => {
       ),
     },
     {
+      key: 'dueDateStatus',
+      title: t('dashboard.dueDateStatus'),
+      dataIndex: 'dueDateStatus',
+      render: (_, record) => (
+        <DueDateStatusBadge
+          status={
+            record.dueDateStatus as 'normal' | 'overdue' | 'almost' | 'soon'
+          }
+        />
+      ),
+    },
+    {
       key: 'status',
       title: t('common.buttons.status'),
-      dataIndex: 'dueDateStatus',
-      render: (_, record) => <StatusBadge status={record.dueDateStatus as 'normal' | 'overdue' | 'almost' | 'soon'} />,
+      dataIndex: 'status',
+      render: (_, record) => (
+        <StatusBadge status={record.status as 'pending' | 'paid' | 'expired'} />
+      ),
     },
   ];
 
@@ -184,7 +213,6 @@ const DebtsTable = () => {
 
   return (
     <div className="bg-white rounded-2xl p-6 w-full h-full">
-      {/* Filter Section */}
       <FilterSection
         config={filterConfig}
         variant="default"

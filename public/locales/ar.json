@@ -45,7 +45,9 @@
       "status": "الحالة",
       "daysLeft": "أيام متبقية",
       "dueToday": "يستحق اليوم",
-      "daysOverdue": "أيام متأخرة"
+      "daysOverdue": "أيام متأخرة",
+      "resubmit": "إعادة الإرسال",
+      "actions": "الإجراءات"
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
@@ -150,7 +152,14 @@
     "debtRejected": "تم رفض الدين",
     "waiting_for_customer_response": "انتظر",
     "debt_approved": "تم الدفع بنجاح",
-    "debt_rejected": "فشل الدفع"
+    "debt_rejected": "فشل الدفع",
+    "debtExpired": "تاريخ الاستحقاق منتهي",
+    "businessName": "اسم المتجر",
+    "customerName": "اسم العميل",
+    "pending": "معلق",
+    "expired": "منتهي",
+    "active": "نشط",
+    "dueDateStatus": "حالة الاستحقاق"
   },
   "hero": {
     "title": "منصة ذكية لإدارة المشتريات المؤجلة",
