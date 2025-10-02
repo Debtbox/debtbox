@@ -116,10 +116,10 @@
     "total_due_amount": "Total Due Amount",
     "track_all_pending_customer_payments": "Track all pending customer payments",
     "payments_are_vital_for_cash_flow": "Payments are vital for cash flow",
-    "add_payment": "Add Payment",
-    "add_customer_purchase": "Add Customer Purchase",
+    "add_debt": "Add Debt",
+    "add_customer_debt": "Add Customer Debt",
     "customer_details": "Customer Details",
-    "purchase_details": "Purchase Details",
+    "purchase_details": "Debt Details",
     "customer_id": "Customer ID",
     "customer_id_placeholder": "e.g 1234 6748 3158",
     "amount": "Amount",
@@ -151,8 +151,8 @@
     "dueDate": "Due Date",
     "debtRejected": "Debt Rejected",
     "waiting_for_customer_response": "Hold On",
-    "debt_approved": "Successfully Payment",
-    "debt_rejected": "Payment Failed",
+    "debt_approved": "Successfull Debt Approval",
+    "debt_rejected": "Debt Failed",
     "debtExpired": "Debt Expired",
     "businessName": "Business Name",
     "customerName": "Customer Name",
@@ -162,7 +162,7 @@
     "dueDateStatus": "Due Date Status"
   },
   "hero": {
-    "title": "Smart Platform for Managing Deferred Purchases",
+    "title": "Smart Platform for Managing Deferred Debts",
     "description": "Debt Box provides an integrated system that enables customers to buy on credit, while giving stores a dashboard to track all invoices, customers, and outstanding amounts easily and transparently."
   },
   "showcase": {

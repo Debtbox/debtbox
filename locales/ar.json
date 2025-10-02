@@ -116,10 +116,10 @@
     "total_due_amount": "مبلغ الديون الكلي",
     "track_all_pending_customer_payments": "متابعة كل الديون المستحقة",
     "payments_are_vital_for_cash_flow": "الدفعات ضرورية لتدفق النقد",
-    "add_payment": "إضافة الدفع",
-    "add_customer_purchase": "إضافة مشتريات العميل",
+    "add_debt": "إضافة الدين",
+    "add_customer_debt": "إضافة الدين",
     "customer_details": "تفاصيل العميل",
-    "purchase_details": "تفاصيل المشتريات",
+    "purchase_details": "تفاصيل الديون",
     "customer_id": "رقم العميل",
     "customer_id_placeholder": "مثال: 1234 6748 3158",
     "amount": "المبلغ",
@@ -151,8 +151,8 @@
     "dueDate": "تاريخ الاستحقاق",
     "debtRejected": "تم رفض الدين",
     "waiting_for_customer_response": "انتظر",
-    "debt_approved": "تم الدفع بنجاح",
-    "debt_rejected": "فشل الدفع",
+    "debt_approved": "تم الموافقة على الدين بنجاح",
+    "debt_rejected": "تم رفض الدين",
     "debtExpired": "تاريخ الاستحقاق منتهي",
     "businessName": "اسم المتجر",
     "customerName": "اسم العميل",
@@ -162,7 +162,7 @@
     "dueDateStatus": "حالة الاستحقاق"
   },
   "hero": {
-    "title": "منصة ذكية لإدارة المشتريات المؤجلة",
+    "title": "منصة ذكية لإدارة الديون المؤجلة",
     "description": "Debt Box توفر نظامًا متكاملًا يمكّن العملاء من الشراء بالأجل، وتمنح المتاجر لوحة تحكم لمتابعة كل الفواتير، العملاء، والمبالغ المستحقة بسهولة وشفافية."
   },
   "showcase": {
