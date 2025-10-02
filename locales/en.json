@@ -45,7 +45,9 @@
       "status": "Status",
       "daysLeft": "days left",
       "dueToday": "Due today",
-      "daysOverdue": "days overdue"
+      "daysOverdue": "days overdue",
+      "resubmit": "Resubmit",
+      "actions": "Actions"
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
@@ -150,7 +152,14 @@
     "debtRejected": "Debt Rejected",
     "waiting_for_customer_response": "Hold On",
     "debt_approved": "Successfully Payment",
-    "debt_rejected": "Payment Failed"
+    "debt_rejected": "Payment Failed",
+    "debtExpired": "Debt Expired",
+    "businessName": "Business Name",
+    "customerName": "Customer Name",
+    "pending": "Pending",
+    "expired": "Expired",
+    "active": "Active",
+    "dueDateStatus": "Due Date Status"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Purchases",
