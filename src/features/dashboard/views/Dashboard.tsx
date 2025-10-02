@@ -57,7 +57,7 @@ export const Dashboard = () => {
         onClose={() => toggleSideover(false)}
         title={
           currentStep === 'form'
-            ? t('dashboard.add_customer_purchase', 'Add Customer Purchase')
+            ? t('dashboard.add_customer_debt', 'Add Customer Purchase')
             : currentStep === 'waiting'
               ? t('dashboard.waiting_for_customer_response', 'Hold On')
               : currentStep === 'completed'

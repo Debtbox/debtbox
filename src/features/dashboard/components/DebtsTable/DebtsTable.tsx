@@ -5,11 +5,11 @@ import FilterSection, {
   type FilterConfig,
 } from '@/components/shared/FilterSection';
 import Table, { type TableColumn } from '@/components/shared/Table';
-import { processDebtData, filterDebts, sortDebts } from '../../utils/debtUtils';
+import { processDebtData, filterDebts } from '../../utils/debtUtils';
 import { type DebtTableData, type Debt } from '../../types/debt';
 import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
-import { Eye } from 'lucide-react';
+// import { Eye } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   DueDateStatusBadge,
@@ -23,10 +23,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const { selectedBusiness } = useUserStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<DebtStatus>('all');
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: 'asc' | 'desc';
-  }>({ key: 'dueDate', direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
   const [debts, setDebts] = useState<Debt[]>([]);
@@ -42,10 +38,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
 
   const handleSearchClear = () => {
     setSearchTerm('');
-  };
-
-  const handleSort = (key: string, direction: 'asc' | 'desc') => {
-    setSortConfig({ key, direction });
   };
 
   const handlePageChange = (page: number) => {
@@ -101,10 +93,8 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       i18n.language,
     );
 
-    const sorted = sortDebts(filtered, sortConfig.key, sortConfig.direction);
-
-    return sorted.map((debt) => processDebtData(debt, i18n.language));
-  }, [debts, searchTerm, selectedStatus, sortConfig, i18n.language]);
+    return filtered.map((debt) => processDebtData(debt, i18n.language));
+  }, [debts, searchTerm, selectedStatus, i18n.language]);
 
   // Pagination
   const paginatedData = useMemo(() => {
@@ -194,22 +184,22 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     },
   ];
 
-  const handleRowAction = (action: string, record: DebtTableData) => {
-    console.log(`${action} clicked for debt:`, record.debtId);
-    // Implement action handlers here
-  };
+  // const handleRowAction = (action: string, record: DebtTableData) => {
+  //   console.log(`${action} clicked for debt:`, record.debtId);
+  //   // Implement action handlers here
+  // };
 
-  const renderActions = (record: DebtTableData) => (
-    <div className="flex items-center gap-2">
-      <button
-        onClick={() => handleRowAction('view', record)}
-        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-        title={t('common.buttons.viewDetails')}
-      >
-        <Eye className="w-4 h-4 text-gray-400" />
-      </button>
-    </div>
-  );
+  // const renderActions = (record: DebtTableData) => (
+  //   <div className="flex items-center gap-2">
+  //     <button
+  //       onClick={() => handleRowAction('view', record)}
+  //       className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+  //       title={t('common.buttons.viewDetails')}
+  //     >
+  //       <Eye className="w-4 h-4 text-gray-400" />
+  //     </button>
+  //   </div>
+  // );
 
   return (
     <div className="bg-white rounded-2xl p-6 w-full h-full">
@@ -233,19 +223,14 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         data={paginatedData}
         loading={loading}
         rowKey="debtId"
-        sortConfig={{
-          key: sortConfig.key,
-          direction: sortConfig.direction,
-          onChange: handleSort,
-        }}
         pagination={{
           current: currentPage,
           pageSize: pageSize,
           total: processedData.length,
           onChange: handlePageChange,
         }}
-        actions={renderActions}
-        showActions={true}
+        // actions={renderActions}
+        showActions={false}
         emptyText={t('common.buttons.noDebtsFound')}
         className="border-0"
       />

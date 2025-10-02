@@ -39,7 +39,7 @@ const DueAmountCard = ({
 
       <Button
         onClick={onAddPayment}
-        text={t('dashboard.add_payment', 'Add Payment')}
+        text={t('dashboard.add_debt', 'Add Payment')}
         className="bg-white text-gray-800 font-semibold px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors w-full relative z-10"
       />
     </div>

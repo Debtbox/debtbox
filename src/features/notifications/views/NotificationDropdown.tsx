@@ -167,13 +167,13 @@ const NotificationDropdown = ({
                     onToggleSelection={toggleSelection}
                     onMarkAsRead={(id) => {
                       markNotificationsAsRead({
-                        ids: [id],
+                        ids: [`${id}`],
                         isMarkAll: false,
                       });
                     }}
                     onDelete={(id) => {
                       deleteNotifications({
-                        ids: [id],
+                        ids: [`${id}`],
                         isDeleteAll: false,
                       });
                     }}
@@ -189,8 +189,8 @@ const NotificationDropdown = ({
                   isDeletingNotifications={isDeletingNotifications}
                   onMarkSelectedAsRead={(ids) => {
                     markNotificationsAsRead({
-                      ids,
-                      isMarkAll: true,
+                      ids: ids.map((id) => `${id}`),
+                      isMarkAll: false,
                     });
                   }}
                   onDeleteSelected={() => setShowDeleteConfirmation(true)}
@@ -206,8 +206,8 @@ const NotificationDropdown = ({
         onClose={() => setShowDeleteConfirmation(false)}
         onConfirm={() => {
           deleteNotifications({
-            ids: Array.from(selectedItems),
-            isDeleteAll: true,
+            ids: Array.from(selectedItems).map((id) => `${id}`),
+            isDeleteAll: false,
           });
         }}
         title={t(
