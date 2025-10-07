@@ -5,7 +5,7 @@ import FilterSection, {
   type FilterConfig,
 } from '@/components/shared/FilterSection';
 import Table, { type TableColumn } from '@/components/shared/Table';
-import { processDebtData, filterDebts } from '../../utils/debtUtils';
+import { processDebtData } from '../../utils/debtUtils';
 import { type DebtTableData, type Debt } from '../../types/debt';
 import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
@@ -15,24 +15,29 @@ import {
   DueDateStatusBadge,
   StatusBadge,
 } from '@/components/shared/StatusBadge';
+import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
+import StatusBadges from '@/components/shared/StatusBadges';
 
-type DebtStatus = 'all' | 'normal' | 'overdue' | 'almost' | 'soon';
+type DebtStatus = 'all' | 'normal' | 'overdue' | 'in 7 days' | 'soon';
 
 const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const { t, i18n } = useTranslation();
   const { selectedBusiness } = useUserStore();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState<DebtStatus>('all');
+  const [selectedStatuses, setSelectedStatuses] = useState<DebtStatus[]>([
+    'all',
+  ]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(10);
+  const [isViewAll, setIsViewAll] = useState(false);
   const [debts, setDebts] = useState<Debt[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const statusOptions = [
-    { value: 'all', label: t('common.buttons.allStatuses') },
     { value: 'normal', label: t('common.buttons.normal') },
     { value: 'overdue', label: t('common.buttons.overdue') },
-    { value: 'almost', label: t('common.buttons.almost') },
+    { value: 'in 7 days', label: t('common.buttons.in7days') },
     { value: 'soon', label: t('common.buttons.soon') },
   ];
 
@@ -40,17 +45,28 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     setSearchTerm('');
   };
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number, newPageSize?: number) => {
     setCurrentPage(page);
+    if (newPageSize && newPageSize !== pageSize) {
+      setPageSize(newPageSize);
+    }
+  };
+
+  const handleViewAll = () => {
+    setIsViewAll(true);
+    setPageSize(totalCount);
+    setCurrentPage(1);
   };
 
   // API integration
   const { mutate: getMerchantDebts } = useGetMerchantDebts({
-    onSuccess: (data) => {
-      if (data.success && Array.isArray(data.data)) {
+    onSuccess: ({ data, success }) => {
+      if (data.data.length > 0 && success) {
         setDebts(data.data);
+        setTotalCount(data.count);
       } else {
         setDebts([]);
+        setTotalCount(0);
       }
       setLoading(false);
     },
@@ -67,40 +83,34 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       getMerchantDebts({
         businessId: selectedBusiness.id.toString(),
         pageIndex: currentPage - 1,
-        pageSize,
+        pageSize: isViewAll ? totalCount : pageSize,
         customerName: searchTerm || undefined,
-        debtDateStatus: selectedStatus !== 'all' ? selectedStatus : undefined,
+        debtDueStatus: selectedStatuses.includes('all')
+          ? undefined
+          : (selectedStatuses.filter((status) => status !== 'all') as (
+              | 'normal'
+              | 'overdue'
+              | 'in 7 days'
+              | 'soon'
+            )[]),
       });
     }
   }, [
     selectedBusiness,
     currentPage,
     searchTerm,
-    selectedStatus,
+    selectedStatuses,
     getMerchantDebts,
     pageSize,
+    isViewAll,
+    totalCount,
     isSideoverOpen,
   ]);
 
-  // Process and filter data
+  // Process data (no client-side filtering since API handles it)
   const processedData = useMemo(() => {
-    const filtered = filterDebts(
-      debts,
-      {
-        search: searchTerm,
-        status: selectedStatus,
-      },
-      i18n.language,
-    );
-
-    return filtered.map((debt) => processDebtData(debt, i18n.language));
-  }, [debts, searchTerm, selectedStatus, i18n.language]);
-
-  // Pagination
-  const paginatedData = useMemo(() => {
-    const startIndex = (currentPage - 1) * pageSize;
-    return processedData.slice(startIndex, startIndex + pageSize);
-  }, [processedData, currentPage, pageSize]);
+    return debts.map((debt) => processDebtData(debt, i18n.language));
+  }, [debts, i18n.language]);
 
   const filterConfig: FilterConfig = {
     search: {
@@ -110,15 +120,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       onClear: handleSearchClear,
       showClearButton: true,
     },
-    dropdowns: [
-      {
-        key: 'status',
-        options: statusOptions,
-        value: selectedStatus,
-        onChange: (value) => setSelectedStatus(value as DebtStatus),
-        placeholder: t('common.buttons.selectStatus'),
-      },
-    ],
   };
 
   // Table columns
@@ -169,7 +170,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       render: (_, record) => (
         <DueDateStatusBadge
           status={
-            record.dueDateStatus as 'normal' | 'overdue' | 'almost' | 'soon'
+            record.dueDateStatus as 'normal' | 'overdue' | 'in 7 days' | 'soon'
           }
         />
       ),
@@ -215,19 +216,51 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
             className="w-full md:w-44 h-12"
           />
         }
-      />
+      >
+        {/* Status Filter - positioned next to search */}
+        <div className="min-w-[200px]">
+          <MultiSelectDropdown
+            options={statusOptions}
+            values={selectedStatuses.filter((status) => status !== 'all')}
+            onChange={(values) => {
+              const newStatuses: DebtStatus[] =
+                values.length === 0 ? ['all'] : (values as DebtStatus[]);
+              setSelectedStatuses(newStatuses);
+            }}
+            placeholder={t('common.buttons.selectStatus')}
+            className="w-full"
+          />
+        </div>
+      </FilterSection>
+
+      {/* Status Badges Section */}
+      <div className="mb-4">
+        <StatusBadges
+          selectedStatuses={selectedStatuses.filter(
+            (status) => status !== 'all',
+          )}
+          onRemove={(status) => {
+            const newStatuses = selectedStatuses.filter((s) => s !== status);
+            setSelectedStatuses(
+              newStatuses.length === 0 ? ['all'] : newStatuses,
+            );
+          }}
+          statusOptions={statusOptions}
+        />
+      </div>
 
       {/* Table */}
       <Table
         columns={columns}
-        data={paginatedData}
+        data={processedData}
         loading={loading}
         rowKey="debtId"
         pagination={{
           current: currentPage,
           pageSize: pageSize,
-          total: processedData.length,
+          total: totalCount,
           onChange: handlePageChange,
+          onViewAll: handleViewAll,
         }}
         // actions={renderActions}
         showActions={false}

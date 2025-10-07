@@ -8,7 +8,7 @@ export interface Debt {
   amount: number;
   due_date: string;
   status: string;
-  dueDateStatus: string;
+  dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
 }
 
 export interface DebtTableData extends Debt {

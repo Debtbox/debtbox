@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 export interface DueDateStatusBadgeProps {
-  status: 'normal' | 'overdue' | 'almost' | 'soon';
+  status: 'normal' | 'overdue' | 'in 7 days' | 'soon';
   label?: string;
   showDot?: boolean;
   size?: 'sm' | 'md' | 'lg';
@@ -28,8 +28,8 @@ export const DueDateStatusBadge = ({
       color: 'bg-yellow-100 text-yellow-800',
       dotColor: 'bg-yellow-500',
     },
-    almost: {
-      label: t('common.buttons.almost'),
+    'in 7 days': {
+      label: t('common.buttons.in7days'),
       color: 'bg-orange-100 text-orange-800',
       dotColor: 'bg-orange-500',
     },
@@ -41,7 +41,7 @@ export const DueDateStatusBadge = ({
   };
 
   const config = statusConfig[status];
-  const displayLabel = label || config.label;
+  const displayLabel = label || config?.label;
 
   const sizeClasses = {
     sm: 'px-2 py-1 text-xs',
@@ -59,7 +59,7 @@ export const DueDateStatusBadge = ({
     <span
       className={clsx(
         'inline-flex items-center gap-2 rounded-full font-medium',
-        config.color,
+        config?.color,
         sizeClasses[size],
         className,
       )}
@@ -68,7 +68,7 @@ export const DueDateStatusBadge = ({
         <span
           className={clsx(
             'rounded-full',
-            config.dotColor,
+            config?.dotColor,
             dotSizeClasses[size],
           )}
         />

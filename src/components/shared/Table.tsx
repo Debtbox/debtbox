@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { type ReactNode, useState } from 'react';
 import { ChevronUp, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import CustomPagination from './CustomPagination';
 
 export interface TableColumn<T = Record<string, unknown>> {
   key: string;
@@ -28,6 +29,7 @@ export interface TableProps<T = Record<string, unknown>> {
     pageSize: number;
     total: number;
     onChange: (page: number, pageSize: number) => void;
+    onViewAll?: () => void;
   };
   sortConfig?: {
     key: string;
@@ -85,37 +87,17 @@ const Table = <T extends Record<string, any>>({
   const renderPagination = () => {
     if (!pagination) return null;
 
-    const { current, pageSize, total, onChange } = pagination;
-    const totalPages = Math.ceil(total / pageSize);
-    const startItem = (current - 1) * pageSize + 1;
-    const endItem = Math.min(current * pageSize, total);
-
-    if (totalPages <= 1) return null;
+    const { current, pageSize, total, onChange, onViewAll } = pagination;
 
     return (
-      <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
-        <div className="text-sm text-gray-700">
-          Showing {startItem} to {endItem} of {total} results
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => onChange(current - 1, pageSize)}
-            disabled={current <= 1}
-            className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-          <span className="px-3 py-1 text-sm">
-            Page {current} of {totalPages}
-          </span>
-          <button
-            onClick={() => onChange(current + 1, pageSize)}
-            disabled={current >= totalPages}
-            className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-          </button>
-        </div>
+      <div className="border-t border-gray-200 bg-white">
+        <CustomPagination
+          current={current}
+          pageSize={pageSize}
+          total={total}
+          onChange={onChange}
+          onViewAll={onViewAll}
+        />
       </div>
     );
   };
@@ -125,7 +107,7 @@ const Table = <T extends Record<string, any>>({
       <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-gray-500">Loading...</p>
+          <p className="mt-2 text-gray-500">{t('common.buttons.loading')}</p>
         </div>
       </div>
     );

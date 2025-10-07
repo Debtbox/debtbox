@@ -9,7 +9,7 @@ export type GetMerchantDebtsDTO = {
   pageIndex?: number;
   pageSize?: number;
   customerName?: string;
-  debtDateStatus?: string;
+  debtDueStatus?: ('normal' | 'overdue' | 'in 7 days' | 'soon')[];
 };
 
 export const getMerchantDebts = (
@@ -23,7 +23,7 @@ export const getMerchantDebts = (
       ...(data.pageIndex && { pageIndex: data.pageIndex }),
       ...(data.pageSize && { pageSize: data.pageSize }),
       ...(data.customerName && { customerName: data.customerName }),
-      ...(data.debtDateStatus && { debtDateStatus: data.debtDateStatus }),
+      ...(data.debtDueStatus && { debtDueStatus: data.debtDueStatus }),
     },
     {
       headers: {
@@ -37,14 +37,17 @@ export type GetMerchantDebtsResponse = {
   message: string;
   success: boolean;
   data: {
-    debtId: number;
-    customerId: number;
-    full_name_ar: string;
-    full_name_en: string;
-    amount: number;
-    dueDate: string;
-    status: string;
-    dueDateStatus: string;
+    data: {
+      debtId: number;
+      customerId: number;
+      full_name_ar: string;
+      full_name_en: string;
+      amount: number;
+      due_date: string;
+      status: string;
+      dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
+    }[];
+    count: number;
   };
 };
 
