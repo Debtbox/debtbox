@@ -34,7 +34,7 @@
       "allStatuses": "جميع الحالات",
       "normal": "عادي",
       "overdue": "متأخر",
-      "almost": "قريب الاستحقاق",
+      "in7days": "في 7 أيام",
       "soon": "يستحق قريباً",
       "selectStatus": "اختر الحالة",
       "viewDetails": "عرض التفاصيل",
@@ -47,7 +47,9 @@
       "dueToday": "يستحق اليوم",
       "daysOverdue": "أيام متأخرة",
       "resubmit": "إعادة الإرسال",
-      "actions": "الإجراءات"
+      "actions": "الإجراءات",
+      "viewAll": "عرض الكل",
+      "loading": "جاري التحميل..."
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",

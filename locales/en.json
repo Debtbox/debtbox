@@ -34,7 +34,7 @@
       "allStatuses": "All Statuses",
       "normal": "Normal",
       "overdue": "Overdue",
-      "almost": "Almost Due",
+      "in7days": "In 7 days",
       "soon": "Due Soon",
       "selectStatus": "Select Status",
       "viewDetails": "View details",
@@ -47,7 +47,9 @@
       "dueToday": "Due today",
       "daysOverdue": "days overdue",
       "resubmit": "Resubmit",
-      "actions": "Actions"
+      "actions": "Actions",
+      "viewAll": "View all",
+      "loading": "Loading..."
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
