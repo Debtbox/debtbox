@@ -47,9 +47,13 @@
       "dueToday": "يستحق اليوم",
       "daysOverdue": "أيام متأخرة",
       "resubmit": "إعادة الإرسال",
+      "yes": "نعم",
+      "no": "لا",
+      "confirm": "تأكيد",
       "actions": "الإجراءات",
       "viewAll": "عرض الكل",
-      "loading": "جاري التحميل..."
+      "loading": "جاري التحميل...",
+      "view": "عرض"
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
@@ -74,7 +78,12 @@
       "amountRequired": "المبلغ مطلوب",
       "amountFormat": "المبلغ يجب أن يكون رقماً صحيحاً مع رقمين عشريين كحد أقصى",
       "dueDateRequired": "تاريخ الاستحقاق مطلوب",
-      "dateFormat": "التاريخ يجب أن يكون بصيغة YYYY-MM-DD"
+      "dateFormat": "التاريخ يجب أن يكون بصيغة YYYY-MM-DD",
+      "titleRequired": "عنوان الدين مطلوب",
+      "titleMinLength": "عنوان الدين يجب أن يكون على الأقل 3 أحرف",
+      "titleMaxLength": "عنوان الدين يجب أن يكون على الأقل 255 حرف",
+      "titleInvalid": "عنوان الدين غير صحيح",
+      "titleInvalidCharacters": "عنوان الدين يحتوي على حروف غير صحيحة"
     },
     "loading": {
       "signingIn": "جاري تسجيل الدخول...",
@@ -161,7 +170,32 @@
     "pending": "معلق",
     "expired": "منتهي",
     "active": "نشط",
-    "dueDateStatus": "حالة الاستحقاق"
+    "dueDateStatus": "حالة الاستحقاق",
+    "customerDebtDetails": "تفاصيل الدين",
+    "debtAmount": "مبلغ الدين",
+    "customerFullName": "اسم العميل",
+    "extendDueDate": "تمديد تاريخ الاستحقاق",
+    "markAsOverdue": "تحديد الدين متأخر",
+    "debt_title": "عنوان الدين",
+    "debt_title_placeholder": "مثال: شراء لابتوب جديد",
+    "debtCancelledSuccessfully": "تم إلغاء الدين بنجاح",
+    "debtCancelledFailed": "فشل في إلغاء الدين",
+    "debtUpdatedSuccessfully": "تم تحديث الدين بنجاح",
+    "debtUpdatedFailed": "فشل في تحديث الدين",
+    "confirmCancelDebt": "هل أنت متأكد من إلغاء هذا الدين؟",
+    "cancelDebtWarning": "تغيير هذا سيؤثر على المستخدم",
+    "confirmMarkAsOverdue": "هل أنت متأكد من تحديد هذا الدين كمتأخر؟",
+    "markAsOverdueWarning": "هذا الإجراء سيقوم بإشعار العميل بحالة التأخير",
+    "confirmExtendDueDate": "تمديد تاريخ الاستحقاق",
+    "extendDueDateWarning": "اختر تاريخ استحقاق جديد لهذا الدين",
+    "newDueDate": "تاريخ الاستحقاق الجديد",
+    "selectDate": "اختر التاريخ",
+    "reason": "السبب",
+    "reasonPlaceholder": "أدخل سبب التمديد",
+    "debtMarkedAsOverDueSuccessfully": "تم تحديد الدين متأخر بنجاح",
+    "debtMarkedAsOverDueFailed": "فشل في تحديد الدين متأخر",
+    "debtDueDateExtendedSuccessfully": "تم تمديد تاريخ استحقاق الدين بنجاح",
+    "debtDueDateExtendedFailed": "فشل في تمديد تاريخ استحقاق الدين"
   },
   "hero": {
     "title": "منصة ذكية لإدارة الديون المؤجلة",

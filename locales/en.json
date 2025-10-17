@@ -47,9 +47,13 @@
       "dueToday": "Due today",
       "daysOverdue": "days overdue",
       "resubmit": "Resubmit",
+      "yes": "Yes",
+      "no": "No",
+      "confirm": "Confirm",
       "actions": "Actions",
       "viewAll": "View all",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "view": "View"
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
@@ -74,7 +78,12 @@
       "amountRequired": "Amount is required",
       "amountFormat": "Amount must be a valid number with up to 2 decimal places",
       "dueDateRequired": "Due date is required",
-      "dateFormat": "Date must be in YYYY-MM-DD format"
+      "dateFormat": "Date must be in YYYY-MM-DD format",
+      "titleRequired": "Title is required",
+      "titleMinLength": "Title must be at least 3 characters",
+      "titleMaxLength": "Title must be at most 255 characters",
+      "titleInvalid": "Title is invalid",
+      "titleInvalidCharacters": "Title contains invalid characters"
     },
     "loading": {
       "signingIn": "Signing in...",
@@ -161,7 +170,32 @@
     "pending": "Pending",
     "expired": "Expired",
     "active": "Active",
-    "dueDateStatus": "Due Date Status"
+    "dueDateStatus": "Due Date Status",
+    "customerDebtDetails": "Customer Debt Details",
+    "debtAmount": "Debt Amount",
+    "customerFullName": "Customer Full Name",
+    "extendDueDate": "Extend Due Date",
+    "markAsOverdue": "Mark as overdue",
+    "debt_title": "Debt Title",
+    "debt_title_placeholder": "e.g. Purchase of a new laptop",
+    "debtCancelledSuccessfully": "Debt cancelled successfully",
+    "debtCancelledFailed": "Failed to cancel debt",
+    "debtUpdatedSuccessfully": "Debt updated successfully",
+    "debtUpdatedFailed": "Failed to update debt",
+    "confirmCancelDebt": "Are you sure you want to cancel this debt?",
+    "cancelDebtWarning": "Changing this will affect the user",
+    "confirmMarkAsOverdue": "Are you sure you want to mark this debt as overdue?",
+    "markAsOverdueWarning": "This action will notify the customer about the overdue status",
+    "confirmExtendDueDate": "Extend Due Date",
+    "extendDueDateWarning": "Select a new due date for this debt",
+    "newDueDate": "New Due Date",
+    "selectDate": "Select date",
+    "reason": "Reason",
+    "reasonPlaceholder": "Enter reason for extension",
+    "debtMarkedAsOverDueSuccessfully": "Debt marked as overdue successfully",
+    "debtMarkedAsOverDueFailed": "Failed to mark debt as overdue",
+    "debtDueDateExtendedSuccessfully": "Debt due date extended successfully",
+    "debtDueDateExtendedFailed": "Failed to extend debt due date"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Debts",
