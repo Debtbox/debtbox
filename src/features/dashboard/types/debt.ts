@@ -7,8 +7,22 @@ export interface Debt {
   full_name_en: string;
   amount: number;
   due_date: string;
+  original_date: string;
   status: string;
   dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
+  isPending: boolean;
+  title: string;
+}
+
+export interface DebtResponse {
+  id: number;
+  business: BusinessDto;
+  customer: UserDto;
+  amount: number;
+  due_date: string;
+  status: string;
+  isPending: boolean;
+  title: string;
 }
 
 export interface DebtTableData extends Debt {
@@ -29,19 +43,5 @@ export interface DebtFilters {
   };
 }
 
-export interface DebtTableData extends Debt {
-  formattedAmount: string;
-  formattedDueDate: string;
-  statusColor: string;
-  statusLabel: string;
-  daysUntilDue: number;
-}
-
-export interface DebtDataResponse {
-  id: number;
-  business: BusinessDto;
-  customer: UserDto;
-  amount: number;
-  due_date: string;
-  status: string;
-}
+export type DebtWithId = Omit<Debt, 'debtId'> & { id: number };
+export type DebtWithDebtId = Omit<DebtResponse, 'id'> & { debtId: number };

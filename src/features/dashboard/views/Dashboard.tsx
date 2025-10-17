@@ -45,7 +45,7 @@ export const Dashboard = () => {
             onAddPayment={() => toggleSideover(true)}
           />
         </div>
-        <div className="flex-1 flex flex-col gap-4">
+        <div className="md:flex-1 flex flex-col gap-4">
           {/* <TotalCard value={10550350} type="total" />
           <TotalCard value={10550350} type="unpaid" />
           <TotalCard value={10550350} type="paid" /> */}

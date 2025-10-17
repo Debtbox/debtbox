@@ -10,6 +10,7 @@ import CalendarIcon from '@/components/icons/CalendarIcon';
 import { z } from 'zod';
 import { useAddDebt, type AddDebtResponse } from '../../api/addDebt';
 import { useUserStore } from '@/stores/UserStore';
+import { BadgeInfo } from 'lucide-react';
 
 type CustomerPurchaseFormData = z.infer<
   ReturnType<typeof createCustomerPurchaseSchema>
@@ -34,6 +35,7 @@ const createCustomerPurchaseSchema = (t: (key: string) => string) =>
       .string()
       .min(1, t('common.validation.dueDateRequired'))
       .regex(/^\d{4}-\d{2}-\d{2}$/, t('common.validation.dateFormat')),
+    title: z.string().min(1, t('common.validation.titleRequired')),
   });
 
 interface CustomerPurchaseFormProps {
@@ -59,6 +61,7 @@ const CustomerPurchaseForm = ({
       customerId: '',
       amount: '',
       dueDate: '',
+      title: '',
     },
   });
 
@@ -82,6 +85,7 @@ const CustomerPurchaseForm = ({
       businessId: selectedBusiness?.id.toString() as string,
       amount: parseFloat(data.amount),
       dueDate: data.dueDate,
+      title: data.title,
     };
     addDebt(payload);
   };
@@ -107,6 +111,18 @@ const CustomerPurchaseForm = ({
         <h3 className="text-lg font-bold my-5">
           {t('dashboard.purchase_details')}
         </h3>
+        <Input
+          {...register('title')}
+          id="title"
+          type="text"
+          label={t('dashboard.debt_title')}
+          placeholder={t('dashboard.debt_title_placeholder')}
+          labelClassName="mb-1!"
+          className="ps-10"
+          icon={<BadgeInfo className="w-5 h-5 text-gray-500" />}
+          error={errors.title?.message}
+        />
+        <div className="mb-4" />
         <Input
           {...register('amount')}
           id="amount"

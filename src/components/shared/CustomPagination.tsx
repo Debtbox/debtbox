@@ -16,7 +16,7 @@ const CustomPagination = ({
   onChange,
   onViewAll,
 }: CustomPaginationProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const totalPages = Math.ceil(total / pageSize);
 
   if (totalPages <= 1) return null;
@@ -72,17 +72,18 @@ const CustomPagination = ({
         className="flex items-center justify-center w-8 h-8 border border-primary rounded-lg bg-white text-primary hover:bg-primary/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="Previous page"
       >
-        <ChevronLeft className="w-4 h-4" />
+        {i18n.language === 'ar' ? (
+          <ChevronRight className="w-4 h-4" />
+        ) : (
+          <ChevronLeft className="w-4 h-4" />
+        )}
       </button>
 
       {/* Page Numbers */}
       {visiblePages.map((page, index) => {
         if (page === '...') {
           return (
-            <span
-              key={`ellipsis-${index}`}
-              className="px-2 text-gray-500"
-            >
+            <span key={`ellipsis-${index}`} className="px-2 text-gray-500">
               ...
             </span>
           );
@@ -115,7 +116,11 @@ const CustomPagination = ({
         className="flex items-center justify-center w-8 h-8 border border-primary rounded-lg bg-white text-primary hover:bg-primary/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="Next page"
       >
-        <ChevronRight className="w-4 h-4" />
+        {i18n.language === 'ar' ? (
+          <ChevronLeft className="w-4 h-4" />
+        ) : (
+          <ChevronRight className="w-4 h-4" />
+        )}
       </button>
 
       {/* View All Button */}

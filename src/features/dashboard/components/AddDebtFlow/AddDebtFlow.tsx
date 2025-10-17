@@ -10,7 +10,7 @@ import SuccessIcon from '@/components/icons/SuccessIcon';
 import Button from '@/components/shared/Button';
 import { Clock, XCircle } from 'lucide-react';
 import { useConsentReAttempt } from '../../api/consentReAttempt';
-import type { DebtDataResponse } from '../../types/debt';
+import type { DebtResponse } from '../../types/debt';
 import DebtInformation from './DebtInformation';
 
 const AddDebtFlow = ({
@@ -23,7 +23,7 @@ const AddDebtFlow = ({
   onClose: () => void;
 }) => {
   const { t } = useTranslation();
-  const [debtData, setDebtData] = useState<DebtDataResponse | null>(null);
+  const [debtData, setDebtData] = useState<DebtResponse | null>(null);
   const { user } = useUserStore();
 
   const { mutate: consentReAttempt } = useConsentReAttempt({
@@ -36,20 +36,6 @@ const AddDebtFlow = ({
       toast.error(error.response.data.message);
     },
   });
-
-  const handleFormSuccess = (response: AddDebtResponse) => {
-    const newDebtData: DebtDataResponse = {
-      id: response.data.id,
-      business: response.data.business,
-      customer: response.data.customer,
-      amount: response.data.amount,
-      due_date: response.data.due_date,
-      status: response.data.status,
-    };
-
-    setDebtData(newDebtData);
-    setCurrentStep('waiting');
-  };
 
   const handleCustomerResponse = (
     response: 'accepted' | 'rejected' | 'expired',
@@ -65,6 +51,23 @@ const AddDebtFlow = ({
       setCurrentStep('rejected');
     }
   };
+
+  const handleFormSuccess = (response: AddDebtResponse) => {
+    const newDebtData: DebtResponse = {
+      id: response.data.id,
+      business: response.data.business,
+      customer: response.data.customer,
+      amount: response.data.amount,
+      due_date: response.data.due_date,
+      status: response.data.status,
+      isPending: response.data.isPending,
+      title: response.data.title,
+    };
+
+    setDebtData(newDebtData);
+    setCurrentStep('waiting');
+  };
+
 
   const handleBackToForm = () => {
     setCurrentStep('form');
@@ -94,7 +97,7 @@ const AddDebtFlow = ({
               <p className="text-sm text-[#474747] mb-3">
                 {t('dashboard.debtAddedSuccessfully')}
               </p>
-              <DebtInformation debtData={debtData as DebtDataResponse} />
+              <DebtInformation debtData={debtData as DebtResponse} />
             </div>
             <div className="flex items-center justify-between p-4 border-t border-gray-200">
               <div className="text-sm text-gray-500 font-medium flex-1">
@@ -133,7 +136,7 @@ const AddDebtFlow = ({
               <p className="text-sm text-[#474747] mb-3">
                 {t('dashboard.debtRejected')}
               </p>
-              <DebtInformation debtData={debtData as DebtDataResponse} />
+              <DebtInformation debtData={debtData as DebtResponse} />
             </div>
             <div className="flex items-center justify-between p-4 border-t border-gray-200">
               <div className="text-sm text-gray-500 font-medium flex-1">
@@ -172,7 +175,7 @@ const AddDebtFlow = ({
               <p className="text-sm text-[#474747] mb-3">
                 {t('dashboard.debtExpired')}
               </p>
-              <DebtInformation debtData={debtData as DebtDataResponse} />
+              <DebtInformation debtData={debtData as DebtResponse} />
             </div>
             <div className="flex items-center justify-between p-4 border-t border-gray-200">
               <div className="text-sm text-gray-500 font-medium flex-1">

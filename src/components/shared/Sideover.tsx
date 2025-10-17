@@ -10,6 +10,7 @@ interface SideoverProps {
   width?: string;
   direction?: 'ltr' | 'rtl';
   className?: string;
+  hasPadding?: boolean;
 }
 
 const Sideover = ({
@@ -20,6 +21,7 @@ const Sideover = ({
   width = 'w-full md:w-[60vw] xl:w-[40vw]',
   direction = 'ltr',
   className,
+  hasPadding = true,
 }: SideoverProps) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -79,7 +81,11 @@ const Sideover = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">{children}</div>
+        <div
+          className={clsx('flex-1 overflow-y-auto', hasPadding ? 'p-6' : '')}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import type { DebtDataResponse } from '../../types/debt';
+import type { DebtResponse } from '../../types/debt';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
 
-const DebtInformation = ({ debtData }: { debtData: DebtDataResponse }) => {
+const DebtInformation = ({ debtData }: { debtData: DebtResponse }) => {
   const { t, i18n } = useTranslation();
   return (
     <>

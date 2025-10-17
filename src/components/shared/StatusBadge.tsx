@@ -22,21 +22,25 @@ export const DueDateStatusBadge = ({
       label: t('common.buttons.normal'),
       color: 'bg-green-100 text-green-800',
       dotColor: 'bg-green-500',
+      dotShadowColor: 'bg-green-500/20',
     },
     soon: {
       label: t('common.buttons.soon'),
       color: 'bg-yellow-100 text-yellow-800',
       dotColor: 'bg-yellow-500',
+      dotShadowColor: 'bg-yellow-500/20',
     },
     'in 7 days': {
       label: t('common.buttons.in7days'),
       color: 'bg-orange-100 text-orange-800',
       dotColor: 'bg-orange-500',
+      dotShadowColor: 'bg-orange-500/20',
     },
     overdue: {
       label: t('common.buttons.overdue'),
       color: 'bg-red-100 text-red-800',
       dotColor: 'bg-red-500',
+      dotShadowColor: 'bg-red-500/20',
     },
   };
 
@@ -49,10 +53,10 @@ export const DueDateStatusBadge = ({
     lg: 'px-4 py-2 text-base',
   };
 
-  const dotSizeClasses = {
-    sm: 'w-1.5 h-1.5',
-    md: 'w-2 h-2',
-    lg: 'w-2.5 h-2.5',
+  const dotSizeConfig = {
+    sm: { dot: 'w-1.5 h-1.5', shadow: 'w-3 h-3' },
+    md: { dot: 'w-2 h-2', shadow: 'w-4 h-4' },
+    lg: { dot: 'w-2.5 h-2.5', shadow: 'w-5 h-5' },
   };
 
   return (
@@ -65,13 +69,25 @@ export const DueDateStatusBadge = ({
       )}
     >
       {showDot && (
-        <span
-          className={clsx(
-            'rounded-full',
-            config?.dotColor,
-            dotSizeClasses[size],
-          )}
-        />
+        <span className="relative flex items-center justify-center">
+          <span
+            className={clsx(
+              'absolute rounded-full',
+              config?.dotShadowColor,
+              dotSizeConfig[size].shadow,
+              // visually center the shadow backing dot
+              'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+            )}
+            aria-hidden="true"
+          />
+          <span
+            className={clsx(
+              'relative rounded-full',
+              config?.dotColor,
+              dotSizeConfig[size].dot,
+            )}
+          />
+        </span>
       )}
       {displayLabel}
     </span>

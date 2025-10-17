@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '@/components/shared/Button';
 import FilterSection, {
@@ -17,6 +17,8 @@ import {
 } from '@/components/shared/StatusBadge';
 import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';
+import Sideover from '@/components/shared/Sideover';
+import DebtDetails from '../DebtDetails/DebtDetails';
 
 type DebtStatus = 'all' | 'normal' | 'overdue' | 'in 7 days' | 'soon';
 
@@ -33,6 +35,8 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const [debts, setDebts] = useState<Debt[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [isDetailsSideoverOpen, setIsDetailsSideoverOpen] = useState(false);
+  const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(undefined);
 
   const statusOptions = [
     { value: 'normal', label: t('common.buttons.normal') },
@@ -58,7 +62,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     setCurrentPage(1);
   };
 
-  // API integration
   const { mutate: getMerchantDebts } = useGetMerchantDebts({
     onSuccess: ({ data, success }) => {
       if (data.data.length > 0 && success) {
@@ -76,8 +79,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     },
   });
 
-  // Fetch debts when component mounts or filters change
-  useEffect(() => {
+  const refetchDebts = useCallback(() => {
     if (selectedBusiness) {
       setLoading(true);
       getMerchantDebts({
@@ -98,16 +100,18 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   }, [
     selectedBusiness,
     currentPage,
-    searchTerm,
-    selectedStatuses,
-    getMerchantDebts,
     pageSize,
     isViewAll,
     totalCount,
-    isSideoverOpen,
+    searchTerm,
+    selectedStatuses,
+    getMerchantDebts,
   ]);
 
-  // Process data (no client-side filtering since API handles it)
+  useEffect(() => {
+    refetchDebts();
+  }, [refetchDebts, isSideoverOpen]);
+
   const processedData = useMemo(() => {
     return debts.map((debt) => processDebtData(debt, i18n.language));
   }, [debts, i18n.language]);
@@ -122,7 +126,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     },
   };
 
-  // Table columns
   const columns: TableColumn<DebtTableData>[] = [
     {
       key: 'customer',
@@ -132,6 +135,14 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         <div>
           <div className="font-medium text-gray-900">{record.customerName}</div>
         </div>
+      ),
+    },
+    {
+      key: 'title',
+      title: t('dashboard.debt_title'),
+      dataIndex: 'title',
+      render: (_, record) => (
+        <div className="text-gray-900">{record.title || '-'}</div>
       ),
     },
     {
@@ -183,24 +194,23 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         <StatusBadge status={record.status as 'pending' | 'paid' | 'expired'} />
       ),
     },
+    {
+      key: 'actions',
+      title: t('common.buttons.actions'),
+      dataIndex: 'actions',
+      render: (_, record) => (
+        <Button
+          text={t('common.buttons.view')}
+          variant="gray"
+          className="w-full md:w-32 h-10"
+          onClick={() => {
+            setSelectedDebt(record);
+            setIsDetailsSideoverOpen(true);
+          }}
+        />
+      ),
+    },
   ];
-
-  // const handleRowAction = (action: string, record: DebtTableData) => {
-  //   console.log(`${action} clicked for debt:`, record.debtId);
-  //   // Implement action handlers here
-  // };
-
-  // const renderActions = (record: DebtTableData) => (
-  //   <div className="flex items-center gap-2">
-  //     <button
-  //       onClick={() => handleRowAction('view', record)}
-  //       className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-  //       title={t('common.buttons.viewDetails')}
-  //     >
-  //       <Eye className="w-4 h-4 text-gray-400" />
-  //     </button>
-  //   </div>
-  // );
 
   return (
     <div className="bg-white rounded-2xl p-6 w-full h-full">
@@ -211,13 +221,12 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         actions={
           <Button
             text={t('common.buttons.export')}
-            variant="secondary"
+            variant="gray"
             disabled
             className="w-full md:w-44 h-12"
           />
         }
       >
-        {/* Status Filter - positioned next to search */}
         <div className="min-w-[200px]">
           <MultiSelectDropdown
             options={statusOptions}
@@ -233,7 +242,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         </div>
       </FilterSection>
 
-      {/* Status Badges Section */}
       <div className="mb-4">
         <StatusBadges
           selectedStatuses={selectedStatuses.filter(
@@ -249,7 +257,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         />
       </div>
 
-      {/* Table */}
       <Table
         columns={columns}
         data={processedData}
@@ -262,11 +269,27 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
           onChange: handlePageChange,
           onViewAll: handleViewAll,
         }}
-        // actions={renderActions}
         showActions={false}
         emptyText={t('common.buttons.noDebtsFound')}
         className="border-0"
       />
+
+      <Sideover
+        isOpen={isDetailsSideoverOpen}
+        onClose={() => setIsDetailsSideoverOpen(false)}
+        title={t('common.buttons.viewDetails')}
+        className="flex flex-col h-full"
+        hasPadding={false}
+        direction={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+      >
+        {selectedDebt && (
+          <DebtDetails
+            debtData={selectedDebt as Debt}
+            setIsSideoverOpen={setIsDetailsSideoverOpen}
+            refetchDebts={refetchDebts}
+          />
+        )}
+      </Sideover>
     </div>
   );
 };

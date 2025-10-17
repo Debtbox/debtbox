@@ -9,7 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   icon?: React.ReactNode;
   isLoading?: boolean;
-  variant?: 'primary' | 'secondary' | 'no-variant';
+  variant?: 'primary' | 'secondary' | 'gray' | 'no-variant';
 }
 
 const Button = ({
@@ -34,6 +34,8 @@ const Button = ({
           'bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
         variant === 'secondary' &&
           'bg-white text-primary rounded-lg hover:bg-gray-50 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed border border-primary disabled:border-gray-300 disabled:text-gray-500',
+        variant === 'gray' &&
+          'bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 disabled:border-gray-300 disabled:text-gray-500',
       )}
       type={type}
       disabled={disabled || isLoading}

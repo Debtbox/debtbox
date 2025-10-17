@@ -11,6 +11,7 @@ export type AddDebtDTO = {
   businessId: string;
   amount: number;
   dueDate: string;
+  title: string;
 };
 
 export const addDebt = (data: AddDebtDTO): Promise<AddDebtResponse> => {
@@ -23,6 +24,7 @@ export const addDebt = (data: AddDebtDTO): Promise<AddDebtResponse> => {
       businessId: data.businessId,
       amount: data.amount,
       dueDate: data.dueDate,
+      title: data.title,
     },
     {
       headers: {
@@ -43,6 +45,8 @@ export type AddDebtResponse = {
     amount: number;
     due_date: string;
     id: number;
+    isPending: boolean;
+    title: string;
   };
 };
 

@@ -44,8 +44,11 @@ export type GetMerchantDebtsResponse = {
       full_name_en: string;
       amount: number;
       due_date: string;
+      original_date: string;
       status: string;
       dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
+      isPending: boolean;
+      title: string;
     }[];
     count: number;
   };
