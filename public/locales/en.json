@@ -3,7 +3,7 @@
     "fields": {
       "identificationNumber": "Identification Number",
       "identificationNumberPlaceholder": "e.g, 135 4687 315",
-      "identificationNumberHelper": "Enter your National ID, Iqama ID, or Commercial Register Number",
+      "identificationNumberHelper": "Enter your Identification Number or Commercial Register Number",
       "password": "Password",
       "passwordPlaceholder": "Enter your password",
       "confirmPassword": "Confirm Password",
@@ -14,8 +14,7 @@
       "lastName": "Last Name",
       "email": "Email",
       "phone": "Phone",
-      "message": "Your Message",
-      "sar": "SAR"
+      "message": "Your Message"
     },
     "buttons": {
       "next": "Next",
@@ -36,7 +35,7 @@
       "overdue": "Overdue",
       "in7days": "In 7 days",
       "soon": "Due Soon",
-      "selectStatus": "Select Status",
+      "selectStatus": "Due Date Status",
       "viewDetails": "View details",
       "noDebtsFound": "No debts found",
       "customer": "Customer",
@@ -195,7 +194,13 @@
     "debtMarkedAsOverDueSuccessfully": "Debt marked as overdue successfully",
     "debtMarkedAsOverDueFailed": "Failed to mark debt as overdue",
     "debtDueDateExtendedSuccessfully": "Debt due date extended successfully",
-    "debtDueDateExtendedFailed": "Failed to extend debt due date"
+    "debtDueDateExtendedFailed": "Failed to extend debt due date",
+    "originalDueDate": "Due Date (Original)",
+    "pendingBanner": "This due is pending from the client",
+    "overdueBanner": "This due is overdue",
+    "dateExtendedBy": "This date is extended by {amount} {unit}, the old date is {date}",
+    "weeks": "Weeks",
+    "days": "Days"
   },
   "hero": {
     "title": "Smart Platform for Managing Deferred Debts",

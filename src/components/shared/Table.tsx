@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState, Fragment } from 'react';
 import { ChevronUp, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CustomPagination from './CustomPagination';
 
-export interface TableColumn<T = Record<string, unknown>> {
+export interface TableColumn<T = object> {
   key: string;
   title: string;
   dataIndex: string;
@@ -15,7 +15,7 @@ export interface TableColumn<T = Record<string, unknown>> {
   className?: string;
 }
 
-export interface TableProps<T = Record<string, unknown>> {
+export interface TableProps<T = object> {
   columns: TableColumn<T>[];
   data: T[];
   loading?: boolean;
@@ -24,6 +24,8 @@ export interface TableProps<T = Record<string, unknown>> {
   rowKey?: string | ((record: T) => string);
   onRowClick?: (record: T, index: number) => void;
   rowClassName?: (record: T, index: number) => string;
+  // Optional renderer for an additional full-width row under each data row
+  rowExtra?: (record: T, index: number) => ReactNode | null;
   pagination?: {
     current: number;
     pageSize: number;
@@ -40,7 +42,7 @@ export interface TableProps<T = Record<string, unknown>> {
   showActions?: boolean;
 }
 
-const Table = <T extends Record<string, any>>({
+const Table = <T extends object>({
   columns,
   data,
   loading = false,
@@ -49,6 +51,7 @@ const Table = <T extends Record<string, any>>({
   rowKey = 'id',
   onRowClick,
   rowClassName,
+  rowExtra,
   pagination,
   sortConfig,
   actions,
@@ -60,7 +63,10 @@ const Table = <T extends Record<string, any>>({
     if (typeof rowKey === 'function') {
       return rowKey(record);
     }
-    return record[rowKey] || index.toString();
+    const candidate = (record as Record<string, unknown>)[rowKey];
+    return typeof candidate === 'string' && candidate.length > 0
+      ? candidate
+      : index.toString();
   };
 
   const handleSort = (column: TableColumn<T>) => {
@@ -75,13 +81,15 @@ const Table = <T extends Record<string, any>>({
   };
 
   const renderCell = (column: TableColumn<T>, record: T, index: number) => {
-    const value = record[column.dataIndex];
+    const value = (record as unknown as { [key: string]: unknown })[
+      column.dataIndex
+    ] as unknown;
 
     if (column.render) {
       return column.render(value, record, index);
     }
 
-    return value;
+    return value as ReactNode;
   };
 
   const renderPagination = () => {
@@ -182,44 +190,61 @@ const Table = <T extends Record<string, any>>({
                 </td>
               </tr>
             ) : (
-              data.map((record, index) => (
-                <tr
-                  key={getRowKey(record, index)}
-                  className={clsx(
-                    'hover:bg-gray-50 transition-colors duration-150',
-                    onRowClick && 'cursor-pointer',
-                    rowClassName && rowClassName(record, index),
-                  )}
-                  onClick={() => onRowClick?.(record, index)}
-                  onMouseEnter={() => setHoveredRow(index)}
-                  onMouseLeave={() => setHoveredRow(null)}
-                >
-                  {columns.map((column) => (
-                    <td
-                      key={column.key}
+              data.map((record, index) => {
+                const key = getRowKey(record, index);
+                const extraContent = rowExtra ? rowExtra(record, index) : null;
+                const showExtra = extraContent !== null && extraContent !== undefined;
+
+                return (
+                  <Fragment key={key}>
+                    <tr
                       className={clsx(
-                        'px-6 py-4 text-sm text-gray-900',
-                        column.align === 'center' && 'text-center',
-                        column.align === 'right' && 'text-right',
-                        column.className,
+                        'hover:bg-gray-50 transition-colors duration-150',
+                        onRowClick && 'cursor-pointer',
+                        rowClassName && rowClassName(record, index),
                       )}
+                      onClick={() => onRowClick?.(record, index)}
+                      onMouseEnter={() => setHoveredRow(index)}
+                      onMouseLeave={() => setHoveredRow(null)}
                     >
-                      {renderCell(column, record, index)}
-                    </td>
-                  ))}
-                  {showActions && (
-                    <td className="px-6 py-4 text-right">
-                      {actions ? (
-                        actions(record, index)
-                      ) : (
-                        <button className="p-1 hover:bg-gray-100 rounded-full">
-                          <MoreHorizontal className="w-4 h-4 text-gray-400" />
-                        </button>
+                      {columns.map((column) => (
+                        <td
+                          key={column.key}
+                          className={clsx(
+                            'px-6 py-4 text-sm text-gray-900',
+                            column.align === 'center' && 'text-center',
+                            column.align === 'right' && 'text-right',
+                            column.className,
+                          )}
+                        >
+                          {renderCell(column, record, index)}
+                        </td>
+                      ))}
+                      {showActions && (
+                        <td className="px-6 py-4 text-right">
+                          {actions ? (
+                            actions(record, index)
+                          ) : (
+                            <button className="p-1 hover:bg-gray-100 rounded-full">
+                              <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                            </button>
+                          )}
+                        </td>
                       )}
-                    </td>
-                  )}
-                </tr>
-              ))
+                    </tr>
+                    {showExtra && (
+                      <tr>
+                        <td
+                          className="px-6 py-3 text-sm"
+                          colSpan={columns.length + (showActions ? 1 : 0)}
+                        >
+                          {extraContent}
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
+                );
+              })
             )}
           </tbody>
         </table>

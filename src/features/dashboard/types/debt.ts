@@ -29,6 +29,7 @@ export interface DebtTableData extends Debt {
   customerName: string;
   formattedAmount: string;
   formattedDueDate: string;
+  formattedOriginalDueDate: string;
   statusColor: string;
   statusLabel: string;
   daysUntilDue: number;

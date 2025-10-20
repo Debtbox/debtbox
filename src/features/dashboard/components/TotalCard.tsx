@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { SaudiRiyal } from 'lucide-react';
 
 const TotalCard = ({
   value,
@@ -40,8 +41,8 @@ const TotalCard = ({
             ? t('dashboard.unpaid', 'Due (Unpaid)')
             : t('dashboard.paid', 'Due (Paid)')}
       </span>
-      <span className="text-black font-semibold text-2xl">
-        {value.toLocaleString()} {t('common.fields.sar', 'SAR')}
+      <span className="text-black font-semibold text-2xl flex items-center gap-1">
+        <SaudiRiyal className="text-gray-900" /> {value.toLocaleString()}
       </span>
     </div>
   );

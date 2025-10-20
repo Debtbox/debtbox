@@ -5,12 +5,11 @@ import { toast } from 'sonner';
 import Input from '@/components/shared/Input';
 import IdIcon from '@/components/icons/IdIcon';
 import Button from '@/components/shared/Button';
-import DollarIcon from '@/components/icons/DollarIcon';
 import CalendarIcon from '@/components/icons/CalendarIcon';
 import { z } from 'zod';
 import { useAddDebt, type AddDebtResponse } from '../../api/addDebt';
 import { useUserStore } from '@/stores/UserStore';
-import { BadgeInfo } from 'lucide-react';
+import { BadgeInfo, SaudiRiyal } from 'lucide-react';
 
 type CustomerPurchaseFormData = z.infer<
   ReturnType<typeof createCustomerPurchaseSchema>
@@ -131,7 +130,7 @@ const CustomerPurchaseForm = ({
           placeholder={t('dashboard.amount_placeholder')}
           labelClassName="mb-1!"
           className="ps-10"
-          icon={<DollarIcon />}
+          icon={<SaudiRiyal className="text-gray-500" />}
           error={errors.amount?.message}
         />
         <div className="mb-4" />

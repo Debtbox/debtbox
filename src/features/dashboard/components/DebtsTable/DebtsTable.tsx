@@ -10,6 +10,7 @@ import { type DebtTableData, type Debt } from '../../types/debt';
 import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
 // import { Eye } from 'lucide-react';
+import { SaudiRiyal } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   DueDateStatusBadge,
@@ -151,8 +152,8 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       dataIndex: 'amount',
       render: (_, record) => (
         <div className="text-start">
-          <div className="font-semibold text-gray-900">
-            {record.formattedAmount}
+          <div className="font-semibold text-gray-900 flex items-center gap-1">
+            <SaudiRiyal className="text-gray-900" /> {record.formattedAmount}
           </div>
         </div>
       ),
@@ -171,6 +172,16 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
                 ? t('common.buttons.dueToday')
                 : `${Math.abs(record.daysUntilDue)} ${t('common.buttons.daysOverdue')}`}
           </div>
+        </div>
+      ),
+    },
+    {
+      key: 'original_date',
+      title: t('dashboard.originalDueDate'),
+      dataIndex: 'formattedOriginalDueDate',
+      render: (_, record) => (
+        <div>
+          <div className="text-gray-900">{record.formattedOriginalDueDate}</div>
         </div>
       ),
     },
@@ -257,11 +268,78 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         />
       </div>
 
-      <Table
+      <Table<DebtTableData>
         columns={columns}
         data={processedData}
         loading={loading}
         rowKey="debtId"
+        rowExtra={(record) => {
+          const messages: { content: string; className: string }[] = [];
+
+          // Pending/Overdue banner
+          const isPending = record.isPending || record.status === 'pending';
+          const isOverdue = record.dueDateStatus === 'overdue';
+          if (isPending || isOverdue) {
+            const pendingOverdueMessage = isPending
+              ? t(
+                  'dashboard.pendingBanner',
+                  'This due is pending from the client',
+                )
+              : t('dashboard.overdueBanner', 'This due is overdue');
+            const bg = isPending ? 'bg-yellow-50' : 'bg-red-50';
+            const text = isPending ? 'text-yellow-800' : 'text-red-800';
+            const border = isPending ? 'border-yellow-200' : 'border-red-200';
+            messages.push({
+              content: pendingOverdueMessage,
+              className: `${bg} ${text} border ${border}`,
+            });
+          }
+
+          // Time extension banner
+          if (record.original_date && record.original_date !== record.due_date) {
+            const original = new Date(record.original_date);
+            const current = new Date(record.due_date);
+            if (!isNaN(original.getTime()) && !isNaN(current.getTime())) {
+              const msPerDay = 1000 * 60 * 60 * 24;
+              const days = Math.round(
+                (current.getTime() - original.getTime()) / msPerDay,
+              );
+              if (days > 0) {
+                const weeks = Math.round(days / 7);
+                const amount = weeks >= 1 ? weeks : days;
+                const unit =
+                  weeks >= 1
+                    ? t('dashboard.weeks', 'weeks')
+                    : t('dashboard.days', 'days');
+                const oldDate = record.formattedOriginalDueDate;
+                const extensionMessage = t(
+                  'dashboard.dateExtendedBy',
+                  'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
+                  { amount, unit, date: oldDate },
+                );
+                messages.push({
+                  content: extensionMessage,
+                  className:
+                    'bg-primary/5 text-primary/80 border border-primary/20',
+                });
+              }
+            }
+          }
+
+          if (messages.length === 0) return null;
+          return (
+            <div className="w-full flex flex-col gap-2">
+              {messages.map((m, idx) => (
+                <div
+                  key={idx}
+                  className={`w-full rounded-md px-4 py-3 ${m.className}`}
+                >
+                  {m.content}
+                </div>
+              ))}
+            </div>
+          );
+        }}
         pagination={{
           current: currentPage,
           pageSize: pageSize,

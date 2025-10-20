@@ -17,13 +17,11 @@ export interface DateFormatOptions {
 
 export const formatCurrency = (
   amount: number,
-  currency: string = 'SAR',
   locale: SupportedLocale = 'en',
 ): string => {
   const localeCode = SUPPORTED_LOCALES[locale];
   return new Intl.NumberFormat(localeCode, {
-    style: 'currency',
-    currency: currency,
+    style: 'decimal',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
@@ -255,12 +253,18 @@ export const processDebtData = (
   return {
     ...debt,
     customerName,
-    formattedAmount: formatCurrency(debt.amount, 'SAR', locale),
+    formattedAmount: formatCurrency(debt.amount, locale),
     formattedDueDate: formatDate(debt.due_date, {
       includeTime,
       locale,
       timezone,
       format: 'medium',
+    }),
+    formattedOriginalDueDate: formatDate(debt.original_date, {
+      includeTime,
+      locale,
+      timezone,
+      format: 'full',
     }),
     statusColor: statusInfo.color,
     statusLabel: statusInfo.label,

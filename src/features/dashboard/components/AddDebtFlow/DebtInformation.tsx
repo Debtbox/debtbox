@@ -1,13 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import type { DebtResponse } from '../../types/debt';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
+import { SaudiRiyal } from 'lucide-react';
 
 const DebtInformation = ({ debtData }: { debtData: DebtResponse }) => {
   const { t, i18n } = useTranslation();
   return (
     <>
-      <h3 className="text-2xl font-bold mb-3">
-        {debtData?.amount.toLocaleString()} {t('common.fields.sar', 'SAR')}
+      <h3 className="text-2xl font-bold mb-3 flex items-center gap-1">
+        {debtData?.amount.toLocaleString()}{' '}
+        <SaudiRiyal className="text-gray-900" />
       </h3>
       <div className="grid grid-cols-2 text-center gap-4 w-full border-b border-gray-200 border-dashed pb-4">
         <div className="text-[#707070] text-start">
@@ -42,8 +44,9 @@ const DebtInformation = ({ debtData }: { debtData: DebtResponse }) => {
       </div>
       <div className="grid grid-cols-2 text-center gap-4 w-full mt-4">
         <div className="text-[#707070] text-start">{t('dashboard.amount')}</div>
-        <div className="text-xl  text-end">
-          {debtData?.amount.toLocaleString()} {t('common.fields.sar', 'SAR')}
+        <div className="text-xl  text-end flex items-center gap-1 justify-end">
+          {debtData?.amount.toLocaleString()}{' '}
+          <SaudiRiyal className="text-gray-900" />
         </div>
       </div>
     </>

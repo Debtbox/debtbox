@@ -16,6 +16,7 @@ import DebtConsentWaiting from '../shared/DebtConsentWaiting';
 import { useMarkDebtAsOverDue } from '../../api/markDebtAsOverDue';
 import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
+import { SaudiRiyal } from 'lucide-react';
 const DebtDetails = ({
   debtData,
   setIsSideoverOpen,
@@ -175,10 +176,34 @@ const DebtDetails = ({
               <div className="text-xs text-gray-500">
                 {t('dashboard.debtAmount', 'Debt Amount')}
               </div>
-              <div className="text-2xl font-bold">
-                {debtData?.amount.toLocaleString()}{' '}
-                {t('common.fields.sar', 'SAR')}
+              <div className="text-2xl font-bold flex items-center gap-1">
+                {debtData?.amount.toLocaleString()}
+                <SaudiRiyal className="text-gray-900" />
               </div>
+              {(() => {
+                const isPending =
+                  debtData?.isPending || debtData?.status === 'pending';
+                const isOverdue = debtData?.dueDateStatus === 'overdue';
+                if (!isPending && !isOverdue) return null;
+                const message = isPending
+                  ? t(
+                      'dashboard.pendingBanner',
+                      'This due is pending from the client',
+                    )
+                  : t('dashboard.overdueBanner', 'This due is overdue');
+                const bg = isPending ? 'bg-yellow-50' : 'bg-red-50';
+                const text = isPending ? 'text-yellow-800' : 'text-red-800';
+                const border = isPending
+                  ? 'border-yellow-200'
+                  : 'border-red-200';
+                return (
+                  <div
+                    className={`mt-2 inline-block ${bg} ${text} border ${border} rounded px-2 py-1 text-xs`}
+                  >
+                    {message}
+                  </div>
+                );
+              })()}
             </div>
             <DueDateStatusBadge
               status={
@@ -231,6 +256,40 @@ const DebtDetails = ({
                   locale: i18n.language as SupportedLocale,
                 })}
               </div>
+              {debtData.original_date &&
+                debtData.original_date !== debtData.due_date &&
+                (() => {
+                  const original = new Date(debtData.original_date);
+                  const current = new Date(debtData.due_date);
+                  if (isNaN(original.getTime()) || isNaN(current.getTime())) {
+                    return null;
+                  }
+                  const msPerDay = 1000 * 60 * 60 * 24;
+                  const days = Math.round(
+                    (current.getTime() - original.getTime()) / msPerDay,
+                  );
+                  if (days <= 0) return null;
+                  const weeks = Math.round(days / 7);
+                  const amount = weeks >= 1 ? weeks : days;
+                  const unit =
+                    weeks >= 1
+                      ? t('dashboard.weeks', 'weeks')
+                      : t('dashboard.days', 'days');
+                  const oldDate = formatDate(debtData.original_date, {
+                    includeTime: true,
+                    locale: i18n.language as SupportedLocale,
+                  });
+                  const message = t(
+                    'dashboard.dateExtendedBy',
+                    'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
+                    { amount, unit, date: oldDate },
+                  );
+                  return (
+                    <div className="mt-2 inline-block bg-primary/5 text-primary/70 border border-primary/50 rounded px-2 py-1 text-xs">
+                      {message}
+                    </div>
+                  );
+                })()}
             </div>
           </div>
         </div>

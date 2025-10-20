@@ -4,6 +4,7 @@ import MaskIconBottomSm from './icons/MaskIconBottomSm';
 import MaskIconTop from './icons/MaskIconTop';
 import MaskIconTopSm from './icons/MaskIconTopSm';
 import { useTranslation } from 'react-i18next';
+import { SaudiRiyal } from 'lucide-react';
 const DueAmountCard = ({
   onAddPayment,
   totalDueAmount,
@@ -21,8 +22,8 @@ const DueAmountCard = ({
       <h6 className="text-xs text-white font-medium mb-1">
         {t('dashboard.total_due_amount', 'Total Due Amount')}
       </h6>
-      <h3 className="text-2xl text-white font-extrabold mb-4">
-        {totalDueAmount} {t('common.fields.sar', 'SAR')}
+      <h3 className="text-2xl text-white font-extrabold mb-4 flex items-center gap-1">
+        <SaudiRiyal className="text-white" /> {totalDueAmount}
       </h3>
       <p className="text-xs text-[#C4C4C4] font-medium mb-1 relative z-10">
         {t(
