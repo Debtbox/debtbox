@@ -3,7 +3,7 @@
     "fields": {
       "identificationNumber": "رقم الهوية",
       "identificationNumberPlaceholder": "مثال: 135 4687 315",
-      "identificationNumberHelper": "أدخل رقم الهوية الوطنية، أو رقم الإقامة، أو رقم السجل التجاري",
+      "identificationNumberHelper": "أدخل رقم الهوية، أو رقم السجل التجاري",
       "password": "كلمة المرور",
       "passwordPlaceholder": "أدخل كلمة المرور",
       "confirmPassword": "تأكيد كلمة المرور",
@@ -14,8 +14,7 @@
       "lastName": "الاسم الثاني",
       "email": "البريد الإلكتروني",
       "phone": "رقم الجوال",
-      "message": "رسالتك",
-      "sar": "ر.س"
+      "message": "رسالتك"
     },
     "buttons": {
       "next": "التالي",
@@ -36,7 +35,7 @@
       "overdue": "متأخر",
       "in7days": "في 7 أيام",
       "soon": "يستحق قريباً",
-      "selectStatus": "اختر الحالة",
+      "selectStatus": "حالة الاستحقاق",
       "viewDetails": "عرض التفاصيل",
       "noDebtsFound": "لا توجد ديون",
       "customer": "العميل",
@@ -195,7 +194,13 @@
     "debtMarkedAsOverDueSuccessfully": "تم تحديد الدين متأخر بنجاح",
     "debtMarkedAsOverDueFailed": "فشل في تحديد الدين متأخر",
     "debtDueDateExtendedSuccessfully": "تم تمديد تاريخ استحقاق الدين بنجاح",
-    "debtDueDateExtendedFailed": "فشل في تمديد تاريخ استحقاق الدين"
+    "debtDueDateExtendedFailed": "فشل في تمديد تاريخ استحقاق الدين",
+    "originalDueDate": "تاريخ الاستحقاق الأصلي",
+    "pendingBanner": "هذا الدين معلق من قبل العميل",
+    "overdueBanner": "هذا الدين متأخر",
+    "dateExtendedBy": "تم تمديد هذا التاريخ لمدة {amount} {unit}، والتاريخ القديم هو {date}",
+    "weeks": "أسابيع",
+    "days": "أيام"
   },
   "hero": {
     "title": "منصة ذكية لإدارة الديون المؤجلة",
