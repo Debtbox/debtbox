@@ -132,6 +132,7 @@
     "purchase_details": "Debt Details",
     "customer_id": "Customer ID",
     "customer_id_placeholder": "e.g 1234 6748 3158",
+    "customer_overdue_message": "This customer has overdue payments from previous transactions",
     "amount": "Amount",
     "amount_placeholder": "e.g 1354",
     "due_date": "Due Date",

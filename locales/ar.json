@@ -132,6 +132,7 @@
     "purchase_details": "تفاصيل الديون",
     "customer_id": "رقم العميل",
     "customer_id_placeholder": "مثال: 1234 6748 3158",
+    "customer_overdue_message": "هذا العميل لديه مدفوعات متأخرة من المعاملات السابقة",
     "amount": "المبلغ",
     "amount_placeholder": "مثال: 1354",
     "due_date": "تاريخ الاستحقاق",
