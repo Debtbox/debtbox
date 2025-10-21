@@ -2,12 +2,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import { useState, useEffect } from 'react';
 import Input from '@/components/shared/Input';
 import IdIcon from '@/components/icons/IdIcon';
 import Button from '@/components/shared/Button';
 import CalendarIcon from '@/components/icons/CalendarIcon';
+import ButtonLoaderIcon from '@/components/icons/ButtonLoaderIcon';
 import { z } from 'zod';
 import { useAddDebt, type AddDebtResponse } from '../../api/addDebt';
+import { useCheckCustomerOverdue } from '../../api/checkCustomerOverduo';
 import { useUserStore } from '@/stores/UserStore';
 import { BadgeInfo, SaudiRiyal } from 'lucide-react';
 
@@ -49,9 +52,15 @@ const CustomerPurchaseForm = ({
   const { t } = useTranslation();
   const { selectedBusiness } = useUserStore();
   const customerPurchaseSchema = createCustomerPurchaseSchema(t);
+
+  const [isOverdueCheckLoading, setIsOverdueCheckLoading] = useState(false);
+  const [isOverdue, setIsOverdue] = useState(false);
+  const [isOverdueCheckComplete, setIsOverdueCheckComplete] = useState(false);
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isValid },
   } = useForm<CustomerPurchaseFormData>({
     resolver: zodResolver(customerPurchaseSchema),
@@ -63,6 +72,8 @@ const CustomerPurchaseForm = ({
       title: '',
     },
   });
+
+  const customerId = watch('customerId');
 
   const { mutate: addDebt, isPending } = useAddDebt({
     onSuccess: (data) => {
@@ -76,6 +87,39 @@ const CustomerPurchaseForm = ({
       onError?.(error);
     },
   });
+
+  const { mutate: checkCustomerOverdue } = useCheckCustomerOverdue({
+    onSuccess: (data) => {
+      setIsOverdueCheckLoading(false);
+      setIsOverdueCheckComplete(true);
+      setIsOverdue(data.data.isOverdue);
+    },
+    onError: () => {
+      setIsOverdueCheckLoading(false);
+      setIsOverdueCheckComplete(true);
+      setIsOverdue(false);
+    },
+  });
+
+  useEffect(() => {
+    const isValidCustomerId =
+      customerId &&
+      customerId.length === 10 &&
+      /^[1-3]\d{9}$/.test(customerId) &&
+      [1, 2, 3].includes(parseInt(customerId[0]));
+
+    if (isValidCustomerId) {
+      setIsOverdueCheckLoading(true);
+      setIsOverdueCheckComplete(false);
+      setIsOverdue(false);
+
+      checkCustomerOverdue({ customerId });
+    } else {
+      setIsOverdueCheckLoading(false);
+      setIsOverdueCheckComplete(customerId === '');
+      setIsOverdue(false);
+    }
+  }, [customerId, checkCustomerOverdue]);
 
   const onSubmit = async (data: CustomerPurchaseFormData) => {
     const payload = {
@@ -96,17 +140,31 @@ const CustomerPurchaseForm = ({
           {t('dashboard.customer_details')}
         </h3>
         <div className="mb-4" />
-        <Input
-          {...register('customerId')}
-          id="customer-id"
-          type="text"
-          label={t('dashboard.customer_id')}
-          placeholder={t('dashboard.customer_id_placeholder')}
-          labelClassName="mb-1!"
-          className="ps-10"
-          icon={<IdIcon />}
-          error={errors.customerId?.message}
-        />
+        <div>
+          <Input
+            {...register('customerId')}
+            id="customer-id"
+            type="text"
+            label={t('dashboard.customer_id')}
+            placeholder={t('dashboard.customer_id_placeholder')}
+            labelClassName="mb-1!"
+            className="ps-10"
+            icon={
+              isOverdueCheckLoading ? (
+                <ButtonLoaderIcon color="#6B7280" />
+              ) : (
+                <IdIcon />
+              )
+            }
+            error={errors.customerId?.message}
+            disabled={isOverdueCheckLoading}
+          />
+          {isOverdue && (
+            <div className="mt-2 text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-md p-2">
+              {t('dashboard.customer_overdue_message')}
+            </div>
+          )}
+        </div>
         <h3 className="text-lg font-bold my-5">
           {t('dashboard.purchase_details')}
         </h3>
@@ -164,7 +222,12 @@ const CustomerPurchaseForm = ({
             text={t('common.buttons.next')}
             className="flex-1 p-2 h-12"
             variant="primary"
-            disabled={!isValid || isPending}
+            disabled={
+              !isValid ||
+              isPending ||
+              isOverdueCheckLoading ||
+              !isOverdueCheckComplete
+            }
             isLoading={isPending}
           />
         </div>
