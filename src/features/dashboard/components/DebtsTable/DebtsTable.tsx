@@ -278,7 +278,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
 
           // Pending/Overdue banner
           const isPending = record.isPending || record.status === 'pending';
-          const isOverdue = record.dueDateStatus === 'overdue';
+          const isOverdue = record.isOverdue;
           if (isPending || isOverdue) {
             const pendingOverdueMessage = isPending
               ? t(

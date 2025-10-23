@@ -183,7 +183,7 @@ const DebtDetails = ({
               {(() => {
                 const isPending =
                   debtData?.isPending || debtData?.status === 'pending';
-                const isOverdue = debtData?.dueDateStatus === 'overdue';
+                const isOverdue = debtData?.isOverdue;
                 if (!isPending && !isOverdue) return null;
                 const message = isPending
                   ? t(
