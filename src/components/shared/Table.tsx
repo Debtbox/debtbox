@@ -98,7 +98,7 @@ const Table = <T extends object>({
     const { current, pageSize, total, onChange, onViewAll } = pagination;
 
     return (
-      <div className="border-t border-gray-200 bg-white">
+      <div className="bg-white">
         <CustomPagination
           current={current}
           pageSize={pageSize}
@@ -112,7 +112,7 @@ const Table = <T extends object>({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-2xl overflow-hidden">
         <div className="p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
           <p className="mt-2 text-gray-500">{t('common.buttons.loading')}</p>
@@ -124,13 +124,13 @@ const Table = <T extends object>({
   return (
     <div
       className={clsx(
-        'bg-white rounded-2xl border border-gray-200 overflow-hidden',
+        'bg-white rounded-2xl overflow-hidden',
         className,
       )}
     >
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
+          <thead className="bg-gray-50">
             <tr>
               {columns.map((column) => (
                 <th

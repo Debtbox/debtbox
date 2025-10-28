@@ -288,10 +288,9 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
               : t('dashboard.overdueBanner', 'This due is overdue');
             const bg = isPending ? 'bg-yellow-50' : 'bg-red-50';
             const text = isPending ? 'text-yellow-800' : 'text-red-800';
-            const border = isPending ? 'border-yellow-200' : 'border-red-200';
             messages.push({
               content: pendingOverdueMessage,
-              className: `${bg} ${text} border ${border}`,
+              className: `${bg} ${text}`,
             });
           }
 
@@ -320,7 +319,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
                 messages.push({
                   content: extensionMessage,
                   className:
-                    'bg-primary/5 text-primary/80 border border-primary/20',
+                    'bg-primary/5 text-primary/80',
                 });
               }
             }
@@ -349,7 +348,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         }}
         showActions={false}
         emptyText={t('common.buttons.noDebtsFound')}
-        className="border-0"
+        className=""
       />
 
       <Sideover
