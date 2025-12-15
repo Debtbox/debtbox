@@ -52,7 +52,8 @@
       "actions": "الإجراءات",
       "viewAll": "عرض الكل",
       "loading": "جاري التحميل...",
-      "view": "عرض"
+      "view": "عرض",
+      "add": "إضافة"
     },
     "validation": {
       "identificationNumberRequired": "رقم الهوية مطلوب",
@@ -348,7 +349,37 @@
       "accountAddedDescription": "يمكنك الآن استخدام التطبيق كما تشاء",
       "goToLogin": "الذهاب لتسجيل الدخول",
       "passwordCreated": "تم إنشاء كلمة المرور بنجاح",
-      "ibanAdded": "تم إضافة الآيبان بنجاح"
+      "ibanAdded": "تم إضافة الآيبان بنجاح",
+      "addNewStore": "إضافة متجر جديد",
+      "addYourStore": "أضف متجرك",
+      "storeNameEn": "اسم المتجر (إنجليزي)",
+      "storeNameEnPlaceholder": "مثال: Amana market",
+      "storeNameAr": "اسم المتجر (عربي)",
+      "storeNameArPlaceholder": "مثال, ماركت الامانة",
+      "storeCrNumber": "رقم السجل التجاري للمتجر",
+      "storeCrNumberPlaceholder": "مثال: 21650.453.0.",
+      "city": "المدينة",
+      "cityPlaceholder": "مثال: الرياض",
+      "storeType": "نوع المتجر",
+      "storeTypePlaceholder": "مثال: سوبرماركت",
+      "businessAdded": "تم إضافة المتجر بنجاح",
+      "payoutMethod": "طريقة الدفع",
+      "payoutMethodTitle": "متى تريد استلام أموالك؟",
+      "payoutMethodDescription": "اختر طريقة التحصيل التي تناسب احتياجات عملك بشكل أفضل.",
+      "payoutWeekly": "دفع أسبوعي",
+      "payoutWeeklyDescription": "استلم أموالك على أساس أسبوعي.",
+      "payoutMonthly": "دفع شهري",
+      "payoutMonthlyDescription": "استلم أموالك على أساس شهري.",
+      "payoutInstant": "دفع فوري",
+      "payoutInstantDescription": "استلم أموالك فوراً بمجرد اكتمال دفع العميل. يرجى ملاحظة أن رسوم البنك ومعالجة الدفع الإضافية تنطبق وسيتم خصمها تلقائياً.",
+      "errors": {
+        "businessNameEnRequired": "اسم المتجر (إنجليزي) مطلوب",
+        "businessNameArRequired": "اسم المتجر (عربي) مطلوب",
+        "crNumberRequired": "رقم السجل التجاري مطلوب",
+        "cityRequired": "المدينة مطلوبة",
+        "activityRequired": "نوع المتجر مطلوب",
+        "duplicateCrNumber": "يوجد متجر بنفس رقم السجل التجاري"
+      }
     },
     "forgotPassword": {
       "title": "نسيت كلمة المرور"

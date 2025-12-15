@@ -13,6 +13,7 @@ export type RegisterBusinessesCredentialsDTO = {
     activity: string;
     city: string;
   }[];
+  payoutMethod: 'weekly' | 'monthly' | 'instant' ;
   accessToken: string;
 };
 
@@ -23,6 +24,7 @@ export const registerBusinesses = (data: RegisterBusinessesCredentialsDTO) => {
     {
       id: data.id,
       businesses: data.businesses,
+      payoutMethod: data.payoutMethod,
     },
     {
       headers: {

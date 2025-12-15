@@ -5,7 +5,7 @@ export type BusinessDto = {
   business_name_en: string;
   activity: string;
   city: string;
-  status: string;
+  status?: string;
 };
 
 export type UserDto = {
