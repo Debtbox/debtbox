@@ -52,7 +52,8 @@
       "actions": "Actions",
       "viewAll": "View all",
       "loading": "Loading...",
-      "view": "View"
+      "view": "View",
+      "add": "Add"
     },
     "validation": {
       "identificationNumberRequired": "Identification number is required",
@@ -348,7 +349,37 @@
       "accountAddedDescription": "You may now use the app as you wish",
       "goToLogin": "Go to login",
       "passwordCreated": "Password created successfully",
-      "ibanAdded": "IBAN added successfully"
+      "ibanAdded": "IBAN added successfully",
+      "addNewStore": "Add new Store",
+      "addYourStore": "Add your Store",
+      "storeNameEn": "Store name (EN)",
+      "storeNameEnPlaceholder": "e.g., Amana market",
+      "storeNameAr": "Store name (AR)",
+      "storeNameArPlaceholder": "مثال, ماركت الامانة",
+      "storeCrNumber": "Store CR number",
+      "storeCrNumberPlaceholder": "e.g., 21650.453.0.",
+      "city": "City",
+      "cityPlaceholder": "e.g., Riyadh",
+      "storeType": "Store Type",
+      "storeTypePlaceholder": "e.g., Supermarket",
+      "businessAdded": "Business added successfully",
+      "payoutMethod": "Payout Method",
+      "payoutMethodTitle": "When do you want to receive your money?",
+      "payoutMethodDescription": "Pick the collection method that best fits your business needs.",
+      "payoutWeekly": "Weekly Payout",
+      "payoutWeeklyDescription": "Receive your money on a weekly basis.",
+      "payoutMonthly": "Monthly Payout",
+      "payoutMonthlyDescription": "Receive your money on a monthly basis.",
+      "payoutInstant": "Instant Payout",
+      "payoutInstantDescription": "Receive your money immediately once the customer completes the payment. Please note that additional bank and payment processing fees apply and will be deducted automatically.",
+      "errors": {
+        "businessNameEnRequired": "Store name (EN) is required",
+        "businessNameArRequired": "Store name (AR) is required",
+        "crNumberRequired": "CR number is required",
+        "cityRequired": "City is required",
+        "activityRequired": "Store type is required",
+        "duplicateCrNumber": "A business with this CR number already exists"
+      }
     },
     "forgotPassword": {
       "title": "Forgot password"
