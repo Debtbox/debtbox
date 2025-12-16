@@ -22,6 +22,7 @@ export type LoginCredentialsDTO = {
   iqamaId: string;
   device: Device;
   password: string;
+  isForgetPassword: boolean;
 };
 
 export type LoginResponse = {

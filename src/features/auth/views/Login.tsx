@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { useLogin } from '../api/login';
 import { setCookie } from '@/utils/storage';
 import { useUserStore } from '@/stores/UserStore';
+import { getDeviceToken } from '@/utils/deviceToken';
 
 type LoginFormData = z.infer<ReturnType<typeof createLoginSchema>>;
 
@@ -28,7 +29,7 @@ const createLoginSchema = (t: (key: string) => string) =>
   });
 
 export const Login = () => {
-  const { t } = useTranslation();
+  const { t ,i18n} = useTranslation();
   const loginSchema = createLoginSchema(t);
   const navigate = useNavigate();
   const { setUser, setSelectedBusiness } = useUserStore();
@@ -54,20 +55,29 @@ export const Login = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
+    const deviceTokenData = await getDeviceToken();
+
     mutate({
       nationalId: data.identificationNumber,
       commercialRegister: data.identificationNumber,
       iqamaId: data.identificationNumber,
       device: {
         platform: 'web',
-        token: '',
+        token: deviceTokenData.token,
+        p256dh: deviceTokenData.p256dh,
+        auth: deviceTokenData.auth,
+        appVersion: '',
+        deviceModel: '',
+        osVersion: '',
+        locale: i18n.language,
       },
       password: data.password,
+      isForgetPassword: false,
     });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full mx-auto max-w-screen-md px-4">
+    <div className="flex flex-col items-center justify-center h-full w-full mx-auto max-w-3xl px-4">
       <div className="flex justify-between items-center w-full mb-12">
         <Link to="/">
           <img src={authLogo} alt="auth-logo" />
