@@ -67,7 +67,6 @@ const IBANForm = () => {
 
   const onSubmit = async (data: IBANFormData) => {
     mutate({
-      id: user?.id.toString() as string,
       accessToken: user?.accessToken as string,
       iban: data.iban.replace(/\s/g, ''),
     });

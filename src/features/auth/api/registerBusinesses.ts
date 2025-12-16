@@ -5,7 +5,6 @@ import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
 export type RegisterBusinessesCredentialsDTO = {
-  id: string;
   businesses: {
     cr_number: string;
     business_name_en: string;
@@ -13,7 +12,7 @@ export type RegisterBusinessesCredentialsDTO = {
     activity: string;
     city: string;
   }[];
-  payoutMethod: 'weekly' | 'monthly' | 'instant' ;
+  payoutMethod: 'weekly' | 'monthly' | 'instant';
   accessToken: string;
 };
 
@@ -22,7 +21,6 @@ export const registerBusinesses = (data: RegisterBusinessesCredentialsDTO) => {
   return axios.post(
     '/merchant/register-businesses',
     {
-      id: data.id,
       businesses: data.businesses,
       payoutMethod: data.payoutMethod,
     },

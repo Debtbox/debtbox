@@ -5,7 +5,6 @@ import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
 export type CreatePasswordCredentialsDTO = {
-  id: string;
   appActor: 'CUSTOMER' | 'MERCHANT';
   password: string;
   accessToken: string;
@@ -16,7 +15,6 @@ export const createPassword = (data: CreatePasswordCredentialsDTO) => {
   return axios.post(
     '/auth/create-password',
     {
-      id: data.id,
       appActor: data.appActor,
       password: data.password,
     },

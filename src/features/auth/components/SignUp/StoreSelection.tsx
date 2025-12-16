@@ -509,7 +509,6 @@ const StoreSelection = ({ showExistingStores = true }: StoreSelectionProps) => {
             const payoutMethod = storeWithPayout?.payoutMethod || 'weekly';
 
             registerBusinesses({
-              id: user?.id.toString() as string,
               accessToken: user?.accessToken as string,
               businesses: selectedStores.map((store) => ({
                 cr_number: store.cr_number,

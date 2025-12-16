@@ -58,7 +58,6 @@ const FirstPasswordForm = () => {
 
   const onSubmit = async (data: FirstPasswordFormData) => {
     mutate({
-      id: user?.id.toString() as string,
       accessToken: user?.accessToken as string,
       appActor: 'MERCHANT',
       password: data.password,

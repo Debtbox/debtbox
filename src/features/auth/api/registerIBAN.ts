@@ -5,7 +5,6 @@ import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
 export type RegisterIBANCredentialsDTO = {
-  id: string;
   iban: string;
   accessToken: string;
 };
@@ -15,7 +14,6 @@ export const registerIBAN = (data: RegisterIBANCredentialsDTO) => {
   return axios.post(
     '/merchant/register-iban',
     {
-      id: data.id,
       iban: data.iban,
     },
     {
