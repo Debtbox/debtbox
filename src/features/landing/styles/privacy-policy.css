@@ -1,0 +1,102 @@
+.privacy {
+  all: initial;
+  font-family: 'Cairo', sans-serif;
+  display: block;
+  box-sizing: border-box;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.privacy *,
+.privacy *::before,
+.privacy *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.translations-content-container {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.translations-content-container .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tab-content.translations-content-item {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content.translations-content-item h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #06101c;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.tab-content.translations-content-item h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #06101c;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.tab-content.translations-content-item h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #06101c;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.tab-content.translations-content-item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #06101c;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.tab-content.translations-content-item p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.tab-content.translations-content-item ul {
+  margin: 16px 0;
+  padding-left: 24px;
+  list-style-type: disc;
+}
+
+.tab-content.translations-content-item li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.tab-content.translations-content-item a {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.tab-content.translations-content-item a:hover {
+  color: #1a5f8f;
+}
+
+.tab-content.translations-content-item strong {
+  font-weight: 700;
+}
+
