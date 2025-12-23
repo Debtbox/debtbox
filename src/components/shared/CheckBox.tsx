@@ -16,7 +16,7 @@ const CheckBox = ({
         }
       />
       <svg
-        className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none hidden peer-checked:block"
+        className="absolute start-1/2 top-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none hidden peer-checked:block"
         width="16"
         height="16"
         viewBox="0 0 16 16"

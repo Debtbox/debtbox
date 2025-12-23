@@ -9,9 +9,9 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         <img
           src={topRightVector}
           alt="db-bg"
-          className="absolute top-0 end-0"
+          className="absolute top-0 end-0 rtl:start-0"
         />
-        <img src={dbBg} alt="db-bg" className="absolute bottom-0 end-0" />
+        <img src={dbBg} alt="db-bg" className="absolute bottom-0 end-0 rtl:start-0" />
         {children}
       </div>
     </main>
