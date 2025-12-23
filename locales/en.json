@@ -367,9 +367,9 @@
       "payoutMethodTitle": "When do you want to receive your money?",
       "payoutMethodDescription": "Pick the collection method that best fits your business needs.",
       "payoutWeekly": "Weekly Payout",
-      "payoutWeeklyDescription": "Receive your money on a weekly basis.",
+      "payoutWeeklyDescription": "Debtbox will collect your payments and transfer the total amount to you once every week.This option comes with lower processing fees compared to instant payouts.",
       "payoutMonthly": "Monthly Payout",
-      "payoutMonthlyDescription": "Receive your money on a monthly basis.",
+      "payoutMonthlyDescription": "Debtbox will transfer your accumulated payments once per month. This option offers the lowest fees",
       "payoutInstant": "Instant Payout",
       "payoutInstantDescription": "Receive your money immediately once the customer completes the payment. Please note that additional bank and payment processing fees apply and will be deducted automatically.",
       "errors": {
