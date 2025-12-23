@@ -15,9 +15,13 @@ import { CITIES, CATEGORIES } from '../../data';
 
 interface StoreSelectionProps {
   showExistingStores?: boolean;
+  onShowAddFormChange?: (showAddForm: boolean) => void;
 }
 
-const StoreSelection = ({ showExistingStores = true }: StoreSelectionProps) => {
+const StoreSelection = ({
+  showExistingStores = true,
+  onShowAddFormChange,
+}: StoreSelectionProps) => {
   const { t, i18n } = useTranslation();
   const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
   const { user } = useUserStore();
@@ -67,7 +71,12 @@ const StoreSelection = ({ showExistingStores = true }: StoreSelectionProps) => {
     }
   }, [hasExistingStores, selectedStores.length]);
 
-  // Reset form step when form is closed
+  useEffect(() => {
+    if (onShowAddFormChange) {
+      onShowAddFormChange(showAddForm);
+    }
+  }, [showAddForm, onShowAddFormChange]);
+
   useEffect(() => {
     if (!showAddForm) {
       setFormStep(1);
