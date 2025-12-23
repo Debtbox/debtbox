@@ -202,6 +202,11 @@ const CustomerPurchaseForm = ({
           className="ps-10"
           icon={<CalendarIcon />}
           error={errors.dueDate?.message}
+          min={(() => {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            return tomorrow.toISOString().split('T')[0];
+          })()}
         />
       </div>
       <div className="flex items-center justify-between p-4 border-t border-gray-200">

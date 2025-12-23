@@ -336,6 +336,11 @@ const DebtDetails = ({
                   icon={<CalendarIcon />}
                   value={newDueDate}
                   onChange={(e) => setNewDueDate(e.target.value)}
+                  min={(() => {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    return tomorrow.toISOString().split('T')[0];
+                  })()}
                 />
               </div>
               <div className="animate-in slide-in-from-left-2 fade-in duration-300 delay-200">
