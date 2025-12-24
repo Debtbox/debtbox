@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +35,7 @@ const createIBANSchema = (t: (key: string) => string) =>
 
 const IBANForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep } = useAuthFlowStore();
+  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
   const { user } = useUserStore();
   const ibanSchema = createIBANSchema(t);
   const {
@@ -45,9 +46,28 @@ const IBANForm = () => {
     watch,
   } = useForm<IBANFormData>({
     resolver: zodResolver(ibanSchema),
+    defaultValues: {
+      iban: formData.iban || '',
+    },
   });
 
   const ibanValue = watch('iban');
+
+  useEffect(() => {
+    if (formData.iban) {
+      setValue('iban', formData.iban);
+    }
+  }, [formData.iban, setValue]);
+
+  const handleIbanChangeWithSave = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      const formattedValue = formatIBAN(value);
+      setValue('iban', formattedValue);
+      updateFormData({ iban: formattedValue });
+    },
+    [setValue, updateFormData],
+  );
 
   const { mutate, isPending } = useRegisterIBAN({
     onSuccess: () => {
@@ -59,13 +79,8 @@ const IBANForm = () => {
     },
   });
 
-  const handleIbanChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const formattedValue = formatIBAN(value);
-    setValue('iban', formattedValue);
-  };
-
   const onSubmit = async (data: IBANFormData) => {
+    updateFormData({ iban: data.iban });
     mutate({
       accessToken: user?.accessToken as string,
       iban: data.iban.replace(/\s/g, ''),
@@ -84,7 +99,7 @@ const IBANForm = () => {
         <div className="flex flex-col w-full mb-4">
           <Input
             {...register('iban')}
-            onChange={handleIbanChange}
+            onChange={handleIbanChangeWithSave}
             label={t('common.fields.iban')}
             placeholder={t('common.fields.ibanPlaceholder')}
             type="text"

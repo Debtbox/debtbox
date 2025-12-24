@@ -36,14 +36,18 @@ const StoreSelection = ({
   const hasAnyStores = hasExistingStores || selectedStores.length > 0;
   const [showAddForm, setShowAddForm] = useState(!hasAnyStores);
 
-  const [formStep, setFormStep] = useState<1 | 2>(1);
+  const [formStep, setFormStep] = useState<1 | 2>(
+    formData.storeFormStep || 1,
+  );
   const [newBusiness, setNewBusiness] = useState({
-    business_name_en: '',
-    business_name_ar: '',
-    cr_number: '',
-    city: '',
-    activity: '',
-    payoutMethod: 'weekly' as 'weekly' | 'monthly' | 'instant',
+    business_name_en: formData.newBusiness?.business_name_en || '',
+    business_name_ar: formData.newBusiness?.business_name_ar || '',
+    cr_number: formData.newBusiness?.cr_number || '',
+    city: formData.newBusiness?.city || '',
+    activity: formData.newBusiness?.activity || '',
+    payoutMethod:
+      (formData.newBusiness?.payoutMethod as 'weekly' | 'monthly' | 'instant') ||
+      'weekly',
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -63,6 +67,22 @@ const StoreSelection = ({
       setSelectedStores(formData.selectedStores);
     }
   }, [formData.selectedStores]);
+
+  useEffect(() => {
+    if (formData.newBusiness) {
+      setNewBusiness({
+        business_name_en: formData.newBusiness.business_name_en || '',
+        business_name_ar: formData.newBusiness.business_name_ar || '',
+        cr_number: formData.newBusiness.cr_number || '',
+        city: formData.newBusiness.city || '',
+        activity: formData.newBusiness.activity || '',
+        payoutMethod: formData.newBusiness.payoutMethod || 'weekly',
+      });
+    }
+    if (formData.storeFormStep) {
+      setFormStep(formData.storeFormStep);
+    }
+  }, [formData.newBusiness, formData.storeFormStep]);
 
   useEffect(() => {
     const hasStores = hasExistingStores || selectedStores.length > 0;
@@ -129,12 +149,14 @@ const StoreSelection = ({
   const handleNextStep = () => {
     if (validateFormStep1()) {
       setFormStep(2);
+      updateFormData({ storeFormStep: 2, newBusiness });
       setFormErrors({});
     }
   };
 
   const handleBackStep = () => {
     setFormStep(1);
+    updateFormData({ storeFormStep: 1 });
     setFormErrors({});
   };
 
@@ -165,15 +187,19 @@ const StoreSelection = ({
 
     const newSelectedStores = [...selectedStores, businessToAdd];
     setSelectedStores(newSelectedStores);
-    updateFormData({ selectedStores: newSelectedStores });
-
-    setNewBusiness({
+    const resetBusiness = {
       business_name_en: '',
       business_name_ar: '',
       cr_number: '',
       city: '',
       activity: '',
-      payoutMethod: 'weekly',
+      payoutMethod: 'weekly' as const,
+    };
+    setNewBusiness(resetBusiness);
+    updateFormData({
+      selectedStores: newSelectedStores,
+      newBusiness: resetBusiness,
+      storeFormStep: 1,
     });
     setFormErrors({});
     setFormStep(1);
@@ -324,12 +350,14 @@ const StoreSelection = ({
                   'e.g., Amana market'
                 }
                 value={newBusiness.business_name_en}
-                onChange={(e) =>
-                  setNewBusiness({
+                onChange={(e) => {
+                  const updated = {
                     ...newBusiness,
                     business_name_en: e.target.value,
-                  })
-                }
+                  };
+                  setNewBusiness(updated);
+                  updateFormData({ newBusiness: updated, storeFormStep: 1 });
+                }}
                 error={formErrors.business_name_en}
               />
               <Input
@@ -341,12 +369,14 @@ const StoreSelection = ({
                   'مثال, ماركت الامانة'
                 }
                 value={newBusiness.business_name_ar}
-                onChange={(e) =>
-                  setNewBusiness({
+                onChange={(e) => {
+                  const updated = {
                     ...newBusiness,
                     business_name_ar: e.target.value,
-                  })
-                }
+                  };
+                  setNewBusiness(updated);
+                  updateFormData({ newBusiness: updated, storeFormStep: 1 });
+                }}
                 error={formErrors.business_name_ar}
               />
               <Input
@@ -358,20 +388,24 @@ const StoreSelection = ({
                   'e.g., 21650.453.0.'
                 }
                 value={newBusiness.cr_number}
-                onChange={(e) =>
-                  setNewBusiness({
+                onChange={(e) => {
+                  const updated = {
                     ...newBusiness,
                     cr_number: e.target.value,
-                  })
-                }
+                  };
+                  setNewBusiness(updated);
+                  updateFormData({ newBusiness: updated, storeFormStep: 1 });
+                }}
                 error={formErrors.cr_number}
               />
               <DropdownFilter
                 options={getCityOptions()}
                 value={newBusiness.city}
-                onChange={(value) =>
-                  setNewBusiness({ ...newBusiness, city: value })
-                }
+                onChange={(value) => {
+                  const updated = { ...newBusiness, city: value };
+                  setNewBusiness(updated);
+                  updateFormData({ newBusiness: updated, storeFormStep: 1 });
+                }}
                 placeholder={t('auth.signUp.cityPlaceholder') || 'e.g., Riyadh'}
                 label={t('auth.signUp.city') || 'City'}
                 error={formErrors.city}
@@ -379,9 +413,11 @@ const StoreSelection = ({
               <DropdownFilter
                 options={getCategoryOptions()}
                 value={newBusiness.activity}
-                onChange={(value) =>
-                  setNewBusiness({ ...newBusiness, activity: value })
-                }
+                onChange={(value) => {
+                  const updated = { ...newBusiness, activity: value };
+                  setNewBusiness(updated);
+                  updateFormData({ newBusiness: updated, storeFormStep: 1 });
+                }}
                 placeholder={
                   t('auth.signUp.storeTypePlaceholder') || 'e.g., Supermarket'
                 }
@@ -399,13 +435,18 @@ const StoreSelection = ({
                     onClick={() => {
                       setShowAddForm(false);
                       setFormStep(1);
-                      setNewBusiness({
+                      const resetBusiness = {
                         business_name_en: '',
                         business_name_ar: '',
                         cr_number: '',
                         city: '',
                         activity: '',
-                        payoutMethod: 'weekly',
+                        payoutMethod: 'weekly' as const,
+                      };
+                      setNewBusiness(resetBusiness);
+                      updateFormData({
+                        newBusiness: resetBusiness,
+                        storeFormStep: 1,
                       });
                       setFormErrors({});
                     }}
@@ -425,7 +466,9 @@ const StoreSelection = ({
                 {(['weekly', 'monthly', 'instant'] as const).map((method) => {
                   const isSelected = newBusiness.payoutMethod === method;
                   const handleToggle = () => {
-                    setNewBusiness({ ...newBusiness, payoutMethod: method });
+                    const updated = { ...newBusiness, payoutMethod: method };
+                    setNewBusiness(updated);
+                    updateFormData({ newBusiness: updated, storeFormStep: 2 });
                   };
 
                   const getMethodTitle = () => {

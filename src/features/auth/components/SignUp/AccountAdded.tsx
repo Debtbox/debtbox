@@ -8,6 +8,7 @@ const AccountAdded = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { resetFlow } = useAuthFlowStore();
+
   return (
     <div className="flex flex-col w-full">
       <Success

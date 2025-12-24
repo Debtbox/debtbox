@@ -7,6 +7,15 @@ interface SignUpFormData {
   password?: string;
   confirmPassword?: string;
   selectedStores?: BusinessDto[];
+  newBusiness?: {
+    business_name_en: string;
+    business_name_ar: string;
+    cr_number: string;
+    city: string;
+    activity: string;
+    payoutMethod: 'weekly' | 'monthly' | 'instant';
+  };
+  storeFormStep?: 1 | 2;
   iban?: string;
 }
 

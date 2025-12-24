@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,16 +36,44 @@ const createFirstPasswordSchema = (t: (key: string) => string) =>
 
 const FirstPasswordForm = () => {
   const { t } = useTranslation();
-  const { setActiveStep } = useAuthFlowStore();
+  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
   const { user } = useUserStore();
   const firstPasswordSchema = createFirstPasswordSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<FirstPasswordFormData>({
     resolver: zodResolver(firstPasswordSchema),
+    defaultValues: {
+      password: formData.password || '',
+      confirmPassword: formData.confirmPassword || '',
+    },
   });
+
+  useEffect(() => {
+    if (formData.password) {
+      setValue('password', formData.password);
+    }
+    if (formData.confirmPassword) {
+      setValue('confirmPassword', formData.confirmPassword);
+    }
+  }, [formData.password, formData.confirmPassword, setValue]);
+
+  const handlePasswordChange = useCallback(
+    (value: string) => {
+      updateFormData({ password: value });
+    },
+    [updateFormData],
+  );
+
+  const handleConfirmPasswordChange = useCallback(
+    (value: string) => {
+      updateFormData({ confirmPassword: value });
+    },
+    [updateFormData],
+  );
 
   const { mutate, isPending } = useCreatePassword({
     onSuccess: () => {
@@ -57,6 +86,7 @@ const FirstPasswordForm = () => {
   });
 
   const onSubmit = async (data: FirstPasswordFormData) => {
+    updateFormData({ password: data.password, confirmPassword: data.confirmPassword });
     mutate({
       accessToken: user?.accessToken as string,
       appActor: 'MERCHANT',
@@ -74,7 +104,9 @@ const FirstPasswordForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
         <div className="flex flex-col w-full mb-4">
           <Input
-            {...register('password')}
+            {...register('password', {
+              onChange: (e) => handlePasswordChange(e.target.value),
+            })}
             label={t('common.fields.password')}
             placeholder={t('common.fields.passwordPlaceholder')}
             type="password"
@@ -84,7 +116,9 @@ const FirstPasswordForm = () => {
         </div>
         <div className="flex flex-col w-full mb-8">
           <Input
-            {...register('confirmPassword')}
+            {...register('confirmPassword', {
+              onChange: (e) => handleConfirmPasswordChange(e.target.value),
+            })}
             label={t('common.fields.confirmPassword')}
             placeholder={t('common.fields.confirmPasswordPlaceholder')}
             type="password"
