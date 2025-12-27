@@ -15,8 +15,8 @@ const DueAmountCard = ({
   const { t } = useTranslation();
   return (
     <div className="w-full h-full rounded-2xl bg-linear-to-b from-[#001DB2] to-[#0B1B6A] px-5 py-8 relative overflow-hidden">
-      <MaskIconTop className="absolute top-0 start-0" />
-      <MaskIconBottom className="absolute bottom-0 end-0" />
+      <MaskIconTop className="absolute top-0 left-0" />
+      <MaskIconBottom className="absolute bottom-0 right-0" />
       <div className="flex items-start justify-between">
         <div className="relative z-10">
           <h6 className="text-xs text-white font-medium mb-1">
