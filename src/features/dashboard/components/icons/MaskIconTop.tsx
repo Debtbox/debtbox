@@ -1,20 +1,17 @@
 const MaskIconTop = ({ className }: { className: string }) => {
   return (
     <svg
-      width="294"
-      height="128"
-      viewBox="0 0 294 128"
+      width="483"
+      height="291"
+      viewBox="0 0 483 291"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <ellipse
-        opacity="0.2"
-        cx="172.906"
-        cy="-30.8207"
-        rx="172.906"
-        ry="158.755"
-        fill="#CDB5A7"
+      <path
+        d="M482.894 291H13.1221C-6.76002 291 -22.8779 274.882 -22.8779 255V-6C-22.8779 -25.8821 -6.76002 -41.9998 13.1221 -42H77.2627L482.894 291Z"
+        fill="white"
+        fill-opacity="0.08"
       />
     </svg>
   );

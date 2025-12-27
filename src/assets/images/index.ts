@@ -3,6 +3,7 @@ export { default as headerLogo } from './logos/logo4.svg';
 export { default as authLogo } from './logos/auth-logo.svg';
 export { default as dbBg } from './logos/db-bg.png';
 export { default as sidebarLogo } from './logos/sidebar-logo.svg';
+export { default as paymentLogo } from './logos/payment-logo.svg';
 
 //FLAGS
 export { default as enFlag } from './flags/en.svg';
