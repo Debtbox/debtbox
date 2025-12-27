@@ -15,7 +15,7 @@ import { CITIES, CATEGORIES } from '../../data';
 
 interface StoreSelectionProps {
   showExistingStores?: boolean;
-  onShowAddFormChange?: (showAddForm: boolean) => void;
+  onShowAddFormChange?: (showAddForm: boolean, isFirstBusiness: boolean) => void;
 }
 
 const StoreSelection = ({
@@ -93,9 +93,10 @@ const StoreSelection = ({
 
   useEffect(() => {
     if (onShowAddFormChange) {
-      onShowAddFormChange(showAddForm);
+      const isFirstBusiness = !hasExistingStores && selectedStores.length === 0;
+      onShowAddFormChange(showAddForm, isFirstBusiness);
     }
-  }, [showAddForm, onShowAddFormChange]);
+  }, [showAddForm, onShowAddFormChange, hasExistingStores, selectedStores.length]);
 
   useEffect(() => {
     if (!showAddForm) {

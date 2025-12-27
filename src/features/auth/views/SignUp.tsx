@@ -18,6 +18,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const { activeStep, setActiveStep, resetFlow } = useAuthFlowStore();
   const [isStoreFormOpen, setIsStoreFormOpen] = useState(false);
+  const [isFirstBusiness, setIsFirstBusiness] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full mx-auto max-w-3xl px-4">
@@ -38,7 +39,7 @@ export const SignUp = () => {
               setActiveStep(activeStep - 1);
             }
           }}
-          disabled={activeStep === 2 && isStoreFormOpen}
+          disabled={activeStep === 2 && isStoreFormOpen && !isFirstBusiness}
           className="p-2 rounded-lg h-12 cursor-pointer flex items-center gap-2 border border-[#E6EAEE] self-start mb-10 disabled:opacity-50 disabled:cursor-not-allowed"
           icon={
             <span className={`${i18n.language === 'ar' ? 'rotate-180' : ''}`}>
@@ -49,7 +50,14 @@ export const SignUp = () => {
       )}
       {activeStep === 0 && <SignUpForm />}
       {activeStep === 1 && <FirstPasswordForm />}
-      {activeStep === 2 && <StoreSelection onShowAddFormChange={setIsStoreFormOpen} />}
+      {activeStep === 2 && (
+        <StoreSelection
+          onShowAddFormChange={(showAddForm, isFirst) => {
+            setIsStoreFormOpen(showAddForm);
+            setIsFirstBusiness(isFirst);
+          }}
+        />
+      )}
       {activeStep === 3 && <IBANForm />}
       {activeStep === 4 && <AccountAdded />}
     </div>
