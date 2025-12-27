@@ -42,7 +42,7 @@ const LanguageDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="py-2 px-4 flex justify-center items-center gap-2 bg-white rounded-2xl shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+        className="py-3 px-4 flex justify-center items-center gap-2 bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
       >
         <span className="text-sm text-gray-700 uppercase">
           {currentLanguage.name}
@@ -69,12 +69,12 @@ const LanguageDropdown = () => {
       </button>
 
       {isDropdownOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-gray-100 z-50">
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
-              className={`w-full px-4 py-3 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors first:rounded-t-2xl last:rounded-b-2xl ${
+              className={`w-full px-4 py-3 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
                 language.code === currentLanguage.code
                   ? 'bg-blue-50 text-blue-600'
                   : 'text-gray-700'

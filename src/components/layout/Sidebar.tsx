@@ -63,10 +63,10 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
       )}
     >
       {/* Logo Section */}
-      <div className="flex items-center justify-center p-2">
+      <div className="flex items-center justify-center px-2 py-4">
         {!isCollapsed && (
           <Link to="/" className="flex items-center space-x-3">
-            <img src={sidebarLogo} alt="DebtBox" className="h-16 w-auto" />
+            <img src={sidebarLogo} alt="DebtBox" className="h-11 w-auto" />
           </Link>
         )}
       </div>

@@ -9,7 +9,7 @@ const ArrowLeftIcon = () => {
     >
       <path
         d="M15.6249 6.25C15.6249 6.25 9.375 10.853 9.375 12.5C9.375 14.1471 15.625 18.75 15.625 18.75"
-        stroke="var(--color-primary)"
+        stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"

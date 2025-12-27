@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-cairo: 'Cairo', sans-serif;
-  --color-primary: #003153;
+  --font-inter: 'Inter', sans-serif;
+  --color-primary: #1b40ff;
   --color-light-gray: #fcfcfc;
 }
 
@@ -31,8 +31,6 @@ button {
 .bg-bacground-image-auth {
   background-image: url('@/assets/images/auth/auth-layout-bg.png');
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* Dashboard Layout Styles */
