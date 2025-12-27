@@ -15,14 +15,12 @@ import { CITIES, CATEGORIES } from '../../data';
 
 interface StoreSelectionProps {
   showExistingStores?: boolean;
-  showAddForm: boolean;
-  setShowAddForm: (showAddForm: boolean) => void;
+  onShowAddFormChange?: (showAddForm: boolean) => void;
 }
 
 const StoreSelection = ({
   showExistingStores = true,
-  showAddForm,
-  setShowAddForm,
+  onShowAddFormChange,
 }: StoreSelectionProps) => {
   const { t, i18n } = useTranslation();
   const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
@@ -32,11 +30,15 @@ const StoreSelection = ({
     formData.selectedStores || [],
   );
 
+  // Show form by default if there are no stores
   const hasExistingStores =
     showExistingStores && user?.businesses && user.businesses.length > 0;
   const hasAnyStores = hasExistingStores || selectedStores.length > 0;
+  const [showAddForm, setShowAddForm] = useState(!hasAnyStores);
 
-  const [formStep, setFormStep] = useState<1 | 2>(formData.storeFormStep || 1);
+  const [formStep, setFormStep] = useState<1 | 2>(
+    formData.storeFormStep || 1,
+  );
   const [newBusiness, setNewBusiness] = useState({
     business_name_en: formData.newBusiness?.business_name_en || '',
     business_name_ar: formData.newBusiness?.business_name_ar || '',
@@ -44,10 +46,8 @@ const StoreSelection = ({
     city: formData.newBusiness?.city || '',
     activity: formData.newBusiness?.activity || '',
     payoutMethod:
-      (formData.newBusiness?.payoutMethod as
-        | 'weekly'
-        | 'monthly'
-        | 'instant') || 'weekly',
+      (formData.newBusiness?.payoutMethod as 'weekly' | 'monthly' | 'instant') ||
+      'weekly',
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -83,6 +83,19 @@ const StoreSelection = ({
       setFormStep(formData.storeFormStep);
     }
   }, [formData.newBusiness, formData.storeFormStep]);
+
+  useEffect(() => {
+    const hasStores = hasExistingStores || selectedStores.length > 0;
+    if (!hasStores) {
+      setShowAddForm(true);
+    }
+  }, [hasExistingStores, selectedStores.length]);
+
+  useEffect(() => {
+    if (onShowAddFormChange) {
+      onShowAddFormChange(showAddForm);
+    }
+  }, [showAddForm, onShowAddFormChange]);
 
   useEffect(() => {
     if (!showAddForm) {
