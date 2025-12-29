@@ -1,5 +1,7 @@
+version: "3.9"
+
 services:
-  # Development service
+  # Development service (Vite dev server)
   debtbox-dev:
     build:
       context: .
@@ -10,34 +12,59 @@ services:
       - .:/app
       - /app/node_modules
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5173 >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     profiles:
       - dev
 
-  # Production service
+  # Production service (Nginx serving built /dist)
   debtbox-prod:
     build:
       context: .
       target: production
     ports:
-      - "80:80"
+      - "8080:80"   # ✅ access via http://SERVER_IP:8080
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80 >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - debtbox_shared
     profiles:
       - prod
 
   # Production service with SSL (optional)
+  # NOTE: use 8443/8080 to avoid clashing with your main server nginx that already uses 80/443
   debtbox-prod-ssl:
     build:
       context: .
       target: production
     ports:
-      - "443:443"
-      - "80:80"
+      - "8443:443"  # ✅ access via https://SERVER_IP:8443
+      - "8080:80"   # ✅ optional http redirect port for this container
     volumes:
       - ./ssl:/etc/nginx/ssl:ro
       - ./nginx-ssl.conf:/etc/nginx/conf.d/default.conf:ro
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80 >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     profiles:
       - ssl
+
+networks:
+  debtbox_shared:
+    external: true
