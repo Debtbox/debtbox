@@ -11,7 +11,7 @@ const i18nConfig = i18n
   .init({
     lng: getLanguageFromCookie(),
     fallbackLng: 'en',
-    supportedLngs: ['en', 'ar'],
+    supportedLngs: ['en', 'ar', 'ur', 'bn', 'pk'],
     detection: {
       order: ['cookie'],
       caches: [],
