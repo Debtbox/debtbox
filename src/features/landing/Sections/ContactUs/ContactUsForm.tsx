@@ -2,6 +2,7 @@ import {
   contactSmallEmail,
   contactSmallLocation,
   contactSmallPhone,
+  sendLetter,
 } from '@/assets/images';
 import { useTranslation } from 'react-i18next';
 
@@ -64,9 +65,9 @@ const ContactUsForm = () => {
               ></textarea>
             </div>
 
-            <button type="submit">
-              {t('common.buttons.send')}
-            </button>
+            <button type="submit">{t('common.buttons.send')}</button>
+
+            <img src={sendLetter} alt="send-letter" className="send-letter" />
           </form>
           <div className="frame contact-info">
             <div className="overlap-group">

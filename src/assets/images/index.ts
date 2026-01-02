@@ -43,6 +43,8 @@ export { default as about } from './landing/about.png';
 export { default as vision } from './landing/vision.png';
 export { default as mission } from './landing/mission.png';
 export { default as phone } from './landing/phone.png';
+export { default as sendLetter } from './landing/send.svg';
+export { default as aboutHero } from './landing/about-hero.png';
 
 //AUTH
 export { default as authLayoutBg } from './auth/auth-layout-bg.png';
