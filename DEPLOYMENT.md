@@ -318,13 +318,12 @@ Additional recommendations:
 ---
 
 ## Overview
-This project supports multiple deployment methods:
+This project uses Docker for deployment:
 
-1. **GitHub Pages**: Static hosting for simple deployments
-2. **Docker**: Containerized deployment for servers and cloud platforms
-3. **Custom Domain Configuration**: Configured for `https://debtbox.sa`
-4. **Build Output**: Configured to output to `dist/` directory
-5. **Router Configuration**: React Router configured with proper base path
+1. **Docker**: Containerized deployment for servers and cloud platforms
+2. **Custom Domain Configuration**: Configured for `https://debtbox.sa`
+3. **Build Output**: Configured to output to `dist/` directory
+4. **Router Configuration**: React Router configured with proper base path
 
 ## Deployment Options
 
@@ -477,63 +476,6 @@ sudo chown -R $USER:$USER .
 - Ensure certificates are in PEM format
 - Check certificate file permissions (should be readable by nginx user)
 - Verify certificate chain is complete
-
-### Option 2: GitHub Pages Deployment
-
-## Deployment Steps
-
-### Option 1: Manual Deployment
-1. Build the project:
-   ```bash
-   pnpm run build
-   ```
-
-2. Deploy to GitHub Pages:
-   ```bash
-   pnpm run deploy
-   ```
-
-### Option 2: Automatic Deployment (Recommended)
-1. Push your changes to the `main` branch
-2. GitHub Actions will automatically build and deploy
-3. Check the Actions tab in your repository for deployment status
-
-## Important Notes
-
-### Custom Domain
-- **Development**: Uses `/` as base path
-- **Production**: Uses `/` as base path (served from custom domain `debtbox.sa`)
-
-### Router Configuration
-- React Router is configured with the correct base path for GitHub Pages
-- All routes will work correctly in both development and production
-
-### Build Output
-- Files are built to the `dist/` directory
-- GitHub Pages serves from this directory via the `gh-pages` branch
-
-## Troubleshooting
-
-### If deployment fails:
-1. Check GitHub Actions logs in the Actions tab
-2. Ensure your repository has GitHub Pages enabled
-3. Verify your custom domain `debtbox.sa` is properly configured in DNS
-4. Check that the `gh-pages` branch was created
-
-### If the site loads but routes don't work:
-1. Ensure you're using `Link` components from React Router
-2. Check that the base path is correctly set in `vite.config.ts`
-3. Verify the router basename in `App.tsx`
-
-## Repository Settings
-
-Make sure GitHub Pages is configured in your repository:
-1. Go to Settings → Pages
-2. Source: Deploy from a branch
-3. Branch: `gh-pages` / `/(root)`
-4. Custom domain: Enter `debtbox.sa`
-5. Check "Enforce HTTPS" if available
-6. Save the configuration
 
 ## Local Testing
 
