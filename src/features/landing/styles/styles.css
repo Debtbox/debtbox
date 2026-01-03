@@ -24,18 +24,17 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  font-family: 'Cairo', sans-serif;
-  overflow-x: hidden;
-  background-color: #f8f8f8;
-}
 
 .container_css {
   margin: 0 104px;
   padding: 20px;
 }
 
+@media (max-width: 480px), (max-width: 768px) {
+  .container_css img {
+    max-width: 75%;
+  }
+}
 .main-header,
 .hero-section {
   position: relative;
@@ -52,28 +51,62 @@ body {
   position: relative;
 }
 
-/* Desktop Header - Sticky with backdrop blur and auto-hide (About page only) */
+/* Desktop Header - Sticky with backdrop blur and auto-hide (Hero section only on About page) */
+.main-header-desktop {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease;
+}
+
 .main-header-desktop.about-page-header {
   position: fixed !important;
   top: 0;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   width: 100%;
   background: #ffffff26 !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
   padding: 10px 0;
+}
+
+/* When not in hero section, header returns to default styling */
+.main-header-desktop:not(.about-page-header) {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.main-header-desktop .container_css {
+  transition: padding 0.3s ease;
 }
 
 .main-header-desktop.about-page-header .container_css {
   padding: 12px 20px;
 }
 
-/* White text and frame for About page header */
+.main-header-desktop .logo img {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* White text and frame for About page header (Hero section only) */
+.main-header-desktop .nav-links {
+  transition:
+    background 0.3s ease,
+    outline 0.3s ease;
+}
+
+.main-header-desktop .nav-links a {
+  transition: color 0.3s ease;
+}
+
 .main-header-desktop.about-page-header .nav-links {
   background: rgba(255, 255, 255, 0.1) !important;
   outline: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -89,6 +122,24 @@ body {
 
 .main-header-desktop.about-page-header .nav-links a.active {
   color: #fff !important;
+}
+
+/* When not in hero section, nav links return to default */
+.main-header-desktop:not(.about-page-header) .nav-links {
+  background: rgba(6, 16, 28, 0.02);
+  outline: 1px rgba(6, 16, 28, 0.08) solid;
+}
+
+.main-header-desktop:not(.about-page-header) .nav-links a {
+  color: rgba(6, 16, 28, 0.9);
+}
+
+.main-header-desktop:not(.about-page-header) .nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.main-header-desktop:not(.about-page-header) .nav-links a.active {
+  color: var(--primary-color);
 }
 
 .main-header-desktop.about-page-header .lang-button .lang-toggle {
@@ -142,8 +193,8 @@ body {
 .nav-links {
   padding-top: 10px;
   padding-bottom: 11px;
-  padding-left: 13px;
-  padding-right: 13px;
+  padding-inline-start: 13px;
+  padding-inline-end: 13px;
   background: rgba(6, 16, 28, 0.02);
   border-radius: 999px;
   outline: 1px rgba(6, 16, 28, 0.08) solid;
@@ -163,8 +214,8 @@ body {
   line-height: 20px;
   word-wrap: break-word;
   padding-bottom: 1px;
-  padding-left: 12px;
-  padding-right: 11.83px;
+  padding-inline-start: 12px;
+  padding-inline-end: 11.83px;
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease;
@@ -370,12 +421,12 @@ body {
 
 .top-right {
   top: 5%;
-  right: 20%;
+  inset-inline-end: 20%;
 }
 
 .bottom-left {
   bottom: 32%;
-  left: 19%;
+  inset-inline-start: 19%;
 }
 
 .phone-image {
@@ -424,7 +475,7 @@ body {
 
 .how-we-work__text h2 {
   color: #000;
-  text-align: right;
+  text-align: end;
   font-feature-settings:
     'liga' off,
     'clig' off;
@@ -438,7 +489,7 @@ body {
 .how-we-work__desc {
   flex: 1 0 0;
   color: #000;
-  text-align: right;
+  text-align: end;
   font-feature-settings:
     'liga' off,
     'clig' off;
@@ -501,7 +552,7 @@ body {
   border-radius: 11.2px;
   background: #f3fcf9;
   box-shadow: 0px 0px 16px 0px rgba(40, 165, 126, 0.2);
-  margin-bottom: 72px;
+  margin-bottom: 32px;
 }
 
 .for-who-feature-card h3 {
@@ -562,13 +613,13 @@ body {
 .phone-notch {
   position: absolute;
   top: 12px;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 20px;
   background-color: #111;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-end-start-radius: 12px;
+  border-end-end-radius: 12px;
   z-index: 2;
 }
 
@@ -743,7 +794,7 @@ body {
 .mobile-menu {
   position: fixed;
   top: 0;
-  right: -300px;
+  inset-inline-end: -300px;
   width: 250px;
   height: 100%;
   background: white;
@@ -752,7 +803,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: right 0.3s ease-in-out;
+  transition: inset-inline-end 0.3s ease-in-out;
   z-index: 1001;
 }
 
@@ -778,7 +829,7 @@ body {
 
 /* CTA inside mobile */
 .mobile-cta {
-  background: #06101c;
+  background: var(--primary-color);
   color: white !important;
   padding: 10px 20px;
   border-radius: 32px;
@@ -797,7 +848,7 @@ body {
 
 /* Show menu and overlay */
 .mobile-menu.active {
-  right: 0;
+  inset-inline-end: 0;
 }
 
 .overlay.active {
@@ -808,6 +859,8 @@ body {
 .footer {
   background-color: #ffffff;
   padding: 40px 0;
+  z-index: 1;
+  position: relative;
 }
 
 .footer-container {
@@ -825,7 +878,7 @@ body {
 
 /* Social Media Section */
 .social-media {
-  text-align: right;
+  text-align: end;
   flex-grow: 2;
 }
 
@@ -942,7 +995,7 @@ body {
   .background-wave img {
     width: 200%;
     top: -150px;
-    right: -250px;
+    inset-inline-end: -250px;
     transform: rotate(15deg);
   }
 
@@ -970,7 +1023,7 @@ body {
 
   .features-list li {
     justify-content: flex-start;
-    text-align: right;
+    text-align: end;
   }
 
   /* How it Works */

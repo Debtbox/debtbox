@@ -8,28 +8,19 @@ const VisionSection = () => {
     <div className="vision-section">
       <div className="vision-container about-container">
         <div className="vision-text" data-directional="rtl">
-          <h2>
-            {t('aboutPage.visionSection.title')}
-          </h2>
-          <p>
-            {t('aboutPage.visionSection.description')}
-          </p>
+          <h2>{t('aboutPage.visionSection.title')}</h2>
+          <p>{t('aboutPage.visionSection.description')}</p>
           <div className="vision-goals">
             <p>
               <strong>
+                🔹
                 {t('aboutPage.visionSection.goalsTitle')}
               </strong>
             </p>
             <ul>
-              <li>
-                {t('aboutPage.visionSection.goals.goal1')}
-              </li>
-              <li>
-                {t('aboutPage.visionSection.goals.goal2')}
-              </li>
-              <li>
-                {t('aboutPage.visionSection.goals.goal3')}
-              </li>
+              <li>{t('aboutPage.visionSection.goals.goal1')}</li>
+              <li>{t('aboutPage.visionSection.goals.goal2')}</li>
+              <li>{t('aboutPage.visionSection.goals.goal3')}</li>
             </ul>
           </div>
         </div>

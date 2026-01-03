@@ -3,6 +3,10 @@
   --secondary-color: #5fb095;
 }
 
+.contact-us-page {
+  font-family: 'Cairo', sans-serif;
+}
+
 /* Hero */
 .contact-us-page .hero {
   padding: 24px 20px 0 20px;
@@ -262,7 +266,7 @@
 .contact-us-page .frame .text-wrapper {
   width: fit-content;
   margin-top: -1px;
-  font-family: 'Poppins-Regular', Helvetica;
+  font-family: 'Cairo', sans-serif;
   font-weight: 400;
   color: #ffffff;
   font-size: 16px;
@@ -307,7 +311,7 @@
   position: relative;
   width: 288px;
   margin-top: -1px;
-  font-family: 'Poppins-Regular', Helvetica;
+  font-family: 'Cairo', sans-serif;
   font-weight: 400;
   color: #ffffff;
   font-size: 16px;
@@ -330,7 +334,7 @@
 .contact-us-page .frame .text-wrapper-2 {
   /* align-self: stretch; */
   margin-top: -1px;
-  font-family: 'Cairo-SemiBold', Helvetica;
+  font-family: 'Cairo', sans-serif;
   font-weight: 600;
   color: #ffffff;
   font-size: 28px;
@@ -342,7 +346,7 @@
 
 .contact-us-page .frame .text-wrapper-3 {
   /* align-self: stretch; */
-  font-family: 'Cairo-Regular', Helvetica;
+  font-family: 'Cairo', sans-serif;
   font-weight: 400;
   color: #c8c8c8;
   font-size: 18px;

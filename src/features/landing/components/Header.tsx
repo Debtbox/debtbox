@@ -8,9 +8,9 @@ import {
   bnFlag,
   pkFlag,
   headerLogo,
+  whiteLogo,
 } from '@/assets/images';
 import { changeLanguage } from '@/utils/changeLanguage';
-import { debounce } from '@/utils/debounce';
 
 const Header = () => {
   const { i18n, t } = useTranslation();
@@ -22,10 +22,13 @@ const Header = () => {
     useState(false);
   const [opacity, setOpacity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInHeroSection, setIsInHeroSection] = useState(true);
   const desktopLangDropdownRef = useRef<HTMLDivElement>(null);
   const mobileLangDropdownRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
   const lastScrollTopRef = useRef(0);
+  const rafIdRef = useRef<number | null>(null);
 
   const languages = [
     { code: 'en', name: 'English', flag: enFlag },
@@ -38,36 +41,67 @@ const Header = () => {
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
 
-  // Handle scroll for auto-hide/show navbar (About page only, desktop only)
+  // Handle scroll for auto-hide/show navbar and detect hero section (About page only, desktop only)
   const handleScroll = useCallback(() => {
     if (!headerRef.current || location.pathname !== '/about') return;
 
     const st = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (st > lastScrollTopRef.current && st > 100) {
-      // Scrolling down - hide navbar if not hovered
-      if (!isHovered) {
-        setOpacity(0);
+    
+    // Cache hero section reference
+    if (!heroSectionRef.current) {
+      heroSectionRef.current = document.querySelector('.about-hero') as HTMLElement;
+    }
+    
+    if (heroSectionRef.current) {
+      const heroHeight = heroSectionRef.current.clientHeight;
+      const isInHero = st < heroHeight - 50; // Add small buffer for smoother transition
+      setIsInHeroSection(isInHero);
+      
+      // Only apply auto-hide/show when in hero section
+      if (isInHero) {
+        if (st > lastScrollTopRef.current && st > 100) {
+          // Scrolling down - hide navbar if not hovered
+          if (!isHovered) {
+            setOpacity(0);
+          }
+        } else {
+          // Scrolling up - show navbar
+          setOpacity(1);
+        }
+      } else {
+        // Past hero section - always show navbar
+        setOpacity(1);
       }
-    } else {
-      // Scrolling up - show navbar
-      setOpacity(1);
     }
 
     lastScrollTopRef.current = st <= 0 ? 0 : st;
   }, [isHovered, location.pathname]);
 
-  const handleScrollDebouncedRef = useRef(debounce(handleScroll, 100));
-
-  useEffect(() => {
-    handleScrollDebouncedRef.current = debounce(handleScroll, 100);
+  // Use requestAnimationFrame for smooth scroll handling
+  const handleScrollRAF = useCallback(() => {
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+    }
+    rafIdRef.current = requestAnimationFrame(() => {
+      handleScroll();
+    });
   }, [handleScroll]);
 
-  // Reset opacity when navigating away from About page
   useEffect(() => {
     if (location.pathname !== '/about') {
       setOpacity(1);
       setIsHovered(false);
+      setIsInHeroSection(false);
+      heroSectionRef.current = null;
+    } else {
+      // Check initial position on About page
+      const heroSection = document.querySelector('.about-hero') as HTMLElement;
+      if (heroSection) {
+        heroSectionRef.current = heroSection;
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const heroHeight = heroSection.clientHeight;
+        setIsInHeroSection(st < heroHeight - 50);
+      }
     }
   }, [location.pathname]);
 
@@ -89,19 +123,21 @@ const Header = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Only add scroll listener on About page
-    const scrollHandler = () => handleScrollDebouncedRef.current();
+    // Only add scroll listener on About page with requestAnimationFrame for smooth updates
     if (location.pathname === '/about') {
-      window.addEventListener('scroll', scrollHandler, { passive: true });
+      window.addEventListener('scroll', handleScrollRAF, { passive: true });
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       if (location.pathname === '/about') {
-        window.removeEventListener('scroll', scrollHandler);
+        window.removeEventListener('scroll', handleScrollRAF);
+      }
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
       }
     };
-  }, [handleScroll, location.pathname]);
+  }, [handleScrollRAF, location.pathname]);
 
   const handleLanguageChange = (languageCode: string) => {
     changeLanguage(languageCode);
@@ -117,20 +153,21 @@ const Header = () => {
   };
 
   const isAboutPage = location.pathname === '/about';
-
+  const shouldUseHeroStyling = isAboutPage && isInHeroSection;
+  
   return (
     <>
-      {/* Desktop Header with sticky and auto-hide (About page only) */}
+      {/* Desktop Header with sticky and auto-hide (Hero section only on About page) */}
       <header
         ref={headerRef}
-        className={`main-header main-header-desktop ${isAboutPage ? 'about-page-header' : ''}`}
+        className={`main-header main-header-desktop ${shouldUseHeroStyling ? 'about-page-header' : ''}`}
         style={
-          isAboutPage
+          shouldUseHeroStyling
             ? { opacity: opacity, pointerEvents: opacity ? 'all' : 'none' }
             : {}
         }
         onMouseEnter={
-          isAboutPage
+          shouldUseHeroStyling
             ? () => {
                 setIsHovered(true);
                 setOpacity(1);
@@ -138,7 +175,7 @@ const Header = () => {
             : undefined
         }
         onMouseLeave={
-          isAboutPage
+          shouldUseHeroStyling
             ? () => {
                 setIsHovered(false);
               }
@@ -148,7 +185,7 @@ const Header = () => {
         <div className="container_css">
           <div className="logo">
             <Link to="/">
-              <img src={headerLogo} alt="Logo" />
+              <img src={shouldUseHeroStyling ? whiteLogo : headerLogo} alt="Logo" />
             </Link>
           </div>
 

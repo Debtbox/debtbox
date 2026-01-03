@@ -4,6 +4,7 @@ export { default as authLogo } from './logos/auth-logo.svg';
 export { default as dbBg } from './logos/db-bg.png';
 export { default as sidebarLogo } from './logos/sidebar-logo.svg';
 export { default as paymentLogo } from './logos/payment-logo.svg';
+export { default as whiteLogo } from './logos/logo-white.svg';
 
 //FLAGS
 export { default as enFlag } from './flags/en.svg';
@@ -45,6 +46,10 @@ export { default as mission } from './landing/mission.png';
 export { default as phone } from './landing/phone.png';
 export { default as sendLetter } from './landing/send.svg';
 export { default as aboutHero } from './landing/about-hero.png';
+export { default as descBg } from './landing/desc-bg.svg';
+export { default as aboutVector1 } from './landing/about-vector-1.svg';
+export { default as aboutVector2 } from './landing/about-vector-2.svg';
+export { default as aboutVector3 } from './landing/about-vector-3.svg';
 
 //AUTH
 export { default as authLayoutBg } from './auth/auth-layout-bg.png';

@@ -15,6 +15,7 @@ const MissionSection = () => {
           <p>{t('aboutPage.missionSection.description')}</p>
           <div className="vision-goals">
             <p>
+              🔸
               <strong>{t('aboutPage.missionSection.goalsTitle')}</strong>
             </p>
             <ul>
