@@ -45,6 +45,63 @@ const TermsContentSection = () => {
 
             <h3>{t('termsAndConditionsPage.content.section8.title')}</h3>
             <p>{t('termsAndConditionsPage.content.section8.description')}</p>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection1.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection1.description')}</p>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection2.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection2.description')}</p>
+            <ul>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection2.list1')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection2.list2')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection2.list3')}</p>
+              </li>
+            </ul>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection3.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection3.description')}</p>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection4.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection4.description')}</p>
+            <ul>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection4.list1')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection4.list2')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection4.list3')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection4.list4')}</p>
+              </li>
+            </ul>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection5.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection5.description')}</p>
+            <ul>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection5.list1')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection5.list2')}</p>
+              </li>
+              <li>
+                <p>{t('termsAndConditionsPage.content.section8.subsection5.list3')}</p>
+              </li>
+            </ul>
+
+            <h4>{t('termsAndConditionsPage.content.section8.subsection6.title')}</h4>
+            <p>{t('termsAndConditionsPage.content.section8.subsection6.description')}</p>
+
+            <h3>{t('termsAndConditionsPage.content.section9.title')}</h3>
+            <p>{t('termsAndConditionsPage.content.section9.description')}</p>
           </div>
         </div>
       </div>
