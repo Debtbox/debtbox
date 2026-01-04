@@ -351,9 +351,8 @@
   "termsAndConditionsPage.content.section8.subsection1.description": "ڈیٹ باکس پلیٹ فارم پر رجسٹرڈ تاجروں کو اپنے گاہکوں کے ساتھ لین دین کے لیے سند دستاویزات جاری کرنے کا خصوصی حق اور ذمہ داری حاصل ہے۔ سند تاجر اور گاہک کے درمیان مؤخر ادائیگی کے معاہدے کا ایک سرکاری ریکارڈ اور ثبوت کے طور پر کام کرتا ہے۔",
   "termsAndConditionsPage.content.section8.subsection2.title": "۸.۲ دستخط کی ضروریات",
   "termsAndConditionsPage.content.section8.subsection2.description": "ڈیٹ باکس پلیٹ فارم کے ذریعے جاری کردہ تمام سند دستاویزات میں دونوں فریقین کے درست دستخط لازمی طور پر شامل ہونے چاہئیں:",
-  "termsAndConditionsPage.content.section8.subsection2.list1": "تاجر کا دستخط: تاجر کو سند دستاویز پر اپنا مجاز دستخط فراہم کرنا ہوگا۔ یہ دستخط لین دین کی تفصیلات پر تاجر کے اعتراف اور سند میں بیان کردہ شرائط پر ان کی رضامندی کی تصدیق کرتا ہے۔",
   "termsAndConditionsPage.content.section8.subsection2.list2": "گاہک کا دستخط: گاہک کو سند دستاویز پر اپنا دستخط فراہم کرنا ہوگا، مؤخر ادائیگی کی شرائط، واجب الادا رقم، اور متفقہ تاریخ استحقاق پر اپنی رضامندی کا اعتراف کرتے ہوئے۔",
-  "termsAndConditionsPage.content.section8.subsection2.list3": "دونوں دستخط لازمی اور قانونی طور پر پابند ہیں۔ بغیر دونوں دستخطوں کے سند کو غیر موثر سمجھا جائے گا اور اسے درست دستاویز کے طور پر تسلیم نہیں کیا جائے گا۔",
+  "termsAndConditionsPage.content.section8.subsection2.list3": "دستخط لازمی اور قانونی طور پر پابند ہے۔ بغیر دستخط کے سند کو غیر موثر سمجھا جائے گا اور اسے درست دستاویز کے طور پر تسلیم نہیں کیا جائے گا۔",
   "termsAndConditionsPage.content.section8.subsection3.title": "۸.۳ سند کی درستگی اور قانونی حیثیت",
   "termsAndConditionsPage.content.section8.subsection3.description": "ڈیٹ باکس پلیٹ فارم کے ذریعے جاری کردہ سند دستاویزات، جب دونوں فریقین کی طرف سے مناسب طریقے سے دستخط کیے جائیں، سعودی عرب کے قانون کے تحت قانونی طور پر پابند معاہدے تشکیل دیتی ہیں۔ یہ دستاویزات قرض کی وصولی یا تنازعات کے حل سے متعلق قانونی کارروائیوں میں ثبوت کے طور پر استعمال کی جا سکتی ہیں۔",
   "termsAndConditionsPage.content.section8.subsection4.title": "۸.۴ تاجر کی ذمہ داریاں",
@@ -364,7 +363,6 @@
   "termsAndConditionsPage.content.section8.subsection4.list4": "دھوکہ دہی، گمراہ کن، یا غلط سند دستاویزات جاری نہ کریں۔",
   "termsAndConditionsPage.content.section8.subsection5.title": "۸.۵ گاہک کی ذمہ داریاں",
   "termsAndConditionsPage.content.section8.subsection5.description": "گاہک اس بات پر متفق ہیں:",
-  "termsAndConditionsPage.content.section8.subsection5.list1": "دستخط کرنے سے پہلے سند دستاویز پر تمام تفاصیل کا جائزہ لیں۔",
   "termsAndConditionsPage.content.section8.subsection5.list2": "لین دین کی تفصیلات کی درستگی کی تصدیق کے بعد ہی اپنا دستخط فراہم کریں، بشمول واجب الادا رقم اور تاریخ استحقاق۔",
   "termsAndConditionsPage.content.section8.subsection5.list3": "دستخط شدہ سند دستاویز میں متفقہ شرائط کا احترام کریں۔",
   "termsAndConditionsPage.content.section8.subsection6.title": "۸.۶ پلیٹ فارم کا کردار",
@@ -513,5 +511,8 @@
   "privacyPolicyPage.content.sanadData.disclosure.list4": "سند معاہدے کے دونوں فریقین کی واضح تحریری رضامندی کے ساتھ",
   "privacyPolicyPage.content.contact.title": "ہم سے رابطہ کریں",
   "privacyPolicyPage.content.contact.description": "اگر اس پرائیویسی پالیسی پر آپ کا کوئی سوال ہے تو:",
-  "privacyPolicyPage.content.contact.byVisiting": "ہماری ویب سائٹ پر یہ صفحہ وزٹ کریں: "
+  "privacyPolicyPage.content.contact.byVisiting": "ہماری ویب سائٹ پر یہ صفحہ وزٹ کریں: ",
+  "dashboard.sanadExportedSuccessfully": "سند کامیابی سے توثیق کرایا گیا",
+  "dashboard.sanadExportedFailed": "سند توثیق کرنے میں ناکام",
+  "dashboard.exportSanad": "سند توثیق کریں"
 }

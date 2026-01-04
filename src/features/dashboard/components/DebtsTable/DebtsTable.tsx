@@ -9,7 +9,6 @@ import { processDebtData } from '../../utils/debtUtils';
 import { type DebtTableData, type Debt } from '../../types/debt';
 import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
-// import { Eye } from 'lucide-react';
 import { SaudiRiyal } from 'lucide-react';
 import { toast } from 'sonner';
 import {

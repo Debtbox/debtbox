@@ -1,4 +1,4 @@
-import { arFlag, enFlag, urFlag, bnFlag, pkFlag } from '@/assets/images';
+import { arFlag, enFlag, urFlag, bnFlag } from '@/assets/images';
 import { changeLanguage } from '@/utils/changeLanguage';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,6 @@ const LanguageDropdown = () => {
     { code: 'ar', name: 'العربية', flag: arFlag },
     { code: 'ur', name: 'اوردو', flag: urFlag },
     { code: 'bn', name: 'بنغالي', flag: bnFlag },
-    { code: 'pk', name: 'باكستاني', flag: pkFlag },
   ];
 
   const currentLanguage =

@@ -351,9 +351,8 @@
   "termsAndConditionsPage.content.section8.subsection1.description": "ডেটবক্স প্ল্যাটফর্মে নিবন্ধিত বণিকদের তাদের গ্রাহকদের সাথে লেনদেনের জন্য সনদ নথি ইস্যু করার একচেটিয়া অধিকার এবং দায়িত্ব রয়েছে। সনদ বণিক এবং গ্রাহকের মধ্যে বিলম্বিত অর্থপ্রদানের চুক্তির একটি সরকারী রেকর্ড এবং প্রমাণ হিসাবে কাজ করে।",
   "termsAndConditionsPage.content.section8.subsection2.title": "৮.২ স্বাক্ষরের প্রয়োজনীয়তা",
   "termsAndConditionsPage.content.section8.subsection2.description": "ডেটবক্স প্ল্যাটফর্মের মাধ্যমে ইস্যু করা সমস্ত সনদ নথিতে অবশ্যই উভয় পক্ষের বৈধ স্বাক্ষর অন্তর্ভুক্ত থাকতে হবে:",
-  "termsAndConditionsPage.content.section8.subsection2.list1": "বণিকের স্বাক্ষর: বণিককে সনদ নথিতে তার অনুমোদিত স্বাক্ষর প্রদান করতে হবে। এই স্বাক্ষর লেনদেনের বিবরণে বণিকের স্বীকৃতি এবং সনদে উল্লিখিত শর্তাবলীতে তাদের সম্মতির নিশ্চয়তা দেয়।",
   "termsAndConditionsPage.content.section8.subsection2.list2": "গ্রাহকের স্বাক্ষর: গ্রাহককে সনদ নথিতে তার স্বাক্ষর প্রদান করতে হবে, বিলম্বিত অর্থপ্রদানের শর্তাবলী, পাওনা পরিমাণ এবং সম্মত পরিশোধের তারিখে তার সম্মতি স্বীকার করে।",
-  "termsAndConditionsPage.content.section8.subsection2.list3": "উভয় স্বাক্ষর বাধ্যতামূলক এবং আইনত বাধ্যবাধকতা। উভয় স্বাক্ষর ছাড়া সনদ অবৈধ বলে বিবেচিত হবে এবং বৈধ নথি হিসাবে স্বীকৃত হবে না।",
+  "termsAndConditionsPage.content.section8.subsection2.list3": "স্বাক্ষর বাধ্যতামূলক এবং আইনত বাধ্যবাধকতা। স্বাক্ষর ছাড়া সনদ অবৈধ বলে বিবেচিত হবে এবং বৈধ নথি হিসাবে স্বীকৃত হবে না।",
   "termsAndConditionsPage.content.section8.subsection3.title": "৮.৩ সনদের বৈধতা এবং আইনি অবস্থা",
   "termsAndConditionsPage.content.section8.subsection3.description": "ডেটবক্স প্ল্যাটফর্মের মাধ্যমে ইস্যু করা সনদ নথি, যখন উভয় পক্ষ দ্বারা যথাযথভাবে স্বাক্ষরিত হয়, সৌদি আরবের আইনের অধীনে আইনত বাধ্যবাধক চুক্তি গঠন করে। এই নথিগুলি ঋণ সংগ্রহ বা বিরোধ নিষ্পত্তি সম্পর্কিত আইনি কার্যক্রমে প্রমাণ হিসাবে ব্যবহার করা যেতে পারে।",
   "termsAndConditionsPage.content.section8.subsection4.title": "৮.৪ বণিকের বাধ্যবাধকতা",
@@ -364,7 +363,6 @@
   "termsAndConditionsPage.content.section8.subsection4.list4": "জালিয়াতি, বিভ্রান্তিকর বা ভুল সনদ নথি ইস্যু না করতে।",
   "termsAndConditionsPage.content.section8.subsection5.title": "৮.৫ গ্রাহকের বাধ্যবাধকতা",
   "termsAndConditionsPage.content.section8.subsection5.description": "গ্রাহকরা সম্মত হন:",
-  "termsAndConditionsPage.content.section8.subsection5.list1": "স্বাক্ষর করার আগে সনদ নথিতে সমস্ত বিবরণ পর্যালোচনা করতে।",
   "termsAndConditionsPage.content.section8.subsection5.list2": "লেনদেনের বিবরণের সঠিকতা যাচাই করার পরেই তাদের স্বাক্ষর প্রদান করতে, পাওনা পরিমাণ এবং পরিশোধের তারিখ সহ।",
   "termsAndConditionsPage.content.section8.subsection5.list3": "স্বাক্ষরিত সনদ নথিতে সম্মত শর্তাবলী মেনে চলতে।",
   "termsAndConditionsPage.content.section8.subsection6.title": "৮.৬ প্ল্যাটফর্মের ভূমিকা",
@@ -513,5 +511,8 @@
   "privacyPolicyPage.content.sanadData.disclosure.list4": "সনদ চুক্তির উভয় পক্ষের স্পষ্ট লিখিত সম্মতির সাথে",
   "privacyPolicyPage.content.contact.title": "যোগাযোগ করুন",
   "privacyPolicyPage.content.contact.description": "এই গোপনীয়তা নীতি নিয়ে আপনার কোনো প্রশ্ন থাকলে যোগাযোগ করুনঃ",
-  "privacyPolicyPage.content.contact.byVisiting": "এই পাতায় ভিজিট করে: "
+  "privacyPolicyPage.content.contact.byVisiting": "এই পাতায় ভিজিট করে: ",
+  "dashboard.sanadExportedSuccessfully": "সনদ সফলভাবে এক্সপোর্ট করা হয়েছে",
+  "dashboard.sanadExportedFailed": "সনদ এক্সপোর্ট করা সফল হয়নি",
+  "dashboard.exportSanad": "সনদ এক্সপোর্ট করুন"
 }

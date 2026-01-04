@@ -1,4 +1,4 @@
-const rtlLanguages = ['ar', 'ur', 'pk'];
+const rtlLanguages = ['ar', 'ur'];
 export const setDocDirection = (lang: string) => {
   if (rtlLanguages.includes(lang)) {
     document.documentElement.setAttribute('dir', 'rtl');

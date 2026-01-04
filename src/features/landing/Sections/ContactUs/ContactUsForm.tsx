@@ -82,7 +82,7 @@ const ContactUsForm = () => {
                   <div className="img">
                     <img className="group" src={contactSmallEmail} />
                   </div>
-                  <div className="text-wrapper">demo@gmail.com</div>
+                  <div className="text-wrapper">info@debtbox.sa</div>
                 </div>
                 <div className="div-5">
                   <img className="img" src={contactSmallLocation} />

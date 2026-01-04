@@ -6,7 +6,6 @@ import {
   enFlag,
   urFlag,
   bnFlag,
-  pkFlag,
   headerLogo,
   whiteLogo,
 } from '@/assets/images';
@@ -35,7 +34,6 @@ const Header = () => {
     { code: 'ar', name: 'العربية', flag: arFlag },
     { code: 'ur', name: 'اوردو', flag: urFlag },
     { code: 'bn', name: 'বাংলা', flag: bnFlag },
-    { code: 'pk', name: 'پاکستانی', flag: pkFlag },
   ];
 
   const currentLanguage =
@@ -46,17 +44,19 @@ const Header = () => {
     if (!headerRef.current || location.pathname !== '/about') return;
 
     const st = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     // Cache hero section reference
     if (!heroSectionRef.current) {
-      heroSectionRef.current = document.querySelector('.about-hero') as HTMLElement;
+      heroSectionRef.current = document.querySelector(
+        '.about-hero',
+      ) as HTMLElement;
     }
-    
+
     if (heroSectionRef.current) {
       const heroHeight = heroSectionRef.current.clientHeight;
       const isInHero = st < heroHeight - 50; // Add small buffer for smoother transition
       setIsInHeroSection(isInHero);
-      
+
       // Only apply auto-hide/show when in hero section
       if (isInHero) {
         if (st > lastScrollTopRef.current && st > 100) {
@@ -154,7 +154,7 @@ const Header = () => {
 
   const isAboutPage = location.pathname === '/about';
   const shouldUseHeroStyling = isAboutPage && isInHeroSection;
-  
+
   return (
     <>
       {/* Desktop Header with sticky and auto-hide (Hero section only on About page) */}
@@ -185,7 +185,10 @@ const Header = () => {
         <div className="container_css">
           <div className="logo">
             <Link to="/">
-              <img src={shouldUseHeroStyling ? whiteLogo : headerLogo} alt="Logo" />
+              <img
+                src={shouldUseHeroStyling ? whiteLogo : headerLogo}
+                alt="Logo"
+              />
             </Link>
           </div>
 

@@ -11,7 +11,6 @@ export { default as enFlag } from './flags/en.svg';
 export { default as arFlag } from './flags/ar.svg';
 export { default as urFlag } from './flags/ur.svg';
 export { default as bnFlag } from './flags/bn.svg';
-export { default as pkFlag } from './flags/pk.svg';
 
 //ICONS
 export { default as redIcon } from './icons/red-icon.svg';

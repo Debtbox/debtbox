@@ -3,7 +3,7 @@ import { type Debt, type DebtTableData, type DebtFilters } from '../types/debt';
 export const DEFAULT_TIMEZONE = 'Asia/Riyadh';
 export const SUPPORTED_LOCALES = {
   en: 'en-SA',
-  ar: 'ar-SA',
+  ar: 'ar-SA-u-ca-gregory', // Explicitly use Gregorian calendar (ميلادي) instead of Hijri (هجري)
 } as const;
 
 export type SupportedLocale = keyof typeof SUPPORTED_LOCALES;
@@ -23,7 +23,7 @@ export const formatCurrency = (
   return new Intl.NumberFormat(localeCode, {
     style: 'decimal',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(amount);
 };
 
@@ -74,6 +74,7 @@ const formatDateWithOptions = (
 
   const formatOptions: Intl.DateTimeFormatOptions = {
     timeZone: timezone,
+    calendar: 'gregory', // Force Gregorian calendar (ميلادي) instead of Hijri (هجري)
     year: 'numeric',
     month: format === 'short' ? 'short' : format === 'long' ? 'long' : 'short',
     day: 'numeric',

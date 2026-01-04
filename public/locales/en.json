@@ -351,9 +351,8 @@
   "termsAndConditionsPage.content.section8.subsection1.description": "Merchants registered on the Debtbox Platform have the exclusive right and responsibility to issue Sanad documents for transactions with their customers. The Sanad serves as an official record and proof of the deferred payment agreement between the merchant and the customer.",
   "termsAndConditionsPage.content.section8.subsection2.title": "8.2 Signature Requirements",
   "termsAndConditionsPage.content.section8.subsection2.description": "All Sanad documents issued through the Debtbox Platform MUST include valid signatures from both parties:",
-  "termsAndConditionsPage.content.section8.subsection2.list1": "Merchant Signature: The merchant must provide their authorized signature on the Sanad document. This signature confirms the merchant's acknowledgment of the transaction details and their agreement to the terms stated in the Sanad.",
   "termsAndConditionsPage.content.section8.subsection2.list2": "Customer Signature: The customer must provide their signature on the Sanad document, acknowledging their acceptance of the deferred payment terms, the amount owed, and the agreed-upon due date.",
-  "termsAndConditionsPage.content.section8.subsection2.list3": "Both signatures are mandatory and legally binding. A Sanad without both signatures is considered invalid and will not be recognized as a valid document.",
+  "termsAndConditionsPage.content.section8.subsection2.list3": "The signature is mandatory and legally binding. A Sanad without the signature is considered invalid and will not be recognized as a valid document.",
   "termsAndConditionsPage.content.section8.subsection3.title": "8.3 Sanad Validity and Legal Standing",
   "termsAndConditionsPage.content.section8.subsection3.description": "Sanad documents issued through the Debtbox Platform, when properly signed by both parties, constitute legally binding agreements under Saudi Arabian law. These documents may be used as evidence in legal proceedings related to debt collection or dispute resolution.",
   "termsAndConditionsPage.content.section8.subsection4.title": "8.4 Merchant Obligations",
@@ -364,7 +363,6 @@
   "termsAndConditionsPage.content.section8.subsection4.list4": "Not issue fraudulent, misleading, or inaccurate Sanad documents.",
   "termsAndConditionsPage.content.section8.subsection5.title": "8.5 Customer Obligations",
   "termsAndConditionsPage.content.section8.subsection5.description": "Customers agree to:",
-  "termsAndConditionsPage.content.section8.subsection5.list1": "Review all details on the Sanad document before signing.",
   "termsAndConditionsPage.content.section8.subsection5.list2": "Provide their signature only after verifying the accuracy of transaction details, including the amount owed and due date.",
   "termsAndConditionsPage.content.section8.subsection5.list3": "Honor the terms agreed upon in the signed Sanad document.",
   "termsAndConditionsPage.content.section8.subsection6.title": "8.6 Platform Role",
@@ -513,5 +511,8 @@
   "privacyPolicyPage.content.sanadData.disclosure.list4": "With explicit written consent from both parties to the Sanad agreement",
   "privacyPolicyPage.content.contact.title": "Contact Us",
   "privacyPolicyPage.content.contact.description": "If you have any questions about this Privacy Policy, You can contact us:",
-  "privacyPolicyPage.content.contact.byVisiting": "By visiting this page on our website: "
+  "privacyPolicyPage.content.contact.byVisiting": "By visiting this page on our website: ",
+  "dashboard.sanadExportedSuccessfully": "Sanad exported successfully",
+  "dashboard.sanadExportedFailed": "Failed to export Sanad",
+  "dashboard.exportSanad": "Export Sanad"
 }

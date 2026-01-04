@@ -351,9 +351,8 @@
   "termsAndConditionsPage.content.section8.subsection1.description": "التجار المسجلون على منصة ديبت بوكس لديهم الحق الحصري والمسؤولية لإصدار مستندات السند للمعاملات مع عملائهم. يعمل السند كسجل رسمي وإثبات على اتفاقية الدفع المؤجل بين التاجر والعميل.",
   "termsAndConditionsPage.content.section8.subsection2.title": "٨.٢ متطلبات التوقيع",
   "termsAndConditionsPage.content.section8.subsection2.description": "يجب أن تتضمن جميع مستندات السند الصادرة عبر منصة ديبت بوكس توقيعات صالحة من كلا الطرفين:",
-  "termsAndConditionsPage.content.section8.subsection2.list1": "توقيع التاجر: يجب على التاجر تقديم توقيعه المعتمد على مستند السند. يؤكد هذا التوقيع اعتراف التاجر بتفاصيل المعاملة وموافقته على الشروط المذكورة في السند.",
   "termsAndConditionsPage.content.section8.subsection2.list2": "توقيع العميل: يجب على العميل تقديم توقيعه على مستند السند، معترفًا بقبوله لشروط الدفع المؤجل والمبلغ المستحق وتاريخ الاستحقاق المتفق عليه.",
-  "termsAndConditionsPage.content.section8.subsection2.list3": "كلا التوقيعين إلزاميان وملزمان قانونيًا. السند بدون كلا التوقيعين يعتبر غير صالح ولن يتم الاعتراف به كمستند صالح.",
+  "termsAndConditionsPage.content.section8.subsection2.list3": "التوقيع الزامي وملزم قانونيا ، السند بدون التوقيع يعتبر غير صالح ولن يتم الاعتراف به كمستند صالح",
   "termsAndConditionsPage.content.section8.subsection3.title": "٨.٣ صحة السند والمركز القانوني",
   "termsAndConditionsPage.content.section8.subsection3.description": "مستندات السند الصادرة عبر منصة ديبت بوكس، عند توقيعها بشكل صحيح من كلا الطرفين، تشكل اتفاقيات ملزمة قانونيًا بموجب القانون السعودي. يمكن استخدام هذه المستندات كدليل في الإجراءات القانونية المتعلقة بتحصيل الديون أو حل النزاعات.",
   "termsAndConditionsPage.content.section8.subsection4.title": "٨.٤ التزامات التاجر",
@@ -364,7 +363,6 @@
   "termsAndConditionsPage.content.section8.subsection4.list4": "عدم إصدار مستندات سند احتيالية أو مضللة أو غير دقيقة.",
   "termsAndConditionsPage.content.section8.subsection5.title": "٨.٥ التزامات العميل",
   "termsAndConditionsPage.content.section8.subsection5.description": "يوافق العملاء على:",
-  "termsAndConditionsPage.content.section8.subsection5.list1": "مراجعة جميع التفاصيل على مستند السند قبل التوقيع.",
   "termsAndConditionsPage.content.section8.subsection5.list2": "تقديم توقيعهم فقط بعد التحقق من دقة تفاصيل المعاملة، بما في ذلك المبلغ المستحق وتاريخ الاستحقاق.",
   "termsAndConditionsPage.content.section8.subsection5.list3": "الوفاء بالشروط المتفق عليها في مستند السند الموقع.",
   "termsAndConditionsPage.content.section8.subsection6.title": "٨.٦ دور المنصة",
@@ -513,5 +511,8 @@
   "privacyPolicyPage.content.sanadData.disclosure.list4": "بموافقة كتابية صريحة من كلا طرفي اتفاقية السند",
   "privacyPolicyPage.content.contact.title": "اتصل بنا",
   "privacyPolicyPage.content.contact.description": "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك الاتصال بنا:",
-  "privacyPolicyPage.content.contact.byVisiting": "عن طريق زيارة هذه الصفحة على موقعنا: "
+  "privacyPolicyPage.content.contact.byVisiting": "عن طريق زيارة هذه الصفحة على موقعنا: ",
+  "dashboard.sanadExportedSuccessfully": "تم تصدير السند بنجاح",
+  "dashboard.sanadExportedFailed": "فشل تصدير السند",
+  "dashboard.exportSanad": "تصدير السند"
 }
