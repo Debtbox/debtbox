@@ -50,6 +50,7 @@ export type GetMerchantDebtsResponse = {
       isPending: boolean;
       isOverdue: boolean;
       title: string;
+      reason: string;
     }[];
     count: number;
   };

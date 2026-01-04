@@ -12,10 +12,14 @@ import { toast } from 'sonner';
 import type { BusinessDto } from '@/types/UserDto';
 import type { DropdownOption } from '@/components/shared/DropdownFilter';
 import { CITIES, CATEGORIES } from '../../data';
+import DeleteIcon from '@/components/icons/DeleteIcon';
 
 interface StoreSelectionProps {
   showExistingStores?: boolean;
-  onShowAddFormChange?: (showAddForm: boolean, isFirstBusiness: boolean) => void;
+  onShowAddFormChange?: (
+    showAddForm: boolean,
+    isFirstBusiness: boolean,
+  ) => void;
 }
 
 const StoreSelection = ({
@@ -36,9 +40,7 @@ const StoreSelection = ({
   const hasAnyStores = hasExistingStores || selectedStores.length > 0;
   const [showAddForm, setShowAddForm] = useState(!hasAnyStores);
 
-  const [formStep, setFormStep] = useState<1 | 2>(
-    formData.storeFormStep || 1,
-  );
+  const [formStep, setFormStep] = useState<1 | 2>(formData.storeFormStep || 1);
   const [newBusiness, setNewBusiness] = useState({
     business_name_en: formData.newBusiness?.business_name_en || '',
     business_name_ar: formData.newBusiness?.business_name_ar || '',
@@ -46,8 +48,10 @@ const StoreSelection = ({
     city: formData.newBusiness?.city || '',
     activity: formData.newBusiness?.activity || '',
     payoutMethod:
-      (formData.newBusiness?.payoutMethod as 'weekly' | 'monthly' | 'instant') ||
-      'weekly',
+      (formData.newBusiness?.payoutMethod as
+        | 'weekly'
+        | 'monthly'
+        | 'instant') || 'weekly',
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -96,7 +100,12 @@ const StoreSelection = ({
       const isFirstBusiness = !hasExistingStores && selectedStores.length === 0;
       onShowAddFormChange(showAddForm, isFirstBusiness);
     }
-  }, [showAddForm, onShowAddFormChange, hasExistingStores, selectedStores.length]);
+  }, [
+    showAddForm,
+    onShowAddFormChange,
+    hasExistingStores,
+    selectedStores.length,
+  ]);
 
   useEffect(() => {
     if (!showAddForm) {
@@ -288,22 +297,10 @@ const StoreSelection = ({
                           e.stopPropagation();
                           handleRemoveManualStore(business.cr_number);
                         }}
-                        className="text-red-500 hover:text-red-700 p-1"
                         aria-label="Remove business"
+                        className="cursor-pointer"
                       >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
+                        <DeleteIcon />
                       </button>
                     )}
                     {!isManualStore && (

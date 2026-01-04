@@ -305,11 +305,18 @@ const DebtDetails = ({
                     includeTime: true,
                     locale: i18n.language as SupportedLocale,
                   });
-                  const message = t(
-                    'dashboard.dateExtendedBy',
-                    'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
-                    { amount, unit, date: oldDate },
-                  );
+                  const hasReason = debtData.reason && debtData.reason.trim();
+                  const message = hasReason
+                    ? t(
+                        'dashboard.dateExtendedByWithReason',
+                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
+                        { amount, unit, date: oldDate, reason: debtData.reason },
+                      )
+                    : t(
+                        'dashboard.dateExtendedBy',
+                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
+                        { amount, unit, date: oldDate },
+                      );
                   return (
                     <div className="mt-2 inline-block bg-primary/5 text-primary/70 border border-primary/50 rounded px-2 py-1 text-xs">
                       {message}
@@ -537,7 +544,8 @@ const DebtDetails = ({
                       isExtendingDebtDueDateMutate
                     }
                   />
-                ) : (
+                ) : null}
+                {debtData.isOverdue ? (
                   <Button
                     type="button"
                     text={t('dashboard.exportSanad', 'Export Sanad')}
@@ -551,7 +559,7 @@ const DebtDetails = ({
                     }
                     isLoading={isExportingSanadMutate}
                   />
-                )}
+                ) : null}
               </div>
             )}
           </div>

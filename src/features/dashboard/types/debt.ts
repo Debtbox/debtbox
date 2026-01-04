@@ -13,6 +13,7 @@ export interface Debt {
   isPending: boolean;
   isOverdue: boolean;
   title: string;
+  reason: string;
 }
 
 export interface DebtResponse {
@@ -24,6 +25,7 @@ export interface DebtResponse {
   status: string;
   isPending: boolean;
   title: string;
+  reason: string;
 }
 
 export interface DebtTableData extends Debt {

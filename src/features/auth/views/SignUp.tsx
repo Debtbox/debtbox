@@ -8,6 +8,7 @@ import SignUpForm from '../components/SignUp/SignUpForm';
 import FirstPasswordForm from '../components/SignUp/FirstPasswordForm';
 import StoreSelection from '../components/SignUp/StoreSelection';
 import IBANForm from '../components/SignUp/IBANForm';
+import TermsAgreementForm from '../components/SignUp/TermsAgreementForm';
 import AccountAdded from '../components/SignUp/AccountAdded';
 import { useTranslation } from 'react-i18next';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
@@ -28,7 +29,7 @@ export const SignUp = () => {
         </Link>
         <LanguageDropdown />
       </div>
-      {activeStep !== 4 && (
+      {activeStep !== 5 && (
         <Button
           text={t('common.buttons.back')}
           onClick={() => {
@@ -59,7 +60,8 @@ export const SignUp = () => {
         />
       )}
       {activeStep === 3 && <IBANForm />}
-      {activeStep === 4 && <AccountAdded />}
+      {activeStep === 4 && <TermsAgreementForm />}
+      {activeStep === 5 && <AccountAdded />}
     </div>
   );
 };

@@ -310,11 +310,18 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
                     ? t('dashboard.weeks', 'weeks')
                     : t('dashboard.days', 'days');
                 const oldDate = record.formattedOriginalDueDate;
-                const extensionMessage = t(
-                  'dashboard.dateExtendedBy',
-                  'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
-                  { amount, unit, date: oldDate },
-                );
+                const hasReason = record.reason && record.reason.trim();
+                const extensionMessage = hasReason
+                  ? t(
+                      'dashboard.dateExtendedByWithReason',
+                      'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
+                      { amount, unit, date: oldDate, reason: record.reason },
+                    )
+                  : t(
+                      'dashboard.dateExtendedBy',
+                      'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
+                      { amount, unit, date: oldDate },
+                    );
                 messages.push({
                   content: extensionMessage,
                   className:
