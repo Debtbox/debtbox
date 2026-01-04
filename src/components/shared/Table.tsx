@@ -57,7 +57,7 @@ const Table = <T extends object>({
   actions,
   showActions = false,
 }: TableProps<T>) => {
-  const [, setHoveredRow] = useState<number | null>(null);
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const { t } = useTranslation();
   const getRowKey = (record: T, index: number): string => {
     if (typeof rowKey === 'function') {
@@ -195,12 +195,17 @@ const Table = <T extends object>({
                 const extraContent = rowExtra ? rowExtra(record, index) : null;
                 const showExtra = extraContent !== null && extraContent !== undefined;
 
+                const isHovered = hoveredRow === index;
+
                 return (
                   <Fragment key={key}>
                     <tr
                       className={clsx(
-                        'hover:bg-gray-50 transition-colors duration-150',
+                        'transition-colors duration-150',
                         onRowClick && 'cursor-pointer',
+                        showExtra && 'border-b-0!',
+                        isHovered && 'bg-gray-50',
+                        !isHovered && 'hover:bg-gray-50',
                         rowClassName && rowClassName(record, index),
                       )}
                       onClick={() => onRowClick?.(record, index)}
@@ -233,7 +238,14 @@ const Table = <T extends object>({
                       )}
                     </tr>
                     {showExtra && (
-                      <tr>
+                      <tr
+                        className={clsx(
+                          'border-t-0! transition-colors duration-150',
+                          isHovered && 'bg-gray-50',
+                        )}
+                        onMouseEnter={() => setHoveredRow(index)}
+                        onMouseLeave={() => setHoveredRow(null)}
+                      >
                         <td
                           className="px-6 py-3 text-sm"
                           colSpan={columns.length + (showActions ? 1 : 0)}

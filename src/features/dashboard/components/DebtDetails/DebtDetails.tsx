@@ -18,7 +18,6 @@ import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
 import { SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
-import PdfViewer from '@/components/shared/PdfViewer';
 const DebtDetails = ({
   debtData,
   setIsSideoverOpen,
@@ -34,8 +33,6 @@ const DebtDetails = ({
   const [showExtendConfirmation, setShowExtendConfirmation] = useState(false);
   const [newDueDate, setNewDueDate] = useState('');
   const [reason, setReason] = useState('');
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const [showPdfViewer, setShowPdfViewer] = useState(false);
 
   const { mutate: cancelDebt, isPending: isCancellingDebt } = useCancelDebt({
     onSuccess: () => {
@@ -102,13 +99,19 @@ const DebtDetails = ({
   const { mutate: exportSanadMutate, isPending: isExportingSanadMutate } =
     useExportSanad({
       onSuccess: (data) => {
-        // For testing: use static PDF URL if response is empty
-        const url =
-          data?.data?.pdfUrl ||
-          'https://debtbox.oss-me-central-1.aliyuncs.com/debtbox/sanads/91/142/SND-2026-00100015.pdf?Expires=1767548892&OSSAccessKeyId=STS.9jMrZc5CZoJr3anXj62ae8v8iitxF6bdPKMd3hQY5F5aDSd87rdJBf&Signature=ia6q8hpTXX3ntZiKFPxW3jpq%2FF4%3D&security-token=CAISogN1q6Ft5DqyfSjI2Kn4OeDX2Jx72IiZMUffvGpjPu5J17OTi3eQaw5KLiUIepVKtaRW9W0m669u780jFIVJZ2bKJ7ErtswJqVz%2BPdaY65Dpsede1sXnMTjNUBKmjJ6MaryjR4%2FTJ%2F2nYVvJySIrmLD3JTuuBQepPcTR2cU2N4tKAlW1MWsZXoZYfwFp%2BMIWOXGLP%2FygbxWyecwVtZoz6GRGkmpaxfmV4K%2F1s2jz7jDTzusSuP6CQPyNZNVtO5FSSsq82PcMGIPKzC9X7Wohls409tsmnw3KpdaAGVJczgybOu7PiL1VIRR%2Be7IxFtwvzpG%2Bt4Ul4LOMytmolUwQbb0KCnSBfu36npuUSNHOH80iaLP2N07K1t2yLZTvu2smGylDbF0SJIV%2FdiYgVUBwEWuEcrXC%2F0jHeA6%2FTLLAyqYy3IqPXPocB09NRrLmfcJ6sU5wUvdUByujp8mCZ%2F2U3IXyvqGe%2FpLKSmR7d4cHSDp0h00W0wP8GOPuwF%2BZwTNQiZ2YgJSJxChZz4PrQNvcBnAo10luezDdL9QK4qm1gW9PKd4%2BGoABRJHGqCGKjdpFm%2Bk14dSOnv793iKebyt73LT8Q0AvUVrSE94oLfkG6rvlsHGaKwHIYU5xDYn2exF5gtXpuYZvMXGaM3Paea3BnX0d0tHGdO6l7o4iLENNmAAEIejHoaql8x%2BhRm40mlid1PDjLFqISwHcPlaTD0Ywm0BxcJ2BGHAgAA%3D%3D&securityToken=CAISogN1q6Ft5DqyfSjI2Kn4OeDX2Jx72IiZMUffvGpjPu5J17OTi3eQaw5KLiUIepVKtaRW9W0m669u780jFIVJZ2bKJ7ErtswJqVz+PdaY65Dpsede1sXnMTjNUBKmjJ6MaryjR4/TJ/2nYVvJySIrmLD3JTuuBQepPcTR2cU2N4tKAlW1MWsZXoZYfwFp+MIWOXGLP/ygbxWyecwVtZoz6GRGkmpaxfmV4K/1s2jz7jDTzusSuP6CQPyNZNVtO5FSSsq82PcMGIPKzC9X7Wohls409tsmnw3KpdaAGVJczgybOu7PiL1VIRR+e7IxFtwvzpG+t4Ul4LOMytmolUwQbb0KCnSBfu36npuUSNHOH80iaLP2N07K1t2yLZTvu2smGylDbF0SJIV/diYgVUBwEWuEcrXC/0jHeA6/TLLAyqYy3IqPXPocB09NRrLmfcJ6sU5wUvdUByujp8mCZ/2U3IXyvqGe/pLKSmR7d4cHSDp0h00W0wP8GOPuwF+ZwTNQiZ2YgJSJxChZz4PrQNvcBnAo10luezDdL9QK4qm1gW9PKd4+GoABRJHGqCGKjdpFm+k14dSOnv793iKebyt73LT8Q0AvUVrSE94oLfkG6rvlsHGaKwHIYU5xDYn2exF5gtXpuYZvMXGaM3Paea3BnX0d0tHGdO6l7o4iLENNmAAEIejHoaql8x+hRm40mlid1PDjLFqISwHcPlaTD0Ywm0BxcJ2BGHAgAA==';
-        setPdfUrl(url);
-        setShowPdfViewer(true);
-        toast.success(t('dashboard.sanadExportedSuccessfully'));
+        const url = data?.data?.pdfUrl;
+        if (url) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `sanad-${debtData.debtId}.pdf`;
+          link.target = '_blank';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          toast.success(t('dashboard.sanadExportedSuccessfully'));
+        } else {
+          toast.error(t('dashboard.sanadExportedFailed'));
+        }
       },
       onError: (error) => {
         toast.error(
@@ -310,7 +313,12 @@ const DebtDetails = ({
                     ? t(
                         'dashboard.dateExtendedByWithReason',
                         'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
-                        { amount, unit, date: oldDate, reason: debtData.reason },
+                        {
+                          amount,
+                          unit,
+                          date: oldDate,
+                          reason: debtData.reason,
+                        },
                       )
                     : t(
                         'dashboard.dateExtendedBy',
@@ -565,19 +573,6 @@ const DebtDetails = ({
           </div>
         )}
       </div>
-
-      {/* PDF Viewer Modal */}
-      {pdfUrl && (
-        <PdfViewer
-          isOpen={showPdfViewer}
-          onClose={() => {
-            setShowPdfViewer(false);
-            setPdfUrl(null);
-          }}
-          pdfUrl={pdfUrl}
-          title={t('dashboard.sanad', 'Sanad')}
-        />
-      )}
     </div>
   );
 };

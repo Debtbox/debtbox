@@ -297,6 +297,8 @@
   "auth.signUp.errors.activityRequired": "نوع المتجر مطلوب",
   "auth.signUp.errors.duplicateCrNumber": "يوجد متجر بنفس رقم السجل التجاري",
   "auth.forgotPassword.title": "نسيت كلمة المرور",
+  "auth.notifications.markAllSelectedAsRead": "تحديد كمقروء",
+  "auth.notifications.deleteAllSelected": "حذف كل المحدد",
   "notifications.noNotifications": "لا يوجد إشعارات",
   "notifications.deleteAllConfirmTitle": "حذف جميع الإشعارات",
   "notifications.deleteAllConfirmDescription": "هل أنت متأكد أنك تريد حذف جميع الإشعارات المحددة؟ هذا الإجراء لا يمكن التراجع عنه.",

@@ -20,27 +20,27 @@ export const DueDateStatusBadge = ({
   const statusConfig = {
     normal: {
       label: t('common.buttons.normal'),
-      color: 'bg-green-100 text-green-800',
-      dotColor: 'bg-green-500',
-      dotShadowColor: 'bg-green-500/20',
+      color: 'bg-[#0E1F8014] text-[#0E1F80]',
+      dotColor: 'bg-[#0E1F80]',
+      dotShadowColor: 'bg-[#0E1F8047]',
     },
     soon: {
       label: t('common.buttons.soon'),
-      color: 'bg-yellow-100 text-yellow-800',
-      dotColor: 'bg-yellow-500',
-      dotShadowColor: 'bg-yellow-500/20',
+      color: 'bg-[#FEF2DC] text-[#F8AC1F]',
+      dotColor: 'bg-[#F8AC1F]',
+      dotShadowColor: 'bg-[#F8AC1F47]',
     },
     'in 7 days': {
       label: t('common.buttons.in7days'),
-      color: 'bg-orange-100 text-orange-800',
-      dotColor: 'bg-orange-500',
-      dotShadowColor: 'bg-orange-500/20',
+      color: 'bg-[#F0F0F0] text-[#4F5154]',
+      dotColor: 'bg-[#4F5154]',
+      dotShadowColor: 'bg-[#4F515447]',
     },
     overdue: {
       label: t('common.buttons.overdue'),
-      color: 'bg-red-100 text-red-800',
-      dotColor: 'bg-red-500',
-      dotShadowColor: 'bg-red-500/20',
+      color: 'bg-[#FF475714] text-[#FF4757]',
+      dotColor: 'bg-[#FF4757]',
+      dotShadowColor: 'bg-[#FF475763]',
     },
   };
 

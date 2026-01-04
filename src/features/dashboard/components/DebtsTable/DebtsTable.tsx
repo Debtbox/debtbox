@@ -108,6 +108,11 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     getMerchantDebts,
   ]);
 
+  // Reset pagination when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedStatuses]);
+
   useEffect(() => {
     refetchDebts();
   }, [refetchDebts, isSideoverOpen]);

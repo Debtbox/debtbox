@@ -25,8 +25,8 @@ const BulkActions = ({
             <CheckIcon className="w-4 h-4" />
           )}
           {t(
-            'notifications.markAllSelectedAsRead',
-            'Mark all selected as read',
+            'auth.notifications.markAllSelectedAsRead',
+            'Mark as read',
           )}
         </button>
         <button
@@ -36,8 +36,8 @@ const BulkActions = ({
         >
           <TrashIcon className="w-4 h-4" />
           {t(
-            'notifications.deleteAllSelected',
-            'Delete all selected notifications',
+            'notifications.delete',
+            'Delete',
           )}
         </button>
       </div>
