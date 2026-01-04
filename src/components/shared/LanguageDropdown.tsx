@@ -45,16 +45,15 @@ const LanguageDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="py-3 px-4 flex justify-center items-center gap-2 bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+        className="h-10 px-3 flex items-center gap-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors duration-200"
       >
-        <span className="text-sm text-gray-700 uppercase">
+        <img
+          src={currentLanguage.flag}
+          alt={`${currentLanguage.code}-flag`}
+          className="w-5 h-5"
+        />
+        <span className="text-sm text-gray-700 font-medium">
           {currentLanguage.name}
-        </span>
-        <span>
-          <img
-            src={currentLanguage.flag}
-            alt={`${currentLanguage.code}-flag`}
-          />
         </span>
         <svg
           className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
@@ -72,7 +71,7 @@ const LanguageDropdown = () => {
       </button>
 
       {isDropdownOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
+        <div className="absolute top-full end-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
           {languages.map((language) => (
             <button
               key={language.code}

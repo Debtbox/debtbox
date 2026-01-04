@@ -3,6 +3,7 @@ import BurgerIcon from '../icons/BurgerIcon';
 import { useUserStore } from '@/stores/UserStore';
 import UserDropdown from './UserDropdown';
 import BusinessDropdown from '../shared/BusinessDropdown';
+import LanguageDropdown from '../shared/LanguageDropdown';
 import {
   NotificationDropdown,
   useGetUnreadNotificationsCountData,
@@ -43,6 +44,7 @@ const Navbar = ({ onMenuToggle }: NavbarProps) => {
       </div>
 
       <div className="flex items-center space-x-2 md:space-x-4">
+        <LanguageDropdown />
         <BusinessDropdown />
         <NotificationDropdown
           unreadNotificationsCount={unreadNotificationsCount?.data.count || 0}
