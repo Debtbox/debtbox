@@ -20,6 +20,8 @@ const NotificationDropdown = ({
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [isSelectionMode, setIsSelectionMode] = useState(false);
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
+  const [processingMarkAsReadIds, setProcessingMarkAsReadIds] = useState<Set<string>>(new Set());
+  const [processingDeleteIds, setProcessingDeleteIds] = useState<Set<string>>(new Set());
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -33,12 +35,14 @@ const NotificationDropdown = ({
     isPending: isMarkingNotificationsAsRead,
   } = useMarkNotificationsAsRead({
     onSuccess: async () => {
+      setProcessingMarkAsReadIds(new Set());
       await refetchNotifications();
       await queryClient.invalidateQueries({
         queryKey: ['unread-notifications-count'],
       });
     },
     onError: (err: ApiError) => {
+      setProcessingMarkAsReadIds(new Set());
       toast.error(err.response.data.message);
     },
   });
@@ -46,6 +50,7 @@ const NotificationDropdown = ({
   const { mutate: deleteNotifications, isPending: isDeletingNotifications } =
     useDeleteNotifications({
       onSuccess: async () => {
+        setProcessingDeleteIds(new Set());
         await refetchNotifications();
         await queryClient.invalidateQueries({
           queryKey: ['unread-notifications-count'],
@@ -55,6 +60,7 @@ const NotificationDropdown = ({
         setIsSelectionMode(false);
       },
       onError: (err: ApiError) => {
+        setProcessingDeleteIds(new Set());
         toast.error(err.response.data.message);
         setShowDeleteConfirmation(false);
       },
@@ -162,16 +168,18 @@ const NotificationDropdown = ({
                     notification={notification}
                     isSelectionMode={isSelectionMode}
                     isSelected={selectedItems.has(notification.id)}
-                    isMarkingNotificationsAsRead={isMarkingNotificationsAsRead}
-                    isDeletingNotifications={isDeletingNotifications}
+                    isMarkingAsRead={processingMarkAsReadIds.has(notification.id)}
+                    isDeleting={processingDeleteIds.has(notification.id)}
                     onToggleSelection={toggleSelection}
                     onMarkAsRead={(id) => {
+                      setProcessingMarkAsReadIds(new Set([id]));
                       markNotificationsAsRead({
                         ids: [`${id}`],
                         isMarkAll: false,
                       });
                     }}
                     onDelete={(id) => {
+                      setProcessingDeleteIds(new Set([id]));
                       deleteNotifications({
                         ids: [`${id}`],
                         isDeleteAll: false,
@@ -188,6 +196,7 @@ const NotificationDropdown = ({
                   isMarkingNotificationsAsRead={isMarkingNotificationsAsRead}
                   isDeletingNotifications={isDeletingNotifications}
                   onMarkSelectedAsRead={(ids) => {
+                    setProcessingMarkAsReadIds(new Set(ids));
                     markNotificationsAsRead({
                       ids: ids.map((id) => `${id}`),
                       isMarkAll: false,
@@ -205,8 +214,10 @@ const NotificationDropdown = ({
         isOpen={showDeleteConfirmation}
         onClose={() => setShowDeleteConfirmation(false)}
         onConfirm={() => {
+          const idsToDelete = Array.from(selectedItems);
+          setProcessingDeleteIds(new Set(idsToDelete));
           deleteNotifications({
-            ids: Array.from(selectedItems).map((id) => `${id}`),
+            ids: idsToDelete.map((id) => `${id}`),
             isDeleteAll: false,
           });
         }}

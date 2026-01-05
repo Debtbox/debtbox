@@ -11,8 +11,8 @@ const NotificationItem = ({
   notification,
   isSelectionMode,
   isSelected,
-  isMarkingNotificationsAsRead,
-  isDeletingNotifications,
+  isMarkingAsRead,
+  isDeleting,
   onToggleSelection,
   onMarkAsRead,
   onDelete,
@@ -45,7 +45,7 @@ const NotificationItem = ({
 
       <div>
         <div className="w-12 h-12 rounded-full bg-[#F6F6F6] flex items-center justify-center">
-          {isMarkingNotificationsAsRead || isDeletingNotifications ? (
+          {isMarkingAsRead || isDeleting ? (
             <Loader2Icon className="w-4 h-4 animate-spin" />
           ) : (
             <DBIcon />

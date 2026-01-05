@@ -11,8 +11,8 @@ export interface NotificationItemProps {
   notification: NotificationItem;
   isSelectionMode: boolean;
   isSelected: boolean;
-  isMarkingNotificationsAsRead: boolean;
-  isDeletingNotifications: boolean;
+  isMarkingAsRead: boolean;
+  isDeleting: boolean;
   onToggleSelection: (id: string) => void;
   onMarkAsRead: (id: string) => void;
   onDelete: (id: string) => void;
