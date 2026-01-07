@@ -99,13 +99,17 @@ const DebtDetails = ({
 
   const { mutate: exportSanadMutate, isPending: isExportingSanadMutate } =
     useExportSanad({
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         const url = data?.data?.pdfUrl;
         if (url) {
-          downloadFile(url);
-          toast.success(
-            data.message || t('dashboard.sanadExportedSuccessfully'),
-          );
+          try {
+            await downloadFile(url, `sanad-${debtData.debtId}.pdf`);
+            toast.success(
+              data.message || t('dashboard.sanadExportedSuccessfully'),
+            );
+          } catch {
+            console.error(t('dashboard.sanadExportedFailed'));
+          }
         } else {
           toast.error(data.message || t('dashboard.sanadExportedFailed'));
         }
