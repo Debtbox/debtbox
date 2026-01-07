@@ -18,6 +18,7 @@ import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
 import { SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
+import { downloadFile } from '@/utils/downloadFile';
 const DebtDetails = ({
   debtData,
   setIsSideoverOpen,
@@ -100,38 +101,18 @@ const DebtDetails = ({
     useExportSanad({
       onSuccess: (data) => {
         const url = data?.data?.pdfUrl;
-        if (!url) {
-          toast.error(t('dashboard.sanadExportedFailed'));
-          return;
+        if (url) {
+          downloadFile(url);
+          toast.success(
+            data.message || t('dashboard.sanadExportedSuccessfully'),
+          );
+        } else {
+          toast.error(data.message || t('dashboard.sanadExportedFailed'));
         }
-        try {
-          new URL(url);
-        } catch {
-          toast.error(t('dashboard.sanadExportedFailed'));
-          return;
-        }
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-        if (
-          !newWindow ||
-          newWindow.closed ||
-          typeof newWindow.closed === 'undefined'
-        ) {
-          const link = document.createElement('a');
-          link.href = url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.style.display = 'none';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-
-        toast.success(t('dashboard.sanadExportedSuccessfully'));
       },
       onError: (error) => {
         toast.error(
-          error.response?.data?.message || t('dashboard.sanadExportedFailed'),
+          error.response.data.message || t('dashboard.sanadExportedFailed'),
         );
       },
     });
