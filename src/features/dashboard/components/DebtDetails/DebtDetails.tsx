@@ -16,8 +16,9 @@ import DebtConsentWaiting from '../shared/DebtConsentWaiting';
 import { useMarkDebtAsOverDue } from '../../api/markDebtAsOverDue';
 import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
-import { SaudiRiyal } from 'lucide-react';
+import { FileIcon, SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
+import ConfirmationPopup from '@/components/shared/ConfirmationPopup';
 import { downloadFile } from '@/utils/downloadFile';
 const DebtDetails = ({
   debtData,
@@ -32,6 +33,8 @@ const DebtDetails = ({
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const [showOverdueConfirmation, setShowOverdueConfirmation] = useState(false);
   const [showExtendConfirmation, setShowExtendConfirmation] = useState(false);
+  const [downloadLink, setDownloadLink] = useState<string | null>(null);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
   const [newDueDate, setNewDueDate] = useState('');
   const [reason, setReason] = useState('');
 
@@ -99,20 +102,10 @@ const DebtDetails = ({
 
   const { mutate: exportSanadMutate, isPending: isExportingSanadMutate } =
     useExportSanad({
-      onSuccess: async (data) => {
+      onSuccess: (data) => {
         const url = data?.data?.pdfUrl;
-        if (url) {
-          try {
-            await downloadFile(url, `sanad-${debtData.debtId}.pdf`);
-            toast.success(
-              data.message || t('dashboard.sanadExportedSuccessfully'),
-            );
-          } catch {
-            console.error(t('dashboard.sanadExportedFailed'));
-          }
-        } else {
-          toast.error(data.message || t('dashboard.sanadExportedFailed'));
-        }
+        setDownloadLink(url);
+        setOpenConfirmation(true);
       },
       onError: (error) => {
         toast.error(
@@ -574,6 +567,27 @@ const DebtDetails = ({
           </div>
         )}
       </div>
+      {openConfirmation && (
+        <ConfirmationPopup
+          isOpen={openConfirmation}
+          onClose={() => setOpenConfirmation(false)}
+          onConfirm={() => {
+            if (downloadLink) {
+              downloadFile(downloadLink);
+            }
+            setOpenConfirmation(false);
+          }}
+          title={t('dashboard.exportSanad', 'Export Sanad')}
+          description={t(
+            'dashboard.exportSanadDescription',
+            'Are you sure you want to export the sanad?',
+          )}
+          confirmText={t('common.buttons.export', 'Export')}
+          confirmButtonClassName="bg-primary text-white hover:bg-primary/90"
+          icon={<FileIcon className="w-5 h-5 text-primary" />}
+          cancelText={t('common.buttons.cancel', 'Cancel')}
+        />
+      )}
     </div>
   );
 };
