@@ -100,22 +100,38 @@ const DebtDetails = ({
     useExportSanad({
       onSuccess: (data) => {
         const url = data?.data?.pdfUrl;
-        if (url) {
+        if (!url) {
+          toast.error(t('dashboard.sanadExportedFailed'));
+          return;
+        }
+        try {
+          new URL(url);
+        } catch {
+          toast.error(t('dashboard.sanadExportedFailed'));
+          return;
+        }
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+        if (
+          !newWindow ||
+          newWindow.closed ||
+          typeof newWindow.closed === 'undefined'
+        ) {
           const link = document.createElement('a');
           link.href = url;
-          link.download = `sanad-${debtData.debtId}.pdf`;
           link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.style.display = 'none';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          toast.success(t('dashboard.sanadExportedSuccessfully'));
-        } else {
-          toast.error(t('dashboard.sanadExportedFailed'));
         }
+
+        toast.success(t('dashboard.sanadExportedSuccessfully'));
       },
       onError: (error) => {
         toast.error(
-          error.response.data.message || t('dashboard.sanadExportedFailed'),
+          error.response?.data?.message || t('dashboard.sanadExportedFailed'),
         );
       },
     });
