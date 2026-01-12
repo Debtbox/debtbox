@@ -3,7 +3,8 @@ import type { MutationConfig } from '@/lib/react-query';
 import type { ApiError } from '@/types/ApiError';
 import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
-import type { BusinessDto, UserDto } from '@/types/UserDto';
+import type { BusinessDto } from '@/types/BusinessDto';
+import type { UserDto } from '@/types/UserDto';
 
 export type AddDebtDTO = {
   nationalId: string;

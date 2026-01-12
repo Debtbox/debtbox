@@ -1,4 +1,5 @@
-import type { BusinessDto, UserDto } from '@/types/UserDto';
+import type { BusinessDto } from '@/types/BusinessDto';
+import type { UserDto } from '@/types/UserDto';
 
 export interface Debt {
   debtId: number;

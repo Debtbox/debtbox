@@ -9,7 +9,7 @@ import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 import { useRegisterBusinesses } from '../../api/registerBusinesses';
 import { toast } from 'sonner';
-import type { BusinessDto } from '@/types/UserDto';
+import type { BusinessDto } from '@/types/BusinessDto';
 import type { DropdownOption } from '@/components/shared/DropdownFilter';
 import { CITIES, CATEGORIES } from '../../data';
 import DeleteIcon from '@/components/icons/DeleteIcon';

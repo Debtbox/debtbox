@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/stores/UserStore';
 import { Building2 } from 'lucide-react';
-import type { BusinessDto } from '@/types/UserDto';
+import type { BusinessDto } from '@/types/BusinessDto';
 
 const BusinessDropdown = () => {
   const { t, i18n } = useTranslation();
@@ -43,7 +43,9 @@ const BusinessDropdown = () => {
     return (
       <div className="w-12 h-12 md:w-auto md:h-auto md:py-3 md:px-4 rounded-full md:rounded-lg border border-gray-200 flex items-center justify-center md:justify-start bg-gray-100 text-sm text-gray-500 md:gap-2 md:min-w-[200px]">
         <Building2 className="w-5 h-5 text-gray-400" />
-        <span className="hidden md:inline">{t('business.noBusinesses', 'No businesses available')}</span>
+        <span className="hidden md:inline">
+          {t('business.noBusinesses', 'No businesses available')}
+        </span>
       </div>
     );
   }
@@ -76,11 +78,13 @@ const BusinessDropdown = () => {
       </button>
 
       {isDropdownOpen && (
-        <div className={`fixed md:absolute end-0 md:left-0 mt-4 w-screen md:w-80 bg-white shadow-lg z-50 flex flex-col max-h-[calc(100vh-.25rem*20)] md:max-h-60 transition-all duration-300 ease-in-out transform ${
-          isDropdownOpen
-            ? 'opacity-100 translate-y-0 scale-100'
-            : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
-        }`}>
+        <div
+          className={`fixed md:absolute end-0 md:left-0 mt-4 w-screen md:w-80 bg-white shadow-lg z-50 flex flex-col max-h-[calc(100vh-.25rem*20)] md:max-h-60 transition-all duration-300 ease-in-out transform ${
+            isDropdownOpen
+              ? 'opacity-100 translate-y-0 scale-100'
+              : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
+          }`}
+        >
           <div className="p-3 border-b border-gray-100">
             <h3 className="text-sm font-semibold text-gray-700">
               {t('business.selectBusiness', 'Select Business')}
