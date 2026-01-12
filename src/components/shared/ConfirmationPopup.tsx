@@ -28,13 +28,13 @@ const ConfirmationPopup = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center animate-fade-in">
       <div
         className="absolute inset-0 bg-black/50 transition-opacity duration-300 animate-fade-in"
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 animate-scale-in">
+      <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 animate-scale-in z-[61]">
         <div className="w-full flex justify-center pt-10">
           <BigXIcon />
         </div>

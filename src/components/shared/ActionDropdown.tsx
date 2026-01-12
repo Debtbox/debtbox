@@ -97,7 +97,7 @@ const ActionDropdown = ({
            <div
              ref={dropdownRef}
              data-action-dropdown
-             className="fixed w-48 bg-white shadow-lg py-1 z-[9999] transition-all duration-200 ease-in-out transform opacity-100"
+             className="fixed w-48 bg-white shadow-lg py-1 z-[55] transition-all duration-200 ease-in-out transform opacity-100"
              style={{
                top: position.top,
                left: position.left,

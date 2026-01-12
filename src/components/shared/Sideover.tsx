@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import XIcon from '../icons/XIcon';
 
 interface SideoverProps {
@@ -41,16 +42,16 @@ const Sideover = ({
     };
   }, [isOpen, onClose]);
 
-  return (
+  const sideoverContent = (
     <div
       className={clsx(
-        'fixed inset-0 z-60 transition-opacity duration-300',
+        'fixed inset-0 z-[100] transition-opacity duration-300',
         isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
       )}
     >
       <div
         className={clsx(
-          'fixed inset-0 bg-black/50 transition-opacity duration-300 z-61',
+          'fixed inset-0 bg-black/50 transition-opacity duration-300 z-[101]',
           isOpen ? 'opacity-100' : 'opacity-0',
         )}
         onClick={onClose}
@@ -58,7 +59,7 @@ const Sideover = ({
 
       <div
         className={clsx(
-          'fixed end-0 top-0 h-full bg-white shadow-xl transform transition-all duration-300 ease-out rounded-s-3xl p-4 md:p-6 z-62',
+          'fixed end-0 top-0 h-full bg-white shadow-xl transform transition-all duration-300 ease-out rounded-s-3xl p-4 md:p-6 z-[102]',
           width,
           isOpen
             ? 'translate-x-0 opacity-100'
@@ -91,6 +92,8 @@ const Sideover = ({
       </div>
     </div>
   );
+
+  return createPortal(sideoverContent, document.body);
 };
 
 export default Sideover;
