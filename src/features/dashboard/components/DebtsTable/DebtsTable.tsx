@@ -218,7 +218,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
         <Button
           text={t('common.buttons.view')}
           variant="gray"
-          className="w-full md:w-32 h-10"
+          className="w-full md:w-32 h-10 transition-colors duration-200"
           onClick={() => {
             setSelectedDebt(record);
             setIsDetailsSideoverOpen(true);
@@ -229,7 +229,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-6 w-full h-full">
+    <div className="bg-white rounded-2xl p-6 w-full h-full hover:shadow-md transition-shadow duration-200">
       <FilterSection
         config={filterConfig}
         variant="default"

@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
+const SIDEBAR_STORAGE_KEY = 'sidebar-collapsed';
+
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { i18n } = useTranslation();
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => {
+    // Load from localStorage, default to false (expanded) on large screens
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      return saved === 'true';
+    }
+    return false;
+  });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Save to localStorage when sidebar state changes
+  useEffect(() => {
+    localStorage.setItem(
+      SIDEBAR_STORAGE_KEY,
+      isSidebarCollapsed.toString(),
+    );
+  }, [isSidebarCollapsed]);
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -25,7 +42,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           'hidden md:block transition-all duration-300 flex-shrink-0',
         )}
       >
-        <Sidebar isCollapsed={isSidebarCollapsed} />
+        <Sidebar isCollapsed={isSidebarCollapsed} onToggle={toggleSidebar} />
       </div>
 
       {isMobileMenuOpen && (
@@ -39,6 +56,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <Navbar
           onMenuToggle={toggleMobileMenu}
           isSidebarCollapsed={isSidebarCollapsed}
+          onSidebarToggle={toggleSidebar}
         />
 
         <main className="flex-1 overflow-y-auto bg-gray-50">

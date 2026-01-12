@@ -17,12 +17,12 @@ const DebtConsentWaiting = ({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 flex flex-col items-center justify-center p-8">
+      <div className="flex-1 flex flex-col items-center justify-center p-8 animate-fade-in">
         <WaitingIcon />
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2 animate-slide-down animation-delay-100">
           {t('dashboard.waitingForCustomerResponse')}
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 animate-slide-down animation-delay-200">
           {t('dashboard.waitingForCustomerResponseMessage')}
         </p>
       </div>

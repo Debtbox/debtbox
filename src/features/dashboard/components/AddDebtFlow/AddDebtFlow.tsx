@@ -92,9 +92,9 @@ const AddDebtFlow = ({
       case 'completed':
         return (
           <div className="flex flex-col h-full">
-            <div className="flex-1 flex flex-col items-center justify-start pt-12">
-              <SuccessIcon className="mb-6" />
-              <p className="text-sm text-[#474747] mb-3">
+            <div className="flex-1 flex flex-col items-center justify-start pt-12 animate-fade-in">
+              <SuccessIcon className="mb-6 animate-scale-in" />
+              <p className="text-sm text-[#474747] mb-3 animate-slide-down animation-delay-100">
                 {t('dashboard.debtAddedSuccessfully')}
               </p>
               <DebtInformation debtData={debtData as DebtResponse} />
@@ -131,9 +131,9 @@ const AddDebtFlow = ({
       case 'rejected':
         return (
           <div className="flex flex-col h-full">
-            <div className="flex-1 flex flex-col items-center justify-start pt-12">
-              <XCircle className="mb-6 text-red-500 size-16" />
-              <p className="text-sm text-[#474747] mb-3">
+            <div className="flex-1 flex flex-col items-center justify-start pt-12 animate-fade-in">
+              <XCircle className="mb-6 text-red-500 size-16 animate-scale-in" />
+              <p className="text-sm text-[#474747] mb-3 animate-slide-down animation-delay-100">
                 {t('dashboard.debtRejected')}
               </p>
               <DebtInformation debtData={debtData as DebtResponse} />
@@ -170,9 +170,9 @@ const AddDebtFlow = ({
       case 'expired':
         return (
           <div className="flex flex-col h-full">
-            <div className="flex-1 flex flex-col items-center justify-start pt-12">
-              <Clock className="mb-6 text-red-500 size-16" />
-              <p className="text-sm text-[#474747] mb-3">
+            <div className="flex-1 flex flex-col items-center justify-start pt-12 animate-fade-in">
+              <Clock className="mb-6 text-red-500 size-16 animate-scale-in" />
+              <p className="text-sm text-[#474747] mb-3 animate-slide-down animation-delay-100">
                 {t('dashboard.debtExpired')}
               </p>
               <DebtInformation debtData={debtData as DebtResponse} />

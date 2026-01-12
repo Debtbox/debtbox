@@ -27,7 +27,7 @@ const Button = ({
       onClick={onClick}
       className={clsx(
         className,
-        'cursor-pointer active:scale-[0.99] transition-all duration-200 relative z-10',
+        'cursor-pointer active:scale-[0.99] transition-all duration-200 relative z-10 disabled:cursor-not-allowed disabled:opacity-50',
         isLoading &&
           'disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2',
         variant === 'primary' &&

@@ -3,35 +3,24 @@ import { useMutation } from '@tanstack/react-query';
 import type { MutationConfig } from '@/lib/react-query';
 import type { ApiError } from '@/types/ApiError';
 
-export const deleteNotifications = ({
-  ids,
-  isDeleteAll,
-}: {
-  ids: string[];
-  isDeleteAll: boolean;
-}) => {
-  return axios.post(`/notification/delete-notifications`, {
-    data: {
-      ids,
-      isDeleteAll,
-    },
-  });
+export const deleteBusiness = ({ businessId }: { businessId: string }) => {
+  return axios.delete(`/business/delete-business?businessId=${businessId}`);
 };
 
-type UseDeleteNotificationsOptions = {
+type UseDeleteBusinessOptions = {
   onSuccess: () => Promise<void>;
   onError?: (err: ApiError) => void;
-  config?: MutationConfig<typeof deleteNotifications>;
+  config?: MutationConfig<typeof deleteBusiness>;
 };
 
-export const useDeleteNotifications = ({
+export const useDeleteBusiness = ({
   onSuccess,
   onError,
   config,
-}: UseDeleteNotificationsOptions) => {
+}: UseDeleteBusinessOptions) => {
   return useMutation({
     ...config,
-    mutationFn: deleteNotifications,
+    mutationFn: deleteBusiness,
     onSuccess: async () => {
       await onSuccess();
     },

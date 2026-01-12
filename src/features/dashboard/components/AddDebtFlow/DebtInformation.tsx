@@ -6,8 +6,8 @@ import { SaudiRiyal } from 'lucide-react';
 const DebtInformation = ({ debtData }: { debtData: DebtResponse }) => {
   const { t, i18n } = useTranslation();
   return (
-    <>
-      <h3 className="text-2xl font-bold mb-3 flex items-center gap-1">
+    <div className="animate-fade-in animation-delay-200">
+      <h3 className="text-2xl font-bold mb-3 flex items-center gap-1 animate-slide-down">
         {debtData?.amount.toLocaleString()}{' '}
         <SaudiRiyal className="text-gray-900" />
       </h3>
@@ -49,7 +49,7 @@ const DebtInformation = ({ debtData }: { debtData: DebtResponse }) => {
           <SaudiRiyal className="text-gray-900" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

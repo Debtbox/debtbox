@@ -12,6 +12,7 @@ import {
 interface NavbarProps {
   onMenuToggle?: () => void;
   isSidebarCollapsed?: boolean;
+  onSidebarToggle?: () => void;
 }
 
 const Navbar = ({ onMenuToggle }: NavbarProps) => {

@@ -176,9 +176,9 @@ const DebtDetails = ({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="pt-6 px-1 space-y-4 flex-1">
+      <div className="pt-6 px-1 space-y-4 flex-1 animate-fade-in">
         <div>
-          <h1 className="text-lg font-bold mb-5">
+          <h1 className="text-lg font-bold mb-5 animate-slide-down">
             {t('dashboard.customerDebtDetails', 'Customer Debt Details')}
           </h1>
           {debtData.title && (
@@ -421,7 +421,7 @@ const DebtDetails = ({
                     type="button"
                     text={t('common.buttons.yes', 'Yes')}
                     onClick={handleConfirmCancel}
-                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
                     variant="secondary"
                     isLoading={isCancellingDebt}
                     disabled={isCancellingDebt}
@@ -430,7 +430,7 @@ const DebtDetails = ({
                     type="button"
                     text={t('common.buttons.no', 'No')}
                     onClick={handleCancelConfirmation}
-                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 transition-colors duration-200"
                     variant="gray"
                     disabled={isCancellingDebt}
                   />
@@ -507,7 +507,7 @@ const DebtDetails = ({
                     type="button"
                     text={t('common.buttons.yes', 'Yes')}
                     onClick={handleConfirmOverdue}
-                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
                     variant="secondary"
                     isLoading={isMarkingDebtAsOverDueMutate}
                     disabled={isMarkingDebtAsOverDueMutate}
@@ -516,7 +516,7 @@ const DebtDetails = ({
                     type="button"
                     text={t('common.buttons.no', 'No')}
                     onClick={handleCancelOverdueConfirmation}
-                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 transition-colors duration-200"
                     variant="gray"
                     disabled={isMarkingDebtAsOverDueMutate}
                   />
@@ -538,7 +538,7 @@ const DebtDetails = ({
                   <Button
                     type="button"
                     text={t('dashboard.markAsOverdue', 'Mark as overdue')}
-                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 transition-colors duration-200"
                     variant="primary"
                     onClick={handleOverdueClick}
                     disabled={
@@ -551,7 +551,7 @@ const DebtDetails = ({
                   <Button
                     type="button"
                     text={t('dashboard.exportSanad', 'Export Sanad')}
-                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 p-2 h-12 transition-colors duration-200"
                     variant="primary"
                     onClick={handleExportSanadClick}
                     disabled={

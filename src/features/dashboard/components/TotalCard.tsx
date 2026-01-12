@@ -12,7 +12,7 @@ const TotalCard = ({
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white p-5 rounded-2xl flex justify-between items-center">
+    <div className="bg-white p-5 rounded-2xl flex justify-between items-center hover:shadow-md transition-shadow duration-200">
       <span className="text-black text-xs capitalize flex items-center gap-2">
         <span
           className={clsx(

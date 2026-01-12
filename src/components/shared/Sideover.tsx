@@ -44,33 +44,35 @@ const Sideover = ({
   return (
     <div
       className={clsx(
-        'fixed inset-0 z-50 transition-opacity duration-300',
+        'fixed inset-0 z-60 transition-opacity duration-300',
         isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
       )}
     >
       <div
         className={clsx(
-          'fixed inset-0 bg-black/50 transition-opacity duration-300',
-          isOpen ? 'bg-opacity-50' : 'bg-opacity-0',
+          'fixed inset-0 bg-black/50 transition-opacity duration-300 z-61',
+          isOpen ? 'opacity-100' : 'opacity-0',
         )}
         onClick={onClose}
       />
 
       <div
         className={clsx(
-          'fixed end-0 top-0 h-full bg-white shadow-xl transform transition-all duration-300 ease-out rounded-s-3xl p-4 md:p-6',
+          'fixed end-0 top-0 h-full bg-white shadow-xl transform transition-all duration-300 ease-out rounded-s-3xl p-4 md:p-6 z-62',
           width,
           isOpen
-            ? 'translate-x-0'
+            ? 'translate-x-0 opacity-100'
             : direction === 'rtl'
-              ? '-translate-x-full'
-              : 'translate-x-full',
+              ? '-translate-x-full opacity-0'
+              : 'translate-x-full opacity-0',
           className,
         )}
       >
         <div className="flex items-center justify-between py-2 px-1 border-b border-gray-200">
           {title && (
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+            <h2 className="text-lg font-semibold text-gray-900 transition-colors duration-200">
+              {title}
+            </h2>
           )}
           <button
             onClick={onClose}

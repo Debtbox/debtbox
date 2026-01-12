@@ -135,8 +135,8 @@ const CustomerPurchaseForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
-      <div className="flex-1">
-        <h3 className="text-lg font-bold my-5">
+      <div className="flex-1 animate-fade-in">
+        <h3 className="text-lg font-bold my-5 animate-slide-down">
           {t('dashboard.customer_details')}
         </h3>
         <div className="mb-4" />
@@ -165,7 +165,7 @@ const CustomerPurchaseForm = ({
             </div>
           )}
         </div>
-        <h3 className="text-lg font-bold my-5">
+        <h3 className="text-lg font-bold my-5 animate-slide-down animation-delay-100">
           {t('dashboard.purchase_details')}
         </h3>
         <Input

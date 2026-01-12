@@ -5,5 +5,10 @@ export type BusinessDto = {
   business_name_en: string;
   activity: string;
   city: string;
+  payoutMethod: 'weekly' | 'monthly' | 'instant';
   status?: string;
+  totalOverdueCustomers?: number;
+  totalOverdueAmount?: number;
+  totalOutstandingAmount?: number;
+  totalPaidAmount?: number;
 };

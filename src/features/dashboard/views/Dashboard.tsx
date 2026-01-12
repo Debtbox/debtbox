@@ -39,7 +39,7 @@ export const Dashboard = () => {
   return (
     <section className="space-y-4">
       <div className="flex items-stretch justify-between gap-4 flex-wrap lg:flex-nowrap">
-        <div className="flex-1">
+        <div className="flex-1 animate-fade-in">
           <DueAmountCard
             totalDueAmount={totalDueAmount.toLocaleString()}
             onAddPayment={() => toggleSideover(true)}
@@ -51,7 +51,9 @@ export const Dashboard = () => {
           <TotalCard value={10550350} type="paid" /> */}
         </div>
       </div>
-      <DebtsTable isSideoverOpen={isSideoverOpen} />
+      <div className="animate-fade-in animation-delay-200">
+        <DebtsTable isSideoverOpen={isSideoverOpen} />
+      </div>
       <Sideover
         isOpen={isSideoverOpen}
         onClose={() => toggleSideover(false)}
