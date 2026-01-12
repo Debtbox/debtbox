@@ -36,6 +36,7 @@ export { default as clientsSidebar } from './icons/sidebar/clients.svg';
 export { default as dashboardSidebar } from './icons/sidebar/dashboard.svg';
 export { default as settingsSidebar } from './icons/sidebar/settings.svg';
 export { default as usersListSidebar } from './icons/sidebar/user-list.svg';
+export { default as businessesSidebar } from './icons/sidebar/businesses.svg';
 
 //LANDING
 export { default as featuresPhone } from './landing/features-phone4.png';
@@ -53,3 +54,6 @@ export { default as aboutVector3 } from './landing/about-vector-3.svg';
 //AUTH
 export { default as authLayoutBg } from './auth/auth-layout-bg.png';
 export { default as topRightVector } from './auth/top-right-vector.png';
+
+//SHARED
+export { default as noData } from './shared/no-data.png';

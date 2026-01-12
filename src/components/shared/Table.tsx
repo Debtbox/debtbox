@@ -19,7 +19,7 @@ export interface TableProps<T = object> {
   columns: TableColumn<T>[];
   data: T[];
   loading?: boolean;
-  emptyText?: string;
+  emptyText?: ReactNode;
   className?: string;
   rowKey?: string | ((record: T) => string);
   onRowClick?: (record: T, index: number) => void;
@@ -46,7 +46,7 @@ const Table = <T extends object>({
   columns,
   data,
   loading = false,
-  emptyText = 'No data available',
+  emptyText,
   className,
   rowKey = 'id',
   onRowClick,
@@ -122,12 +122,7 @@ const Table = <T extends object>({
   }
 
   return (
-    <div
-      className={clsx(
-        'bg-white rounded-2xl overflow-hidden',
-        className,
-      )}
-    >
+    <div className={clsx('bg-white rounded-2xl overflow-hidden', className)}>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50">
@@ -193,7 +188,8 @@ const Table = <T extends object>({
               data.map((record, index) => {
                 const key = getRowKey(record, index);
                 const extraContent = rowExtra ? rowExtra(record, index) : null;
-                const showExtra = extraContent !== null && extraContent !== undefined;
+                const showExtra =
+                  extraContent !== null && extraContent !== undefined;
 
                 const isHovered = hoveredRow === index;
 

@@ -19,6 +19,7 @@ import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';
 import Sideover from '@/components/shared/Sideover';
 import DebtDetails from '../DebtDetails/DebtDetails';
+import NoData from '@/components/shared/NoData';
 
 type DebtStatus = 'all' | 'normal' | 'overdue' | 'in 7 days' | 'soon';
 
@@ -299,7 +300,10 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
           }
 
           // Time extension banner
-          if (record.original_date && record.original_date !== record.due_date) {
+          if (
+            record.original_date &&
+            record.original_date !== record.due_date
+          ) {
             const original = new Date(record.original_date);
             const current = new Date(record.due_date);
             if (!isNaN(original.getTime()) && !isNaN(current.getTime())) {
@@ -329,8 +333,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
                     );
                 messages.push({
                   content: extensionMessage,
-                  className:
-                    'bg-primary/5 text-primary/80',
+                  className: 'bg-primary/5 text-primary/80',
                 });
               }
             }
@@ -358,8 +361,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
           onViewAll: handleViewAll,
         }}
         showActions={false}
-        emptyText={t('common.buttons.noDebtsFound')}
-        className=""
+        emptyText={<NoData title={t('common.buttons.noDebtsFound')} />}
       />
 
       <Sideover

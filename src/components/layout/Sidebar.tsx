@@ -6,6 +6,7 @@ import {
   clientsSidebar,
   usersListSidebar,
   settingsSidebar,
+  businessesSidebar,
 } from '@/assets/images';
 import clsx from 'clsx';
 import LineIcon from '../icons/LineIcon';
@@ -40,6 +41,11 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
       name: t('navigation.transactions', 'Transactions'),
       href: '/transactions',
       icon: usersListSidebar,
+    },
+    {
+      name: t('navigation.businesses', 'Businesses'),
+      href: '/businesses',
+      icon: businessesSidebar,
     },
     {
       name: t('navigation.settings', 'Settings'),
@@ -78,10 +84,10 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
             key={item.name}
             to={item.href}
             className={clsx(
-              'group flex items-center px-3 py-3 font-medium rounded-md transition-colors duration-200',
+              'group flex items-center px-3 py-3 font-medium rounded-md transition-colors duration-200 group',
               isActive(item.href)
-                ? 'bg-primary text-white'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                ? 'text-dark-gray shadow-sm'
+                : 'text-medium-gray hover:text-dark-gray hover:shadow-sm',
             )}
             title={isCollapsed ? item.name : undefined}
             onClick={onToggle}
@@ -91,8 +97,10 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
               alt={item.name}
               className={clsx(
                 isCollapsed ? 'w-5 h-5' : 'w-5 h-5 me-3',
-                'flex-shrink-0',
-                isActive(item.href) ? 'brightness-0 invert' : '',
+                'shrink-0',
+                isActive(item.href)
+                  ? 'brightness-100 invert'
+                  : 'group-hover:brightness-100 group-hover:invert',
               )}
             />
             {!isCollapsed && (

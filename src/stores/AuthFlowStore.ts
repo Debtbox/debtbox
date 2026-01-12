@@ -1,4 +1,4 @@
-import type { BusinessDto } from '@/types/UserDto';
+import type { BusinessDto } from '@/types/BusinessDto';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

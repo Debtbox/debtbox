@@ -4,6 +4,8 @@
   --font-inter: 'Inter', sans-serif;
   --color-primary: #1b40ff;
   --color-light-gray: #fcfcfc;
+  --color-dark-gray: #343434;
+  --color-medium-gray: #969696;
 }
 
 body {
