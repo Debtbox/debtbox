@@ -1,4 +1,4 @@
-import type { BusinessDto } from './BusinessDto';
+import type { BusinessDto } from '@/types/BusinessDto';
 
 export type UserDto = {
   accessToken: string;

@@ -14,23 +14,23 @@ export const protectedRoutes = [
         element: <DashboardRoutes />,
       },
       {
-        path: '/dashboard',
+        path: '/dashboard/*',
         element: <DashboardRoutes />,
       },
       {
-        path: '/businesses',
+        path: '/businesses/*',
         element: <BusinessesRoutes />,
       },
       {
-        path: '/clients',
+        path: '/clients/*',
         element: <ClientsRoutes />,
       },
       {
-        path: '/transactions',
+        path: '/transactions/*',
         element: <TransactionsRoutes />,
       },
       {
-        path: '/settings',
+        path: '/settings/*',
         element: <SettingsRoutes />,
       },
     ],
