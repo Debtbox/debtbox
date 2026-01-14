@@ -10,6 +10,7 @@ export type GetMerchantDebtsDTO = {
   pageSize?: number;
   customerName?: string;
   debtDueStatus?: ('normal' | 'overdue' | 'in 7 days' | 'soon')[];
+  isFullHistory?: boolean;
 };
 
 export const getMerchantDebts = (
@@ -24,6 +25,7 @@ export const getMerchantDebts = (
       ...(data.pageSize && { pageSize: data.pageSize }),
       ...(data.customerName && { customerName: data.customerName }),
       ...(data.debtDueStatus && { debtDueStatus: data.debtDueStatus }),
+      ...(data.isFullHistory && { isFullHistory: data.isFullHistory }),
     },
     {
       headers: {

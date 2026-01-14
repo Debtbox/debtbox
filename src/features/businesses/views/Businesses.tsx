@@ -247,9 +247,14 @@ export const Businesses = () => {
     <>
       <section className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h1 className="text-xl sm:text-2xl font-bold">
-            {t('businesses.title')}
-          </h1>
+          <div>
+            <h1 className="text-xl sm:text-2xl font-bold">
+              {t('businesses.title')}
+            </h1>
+            <p className="text-sm text-gray-500 mt-1">
+              {t('businesses.description', 'Manage and view all your registered businesses')}
+            </p>
+          </div>
           <Button
             text={t('businesses.addBusiness')}
             variant="primary"

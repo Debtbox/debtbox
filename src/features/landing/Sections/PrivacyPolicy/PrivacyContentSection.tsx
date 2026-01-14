@@ -447,7 +447,9 @@ const PrivacyContentSection = () => {
             <p>{t('privacyPolicyPage.content.sanadData.description')}</p>
 
             <h3>{t('privacyPolicyPage.content.sanadData.collection.title')}</h3>
-            <p>{t('privacyPolicyPage.content.sanadData.collection.description')}</p>
+            <p>
+              {t('privacyPolicyPage.content.sanadData.collection.description')}
+            </p>
             <ul>
               <li>
                 <p>
@@ -477,37 +479,31 @@ const PrivacyContentSection = () => {
             </ul>
 
             <h3>{t('privacyPolicyPage.content.sanadData.purpose.title')}</h3>
-            <p>{t('privacyPolicyPage.content.sanadData.purpose.description')}</p>
+            <p>
+              {t('privacyPolicyPage.content.sanadData.purpose.description')}
+            </p>
             <ul>
               <li>
-                <p>
-                  {t('privacyPolicyPage.content.sanadData.purpose.list1')}
-                </p>
+                <p>{t('privacyPolicyPage.content.sanadData.purpose.list1')}</p>
               </li>
               <li>
-                <p>
-                  {t('privacyPolicyPage.content.sanadData.purpose.list2')}
-                </p>
+                <p>{t('privacyPolicyPage.content.sanadData.purpose.list2')}</p>
               </li>
               <li>
-                <p>
-                  {t('privacyPolicyPage.content.sanadData.purpose.list3')}
-                </p>
+                <p>{t('privacyPolicyPage.content.sanadData.purpose.list3')}</p>
               </li>
               <li>
-                <p>
-                  {t('privacyPolicyPage.content.sanadData.purpose.list4')}
-                </p>
+                <p>{t('privacyPolicyPage.content.sanadData.purpose.list4')}</p>
               </li>
               <li>
-                <p>
-                  {t('privacyPolicyPage.content.sanadData.purpose.list5')}
-                </p>
+                <p>{t('privacyPolicyPage.content.sanadData.purpose.list5')}</p>
               </li>
             </ul>
 
             <h3>{t('privacyPolicyPage.content.sanadData.signatures.title')}</h3>
-            <p>{t('privacyPolicyPage.content.sanadData.signatures.description')}</p>
+            <p>
+              {t('privacyPolicyPage.content.sanadData.signatures.description')}
+            </p>
             <ul>
               <li>
                 <p>
@@ -532,13 +528,17 @@ const PrivacyContentSection = () => {
             </ul>
 
             <h3>{t('privacyPolicyPage.content.sanadData.retention.title')}</h3>
-            <p>{t('privacyPolicyPage.content.sanadData.retention.description')}</p>
+            <p>
+              {t('privacyPolicyPage.content.sanadData.retention.description')}
+            </p>
 
             <h3>{t('privacyPolicyPage.content.sanadData.access.title')}</h3>
             <p>{t('privacyPolicyPage.content.sanadData.access.description')}</p>
 
             <h3>{t('privacyPolicyPage.content.sanadData.disclosure.title')}</h3>
-            <p>{t('privacyPolicyPage.content.sanadData.disclosure.description')}</p>
+            <p>
+              {t('privacyPolicyPage.content.sanadData.disclosure.description')}
+            </p>
             <ul>
               <li>
                 {t('privacyPolicyPage.content.sanadData.disclosure.list1')}

@@ -397,176 +397,181 @@ const DebtDetails = ({
         )}
       </div>
 
-      <div className="flex items-center justify-between p-4 border-t border-gray-200">
-        {debtData.isPending ? (
-          <div className="flex flex-col gap-3 flex-1">
-            {showCancelConfirmation ? (
-              <div className="animate-in fade-in duration-300 ease-out">
-                <div className="text-start animate-in slide-in-from-top-2 fade-in duration-300 delay-100 mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {t(
-                      'dashboard.confirmCancelDebt',
-                      'Are you sure you want to cancel this debt?',
-                    )}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {t(
-                      'dashboard.cancelDebtWarning',
-                      'Changing this will affect the user',
-                    )}
-                  </p>
+      {debtData.status === 'paid' ||
+      debtData.status === 'expired' ||
+      debtData.status === 'cancelled' ? null : (
+        <div className="flex items-center justify-between p-4 border-t border-gray-200">
+          {debtData.isPending ? (
+            <div className="flex flex-col gap-3 flex-1">
+              {showCancelConfirmation ? (
+                <div className="animate-in fade-in duration-300 ease-out">
+                  <div className="text-start animate-in slide-in-from-top-2 fade-in duration-300 delay-100 mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {t(
+                        'dashboard.confirmCancelDebt',
+                        'Are you sure you want to cancel this debt?',
+                      )}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {t(
+                        'dashboard.cancelDebtWarning',
+                        'Changing this will affect the user',
+                      )}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 delay-200">
+                    <Button
+                      type="button"
+                      text={t('common.buttons.yes', 'Yes')}
+                      onClick={handleConfirmCancel}
+                      className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
+                      variant="secondary"
+                      isLoading={isCancellingDebt}
+                      disabled={isCancellingDebt}
+                    />
+                    <Button
+                      type="button"
+                      text={t('common.buttons.no', 'No')}
+                      onClick={handleCancelConfirmation}
+                      className="flex-1 p-2 h-12 transition-colors duration-200"
+                      variant="gray"
+                      disabled={isCancellingDebt}
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 delay-200">
+              ) : (
+                <div className="flex items-center gap-2 animate-in fade-in duration-300 ease-out">
                   <Button
                     type="button"
-                    text={t('common.buttons.yes', 'Yes')}
-                    onClick={handleConfirmCancel}
-                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
-                    variant="secondary"
-                    isLoading={isCancellingDebt}
-                    disabled={isCancellingDebt}
-                  />
-                  <Button
-                    type="button"
-                    text={t('common.buttons.no', 'No')}
-                    onClick={handleCancelConfirmation}
-                    className="flex-1 p-2 h-12 transition-colors duration-200"
+                    text={t('common.buttons.cancel', 'Cancel')}
+                    onClick={handleCancelClick}
+                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     variant="gray"
-                    disabled={isCancellingDebt}
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 animate-in fade-in duration-300 ease-out">
-                <Button
-                  type="button"
-                  text={t('common.buttons.cancel', 'Cancel')}
-                  onClick={handleCancelClick}
-                  className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  variant="gray"
-                  disabled={isCancellingDebt || isResubmittingDebt}
-                />
-                <Button
-                  type="button"
-                  text={t('common.buttons.resubmit', 'Resubmit')}
-                  className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  variant="primary"
-                  onClick={() => {
-                    resubmitDebt({ debtId: debtData.debtId.toString() });
-                  }}
-                  isLoading={isResubmittingDebt}
-                  disabled={isResubmittingDebt || isCancellingDebt}
-                />
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-3 flex-1">
-            {showExtendConfirmation ? (
-              <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 ease-out">
-                <Button
-                  type="button"
-                  text={t('common.buttons.confirm', 'Confirm')}
-                  onClick={handleConfirmExtend}
-                  className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  variant="primary"
-                  isLoading={isExtendingDebtDueDateMutate}
-                  disabled={
-                    isExtendingDebtDueDateMutate ||
-                    !newDueDate ||
-                    !reason.trim()
-                  }
-                />
-                <Button
-                  type="button"
-                  text={t('common.buttons.cancel', 'Cancel')}
-                  onClick={handleCancelExtendConfirmation}
-                  className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  variant="gray"
-                  disabled={isExtendingDebtDueDateMutate}
-                />
-              </div>
-            ) : showOverdueConfirmation ? (
-              <div className="animate-in fade-in duration-300 ease-out">
-                <div className="text-start animate-in slide-in-from-top-2 fade-in duration-300 delay-100 mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {t(
-                      'dashboard.confirmMarkAsOverdue',
-                      'Are you sure you want to mark this debt as overdue?',
-                    )}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {t(
-                      'dashboard.markAsOverdueWarning',
-                      'This action will notify the customer about the overdue status',
-                    )}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 delay-200">
-                  <Button
-                    type="button"
-                    text={t('common.buttons.yes', 'Yes')}
-                    onClick={handleConfirmOverdue}
-                    className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
-                    variant="secondary"
-                    isLoading={isMarkingDebtAsOverDueMutate}
-                    disabled={isMarkingDebtAsOverDueMutate}
+                    disabled={isCancellingDebt || isResubmittingDebt}
                   />
                   <Button
                     type="button"
-                    text={t('common.buttons.no', 'No')}
-                    onClick={handleCancelOverdueConfirmation}
-                    className="flex-1 p-2 h-12 transition-colors duration-200"
-                    variant="gray"
-                    disabled={isMarkingDebtAsOverDueMutate}
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 animate-in fade-in duration-300 ease-out">
-                <Button
-                  type="button"
-                  text={t('dashboard.extendDueDate', 'Extend Due Date')}
-                  onClick={handleExtendClick}
-                  className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  variant="gray"
-                  disabled={
-                    isMarkingDebtAsOverDueMutate || isExtendingDebtDueDateMutate
-                  }
-                />
-                {debtData.status === 'overdue' && !debtData.isOverdue ? (
-                  <Button
-                    type="button"
-                    text={t('dashboard.markAsOverdue', 'Mark as overdue')}
-                    className="flex-1 p-2 h-12 transition-colors duration-200"
+                    text={t('common.buttons.resubmit', 'Resubmit')}
+                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     variant="primary"
-                    onClick={handleOverdueClick}
+                    onClick={() => {
+                      resubmitDebt({ debtId: debtData.debtId.toString() });
+                    }}
+                    isLoading={isResubmittingDebt}
+                    disabled={isResubmittingDebt || isCancellingDebt}
+                  />
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3 flex-1">
+              {showExtendConfirmation ? (
+                <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 ease-out">
+                  <Button
+                    type="button"
+                    text={t('common.buttons.confirm', 'Confirm')}
+                    onClick={handleConfirmExtend}
+                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    variant="primary"
+                    isLoading={isExtendingDebtDueDateMutate}
+                    disabled={
+                      isExtendingDebtDueDateMutate ||
+                      !newDueDate ||
+                      !reason.trim()
+                    }
+                  />
+                  <Button
+                    type="button"
+                    text={t('common.buttons.cancel', 'Cancel')}
+                    onClick={handleCancelExtendConfirmation}
+                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    variant="gray"
+                    disabled={isExtendingDebtDueDateMutate}
+                  />
+                </div>
+              ) : showOverdueConfirmation ? (
+                <div className="animate-in fade-in duration-300 ease-out">
+                  <div className="text-start animate-in slide-in-from-top-2 fade-in duration-300 delay-100 mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {t(
+                        'dashboard.confirmMarkAsOverdue',
+                        'Are you sure you want to mark this debt as overdue?',
+                      )}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {t(
+                        'dashboard.markAsOverdueWarning',
+                        'This action will notify the customer about the overdue status',
+                      )}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 animate-in slide-in-from-bottom-2 fade-in duration-300 delay-200">
+                    <Button
+                      type="button"
+                      text={t('common.buttons.yes', 'Yes')}
+                      onClick={handleConfirmOverdue}
+                      className="flex-1 p-2 h-12 text-red-600 border-none bg-red-500/30! transition-colors duration-200"
+                      variant="secondary"
+                      isLoading={isMarkingDebtAsOverDueMutate}
+                      disabled={isMarkingDebtAsOverDueMutate}
+                    />
+                    <Button
+                      type="button"
+                      text={t('common.buttons.no', 'No')}
+                      onClick={handleCancelOverdueConfirmation}
+                      className="flex-1 p-2 h-12 transition-colors duration-200"
+                      variant="gray"
+                      disabled={isMarkingDebtAsOverDueMutate}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 animate-in fade-in duration-300 ease-out">
+                  <Button
+                    type="button"
+                    text={t('dashboard.extendDueDate', 'Extend Due Date')}
+                    onClick={handleExtendClick}
+                    className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    variant="gray"
                     disabled={
                       isMarkingDebtAsOverDueMutate ||
                       isExtendingDebtDueDateMutate
                     }
                   />
-                ) : null}
-                {debtData.isOverdue && debtData.createWithSanad ? (
-                  <Button
-                    type="button"
-                    text={t('dashboard.exportSanad', 'Export Sanad')}
-                    className="flex-1 p-2 h-12 transition-colors duration-200"
-                    variant="primary"
-                    onClick={handleExportSanadClick}
-                    disabled={
-                      isMarkingDebtAsOverDueMutate ||
-                      isExtendingDebtDueDateMutate ||
-                      isExportingSanadMutate
-                    }
-                    isLoading={isExportingSanadMutate}
-                  />
-                ) : null}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+                  {debtData.status === 'overdue' && !debtData.isOverdue ? (
+                    <Button
+                      type="button"
+                      text={t('dashboard.markAsOverdue', 'Mark as overdue')}
+                      className="flex-1 p-2 h-12 transition-colors duration-200"
+                      variant="primary"
+                      onClick={handleOverdueClick}
+                      disabled={
+                        isMarkingDebtAsOverDueMutate ||
+                        isExtendingDebtDueDateMutate
+                      }
+                    />
+                  ) : null}
+                  {debtData.isOverdue && debtData.createWithSanad ? (
+                    <Button
+                      type="button"
+                      text={t('dashboard.exportSanad', 'Export Sanad')}
+                      className="flex-1 p-2 h-12 transition-colors duration-200"
+                      variant="primary"
+                      onClick={handleExportSanadClick}
+                      disabled={
+                        isMarkingDebtAsOverDueMutate ||
+                        isExtendingDebtDueDateMutate ||
+                        isExportingSanadMutate
+                      }
+                      isLoading={isExportingSanadMutate}
+                    />
+                  ) : null}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
       {openConfirmation && (
         <ConfirmationPopup
           isOpen={openConfirmation}
