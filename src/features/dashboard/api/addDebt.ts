@@ -13,6 +13,7 @@ export type AddDebtDTO = {
   amount: number;
   dueDate: string;
   title: string;
+  createWithSanad: boolean;
 };
 
 export const addDebt = (data: AddDebtDTO): Promise<AddDebtResponse> => {
@@ -26,6 +27,7 @@ export const addDebt = (data: AddDebtDTO): Promise<AddDebtResponse> => {
       amount: data.amount,
       dueDate: data.dueDate,
       title: data.title,
+      createWithSanad: data.createWithSanad,
     },
     {
       headers: {

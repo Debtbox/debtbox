@@ -8,6 +8,7 @@ import IdIcon from '@/components/icons/IdIcon';
 import Button from '@/components/shared/Button';
 import CalendarIcon from '@/components/icons/CalendarIcon';
 import ButtonLoaderIcon from '@/components/icons/ButtonLoaderIcon';
+import Toggle from '@/components/shared/Toggle';
 import { z } from 'zod';
 import { useAddDebt, type AddDebtResponse } from '../../api/addDebt';
 import { useCheckCustomerOverdue } from '../../api/checkCustomerOverduo';
@@ -38,6 +39,7 @@ const createCustomerPurchaseSchema = (t: (key: string) => string) =>
       .min(1, t('common.validation.dueDateRequired'))
       .regex(/^\d{4}-\d{2}-\d{2}$/, t('common.validation.dateFormat')),
     title: z.string().min(1, t('common.validation.titleRequired')),
+    createWithSanad: z.boolean(),
   });
 
 interface CustomerPurchaseFormProps {
@@ -61,6 +63,7 @@ const CustomerPurchaseForm = ({
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isValid },
   } = useForm<CustomerPurchaseFormData>({
     resolver: zodResolver(customerPurchaseSchema),
@@ -70,10 +73,12 @@ const CustomerPurchaseForm = ({
       amount: '',
       dueDate: '',
       title: '',
+      createWithSanad: false,
     },
   });
 
   const customerId = watch('customerId');
+  const createWithSanad = watch('createWithSanad');
 
   const { mutate: addDebt, isPending } = useAddDebt({
     onSuccess: (data) => {
@@ -129,6 +134,7 @@ const CustomerPurchaseForm = ({
       amount: parseFloat(data.amount),
       dueDate: data.dueDate,
       title: data.title,
+      createWithSanad: data.createWithSanad,
     };
     addDebt(payload);
   };
@@ -207,6 +213,14 @@ const CustomerPurchaseForm = ({
             tomorrow.setDate(tomorrow.getDate() + 1);
             return tomorrow.toISOString().split('T')[0];
           })()}
+        />
+        <div className="mb-4" />
+        <Toggle
+          id="create-with-sanad"
+          checked={createWithSanad}
+          onChange={(checked) => setValue('createWithSanad', checked)}
+          label={t('dashboard.createWithSanad')}
+          description={t('dashboard.createWithSanadDescription')}
         />
       </div>
       <div className="flex items-center justify-between p-4 border-t border-gray-200">

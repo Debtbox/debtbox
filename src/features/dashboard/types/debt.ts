@@ -15,6 +15,7 @@ export interface Debt {
   isOverdue: boolean;
   title: string;
   reason: string;
+  createWithSanad: boolean;
 }
 
 export interface DebtResponse {

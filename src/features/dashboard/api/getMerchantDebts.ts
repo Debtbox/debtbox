@@ -51,6 +51,7 @@ export type GetMerchantDebtsResponse = {
       isOverdue: boolean;
       title: string;
       reason: string;
+      createWithSanad: boolean;
     }[];
     count: number;
   };

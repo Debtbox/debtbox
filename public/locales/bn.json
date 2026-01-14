@@ -541,5 +541,7 @@
   "privacyPolicyPage.content.contact.byVisiting": "এই পাতায় ভিজিট করে: ",
   "dashboard.sanadExportedSuccessfully": "সনদ সফলভাবে এক্সপোর্ট করা হয়েছে",
   "dashboard.sanadExportedFailed": "সনদ এক্সপোর্ট করা সফল হয়নি",
-  "dashboard.exportSanad": "সনদ এক্সপোর্ট করুন"
+  "dashboard.exportSanad": "সনদ এক্সপোর্ট করুন",
+  "dashboard.createWithSanad": "সনদ সহ তৈরি করুন",
+  "dashboard.createWithSanadDescription": "এই ঋণের জন্য সনদ নথি তৈরি করুন"
 }

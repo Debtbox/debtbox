@@ -547,7 +547,7 @@ const DebtDetails = ({
                     }
                   />
                 ) : null}
-                {debtData.isOverdue ? (
+                {debtData.isOverdue && debtData.createWithSanad ? (
                   <Button
                     type="button"
                     text={t('dashboard.exportSanad', 'Export Sanad')}

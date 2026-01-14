@@ -541,5 +541,7 @@
   "privacyPolicyPage.content.contact.byVisiting": "By visiting this page on our website: ",
   "dashboard.sanadExportedSuccessfully": "Sanad exported successfully",
   "dashboard.sanadExportedFailed": "Failed to export Sanad",
-  "dashboard.exportSanad": "Export Sanad"
+  "dashboard.exportSanad": "Export Sanad",
+  "dashboard.createWithSanad": "Create with Sanad",
+  "dashboard.createWithSanadDescription": "Create a Sanad document for this debt"
 }

@@ -541,5 +541,7 @@
   "privacyPolicyPage.content.contact.byVisiting": "ہماری ویب سائٹ پر یہ صفحہ وزٹ کریں: ",
   "dashboard.sanadExportedSuccessfully": "سند کامیابی سے توثیق کرایا گیا",
   "dashboard.sanadExportedFailed": "سند توثیق کرنے میں ناکام",
-  "dashboard.exportSanad": "سند توثیق کریں"
+  "dashboard.exportSanad": "سند توثیق کریں",
+  "dashboard.createWithSanad": "سند کے ساتھ بنائیں",
+  "dashboard.createWithSanadDescription": "اس قرض کے لیے سند دستاویز بنائیں"
 }

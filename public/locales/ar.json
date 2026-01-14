@@ -543,5 +543,7 @@
   "privacyPolicyPage.content.contact.byVisiting": "عن طريق زيارة هذه الصفحة على موقعنا: ",
   "dashboard.sanadExportedSuccessfully": "تم تصدير السند بنجاح",
   "dashboard.sanadExportedFailed": "فشل تصدير السند",
-  "dashboard.exportSanad": "تصدير السند"
+  "dashboard.exportSanad": "تصدير السند",
+  "dashboard.createWithSanad": "إنشاء مع السند",
+  "dashboard.createWithSanadDescription": "إنشاء مستند سند لهذا الدين"
 }
