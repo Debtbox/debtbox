@@ -83,10 +83,10 @@ const BusinessCard = ({ business, onEdit, onDelete }: BusinessCardProps) => {
         </div>
         <div className="space-y-2">
           <span className="text-[#717680] text-sm flex items-center gap-2">
-            <TotalInprogressIcon /> {t('businesses.totalInprogress')}
+            <TotalInprogressIcon /> {t('businesses.totalPaidAmount')}
           </span>
           <h3 className="text-xl sm:text-2xl font-semibold text-[#414651] flex items-center gap-1">
-            {business.totalOverdueAmount?.toLocaleString() || 0} <SaudiRiyal />
+            {business.totalPaidAmount?.toLocaleString() || 0} <SaudiRiyal />
           </h3>
           <span className="text-[#717680] text-xs">
             {t('businesses.activeCustomerDebts')}
@@ -100,7 +100,9 @@ const BusinessCard = ({ business, onEdit, onDelete }: BusinessCardProps) => {
             {business.totalOverdueAmount?.toLocaleString() || 0} <SaudiRiyal />
           </h3>
           <span className="text-[#717680] text-xs">
-            {t('businesses.customersOverdue', { count: 3 })}
+            {t('businesses.customersOverdue', {
+              count: business.totalOverdueCustomers || 0,
+            })}
           </span>
         </div>
       </div>

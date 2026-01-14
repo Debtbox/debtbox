@@ -114,6 +114,7 @@
   "businesses.totalInprogress": "إجمالي قيد التنفيذ",
   "businesses.activeCustomerDebts": "ديون العملاء النشطة",
   "businesses.customersOverdue": "{count} عملاء متأخرين",
+  "businesses.totalPaidAmount": "مبلغ الدفع الكلي",
   "businesses.editBusiness": "تعديل متجرك",
   "businesses.editBusinessDescription": "قم بتحديث معلومات متجرك أدناه.",
   "businesses.businessAdded": "تمت إضافة النشاط التجاري بنجاح",

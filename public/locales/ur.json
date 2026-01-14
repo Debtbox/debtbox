@@ -114,6 +114,7 @@
   "businesses.totalInprogress": "کل جاری",
   "businesses.activeCustomerDebts": "فعال گاہک کے قرضے",
   "businesses.customersOverdue": "{count} گاہک تاخیر سے",
+  "businesses.totalPaidAmount": "کل ادا شدہ رقم",
   "businesses.editBusiness": "اپنا اسٹور ترمیم کریں",
   "businesses.editBusinessDescription": "نیچے اپنے اسٹور کی معلومات اپ ڈیٹ کریں۔",
   "businesses.businessAdded": "کاروبار کامیابی سے شامل کیا گیا",

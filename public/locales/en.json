@@ -114,6 +114,7 @@
   "businesses.totalInprogress": "Total Inprogress",
   "businesses.activeCustomerDebts": "Active customer debts",
   "businesses.customersOverdue": "{count} customers overdue",
+  "businesses.totalPaidAmount": "Total Paid Amount",
   "businesses.editBusiness": "Edit your store",
   "businesses.editBusinessDescription": "Update your store information below.",
   "businesses.businessAdded": "Business added successfully",

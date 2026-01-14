@@ -114,6 +114,7 @@
   "businesses.totalInprogress": "মোট চলমান",
   "businesses.activeCustomerDebts": "সক্রিয় গ্রাহকের ঋণ",
   "businesses.customersOverdue": "{count} গ্রাহক বিলম্বিত",
+  "businesses.totalPaidAmount": "মোট পেমেন্ট পরিমাণ",
   "businesses.editBusiness": "আপনার স্টোর সম্পাদনা করুন",
   "businesses.editBusinessDescription": "নীচে আপনার স্টোরের তথ্য আপডেট করুন।",
   "businesses.businessAdded": "ব্যবসা সফলভাবে যোগ করা হয়েছে",
