@@ -24,6 +24,7 @@ const ConfirmationPopup = ({
   cancelText,
   confirmButtonClassName = 'bg-red-600 hover:bg-red-700 text-white',
   isLoading = false,
+  icon,
 }: ConfirmationPopupProps) => {
   if (!isOpen) return null;
 
@@ -36,7 +37,7 @@ const ConfirmationPopup = ({
 
       <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 animate-scale-in z-[61]">
         <div className="w-full flex justify-center pt-10">
-          <BigXIcon />
+          {icon || <BigXIcon />}
         </div>
         <div className="p-6">
           <h3 className="text-lg font-semibold text-gray-900 text-center">

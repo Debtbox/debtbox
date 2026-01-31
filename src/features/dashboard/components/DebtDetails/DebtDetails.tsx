@@ -16,7 +16,7 @@ import DebtConsentWaiting from '../shared/DebtConsentWaiting';
 import { useMarkDebtAsOverDue } from '../../api/markDebtAsOverDue';
 import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
-import { FileIcon, SaudiRiyal } from 'lucide-react';
+import { FileDown, SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
 import ConfirmationPopup from '@/components/shared/ConfirmationPopup';
 import { downloadFile } from '@/utils/downloadFile';
@@ -210,9 +210,9 @@ const DebtDetails = ({
                 if (!isPending && !isOverdue) return null;
                 const message = isPending
                   ? t(
-                      'dashboard.pendingBanner',
-                      'This due is pending from the client',
-                    )
+                    'dashboard.pendingBanner',
+                    'This due is pending from the client',
+                  )
                   : t('dashboard.overdueBanner', 'This due is overdue');
                 const bg = isPending ? 'bg-yellow-50' : 'bg-red-50';
                 const text = isPending ? 'text-yellow-800' : 'text-red-800';
@@ -231,10 +231,10 @@ const DebtDetails = ({
             <DueDateStatusBadge
               status={
                 debtData?.dueDateStatus as
-                  | 'normal'
-                  | 'overdue'
-                  | 'in 7 days'
-                  | 'soon'
+                | 'normal'
+                | 'overdue'
+                | 'in 7 days'
+                | 'soon'
               }
             />
           </div>
@@ -305,20 +305,20 @@ const DebtDetails = ({
                   const hasReason = debtData.reason && debtData.reason.trim();
                   const message = hasReason
                     ? t(
-                        'dashboard.dateExtendedByWithReason',
-                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
-                        {
-                          amount,
-                          unit,
-                          date: oldDate,
-                          reason: debtData.reason,
-                        },
-                      )
+                      'dashboard.dateExtendedByWithReason',
+                      'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
+                      {
+                        amount,
+                        unit,
+                        date: oldDate,
+                        reason: debtData.reason,
+                      },
+                    )
                     : t(
-                        'dashboard.dateExtendedBy',
-                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
-                        { amount, unit, date: oldDate },
-                      );
+                      'dashboard.dateExtendedBy',
+                      'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
+                      { amount, unit, date: oldDate },
+                    );
                   return (
                     <div className="mt-2 inline-block bg-primary/5 text-primary/70 border border-primary/50 rounded px-2 py-1 text-xs">
                       {message}
@@ -398,8 +398,8 @@ const DebtDetails = ({
       </div>
 
       {debtData.status === 'paid' ||
-      debtData.status === 'expired' ||
-      debtData.status === 'cancelled' ? null : (
+        debtData.status === 'expired' ||
+        debtData.status === 'cancelled' ? null : (
         <div className="flex items-center justify-between p-4 border-t border-gray-200">
           {debtData.isPending ? (
             <div className="flex flex-col gap-3 flex-1">
@@ -589,7 +589,7 @@ const DebtDetails = ({
           )}
           confirmText={t('common.buttons.export', 'Export')}
           confirmButtonClassName="bg-primary text-white hover:bg-primary/90"
-          icon={<FileIcon className="w-5 h-5 text-primary" />}
+          icon={<FileDown className="w-10 h-10 text-primary" />}
           cancelText={t('common.buttons.cancel', 'Cancel')}
         />
       )}
