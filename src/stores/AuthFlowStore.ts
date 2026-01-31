@@ -2,17 +2,27 @@ import type { BusinessDto } from '@/types/BusinessDto';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+type BusinessWithOptionalIds = BusinessDto & {
+  city_id?: string;
+  activity_id?: string;
+};
+
 interface SignUpFormData {
   nationalId?: string;
+  nafathState?: string;
+  nafathRedirectUrl?: string;
   password?: string;
   confirmPassword?: string;
-  selectedStores?: BusinessDto[];
+  selectedStores?: BusinessWithOptionalIds[];
   newBusiness?: {
     business_name_en: string;
     business_name_ar: string;
     cr_number: string;
-    city: string;
-    activity: string;
+    city_id?: string;
+    activity_id?: string;
+    // legacy (older persisted flow)
+    city?: string;
+    activity?: string;
     payoutMethod: 'weekly' | 'monthly' | 'instant';
   };
   storeFormStep?: 1 | 2;

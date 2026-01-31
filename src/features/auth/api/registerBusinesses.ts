@@ -9,8 +9,8 @@ export type RegisterBusinessesCredentialsDTO = {
     cr_number: string;
     business_name_en: string;
     business_name_ar: string;
-    activity: string;
-    city: string;
+    activity_id: string;
+    city_id: string;
   }[];
   payoutMethod: 'weekly' | 'monthly' | 'instant';
   accessToken: string;

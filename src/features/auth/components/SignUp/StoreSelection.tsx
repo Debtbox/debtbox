@@ -22,15 +22,54 @@ interface StoreSelectionProps {
   ) => void;
 }
 
+type BusinessWithOptionalIds = BusinessDto & {
+  city_id?: string;
+  activity_id?: string;
+};
+
+type LocalizedOption = {
+  id: number;
+  ar: string;
+  en: string;
+  ur?: string;
+  bn?: string;
+};
+
+type NewBusinessFormState = {
+  business_name_en: string;
+  business_name_ar: string;
+  cr_number: string;
+  city_id: string;
+  activity_id: string;
+  payoutMethod: 'weekly' | 'monthly' | 'instant';
+};
+
+type SignUpFormDataCompat = {
+  selectedStores?: BusinessWithOptionalIds[];
+  newBusiness?: Partial<NewBusinessFormState> & {
+    // legacy (older persisted flow)
+    city?: string;
+    activity?: string;
+  };
+  storeFormStep?: 1 | 2;
+};
+
+type AuthFlowStoreCompat = {
+  setActiveStep: (step: number) => void;
+  formData: SignUpFormDataCompat;
+  updateFormData: (data: Partial<SignUpFormDataCompat>) => void;
+};
+
 const StoreSelection = ({
   showExistingStores = true,
   onShowAddFormChange,
 }: StoreSelectionProps) => {
   const { t, i18n } = useTranslation();
-  const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
+  const { setActiveStep, formData, updateFormData } =
+    useAuthFlowStore() as unknown as AuthFlowStoreCompat;
   const { user } = useUserStore();
 
-  const [selectedStores, setSelectedStores] = useState<BusinessDto[]>(
+  const [selectedStores, setSelectedStores] = useState<BusinessWithOptionalIds[]>(
     formData.selectedStores || [],
   );
 
@@ -41,12 +80,12 @@ const StoreSelection = ({
   const [showAddForm, setShowAddForm] = useState(!hasAnyStores);
 
   const [formStep, setFormStep] = useState<1 | 2>(formData.storeFormStep || 1);
-  const [newBusiness, setNewBusiness] = useState({
+  const [newBusiness, setNewBusiness] = useState<NewBusinessFormState>({
     business_name_en: formData.newBusiness?.business_name_en || '',
     business_name_ar: formData.newBusiness?.business_name_ar || '',
     cr_number: formData.newBusiness?.cr_number || '',
-    city: formData.newBusiness?.city || '',
-    activity: formData.newBusiness?.activity || '',
+    city_id: formData.newBusiness?.city_id || '',
+    activity_id: formData.newBusiness?.activity_id || '',
     payoutMethod:
       (formData.newBusiness?.payoutMethod as
         | 'weekly'
@@ -66,6 +105,51 @@ const StoreSelection = ({
     },
   });
 
+  const getLocalizedLabel = (item: LocalizedOption) => {
+    if (i18n.language === 'ar') return item.ar;
+    if (i18n.language === 'ur' && item.ur) return item.ur;
+    if (i18n.language === 'bn' && item.bn) return item.bn;
+    return item.en;
+  };
+
+  const findIdByAnyLabel = (
+    list: LocalizedOption[],
+    labelOrId: string | undefined,
+  ): string | undefined => {
+    if (!labelOrId) return undefined;
+
+    // Already an id
+    const asNumber = Number(labelOrId);
+    if (!Number.isNaN(asNumber)) {
+      const match = list.find((x) => x.id === asNumber);
+      if (match) return String(match.id);
+    }
+
+    const normalized = labelOrId.trim();
+    const match = list.find(
+      (x) =>
+        x.ar === normalized ||
+        x.en === normalized ||
+        (x.ur && x.ur === normalized) ||
+        (x.bn && x.bn === normalized),
+    );
+    return match ? String(match.id) : undefined;
+  };
+
+  const getCityLabelById = (cityId: string) => {
+    const match = (CITIES as LocalizedOption[]).find(
+      (c) => String(c.id) === cityId,
+    );
+    return match ? getLocalizedLabel(match) : '';
+  };
+
+  const getCategoryLabelById = (categoryId: string) => {
+    const match = (CATEGORIES as LocalizedOption[]).find(
+      (c) => String(c.id) === categoryId,
+    );
+    return match ? getLocalizedLabel(match) : '';
+  };
+
   useEffect(() => {
     if (formData.selectedStores) {
       setSelectedStores(formData.selectedStores);
@@ -74,12 +158,24 @@ const StoreSelection = ({
 
   useEffect(() => {
     if (formData.newBusiness) {
+      const city_id =
+        formData.newBusiness.city_id ||
+        findIdByAnyLabel(CITIES as LocalizedOption[], formData.newBusiness.city) ||
+        '';
+      const activity_id =
+        formData.newBusiness.activity_id ||
+        findIdByAnyLabel(
+          CATEGORIES as LocalizedOption[],
+          formData.newBusiness.activity,
+        ) ||
+        '';
+
       setNewBusiness({
         business_name_en: formData.newBusiness.business_name_en || '',
         business_name_ar: formData.newBusiness.business_name_ar || '',
         cr_number: formData.newBusiness.cr_number || '',
-        city: formData.newBusiness.city || '',
-        activity: formData.newBusiness.activity || '',
+        city_id,
+        activity_id,
         payoutMethod: formData.newBusiness.payoutMethod || 'weekly',
       });
     }
@@ -114,16 +210,16 @@ const StoreSelection = ({
   }, [showAddForm]);
 
   const getCityOptions = (): DropdownOption[] => {
-    return CITIES.map((city) => ({
-      value: i18n.language === 'ar' ? city.arabic : city.english,
-      label: i18n.language === 'ar' ? city.arabic : city.english,
+    return (CITIES as LocalizedOption[]).map((city) => ({
+      value: String(city.id),
+      label: getLocalizedLabel(city),
     }));
   };
 
   const getCategoryOptions = (): DropdownOption[] => {
-    return CATEGORIES.map((category) => ({
-      value: i18n.language === 'ar' ? category.arabic : category.english,
-      label: i18n.language === 'ar' ? category.arabic : category.english,
+    return (CATEGORIES as LocalizedOption[]).map((category) => ({
+      value: String(category.id),
+      label: getLocalizedLabel(category),
     }));
   };
 
@@ -144,10 +240,10 @@ const StoreSelection = ({
       errors.cr_number =
         t('auth.signUp.errors.crNumberRequired') || 'CR number is required';
     }
-    if (!newBusiness.city) {
+    if (!newBusiness.city_id) {
       errors.city = t('auth.signUp.errors.cityRequired') || 'City is required';
     }
-    if (!newBusiness.activity) {
+    if (!newBusiness.activity_id) {
       errors.activity =
         t('auth.signUp.errors.activityRequired') || 'Store type is required';
     }
@@ -184,15 +280,19 @@ const StoreSelection = ({
 
     const businessToAdd: BusinessDto & {
       payoutMethod?: 'weekly' | 'monthly' | 'instant';
+      city_id?: string;
+      activity_id?: string;
     } = {
       id: user?.id as number,
       cr_number: newBusiness.cr_number,
       business_name_en: newBusiness.business_name_en,
       business_name_ar: newBusiness.business_name_ar,
-      activity: newBusiness.activity,
-      city: newBusiness.city,
+      activity: getCategoryLabelById(newBusiness.activity_id),
+      city: getCityLabelById(newBusiness.city_id),
       // status: 'pending',
       payoutMethod: newBusiness.payoutMethod,
+      city_id: newBusiness.city_id,
+      activity_id: newBusiness.activity_id,
     };
 
     const newSelectedStores = [...selectedStores, businessToAdd];
@@ -201,8 +301,8 @@ const StoreSelection = ({
       business_name_en: '',
       business_name_ar: '',
       cr_number: '',
-      city: '',
-      activity: '',
+      city_id: '',
+      activity_id: '',
       payoutMethod: 'weekly' as const,
     };
     setNewBusiness(resetBusiness);
@@ -398,9 +498,9 @@ const StoreSelection = ({
               />
               <DropdownFilter
                 options={getCityOptions()}
-                value={newBusiness.city}
+                value={newBusiness.city_id}
                 onChange={(value) => {
-                  const updated = { ...newBusiness, city: value };
+                  const updated = { ...newBusiness, city_id: value };
                   setNewBusiness(updated);
                   updateFormData({ newBusiness: updated, storeFormStep: 1 });
                 }}
@@ -410,9 +510,9 @@ const StoreSelection = ({
               />
               <DropdownFilter
                 options={getCategoryOptions()}
-                value={newBusiness.activity}
+                value={newBusiness.activity_id}
                 onChange={(value) => {
-                  const updated = { ...newBusiness, activity: value };
+                  const updated = { ...newBusiness, activity_id: value };
                   setNewBusiness(updated);
                   updateFormData({ newBusiness: updated, storeFormStep: 1 });
                 }}
@@ -437,8 +537,8 @@ const StoreSelection = ({
                         business_name_en: '',
                         business_name_ar: '',
                         cr_number: '',
-                        city: '',
-                        activity: '',
+                        city_id: '',
+                        activity_id: '',
                         payoutMethod: 'weekly' as const,
                       };
                       setNewBusiness(resetBusiness);
@@ -547,26 +647,50 @@ const StoreSelection = ({
               (store) =>
                 'payoutMethod' in store &&
                 (
-                  store as BusinessDto & {
+                  store as BusinessWithOptionalIds & {
                     payoutMethod?: 'weekly' | 'monthly' | 'instant';
                   }
                 ).payoutMethod,
             ) as
-              | (BusinessDto & {
+              | (BusinessWithOptionalIds & {
                   payoutMethod?: 'weekly' | 'monthly' | 'instant';
                 })
               | undefined;
             const payoutMethod = storeWithPayout?.payoutMethod || 'weekly';
 
-            registerBusinesses({
-              accessToken: user?.accessToken as string,
-              businesses: selectedStores.map((store) => ({
+            const businessesPayload = selectedStores.map((store) => {
+              const city_id =
+                store.city_id ||
+                findIdByAnyLabel(CITIES as LocalizedOption[], store.city) ||
+                '';
+              const activity_id =
+                store.activity_id ||
+                findIdByAnyLabel(CATEGORIES as LocalizedOption[], store.activity) ||
+                '';
+
+              return {
                 cr_number: store.cr_number,
                 business_name_en: store.business_name_en,
                 business_name_ar: store.business_name_ar,
-                activity: store.activity,
-                city: store.city,
-              })),
+                activity_id,
+                city_id,
+              };
+            });
+
+            const hasMissingIds = businessesPayload.some(
+              (b) => !b.city_id || !b.activity_id,
+            );
+            if (hasMissingIds) {
+              toast.error(
+                t('auth.signUp.errors.cityOrActivityMissing') ||
+                  'Please make sure each store has a city and a store type selected.',
+              );
+              return;
+            }
+
+            registerBusinesses({
+              accessToken: user?.accessToken as string,
+              businesses: businessesPayload,
               payoutMethod: payoutMethod as 'weekly' | 'monthly' | 'instant',
             });
           }}

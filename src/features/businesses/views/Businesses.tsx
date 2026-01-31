@@ -11,6 +11,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import BusinessForm from '../components/BusinessForm';
 import PayoutMethodSelection from '../components/PayoutMethodSelection';
 import {
+  getCategoryLabelFromValue,
+  getCityLabelFromValue,
+  resolveCategoryId,
+  resolveCityId,
   validateBusinessForm,
   type NewBusiness,
 } from '../utils/businessFormUtils';
@@ -156,13 +160,20 @@ export const Businesses = () => {
       return;
     }
 
+    // edit endpoint historically expects labels, not ids
+    const cityLabel = getCityLabelFromValue(newBusiness.city, i18n.language);
+    const activityLabel = getCategoryLabelFromValue(
+      newBusiness.activity,
+      i18n.language,
+    );
+
     editBusiness({
       id: editingBusinessId,
       businessNameEn: newBusiness.business_name_en,
       businessNameAr: newBusiness.business_name_ar,
       crNumber: newBusiness.cr_number,
-      city: newBusiness.city,
-      activity: newBusiness.activity,
+      city: cityLabel,
+      activity: activityLabel,
       payoutMethod: newBusiness.payoutMethod,
       accessToken: user.accessToken,
     });
@@ -179,6 +190,17 @@ export const Businesses = () => {
       return;
     }
 
+    const city_id = resolveCityId(newBusiness.city);
+    const activity_id = resolveCategoryId(newBusiness.activity);
+
+    if (!city_id || !activity_id) {
+      toast.error(
+        t('auth.signUp.errors.cityOrActivityMissing') ||
+          'Please make sure you selected both city and store type.',
+      );
+      return;
+    }
+
     registerBusinesses({
       accessToken: user.accessToken,
       businesses: [
@@ -186,8 +208,8 @@ export const Businesses = () => {
           cr_number: newBusiness.cr_number,
           business_name_en: newBusiness.business_name_en,
           business_name_ar: newBusiness.business_name_ar,
-          activity: newBusiness.activity,
-          city: newBusiness.city,
+          activity_id,
+          city_id,
         },
       ],
       payoutMethod: newBusiness.payoutMethod,
@@ -217,12 +239,14 @@ export const Businesses = () => {
   const handleEditBusiness = (business: BusinessDto) => {
     setIsEditMode(true);
     setEditingBusinessId(business.id.toString());
+    const cityId = resolveCityId(business.city || '');
+    const activityId = resolveCategoryId(business.activity || '');
     setNewBusiness({
       business_name_en: business.business_name_en || '',
       business_name_ar: business.business_name_ar || '',
       cr_number: business.cr_number || '',
-      city: business.city || '',
-      activity: business.activity || '',
+      city: cityId || business.city || '',
+      activity: activityId || business.activity || '',
       payoutMethod: 'weekly', // Not editable via API
     });
     setIsCreateBusinessModalOpen(true);

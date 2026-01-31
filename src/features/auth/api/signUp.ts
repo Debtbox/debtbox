@@ -3,14 +3,13 @@ import type { MutationConfig } from '@/lib/react-query';
 import type { ApiError } from '@/types/ApiError';
 import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
-import type { UserDto } from '@/types/UserDto';
 
 export type SignUpCredentialsDTO = {
   nationalId: string;
 };
 
 export type SignUpResponse = {
-  data: UserDto;
+  data: { state: string; redirectUrl: string; locale: 'en' | 'ar' | '' };
   message: string;
   success: boolean;
 };

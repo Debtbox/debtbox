@@ -1,15 +1,15 @@
 import type { BusinessDto } from '@/types/BusinessDto';
 
 export type UserDto = {
-  accessToken: string;
-  businesses: BusinessDto[];
+  id: number;
+  national_id: string;
+  iqama_id: string;
   commercial_register_number: string;
-  dob: string;
+  accessToken: string;
   full_name_ar: string;
   full_name_en: string;
-  id: number;
-  iqama_id: string;
-  national_id: string;
   nationality: string;
+  dob: string;
+  businesses: BusinessDto[];
   appActor: 'CUSTOMER' | 'MERCHANT';
 };

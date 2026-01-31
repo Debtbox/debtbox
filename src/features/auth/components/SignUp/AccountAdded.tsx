@@ -3,6 +3,8 @@ import Success from '@/components/shared/Success';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
+import { clearCookie } from '@/utils/storage';
+import { queryClient } from '@/lib/queryClient';
 
 const AccountAdded = () => {
   const { t } = useTranslation();
@@ -19,6 +21,10 @@ const AccountAdded = () => {
         text={t('auth.signUp.goToLogin')}
         onClick={() => {
           resetFlow();
+          clearCookie('access_token');
+          clearCookie('language');
+          localStorage.clear();
+          queryClient.clear();
           navigate('/auth/login');
         }}
         className="mt-10 w-full p-2 bg-primary text-white rounded-lg h-12 cursor-pointer hover:bg-primary/90 transition-all duration-150 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
