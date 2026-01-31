@@ -11,8 +11,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import BusinessForm from '../components/BusinessForm';
 import PayoutMethodSelection from '../components/PayoutMethodSelection';
 import {
-  getCategoryLabelFromValue,
-  getCityLabelFromValue,
   resolveCategoryId,
   resolveCityId,
   validateBusinessForm,
@@ -160,20 +158,24 @@ export const Businesses = () => {
       return;
     }
 
-    // edit endpoint historically expects labels, not ids
-    const cityLabel = getCityLabelFromValue(newBusiness.city, i18n.language);
-    const activityLabel = getCategoryLabelFromValue(
-      newBusiness.activity,
-      i18n.language,
-    );
+    const city_id = resolveCityId(newBusiness.city);
+    const activity_id = resolveCategoryId(newBusiness.activity);
+
+    if (!city_id || !activity_id) {
+      toast.error(
+        t('auth.signUp.errors.cityOrActivityMissing') ||
+          'Please make sure you selected both city and store type.',
+      );
+      return;
+    }
 
     editBusiness({
       id: editingBusinessId,
       businessNameEn: newBusiness.business_name_en,
       businessNameAr: newBusiness.business_name_ar,
       crNumber: newBusiness.cr_number,
-      city: cityLabel,
-      activity: activityLabel,
+      city_id,
+      activity_id,
       payoutMethod: newBusiness.payoutMethod,
       accessToken: user.accessToken,
     });

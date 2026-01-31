@@ -9,8 +9,8 @@ export type EditBusinessCredentialsDTO = {
   businessNameEn: string;
   businessNameAr: string;
   crNumber: string;
-  city: string;
-  activity: string;
+  city_id: string;
+  activity_id: string;
   payoutMethod: 'weekly' | 'monthly' | 'instant';
   accessToken: string;
 };
@@ -23,8 +23,8 @@ export const editBusiness = (data: EditBusinessCredentialsDTO) => {
       id: data.id,
       business_name_en: data.businessNameEn,
       business_name_ar: data.businessNameAr,
-      city: data.city,
-      activity: data.activity,
+      city_id: data.city_id,
+      activity_id: data.activity_id,
       //   crNumber: data.crNumber, // Not supported by API
       //   payoutMethod: data.payoutMethod, // Not supported by API
     },
