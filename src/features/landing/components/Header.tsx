@@ -8,6 +8,8 @@ import {
   bnFlag,
   headerLogo,
   whiteLogo,
+  sidebarLogo,
+  sidebarLogoWhite,
 } from '@/assets/images';
 import { changeLanguage } from '@/utils/changeLanguage';
 
@@ -145,6 +147,13 @@ const Header = () => {
     setIsMobileLangDropdownOpen(false);
   };
 
+  const getLogoSrc = () => {
+    if (shouldUseHeroStyling) {
+      return i18n.language === 'ar' ? whiteLogo : sidebarLogoWhite;
+    }
+    return i18n.language === 'ar' ? headerLogo : sidebarLogo;
+  };
+
   const isActiveLink = (path: string) => {
     if (path === '/') {
       return location.pathname === '/' && !location.hash;
@@ -169,16 +178,16 @@ const Header = () => {
         onMouseEnter={
           shouldUseHeroStyling
             ? () => {
-                setIsHovered(true);
-                setOpacity(1);
-              }
+              setIsHovered(true);
+              setOpacity(1);
+            }
             : undefined
         }
         onMouseLeave={
           shouldUseHeroStyling
             ? () => {
-                setIsHovered(false);
-              }
+              setIsHovered(false);
+            }
             : undefined
         }
       >
@@ -186,7 +195,7 @@ const Header = () => {
           <div className="logo">
             <Link to="/">
               <img
-                src={shouldUseHeroStyling ? whiteLogo : headerLogo}
+                src={getLogoSrc()}
                 alt="Logo"
               />
             </Link>
