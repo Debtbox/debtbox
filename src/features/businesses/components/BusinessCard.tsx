@@ -2,7 +2,7 @@ import OutstandingIcon from '@/components/icons/OutstandingIcon';
 import OverdueIcon from '@/components/icons/OverdueIcon';
 import TotalInprogressIcon from '@/components/icons/TotalInprogressIcon';
 import Button from '@/components/shared/Button';
-import { Pause, SaudiRiyal } from 'lucide-react';
+import { SaudiRiyal } from 'lucide-react';
 import type { BusinessDto } from '@/types/BusinessDto';
 import { useTranslation } from 'react-i18next';
 
@@ -32,12 +32,6 @@ const BusinessCard = ({ business, onEdit, onDelete }: BusinessCardProps) => {
             text={t('businesses.edit')}
             className="h-12 w-full sm:w-40 md:w-52 border border-[#E2E2E2] rounded-lg text-[#1F1F1F] hover:bg-gray-50 transition-colors duration-200"
             onClick={() => onEdit?.(business)}
-          />
-          <Button
-            disabled={true}
-            text={t('businesses.holdBusiness')}
-            className="h-12 w-full sm:w-40 md:w-52 border border-[#FFA500] rounded-lg text-[#FFA500] flex items-center justify-center gap-2 opacity-60 cursor-not-allowed"
-            icon={<Pause className="w-4 h-4 text-[#FFA500]" />}
           />
           <Button
             text={t('businesses.delete')}
