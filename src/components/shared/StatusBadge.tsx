@@ -96,13 +96,85 @@ export const DueDateStatusBadge = ({
 
 export const StatusBadge = ({
   status,
+  label,
+  showDot = true,
+  size = 'md',
+  className,
 }: {
   status: 'pending' | 'paid' | 'expired';
+  label?: string;
+  showDot?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
 }) => {
   const { t } = useTranslation();
+  const statusConfig = {
+    pending: {
+      label: t('dashboard.pending', 'pending'),
+      color: 'bg-[#FEF2DC] text-[#F8AC1F]',
+      dotColor: 'bg-[#F8AC1F]',
+      dotShadowColor: 'bg-[#F8AC1F47]',
+    },
+    paid: {
+      label: t('dashboard.paid', 'paid'),
+      color: 'bg-[#22C55E14] text-[#22C55E]',
+      dotColor: 'bg-[#22C55E]',
+      dotShadowColor: 'bg-[#22C55E47]',
+    },
+    expired: {
+      label: t('dashboard.expired', 'expired'),
+      color: 'bg-[#FF475714] text-[#FF4757]',
+      dotColor: 'bg-[#FF4757]',
+      dotShadowColor: 'bg-[#FF475763]',
+    },
+  };
+
+  const config = statusConfig[status];
+  const displayLabel = label || config?.label || status;
+
+  const sizeClasses = {
+    sm: 'px-2 py-1',
+    md: 'px-3 py-1',
+    lg: 'px-4 py-2',
+  };
+
+  const dotSizeConfig = {
+    sm: { dot: 'w-1.5 h-1.5', shadow: 'w-3 h-3' },
+    md: { dot: 'w-2 h-2', shadow: 'w-4 h-4' },
+    lg: { dot: 'w-2.5 h-2.5', shadow: 'w-5 h-5' },
+  };
+
   return (
-    <span className="inline-flex items-center gap-2 rounded-full font-medium capitalize">
-      {t(`dashboard.${status}`, status)}
+    <span
+      className={clsx(
+        'inline-flex items-center gap-2 rounded-full font-medium leading-none capitalize',
+        config?.color,
+        sizeClasses[size],
+        className,
+      )}
+    >
+      {showDot && (
+        <span className="relative flex items-center justify-center">
+          <span
+            className={clsx(
+              'absolute rounded-full',
+              config?.dotShadowColor,
+              dotSizeConfig[size].shadow,
+              'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+            )}
+            aria-hidden="true"
+          />
+          <span
+            className={clsx(
+              'relative rounded-full',
+              config?.dotColor,
+              dotSizeConfig[size].dot,
+            )}
+            aria-hidden="true"
+          />
+        </span>
+      )}
+      {displayLabel}
     </span>
   );
 };
