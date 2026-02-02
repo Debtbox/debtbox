@@ -1,6 +1,7 @@
 .about-page {
   position: relative;
   font-family: 'Cairo', sans-serif;
+  background-color: #f3f5f5;
 }
 
 .about-page .about-vector-1,
@@ -84,7 +85,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  background: #fff;
+  background: #1833c1;
   padding: 1.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   margin: auto;
@@ -97,11 +98,43 @@
 
 .about-page .description-bg {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 20%;
+  height: 15%;
+  z-index: 10;
+}
+
+.about-page .description-vector {
+  position: absolute;
+  top: 9%;
   height: 100%;
   z-index: 0;
 }
+
+/* LTR: logo and vector on the left */
+.about-page .description-container.is-ltr .description-bg,
+.about-page .description-container[dir='ltr'] .description-bg {
+  left: 3%;
+  right: auto;
+}
+.about-page .description-container.is-ltr .description-vector,
+.about-page .description-container[dir='ltr'] .description-vector {
+  left: 0;
+  right: auto;
+  transform: scaleX(-1);
+}
+
+/* RTL: logo and vector on the right */
+.about-page .description-container.is-rtl .description-bg,
+.about-page .description-container[dir='rtl'] .description-bg {
+  right: 3%;
+  left: auto;
+}
+.about-page .description-container.is-rtl .description-vector,
+.about-page .description-container[dir='rtl'] .description-vector {
+  right: 0;
+  left: auto;
+}
+
 .about-page .description-header {
   display: flex;
   align-items: center;
@@ -140,8 +173,19 @@
   flex-direction: column;
   gap: 1rem;
 }
+.about-page .description-header-content h2 {
+  font-family: Cairo;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 60px;
+  line-height: 88px;
+  color: #51edc3;
+  white-space: nowrap;
+  margin-top: 40px;
+}
 .about-page .description-text p {
   margin: 0;
+  color: #fff;
 }
 .about-page .about-frame-container {
   display: flex;
@@ -357,7 +401,6 @@
   z-index: 1;
   position: relative;
   padding: 2rem;
-  background-color: #f7f7f7;
   font-family: 'Cairo', sans-serif;
   margin: auto;
 }
@@ -392,7 +435,7 @@
 }
 
 .about-page .vision-text h2 {
-  color: #000;
+  color: var(--primary-color);
   text-align: right;
   font-feature-settings:
     'liga' off,
