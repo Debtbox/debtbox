@@ -34,7 +34,12 @@ const createFirstPasswordSchema = (t: (key: string) => string) =>
       path: ['confirmPassword'],
     });
 
-const FirstPasswordForm = () => {
+type FirstPasswordFormProps = {
+  /** When provided (e.g. forgot-password flow), call this instead of setActiveStep(2) */
+  onSuccess?: () => void;
+};
+
+const FirstPasswordForm = ({ onSuccess: onSuccessCallback }: FirstPasswordFormProps = {}) => {
   const { t } = useTranslation();
   const { setActiveStep, formData, updateFormData } = useAuthFlowStore();
   const { user } = useUserStore();
@@ -77,7 +82,8 @@ const FirstPasswordForm = () => {
 
   const { mutate, isPending } = useCreatePassword({
     onSuccess: () => {
-      setActiveStep(2);
+      if (onSuccessCallback) onSuccessCallback();
+      else setActiveStep(2);
       toast.success(t('auth.signUp.passwordCreated'));
     },
     onError: (error) => {

@@ -46,3 +46,5 @@ flatten-translations.js
 
 .vite/deps
 GH_PAGES_FIX.md
+
+backendTemplates/*

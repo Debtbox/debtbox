@@ -6,6 +6,7 @@ import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
 export type SignUpCredentialsDTO = {
   nationalId: string;
+  isForgetPassword?: boolean;
 };
 
 export type SignUpResponse = {
