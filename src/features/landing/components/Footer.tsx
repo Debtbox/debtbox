@@ -1,16 +1,16 @@
-import { fb, footerLogo, ig, ln, x } from '@/assets/images';
+import { fb, footerLogo, ig, ln, sidebarLogoWhite, x } from '@/assets/images';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <footer className="footer">
       <div className="footer-container container_css">
         <div className="footer-section footer-logo">
           <Link to="/">
-            <img src={footerLogo} alt="Logo" />
+            <img src={i18n.language === 'ar' ? footerLogo : sidebarLogoWhite} alt="Logo" />
           </Link>
         </div>
         <div className="footer-section links" data-directional dir="rtl">

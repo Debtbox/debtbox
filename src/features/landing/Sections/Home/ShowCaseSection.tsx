@@ -2,8 +2,8 @@ import { blueIcon, phone, redIcon } from '@/assets/images';
 import { useTranslation } from 'react-i18next';
 
 const ShowCaseSection = () => {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir(i18n.language) === 'rtl';
   return (
     <section className="features-section">
       <div className="feature-card bottom-left">
@@ -13,7 +13,7 @@ const ShowCaseSection = () => {
       </div>
 
       <div className="phone-image">
-        <img src={phone} alt="Phone Mockup" />
+        <img src={phone} alt="Phone Mockup" className={isRtl ? 'rtl-phone' : 'ltr-phone'} />
       </div>
 
       <div className="feature-card top-right">
