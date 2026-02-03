@@ -14,6 +14,7 @@ import { toast } from 'sonner';
 import {
   DueDateStatusBadge,
   StatusBadge,
+  type StatusBadgeStatus,
 } from '@/components/shared/StatusBadge';
 import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';
@@ -212,7 +213,7 @@ export const Transactions = () => {
       title: t('common.buttons.status'),
       dataIndex: 'status',
       render: (_, record) => (
-        <StatusBadge status={record.status as 'pending' | 'paid' | 'expired'} />
+        <StatusBadge status={record.status as StatusBadgeStatus} />
       ),
     },
     {

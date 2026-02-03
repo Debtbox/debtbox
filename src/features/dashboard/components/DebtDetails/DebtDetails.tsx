@@ -3,6 +3,7 @@ import Input from '@/components/shared/Input';
 import {
   DueDateStatusBadge,
   StatusBadge,
+  type StatusBadgeStatus,
 } from '@/components/shared/StatusBadge';
 import CalendarIcon from '@/components/icons/CalendarIcon';
 import { type Debt } from '../../types/debt';
@@ -261,7 +262,7 @@ const DebtDetails = ({
               </div>
               <div className="text-xl font-bold">
                 <StatusBadge
-                  status={debtData?.status as 'pending' | 'paid' | 'expired'}
+                  status={debtData?.status as StatusBadgeStatus}
                 />
               </div>
             </div>

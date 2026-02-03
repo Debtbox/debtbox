@@ -94,6 +94,15 @@ export const DueDateStatusBadge = ({
   );
 };
 
+export type StatusBadgeStatus =
+  | 'canceled'
+  | 'paid'
+  | 'overdue'
+  | 'active'
+  | 'pending'
+  | 'expired';
+
+/** Due Status: canceled → in 7 days (grey), paid → green, overdue → red, active → normal (blue), pending → yellow */
 export const StatusBadge = ({
   status,
   label,
@@ -101,25 +110,46 @@ export const StatusBadge = ({
   size = 'md',
   className,
 }: {
-  status: 'pending' | 'paid' | 'expired';
+  status: StatusBadgeStatus;
   label?: string;
   showDot?: boolean;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }) => {
   const { t } = useTranslation();
-  const statusConfig = {
-    pending: {
-      label: t('dashboard.pending', 'pending'),
-      color: 'bg-[#FEF2DC] text-[#F8AC1F]',
-      dotColor: 'bg-[#F8AC1F]',
-      dotShadowColor: 'bg-[#F8AC1F47]',
+  const statusConfig: Record<
+    string,
+    { label: string; color: string; dotColor: string; dotShadowColor: string }
+  > = {
+    canceled: {
+      label: t('common.buttons.in7days'),
+      color: 'bg-[#F0F0F0] text-[#4F5154]',
+      dotColor: 'bg-[#4F5154]',
+      dotShadowColor: 'bg-[#4F515447]',
     },
     paid: {
       label: t('dashboard.paid', 'paid'),
       color: 'bg-[#22C55E14] text-[#22C55E]',
       dotColor: 'bg-[#22C55E]',
       dotShadowColor: 'bg-[#22C55E47]',
+    },
+    overdue: {
+      label: t('common.buttons.overdue'),
+      color: 'bg-[#FF475714] text-[#FF4757]',
+      dotColor: 'bg-[#FF4757]',
+      dotShadowColor: 'bg-[#FF475763]',
+    },
+    active: {
+      label: t('common.buttons.normal'),
+      color: 'bg-[#0E1F8014] text-[#0E1F80]',
+      dotColor: 'bg-[#0E1F80]',
+      dotShadowColor: 'bg-[#0E1F8047]',
+    },
+    pending: {
+      label: t('dashboard.pending', 'pending'),
+      color: 'bg-[#FEF2DC] text-[#F8AC1F]',
+      dotColor: 'bg-[#F8AC1F]',
+      dotShadowColor: 'bg-[#F8AC1F47]',
     },
     expired: {
       label: t('dashboard.expired', 'expired'),
@@ -129,8 +159,15 @@ export const StatusBadge = ({
     },
   };
 
-  const config = statusConfig[status];
-  const displayLabel = label || config?.label || status;
+  const defaultConfig = {
+    label: status,
+    color: 'bg-[#F0F0F0] text-[#4F5154]',
+    dotColor: 'bg-[#4F5154]',
+    dotShadowColor: 'bg-[#4F515447]',
+  };
+
+  const config = statusConfig[status] ?? defaultConfig;
+  const displayLabel = label || config.label;
 
   const sizeClasses = {
     sm: 'px-2 py-1',
@@ -148,7 +185,7 @@ export const StatusBadge = ({
     <span
       className={clsx(
         'inline-flex items-center gap-2 rounded-full font-medium leading-none capitalize',
-        config?.color,
+        config.color,
         sizeClasses[size],
         className,
       )}
@@ -158,7 +195,7 @@ export const StatusBadge = ({
           <span
             className={clsx(
               'absolute rounded-full',
-              config?.dotShadowColor,
+              config.dotShadowColor,
               dotSizeConfig[size].shadow,
               'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
             )}
@@ -167,7 +204,7 @@ export const StatusBadge = ({
           <span
             className={clsx(
               'relative rounded-full',
-              config?.dotColor,
+              config.dotColor,
               dotSizeConfig[size].dot,
             )}
             aria-hidden="true"
