@@ -10,7 +10,6 @@ import { useCheckMerchantSignupStatus } from '../../api/checkMerchantSignupStatu
 import { toast } from 'sonner';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
-import { setCookie } from '@/utils/storage';
 
 type ForgotPasswordFormData = z.infer<ReturnType<typeof createForgotPasswordSchema>>;
 
@@ -55,7 +54,6 @@ const ForgotPasswordForm = ({ onNafathSuccess }: ForgotPasswordFormProps) => {
     useCheckMerchantSignupStatus({
       onSuccess: (response) => {
         toast.success(t('auth.forgotPassword.verificationSuccess'));
-        setCookie('access_token', response.data.accessToken);
         setUser(response.data);
         setIsWaitingForNafath(false);
         onNafathSuccess();
