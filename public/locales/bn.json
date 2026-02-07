@@ -561,5 +561,14 @@
   "dashboard.sanadExportedFailed": "সনদ এক্সপোর্ট করা সফল হয়নি",
   "dashboard.exportSanad": "সনদ এক্সপোর্ট করুন",
   "dashboard.createWithSanad": "সনদ সহ তৈরি করুন",
-  "dashboard.createWithSanadDescription": "এই ঋণের জন্য সনদ নথি তৈরি করুন"
+  "dashboard.createWithSanadDescription": "এই ঋণের জন্য সনদ নথি তৈরি করুন",
+  "dashboard.clientPaidInCash": "ক্লায়েন্ট নগদ পরিশোধ করেছেন",
+  "dashboard.confirmPaidInCash": "নগদ পরিশোধ হিসাবে চিহ্নিত করবেন?",
+  "dashboard.confirmPaidInCashDescription": "গ্রাহক নগদ পেমেন্ট পেয়েছেন তা নিশ্চিত করার জন্য একটি অনুরোধ পাবেন। আপনি চালিয়ে যেতে চান?",
+  "dashboard.waitingForCustomerCashConfirmation": "গ্রাহকের নিশ্চিতকরণের জন্য অপেক্ষা করা হচ্ছে",
+  "dashboard.waitingForCustomerCashConfirmationMessage": "গ্রাহক নগদ পেমেন্ট পেয়েছেন তা নিশ্চিত করার জন্য একটি বিজ্ঞপ্তি পাবেন।",
+  "dashboard.customerAcceptedCashPayment": "গ্রাহক নগদ পেমেন্ট নিশ্চিত করেছেন",
+  "dashboard.customerRejectedCashPayment": "গ্রাহক নগদ পেমেন্ট নিশ্চিত করেননি",
+  "dashboard.customerExpiredCashPayment": "নগদ পেমেন্ট নিশ্চিতকরণের মেয়াদ শেষ",
+  "dashboard.debtMarkedAsCashPaidFailed": "ঋণ নগদ পরিশোধ হিসাবে চিহ্নিত করতে ব্যর্থ"
 }

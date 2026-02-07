@@ -46,9 +46,21 @@ export const Dashboard = () => {
           />
         </div>
         <div className="md:flex-1 flex flex-col gap-4">
-          {/* <TotalCard value={10550350} type="total" />
-          <TotalCard value={10550350} type="unpaid" />
-          <TotalCard value={10550350} type="paid" /> */}
+          {/* <TotalCard
+            value={(selectedBusiness?.totalPaidAmount ?? 0) + (selectedBusiness?.totalOverdueAmount ?? 0)}
+            title={t('dashboard.total', 'Total')}
+            color="gray"
+          />
+          <TotalCard
+            value={selectedBusiness?.totalOutstandingAmount ?? 0}
+            title={t('dashboard.unpaid', 'Due (Unpaid)')}
+            color="red"
+          />
+          <TotalCard
+            value={selectedBusiness?.totalOverdueAmount ?? 0}
+            title={t('dashboard.paid', 'Due (Paid)')}
+            color="green"
+          /> */}
         </div>
       </div>
       <div className="animate-fade-in animation-delay-200">

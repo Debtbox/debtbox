@@ -9,7 +9,7 @@ export interface Debt {
   amount: number;
   due_date: string;
   original_date: string;
-  status: string;
+  status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'expired';
   dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
   isPending: boolean;
   isOverdue: boolean;
@@ -24,7 +24,7 @@ export interface DebtResponse {
   customer: UserDto;
   amount: number;
   due_date: string;
-  status: string;
+  status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'expired';
   isPending: boolean;
   title: string;
   reason?: string;

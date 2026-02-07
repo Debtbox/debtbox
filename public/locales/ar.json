@@ -563,5 +563,14 @@
   "dashboard.sanadExportedFailed": "فشل تصدير السند",
   "dashboard.exportSanad": "تصدير السند",
   "dashboard.createWithSanad": "إنشاء مع السند",
-  "dashboard.createWithSanadDescription": "إنشاء مستند سند لهذا الدين"
+  "dashboard.createWithSanadDescription": "إنشاء مستند سند لهذا الدين",
+  "dashboard.clientPaidInCash": "العميل دفع نقداً",
+  "dashboard.confirmPaidInCash": "تحديد كمُدفوع نقداً؟",
+  "dashboard.confirmPaidInCashDescription": "سيستلم العميل طلباً لتأكيد استلامه الدفع النقدي. هل تريد المتابعة؟",
+  "dashboard.waitingForCustomerCashConfirmation": "في انتظار تأكيد العميل",
+  "dashboard.waitingForCustomerCashConfirmationMessage": "سيستلم العميل إشعاراً لتأكيد استلامه الدفع النقدي.",
+  "dashboard.customerAcceptedCashPayment": "أكّد العميل استلام الدفع النقدي",
+  "dashboard.customerRejectedCashPayment": "لم يؤكد العميل استلام الدفع النقدي",
+  "dashboard.customerExpiredCashPayment": "انتهت صلاحية تأكيد الدفع النقدي",
+  "dashboard.debtMarkedAsCashPaidFailed": "فشل في تحديد الدين كمُدفوع نقداً"
 }

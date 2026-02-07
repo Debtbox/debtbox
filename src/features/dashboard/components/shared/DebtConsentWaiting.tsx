@@ -6,12 +6,18 @@ interface DebtConsentWaitingProps {
   onCancel: () => void;
   showStepIndicator?: boolean;
   stepText?: string;
+  /** Override title translation key (e.g. for paid-in-cash flow) */
+  titleKey?: string;
+  /** Override message translation key (e.g. for paid-in-cash flow) */
+  messageKey?: string;
 }
 
 const DebtConsentWaiting = ({
   onCancel,
   showStepIndicator = true,
   stepText,
+  titleKey = 'dashboard.waitingForCustomerResponse',
+  messageKey = 'dashboard.waitingForCustomerResponseMessage',
 }: DebtConsentWaitingProps) => {
   const { t } = useTranslation();
 
@@ -20,10 +26,10 @@ const DebtConsentWaiting = ({
       <div className="flex-1 flex flex-col items-center justify-center p-8 animate-fade-in">
         <WaitingIcon />
         <h2 className="text-2xl font-bold text-gray-800 mb-2 animate-slide-down animation-delay-100">
-          {t('dashboard.waitingForCustomerResponse')}
+          {t(titleKey)}
         </h2>
         <p className="text-gray-600 animate-slide-down animation-delay-200">
-          {t('dashboard.waitingForCustomerResponseMessage')}
+          {t(messageKey)}
         </p>
       </div>
 

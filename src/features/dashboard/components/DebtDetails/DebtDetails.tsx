@@ -19,8 +19,10 @@ import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
 import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
 import { FileDown, SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
+import { useMarkDebtAsCashPaid } from '../../api/markDebtAsCashPaid';
 import ConfirmationPopup from '@/components/shared/ConfirmationPopup';
 import { downloadFile } from '@/utils/downloadFile';
+import { Banknote } from 'lucide-react';
 const DebtDetails = ({
   debtData,
   setIsSideoverOpen,
@@ -36,6 +38,8 @@ const DebtDetails = ({
   const [showExtendConfirmation, setShowExtendConfirmation] = useState(false);
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const [openConfirmation, setOpenConfirmation] = useState(false);
+  const [showPaidInCashConfirmation, setShowPaidInCashConfirmation] =
+    useState(false);
   const [newDueDate, setNewDueDate] = useState('');
   const [reason, setReason] = useState('');
 
@@ -94,10 +98,31 @@ const DebtDetails = ({
       );
     },
   });
-  const { isWaiting, startWaiting, stopWaiting } = useDebtConsentWaiting({
+  const {
+    isWaiting,
+    startWaiting,
+    stopWaiting,
+    waitingVariant,
+  } = useDebtConsentWaiting({
     onResponse: () => {
       refetchDebts();
       setIsSideoverOpen(false);
+    },
+  });
+
+  const {
+    mutate: markDebtAsCashPaidMutate,
+    isPending: isMarkingDebtAsCashPaid,
+  } = useMarkDebtAsCashPaid({
+    onSuccess: () => {
+      setShowPaidInCashConfirmation(false);
+      startWaiting({ variant: 'cash_paid' });
+    },
+    onError: (error) => {
+      toast.error(
+        error.response?.data?.message ||
+        t('dashboard.debtMarkedAsCashPaidFailed'),
+      );
     },
   });
 
@@ -171,7 +196,20 @@ const DebtDetails = ({
   // Show waiting UI when waiting for customer response
   if (isWaiting) {
     return (
-      <DebtConsentWaiting onCancel={stopWaiting} showStepIndicator={false} />
+      <DebtConsentWaiting
+        onCancel={stopWaiting}
+        showStepIndicator={false}
+        titleKey={
+          waitingVariant === 'cash_paid'
+            ? 'dashboard.waitingForCustomerCashConfirmation'
+            : undefined
+        }
+        messageKey={
+          waitingVariant === 'cash_paid'
+            ? 'dashboard.waitingForCustomerCashConfirmationMessage'
+            : undefined
+        }
+      />
     );
   }
 
@@ -396,7 +434,23 @@ const DebtDetails = ({
             </div>
           </div>
         )}
+        <div>
+          {debtData.status === 'overdue' && !debtData.isOverdue ? (
+            <Button
+              type="button"
+              text={t('dashboard.markAsOverdue', 'Mark as overdue')}
+              className="flex-1 p-2 h-10 transition-colors duration-200 text-[#FF0B0B]!"
+              variant="gray"
+              onClick={handleOverdueClick}
+              disabled={
+                isMarkingDebtAsOverDueMutate ||
+                isExtendingDebtDueDateMutate
+              }
+            />
+          ) : null}
+        </div>
       </div>
+
 
       {debtData.status === 'paid' ||
         debtData.status === 'expired' ||
@@ -533,22 +587,23 @@ const DebtDetails = ({
                     text={t('dashboard.extendDueDate', 'Extend Due Date')}
                     onClick={handleExtendClick}
                     className="flex-1 p-2 h-12 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                    variant="gray"
+                    variant="primary"
                     disabled={
                       isMarkingDebtAsOverDueMutate ||
                       isExtendingDebtDueDateMutate
                     }
                   />
-                  {debtData.status === 'overdue' && !debtData.isOverdue ? (
+                  {debtData.status === 'active' || debtData.status === 'overdue' ? (
                     <Button
                       type="button"
-                      text={t('dashboard.markAsOverdue', 'Mark as overdue')}
+                      text={t('dashboard.clientPaidInCash')}
                       className="flex-1 p-2 h-12 transition-colors duration-200"
-                      variant="primary"
-                      onClick={handleOverdueClick}
+                      variant="gray"
+                      onClick={() => setShowPaidInCashConfirmation(true)}
                       disabled={
                         isMarkingDebtAsOverDueMutate ||
-                        isExtendingDebtDueDateMutate
+                        isExtendingDebtDueDateMutate ||
+                        isMarkingDebtAsCashPaid
                       }
                     />
                   ) : null}
@@ -583,15 +638,30 @@ const DebtDetails = ({
             }
             setOpenConfirmation(false);
           }}
-          title={t('dashboard.exportSanad', 'Export Sanad')}
-          description={t(
-            'dashboard.exportSanadDescription',
-            'Are you sure you want to export the sanad?',
-          )}
-          confirmText={t('common.buttons.export', 'Export')}
+          title={t('dashboard.exportSanad')}
+          description={t('dashboard.exportSanadDescription')}
+          confirmText={t('common.buttons.export')}
           confirmButtonClassName="bg-primary text-white hover:bg-primary/90"
           icon={<FileDown className="w-10 h-10 text-primary" />}
-          cancelText={t('common.buttons.cancel', 'Cancel')}
+          cancelText={t('common.buttons.cancel')}
+        />
+      )}
+      {showPaidInCashConfirmation && (
+        <ConfirmationPopup
+          isOpen={showPaidInCashConfirmation}
+          onClose={() => setShowPaidInCashConfirmation(false)}
+          onConfirm={() => {
+            markDebtAsCashPaidMutate({
+              debtId: debtData.debtId.toString(),
+            });
+          }}
+          title={t('dashboard.confirmPaidInCash')}
+          description={t('dashboard.confirmPaidInCashDescription')}
+          confirmText={t('common.buttons.yes')}
+          cancelText={t('common.buttons.no')}
+          confirmButtonClassName="bg-primary text-white hover:bg-primary/90"
+          icon={<Banknote className="w-10 h-10 text-primary" />}
+          isLoading={isMarkingDebtAsCashPaid}
         />
       )}
     </div>

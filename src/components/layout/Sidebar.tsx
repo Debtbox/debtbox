@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   sidebarLogo,
   dashboardSidebar,
-  clientsSidebar,
+  // clientsSidebar,
   usersListSidebar,
-  settingsSidebar,
+  // settingsSidebar,
   businessesSidebar,
 } from '@/assets/images';
 import clsx from 'clsx';
@@ -33,11 +33,11 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
       href: '/',
       icon: dashboardSidebar,
     },
-    {
-      name: t('navigation.clients', 'Clients'),
-      href: '/clients',
-      icon: clientsSidebar,
-    },
+    // {
+    //   name: t('navigation.clients', 'Clients'),
+    //   href: '/clients',
+    //   icon: clientsSidebar,
+    // },
     {
       name: t('navigation.transactions', 'Transactions'),
       href: '/transactions',
@@ -48,11 +48,11 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
       href: '/businesses',
       icon: businessesSidebar,
     },
-    {
-      name: t('navigation.settings', 'Settings'),
-      href: '/settings',
-      icon: settingsSidebar,
-    },
+    // {
+    //   name: t('navigation.settings', 'Settings'),
+    //   href: '/settings',
+    //   icon: settingsSidebar,
+    // },
   ];
 
   const isActive = (href: string) => {

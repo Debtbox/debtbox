@@ -6,10 +6,28 @@ import { useUserStore } from '@/stores/UserStore';
 
 export type CustomerResponse = 'accepted' | 'rejected' | 'expired';
 
+export type WaitingVariant = 'debt_consent' | 'cash_paid';
+
 interface UseDebtConsentWaitingProps {
   onResponse?: (response: CustomerResponse) => void;
   onSuccess?: () => void;
 }
+
+const TOAST_KEYS: Record<
+  WaitingVariant,
+  Record<CustomerResponse, { type: 'success' | 'error'; key: string }>
+> = {
+  debt_consent: {
+    accepted: { type: 'success', key: 'dashboard.customerAcceptedDebt' },
+    rejected: { type: 'error', key: 'dashboard.customerRejectedDebt' },
+    expired: { type: 'error', key: 'dashboard.customerExpiredDebt' },
+  },
+  cash_paid: {
+    accepted: { type: 'success', key: 'dashboard.customerAcceptedCashPayment' },
+    rejected: { type: 'error', key: 'dashboard.customerRejectedCashPayment' },
+    expired: { type: 'error', key: 'dashboard.customerExpiredCashPayment' },
+  },
+};
 
 export const useDebtConsentWaiting = ({
   onResponse,
@@ -18,30 +36,32 @@ export const useDebtConsentWaiting = ({
   const { t } = useTranslation();
   const { user } = useUserStore();
   const [isWaiting, setIsWaiting] = useState(false);
+  const [waitingVariant, setWaitingVariant] =
+    useState<WaitingVariant>('debt_consent');
 
   const handleCustomerResponse = useCallback(
-    (response: CustomerResponse) => {
+    (response: CustomerResponse, variant: WaitingVariant) => {
       setIsWaiting(false);
-      
-      // Show appropriate toast message
-      if (response === 'accepted') {
-        toast.success(t('dashboard.customerAcceptedDebt'));
-      } else if (response === 'expired') {
-        toast.error(t('dashboard.customerExpiredDebt'));
+      const { type, key } = TOAST_KEYS[variant][response];
+      const message = t(key);
+      if (type === 'success') {
+        toast.success(message);
       } else {
-        toast.error(t('dashboard.customerRejectedDebt'));
+        toast.error(message);
       }
-
-      // Call custom response handler
       onResponse?.(response);
     },
     [t, onResponse]
   );
 
-  const startWaiting = useCallback(() => {
-    setIsWaiting(true);
-    onSuccess?.();
-  }, [onSuccess]);
+  const startWaiting = useCallback(
+    (options?: { variant?: WaitingVariant }) => {
+      setWaitingVariant(options?.variant ?? 'debt_consent');
+      setIsWaiting(true);
+      onSuccess?.();
+    },
+    [onSuccess]
+  );
 
   const stopWaiting = useCallback(() => {
     setIsWaiting(false);
@@ -63,20 +83,20 @@ export const useDebtConsentWaiting = ({
 
         if (responseData.action === 'accepted') {
           socketManager.disconnect();
-          handleCustomerResponse('accepted');
+          handleCustomerResponse('accepted', waitingVariant);
         } else if (responseData.action === 'rejected') {
           socketManager.disconnect();
-          handleCustomerResponse('rejected');
+          handleCustomerResponse('rejected', waitingVariant);
         } else if (responseData.action === 'expired') {
           socketManager.disconnect();
-          handleCustomerResponse('expired');
+          handleCustomerResponse('expired', waitingVariant);
         }
       };
 
       const handleDisconnect = () => {
         socketManager.offDebtConsentUpdate(handleDebtConsentUpdate);
         socketManager.offDisconnect();
-        handleCustomerResponse('expired');
+        handleCustomerResponse('expired', waitingVariant);
       };
 
       socketManager.onDebtConsentUpdate(handleDebtConsentUpdate);
@@ -88,12 +108,13 @@ export const useDebtConsentWaiting = ({
         socketManager.disconnect();
       };
     }
-  }, [isWaiting, user?.id, handleCustomerResponse]);
+  }, [isWaiting, user?.id, handleCustomerResponse, waitingVariant]);
 
   return {
     isWaiting,
     startWaiting,
     stopWaiting,
+    waitingVariant,
     handleCustomerResponse,
   };
 };

@@ -1,15 +1,22 @@
 import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
 import { SaudiRiyal } from 'lucide-react';
+
+const colorClasses = {
+  gray: { ring: 'bg-[#4F5154]/30', dot: 'bg-[#4F5154]' },
+  red: { ring: 'bg-[#FF4757]/30', dot: 'bg-[#FF4757]' },
+  green: { ring: 'bg-[#0A9458]/30', dot: 'bg-[#0A9458]' },
+} as const;
 
 const TotalCard = ({
   value,
-  type,
+  title,
+  color = 'gray',
 }: {
   value: number;
-  type: 'total' | 'unpaid' | 'paid';
+  title: string;
+  color?: keyof typeof colorClasses;
 }) => {
-  const { t } = useTranslation();
+  const styles = colorClasses[color];
 
   return (
     <div className="bg-white p-5 rounded-2xl flex justify-between items-center hover:shadow-md transition-shadow duration-200">
@@ -17,29 +24,12 @@ const TotalCard = ({
         <span
           className={clsx(
             'w-4 h-4 rounded-full flex items-center justify-center',
-            type === 'total'
-              ? 'bg-[#4F5154]/30'
-              : type === 'unpaid'
-                ? 'bg-[#FF4757]/30'
-                : 'bg-[#0A9458]/30',
+            styles.ring,
           )}
         >
-          <span
-            className={clsx(
-              'w-2 h-2 rounded-full',
-              type === 'total'
-                ? 'bg-[#4F5154]'
-                : type === 'unpaid'
-                  ? 'bg-[#FF4757]'
-                  : 'bg-[#0A9458]',
-            )}
-          />
+          <span className={clsx('w-2 h-2 rounded-full', styles.dot)} />
         </span>
-        {type === 'total'
-          ? t('dashboard.total', 'Total')
-          : type === 'unpaid'
-            ? t('dashboard.unpaid', 'Due (Unpaid)')
-            : t('dashboard.paid', 'Due (Paid)')}
+        {title}
       </span>
       <span className="text-black font-semibold text-2xl flex items-center gap-1">
         <SaudiRiyal className="text-gray-900" /> {value.toLocaleString()}

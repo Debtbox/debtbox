@@ -181,7 +181,7 @@
   "dashboard.debtAmount": "Debt Amount",
   "dashboard.customerFullName": "Customer Full Name",
   "dashboard.extendDueDate": "Extend Due Date",
-  "dashboard.markAsOverdue": "Mark as overdue",
+  "dashboard.markAsOverdue": "Mark Debt as Overdue",
   "dashboard.debt_title": "Debt Title",
   "dashboard.debt_title_placeholder": "e.g. Purchase of a new laptop",
   "dashboard.debtCancelledSuccessfully": "Debt cancelled successfully",
@@ -561,5 +561,14 @@
   "dashboard.sanadExportedFailed": "Failed to export Sanad",
   "dashboard.exportSanad": "Export Sanad",
   "dashboard.createWithSanad": "Create with Sanad",
-  "dashboard.createWithSanadDescription": "Create a Sanad document for this debt"
+  "dashboard.createWithSanadDescription": "Create a Sanad document for this debt",
+  "dashboard.clientPaidInCash": "Client paid in cash",
+  "dashboard.confirmPaidInCash": "Mark as paid in cash?",
+  "dashboard.confirmPaidInCashDescription": "The customer will receive a request to confirm they received the cash payment. Do you want to continue?",
+  "dashboard.waitingForCustomerCashConfirmation": "Waiting for customer confirmation",
+  "dashboard.waitingForCustomerCashConfirmationMessage": "The customer will receive a notification to confirm they received the cash payment.",
+  "dashboard.customerAcceptedCashPayment": "Customer confirmed the cash payment",
+  "dashboard.customerRejectedCashPayment": "Customer did not confirm the cash payment",
+  "dashboard.customerExpiredCashPayment": "Cash payment confirmation expired",
+  "dashboard.debtMarkedAsCashPaidFailed": "Failed to mark debt as paid in cash"
 }
