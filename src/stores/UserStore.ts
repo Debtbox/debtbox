@@ -12,7 +12,7 @@ interface UserStore {
   clearUser: () => void;
   updateUser: (updates: Partial<UserDto>) => void;
   selectedBusiness: BusinessDto | null;
-  setSelectedBusiness: (business: BusinessDto) => void;
+  setSelectedBusiness: (business: BusinessDto | null) => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -22,7 +22,7 @@ export const useUserStore = create<UserStore>()(
       accessToken: '',
       isAuthenticated: false,
       selectedBusiness: null,
-      setSelectedBusiness: (business: BusinessDto) =>
+      setSelectedBusiness: (business: BusinessDto | null) =>
         set({ selectedBusiness: business }),
       setUser: (user: UserDto) =>
         set({

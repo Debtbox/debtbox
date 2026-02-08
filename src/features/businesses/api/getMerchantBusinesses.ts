@@ -1,6 +1,6 @@
 import { axios } from '@/lib/axios';
 import type { QueryConfig } from '@/lib/react-query';
-import { useQuery } from '@tanstack/react-query';
+import { useQueryWithCallback } from '@/lib/hooks/useQueryWithCallback';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 import type { BusinessDto } from '@/types/BusinessDto';
 
@@ -22,14 +22,17 @@ export type GetMerchantBusinessesResponse = {
 
 type UseGetMerchantBusinesses = {
   config?: QueryConfig<typeof getMerchantBusinesses>;
+  onSuccess?: (data: GetMerchantBusinessesResponse) => void;
 };
 
 export const useGetMerchantBusinesses = ({
   config,
+  onSuccess,
 }: UseGetMerchantBusinesses) => {
-  return useQuery({
+  return useQueryWithCallback({
     ...config,
     queryKey: ['merchant-businesses'],
     queryFn: getMerchantBusinesses,
+    onSuccess,
   });
 };

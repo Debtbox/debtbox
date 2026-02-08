@@ -50,7 +50,8 @@ const BusinessCardSkeleton = () => {
 
 export const Businesses = () => {
   const { t, i18n } = useTranslation();
-  const { user } = useUserStore();
+  const { user, updateUser, selectedBusiness, setSelectedBusiness } =
+    useUserStore();
   const queryClient = useQueryClient();
   const [isCreateBusinessModalOpen, setIsCreateBusinessModalOpen] =
     useState(false);
@@ -80,6 +81,28 @@ export const Businesses = () => {
     config: {
       enabled: true,
     },
+    onSuccess: (data) => {
+      if (data?.data && user) {
+        updateUser({ businesses: data.data });
+        // Auto-select the first business if none is selected
+        if (!selectedBusiness && data.data.length > 0) {
+          setSelectedBusiness(data.data[0]);
+        }
+        // If selected business was deleted, select the first available or null
+        if (
+          selectedBusiness &&
+          !data.data.some(
+            (b) => b.cr_number === selectedBusiness.cr_number,
+          )
+        ) {
+          if (data.data.length > 0) {
+            setSelectedBusiness(data.data[0]);
+          } else {
+            setSelectedBusiness(null);
+          }
+        }
+      }
+    },
   });
 
   const { mutate: registerBusinesses, isPending } = useRegisterBusinesses({
@@ -89,7 +112,7 @@ export const Businesses = () => {
       );
       setIsCreateBusinessModalOpen(false);
       resetForm();
-      // Refresh the businesses list
+      // Refresh the businesses list - useEffect will sync to user store
       queryClient.invalidateQueries({ queryKey: ['merchant-businesses'] });
     },
     onError: (error) => {
@@ -106,7 +129,7 @@ export const Businesses = () => {
       );
       setIsCreateBusinessModalOpen(false);
       resetForm();
-      // Refresh the businesses list
+      // Refresh the businesses list - useEffect will sync to user store
       queryClient.invalidateQueries({ queryKey: ['merchant-businesses'] });
     },
     onError: (error) => {
@@ -122,8 +145,8 @@ export const Businesses = () => {
         t('businesses.businessDeleted') || 'Business deleted successfully',
       );
       setDeleteConfirmation({ isOpen: false, business: null });
-      // Refresh the businesses list
-      await queryClient.invalidateQueries({
+      // Refresh the businesses list - useEffect will sync to user store
+      queryClient.invalidateQueries({
         queryKey: ['merchant-businesses'],
       });
     },
