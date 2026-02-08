@@ -201,7 +201,7 @@ export const Transactions = () => {
       title: t('dashboard.dueDateStatus'),
       dataIndex: 'dueDateStatus',
       render: (_, record) =>
-        record.status === 'paid' ? (
+        record.status === 'paid' || record.status === 'cancelled' ? (
           <span className="text-gray-400">—</span>
         ) : (
           <DueDateStatusBadge
