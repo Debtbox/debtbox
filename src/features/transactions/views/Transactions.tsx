@@ -200,13 +200,16 @@ export const Transactions = () => {
       key: 'dueDateStatus',
       title: t('dashboard.dueDateStatus'),
       dataIndex: 'dueDateStatus',
-      render: (_, record) => (
-        <DueDateStatusBadge
-          status={
-            record.dueDateStatus as 'normal' | 'overdue' | 'in 7 days' | 'soon'
-          }
-        />
-      ),
+      render: (_, record) =>
+        record.status === 'paid' ? (
+          <span className="text-gray-400">—</span>
+        ) : (
+          <DueDateStatusBadge
+            status={
+              record.dueDateStatus as 'normal' | 'overdue' | 'in 7 days' | 'soon'
+            }
+          />
+        ),
     },
     {
       key: 'status',
