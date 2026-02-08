@@ -129,6 +129,7 @@
   "dashboard.total": "کل",
   "dashboard.unpaid": "واجب الادا (غیر اداشدہ)",
   "dashboard.paid": "واجب الادا (ادا شدہ)",
+  "dashboard.cancelled": "منسوخ",
   "dashboard.total_due_amount": "کل واجب الادا رقم",
   "dashboard.track_all_pending_customer_payments": "تمام بقایا کسٹمر ادائیگیوں کو ٹریک کریں",
   "dashboard.payments_are_vital_for_cash_flow": "ادائیگیاں نقدی کے بہاؤ کے لیے اہم ہیں",

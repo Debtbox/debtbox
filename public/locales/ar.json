@@ -129,6 +129,7 @@
   "dashboard.total": "المجموع",
   "dashboard.unpaid": "مستحق (غير مدفوع)",
   "dashboard.paid": "مستحق (مدفوع)",
+  "dashboard.cancelled": "ملغي",
   "dashboard.total_due_amount": "مبلغ الديون الكلي",
   "dashboard.track_all_pending_customer_payments": "متابعة كل الديون المستحقة",
   "dashboard.payments_are_vital_for_cash_flow": "الدفعات ضرورية لتدفق النقد",

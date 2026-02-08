@@ -129,6 +129,7 @@
   "dashboard.total": "Total",
   "dashboard.unpaid": "Due (Unpaid)",
   "dashboard.paid": "Due (Paid)",
+  "dashboard.cancelled": "Cancelled",
   "dashboard.total_due_amount": "Total Due Amount",
   "dashboard.track_all_pending_customer_payments": "Track all pending customer payments",
   "dashboard.payments_are_vital_for_cash_flow": "Payments are vital for cash flow",

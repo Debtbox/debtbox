@@ -95,7 +95,7 @@ export const DueDateStatusBadge = ({
 };
 
 export type StatusBadgeStatus =
-  | 'canceled'
+  | 'cancelled'
   | 'paid'
   | 'overdue'
   | 'active'
@@ -121,8 +121,8 @@ export const StatusBadge = ({
     string,
     { label: string; color: string; dotColor: string; dotShadowColor: string }
   > = {
-    canceled: {
-      label: t('common.buttons.in7days'),
+    cancelled: {
+      label: t('dashboard.cancelled'),
       color: 'bg-[#F0F0F0] text-[#4F5154]',
       dotColor: 'bg-[#4F5154]',
       dotShadowColor: 'bg-[#4F515447]',
