@@ -330,8 +330,8 @@ export const sortDebts = (
   direction: 'asc' | 'desc',
 ): Debt[] => {
   return [...debts].sort((a, b) => {
-    let aValue: string | number | boolean = a[sortKey as keyof Debt];
-    let bValue: string | number | boolean = b[sortKey as keyof Debt];
+    let aValue: string | number | boolean | null = a[sortKey as keyof Debt];
+    let bValue: string | number | boolean | null = b[sortKey as keyof Debt];
 
     // Handle date sorting
     if (
@@ -356,9 +356,9 @@ export const sortDebts = (
     }
 
     if (direction === 'asc') {
-      return aValue > bValue ? 1 : -1;
+      return aValue !== null && bValue !== null ? (aValue > bValue ? 1 : -1) : 0;
     } else {
-      return aValue < bValue ? 1 : -1;
+      return aValue !== null && bValue !== null ? (aValue < bValue ? 1 : -1) : 0;
     }
   });
 };

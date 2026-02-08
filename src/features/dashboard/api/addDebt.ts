@@ -42,7 +42,7 @@ export type AddDebtResponse = {
   success: boolean;
   data: {
     message: string;
-    status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'expired';
+    status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'in_arrears';
     business: BusinessDto;
     customer: UserDto;
     amount: number;

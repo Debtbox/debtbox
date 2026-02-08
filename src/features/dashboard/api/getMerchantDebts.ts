@@ -47,13 +47,15 @@ export type GetMerchantDebtsResponse = {
       amount: number;
       due_date: string;
       original_date: string;
-      status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'expired';
+      status: 'overdue' | 'pending' | 'paid' | 'cancelled' | 'active' | 'in_arrears';
       dueDateStatus: 'normal' | 'overdue' | 'in 7 days' | 'soon';
       isPending: boolean;
       isOverdue: boolean;
       title: string;
       reason: string;
       createWithSanad: boolean;
+      paymentDate: string | null;
+      paymentMethod: 'APPLE_PAY' | 'MADA' | 'VISA' | 'STC_PAY' | 'CASH' | null;
     }[];
     count: number;
   };

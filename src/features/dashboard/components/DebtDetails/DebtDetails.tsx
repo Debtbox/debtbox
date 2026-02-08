@@ -267,15 +267,17 @@ const DebtDetails = ({
                 );
               })()}
             </div>
-            <DueDateStatusBadge
-              status={
-                debtData?.dueDateStatus as
-                | 'normal'
-                | 'overdue'
-                | 'in 7 days'
-                | 'soon'
-              }
-            />
+            {debtData?.status !== 'paid' && debtData?.status !== 'cancelled' && (
+              <DueDateStatusBadge
+                status={
+                  debtData?.dueDateStatus as
+                  | 'normal'
+                  | 'overdue'
+                  | 'in 7 days'
+                  | 'soon'
+                }
+              />
+            )}
           </div>
         </div>
         <div>
@@ -306,6 +308,45 @@ const DebtDetails = ({
             </div>
           </div>
         </div>
+        {debtData?.status === 'paid' &&
+          (debtData?.paymentDate || debtData?.paymentMethod) && (
+            <>
+              {debtData?.paymentMethod && (
+                <div>
+                  <div className="flex justify-between items-end">
+                    <div className="flex flex-col gap-2">
+                      <div className="text-xs text-gray-500">
+                        {t('dashboard.paymentMethod', 'Payment method')}
+                      </div>
+                      <div className="text-xl font-bold">
+                        {t(
+                          `dashboard.paymentMethod.${debtData.paymentMethod}`,
+                          debtData.paymentMethod.replace('_', ' '),
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {debtData?.paymentDate && (
+                <div>
+                  <div className="flex justify-between items-end">
+                    <div className="flex flex-col gap-2">
+                      <div className="text-xs text-gray-500">
+                        {t('dashboard.paymentDate', 'Payment date')}
+                      </div>
+                      <div className="text-xl font-bold">
+                        {formatDate(debtData.paymentDate, {
+                          includeTime: true,
+                          locale: i18n.language as SupportedLocale,
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         <div>
           <div className="flex justify-between items-end">
             <div className="flex flex-col gap-2">
@@ -453,7 +494,6 @@ const DebtDetails = ({
 
 
       {debtData.status === 'paid' ||
-        debtData.status === 'expired' ||
         debtData.status === 'cancelled' ? null : (
         <div className="flex items-center justify-between p-4 border-t border-gray-200">
           {debtData.isPending ? (
