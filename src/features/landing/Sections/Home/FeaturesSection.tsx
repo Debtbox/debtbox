@@ -22,7 +22,7 @@ const FeaturesSection = () => {
       </div>
       <div className="hero-image-column">
         <div className="phone-mockup">
-          <img src={featuresPhone} alt="Logo" />
+          <img src={featuresPhone} alt="" loading="lazy" decoding="async" width={320} height={640} />
         </div>
       </div>
     </section>

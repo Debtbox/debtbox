@@ -43,12 +43,12 @@ export { default as businessesSidebar } from './icons/sidebar/businesses.svg';
 
 //LANDING
 export { default as featuresPhone } from './landing/features-phone4.png';
-export { default as about } from './landing/about.png';
-export { default as vision } from './landing/vision.png';
-export { default as mission } from './landing/mission.png';
-export { default as phone } from './landing/phone.png';
+export { default as about } from './landing/about.webp';
+export { default as vision } from './landing/vision.webp';
+export { default as mission } from './landing/mission.webp';
+export { default as phone } from './landing/phone.webp';
 export { default as sendLetter } from './landing/send.svg';
-export { default as aboutHero } from './landing/about-hero.png';
+export { default as aboutHero } from './landing/about-hero.webp';
 export { default as descBg } from './landing/desc-bg.svg';
 export { default as aboutVector1 } from './landing/about-vector-1.svg';
 export { default as aboutVector2 } from './landing/about-vector-2.svg';
@@ -57,7 +57,7 @@ export { default as aboutVector4 } from './landing/about-vector-4.svg';
 
 
 //AUTH
-export { default as authLayoutBg } from './auth/auth-layout-bg.png';
+export { default as authLayoutBg } from './auth/auth-layout-bg.webp';
 export { default as topRightVector } from './auth/top-right-vector.png';
 
 //SHARED

@@ -23,7 +23,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={flash} alt="Logo" />
+            <img src={flash} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('aboutPage.whyUsSection.features.easeOfUse.title')}</h3>
           <p data-directional dir="rtl">
@@ -36,7 +36,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={secure} alt="Logo" />
+            <img src={secure} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('aboutPage.whyUsSection.features.highSecurity.title')}</h3>
           <p data-directional dir="rtl">
@@ -49,7 +49,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={dashboard} alt="Logo" />
+            <img src={dashboard} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>
             {t('aboutPage.whyUsSection.features.advancedDashboard.title')}
@@ -67,7 +67,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={clockFill} alt="Logo" />
+            <img src={clockFill} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>
             {t('aboutPage.whyUsSection.features.instantNotifications.title')}
@@ -84,7 +84,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={cart} alt="Logo" />
+            <img src={cart} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('aboutPage.whyUsSection.features.buyOnCredit.title')}</h3>
           <p data-directional dir="rtl">
@@ -97,7 +97,7 @@ const WhyUsSection = () => {
           dir="rtl"
         >
           <div className="icon-wrapper why-us-icon-wrapper">
-            <img src={handsHelping} alt="Logo" />
+            <img src={handsHelping} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('aboutPage.whyUsSection.features.buildingTrust.title')}</h3>
           <p data-directional dir="rtl">

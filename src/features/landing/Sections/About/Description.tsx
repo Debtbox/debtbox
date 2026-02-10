@@ -13,8 +13,8 @@ const Description = () => {
       lang={i18n.language}
       style={{ direction: dir }}
     >
-      <img src={aboutVector4} alt="Description" className="description-vector" />
-      <img src={whiteFullLogo} alt="Description" className="description-bg" />
+      <img src={aboutVector4} alt="" className="description-vector" loading="lazy" decoding="async" />
+      <img src={whiteFullLogo} alt="" className="description-bg" loading="lazy" decoding="async" />
       <div className="description-header">
         <div className="description-header-content">
 

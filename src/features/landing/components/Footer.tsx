@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer-container container_css">
         <div className="footer-section footer-logo">
           <Link to="/">
-            <img src={i18n.language === 'ar' ? footerLogo : sidebarLogoWhite} alt="Logo" />
+            <img src={i18n.language === 'ar' ? footerLogo : sidebarLogoWhite} alt="Logo" loading="lazy" decoding="async" />
           </Link>
         </div>
         <div className="footer-section links" data-directional dir="rtl">
@@ -45,16 +45,16 @@ const Footer = () => {
         <div className="footer-section social-media">
           <div className="social-icons">
             <Link to="#">
-              <img src={ig} alt="Instagram" />
+              <img src={ig} alt="Instagram" loading="lazy" decoding="async" />
             </Link>
             <Link to="#">
-              <img src={ln} alt="LinkedIn" />
+              <img src={ln} alt="LinkedIn" loading="lazy" decoding="async" />
             </Link>
             <Link to="#">
-              <img src={fb} alt="Facebook" />
+              <img src={fb} alt="Facebook" loading="lazy" decoding="async" />
             </Link>
             <Link to="#">
-              <img src={x} alt="Twitter" />
+              <img src={x} alt="Twitter" loading="lazy" decoding="async" />
             </Link>
           </div>
         </div>

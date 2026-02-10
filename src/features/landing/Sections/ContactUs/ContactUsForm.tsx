@@ -67,7 +67,7 @@ const ContactUsForm = () => {
 
             <button type="submit">{t('common.buttons.send')}</button>
 
-            <img src={sendLetter} alt="send-letter" className="send-letter" />
+            <img src={sendLetter} alt="" className="send-letter" loading="lazy" decoding="async" />
           </form>
           <div className="frame contact-info">
             <div className="overlap-group">
@@ -75,17 +75,17 @@ const ContactUsForm = () => {
               <div className="div"></div>
               <div className="div-2" data-directional dir="rtl">
                 <div className="div-3">
-                  <img className="img" src={contactSmallPhone} />
+                  <img className="img" src={contactSmallPhone} alt="" loading="lazy" decoding="async" />
                   <div className="text-wrapper">0555580220</div>
                 </div>
                 <div className="div-4">
                   <div className="img">
-                    <img className="group" src={contactSmallEmail} />
+                    <img className="group" src={contactSmallEmail} alt="" loading="lazy" decoding="async" />
                   </div>
                   <div className="text-wrapper">info@debtbox.sa</div>
                 </div>
                 <div className="div-5">
-                  <img className="img" src={contactSmallLocation} />
+                  <img className="img" src={contactSmallLocation} alt="" loading="lazy" decoding="async" />
                   <p className="p">{t('contactUsPage.contactInfo.location')}</p>
                 </div>
               </div>

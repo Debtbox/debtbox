@@ -8,10 +8,12 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex-1 h-screen relative bg-light-gray">
         <img
           src={topRightVector}
-          alt="db-bg"
+          alt=""
           className="absolute top-0 end-0 rtl:start-0"
+          loading="lazy"
+          decoding="async"
         />
-        <img src={dbBg} alt="db-bg" className="absolute bottom-0 end-0 rtl:start-0" />
+        <img src={dbBg} alt="" className="absolute bottom-0 end-0 rtl:start-0" loading="lazy" decoding="async" />
         {children}
       </div>
     </main>

@@ -14,7 +14,7 @@ const HeroSection = () => {
           <h1>{t('aboutPage.hero.title')}</h1>
           <p>{t('aboutPage.hero.description')}</p>
         </div>
-        <img src={aboutHero} alt="about" className="about-hero-image" />
+        <img src={aboutHero} alt="about" className="about-hero-image" fetchPriority="high" width={1200} height={600} />
       </div>
     </section>
   );

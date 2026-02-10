@@ -39,7 +39,7 @@ button {
   }
 }
 .bg-bacground-image-auth {
-  background-image: url('@/assets/images/auth/auth-layout-bg.png');
+  background-image: url('@/assets/images/auth/auth-layout-bg.webp');
   background-size: cover;
 }
 

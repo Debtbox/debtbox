@@ -25,7 +25,7 @@ const VisionSection = () => {
           </div>
         </div>
         <div className="vision-image">
-          <img src={vision} alt="مدينة مستقبلية" />
+          <img src={vision} alt="" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>

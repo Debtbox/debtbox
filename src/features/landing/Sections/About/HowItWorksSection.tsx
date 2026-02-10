@@ -18,7 +18,7 @@ const HowItWorksSection = () => {
       <section className="features-container" data-directional dir="rtl">
         <div className="for-who-feature-card" data-directional dir="rtl">
           <div className="icon-wrapper">
-            <img src={both} alt="Logo" />
+            <img src={both} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('features.bothParties.title')}</h3>
           <p data-directional dir="rtl">
@@ -28,7 +28,7 @@ const HowItWorksSection = () => {
 
         <div className="for-who-feature-card" data-directional dir="rtl">
           <div className="icon-wrapper">
-            <img src={merchant} alt="Logo" />
+            <img src={merchant} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('features.businesses.title')}</h3>
           <p data-directional dir="rtl">
@@ -38,7 +38,7 @@ const HowItWorksSection = () => {
 
         <div className="for-who-feature-card" data-directional dir="rtl">
           <div className="icon-wrapper">
-            <img src={customer} alt="Logo" />
+            <img src={customer} alt="" loading="lazy" decoding="async" />
           </div>
           <h3>{t('features.customers.title')}</h3>
           <p data-directional dir="rtl">

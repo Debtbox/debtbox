@@ -8,7 +8,7 @@ const MissionSection = () => {
     <div className="vision-section">
       <div className="vision-container about-container">
         <div className="vision-image">
-          <img src={mission} alt="مدينة مستقبلية" />
+          <img src={mission} alt="" loading="lazy" decoding="async" />
         </div>
         <div className="vision-text" data-directional="rtl">
           <h2>{t('aboutPage.missionSection.title')}</h2>
