@@ -11,11 +11,7 @@ import { useGetMerchantDebts } from '../../dashboard/api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
 import { SaudiRiyal } from 'lucide-react';
 import { toast } from 'sonner';
-import {
-  DueDateStatusBadge,
-  StatusBadge,
-  type StatusBadgeStatus,
-} from '@/components/shared/StatusBadge';
+import { StatusBadge, type StatusBadgeStatus } from '@/components/shared/StatusBadge';
 import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';
 import Sideover from '@/components/shared/Sideover';
@@ -174,16 +170,7 @@ export const Transactions = () => {
       title: t('common.buttons.dueDate'),
       dataIndex: 'formattedDueDate',
       render: (_, record) => (
-        <div>
-          <div className="text-gray-900">{record.formattedDueDate}</div>
-          <div className="text-sm text-gray-500">
-            {record.daysUntilDue > 0
-              ? `${record.daysUntilDue} ${t('common.buttons.daysLeft')}`
-              : record.daysUntilDue === 0
-                ? t('common.buttons.dueToday')
-                : `${Math.abs(record.daysUntilDue)} ${t('common.buttons.daysOverdue')}`}
-          </div>
-        </div>
+        <div className="text-gray-900">{record.formattedDueDate}</div>
       ),
     },
     {
@@ -195,21 +182,6 @@ export const Transactions = () => {
           <div className="text-gray-900">{record.formattedOriginalDueDate}</div>
         </div>
       ),
-    },
-    {
-      key: 'dueDateStatus',
-      title: t('dashboard.dueDateStatus'),
-      dataIndex: 'dueDateStatus',
-      render: (_, record) =>
-        record.status === 'paid' || record.status === 'cancelled' ? (
-          <span className="text-gray-400">—</span>
-        ) : (
-          <DueDateStatusBadge
-            status={
-              record.dueDateStatus as 'normal' | 'overdue' | 'in 7 days' | 'soon'
-            }
-          />
-        ),
     },
     {
       key: 'status',
@@ -297,81 +269,6 @@ export const Transactions = () => {
           data={processedData}
           loading={loading}
           rowKey="debtId"
-          rowExtra={(record) => {
-            const messages: { content: string; className: string }[] = [];
-
-            // Pending/Overdue banner
-            const isPending = record.isPending || record.status === 'pending';
-            const isOverdue = record.isOverdue;
-            if (isPending || isOverdue) {
-              const pendingOverdueMessage = isPending
-                ? t(
-                    'dashboard.pendingBanner',
-                    'This due is pending from the client',
-                  )
-                : t('dashboard.overdueBanner', 'This due is overdue');
-              const bg = isPending ? 'bg-yellow-50' : 'bg-red-50';
-              const text = isPending ? 'text-yellow-800' : 'text-red-800';
-              messages.push({
-                content: pendingOverdueMessage,
-                className: `${bg} ${text}`,
-              });
-            }
-
-            // Time extension banner
-            if (
-              record.original_date &&
-              record.original_date !== record.due_date
-            ) {
-              const original = new Date(record.original_date);
-              const current = new Date(record.due_date);
-              if (!isNaN(original.getTime()) && !isNaN(current.getTime())) {
-                const msPerDay = 1000 * 60 * 60 * 24;
-                const days = Math.round(
-                  (current.getTime() - original.getTime()) / msPerDay,
-                );
-                if (days > 0) {
-                  const weeks = Math.round(days / 7);
-                  const amount = weeks >= 1 ? weeks : days;
-                  const unit =
-                    weeks >= 1
-                      ? t('dashboard.weeks', 'weeks')
-                      : t('dashboard.days', 'days');
-                  const oldDate = record.formattedOriginalDueDate;
-                  const hasReason = record.reason && record.reason.trim();
-                  const extensionMessage = hasReason
-                    ? t(
-                        'dashboard.dateExtendedByWithReason',
-                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}. Reason: {{reason}}',
-                        { amount, unit, date: oldDate, reason: record.reason },
-                      )
-                    : t(
-                        'dashboard.dateExtendedBy',
-                        'This date is extended by {{amount}} {{unit}}, the old date is {{date}}',
-                        { amount, unit, date: oldDate },
-                      );
-                  messages.push({
-                    content: extensionMessage,
-                    className: 'bg-primary/5 text-primary/80',
-                  });
-                }
-              }
-            }
-
-            if (messages.length === 0) return null;
-            return (
-              <div className="w-full flex flex-col gap-2">
-                {messages.map((m, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-full rounded-md px-4 py-3 ${m.className}`}
-                  >
-                    {m.content}
-                  </div>
-                ))}
-              </div>
-            );
-          }}
           pagination={{
             current: currentPage,
             pageSize: pageSize,
