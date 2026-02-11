@@ -476,7 +476,7 @@ const DebtDetails = ({
           </div>
         )}
         <div>
-          {debtData.status === 'overdue' && !debtData.isOverdue ? (
+          {debtData.dueDateStatus === 'overdue' && !debtData.isOverdue ? (
             <Button
               type="button"
               text={t('dashboard.markAsOverdue', 'Mark as overdue')}
