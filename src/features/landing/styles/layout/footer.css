@@ -1,0 +1,100 @@
+.footer-small {
+  margin-top: 64px;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footer {
+  background-color: #1d252d;
+  padding: 40px 0 10px 0;
+  z-index: 1;
+  position: relative;
+  /* Use --section-gap (home) or --page-section-gap (about, contact) so margin applies on all pages */
+  margin: var(--section-gap, var(--page-section-gap, 4rem)) 40px 40px;
+  border-radius: 50px;
+}
+
+.footer-container {
+  padding: 20px;
+  display: flex;
+  justify-content: end !important;
+  align-items: center;
+  align-items: stretch;
+}
+
+.footer-section {
+  margin-bottom: 20px;
+}
+
+.social-media {
+  text-align: end;
+  flex-grow: 2;
+}
+
+.social-media h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: end;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.links-column {
+  width: 45%;
+}
+
+.links-column h3 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.links-column ul {
+  list-style: none;
+}
+
+.links-column ul li {
+  margin-bottom: 10px;
+}
+
+.links-column ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.links-column ul li a:hover {
+  color: #007bff;
+}
+
+.footer-logo {
+  text-align: start;
+  flex-grow: 0.2;
+  display: flex;
+}
+
+.footer-logo img {
+  max-width: 150px;
+  height: auto;
+}

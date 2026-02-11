@@ -1,0 +1,564 @@
+/* Responsive: shared breakpoints */
+@media (max-width: 480px),
+(max-width: 768px),
+(max-width: 1024px) {
+  .landing-page {
+    --section-gap: 3rem;
+    --section-block: 2.5rem;
+  }
+
+  .wavy-svg {
+    display: none;
+  }
+
+  .feature-card {
+    z-index: 1;
+  }
+
+  .burger-menu,
+  .lang-button-menu {
+    display: block !important;
+  }
+
+  .nav-links,
+  .cta-button,
+  .header-buttons {
+    display: none !important;
+  }
+
+  .container_css {
+    margin: 0;
+  }
+
+  .main-header .container_css {
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 20px;
+    min-height: 56px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    margin: 10px 0;
+  }
+
+  .cta-button {
+    margin-bottom: 10px;
+  }
+
+  .features-grid {
+    flex-direction: column;
+  }
+
+  .background-wave img {
+    width: 200%;
+    top: -150px;
+    inset-inline-end: -250px;
+    transform: rotate(15deg);
+  }
+
+  .hero h1,
+  .hero p {
+    width: unset;
+  }
+
+  .home-hero.landing-section {
+    padding-inline: 16px;
+  }
+
+  .home-hero .container_css {
+    padding: 0 16px;
+  }
+
+  .home-hero h1 {
+    font-size: 48px;
+    line-height: 58px;
+    margin: 20px auto;
+  }
+
+  .home-hero p {
+    font-size: 18px;
+  }
+
+  .home-how-we-work .how-we-work__container {
+    margin: 0 1rem;
+  }
+
+  .home-for-who {
+    padding-inline: 1rem;
+  }
+
+  .hero-section {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .home-features-section.landing-section {
+    padding-inline: 20px;
+  }
+
+  .hero-content-column {
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .features-list li {
+    justify-content: flex-start;
+    text-align: end;
+  }
+
+  .how-we-work {
+    padding: 4rem 1rem;
+  }
+
+  .how-we-work__container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    align-items: start;
+  }
+
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .for-who-feature-card {
+    max-width: unset;
+    min-width: unset;
+  }
+
+  .hero-content-column h1 {
+    font-size: 36px;
+  }
+
+  .showcase-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-inline: 1.5rem;
+  }
+
+  .showcase-section .top-right,
+  .showcase-section .bottom-left {
+    position: static;
+    max-width: 90%;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .showcase-section .feature-card {
+    text-align: center;
+  }
+
+  .showcase-section .phone-image {
+    transform: none;
+    display: block;
+    max-width: 280px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .showcase-section .phone-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer {
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    padding: 32px 0 8px;
+  }
+
+  .footer-section {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    justify-content: unset;
+    padding: 16px;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .links-column {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .links-column h3 {
+    font-size: 15px;
+  }
+
+  .social-media {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .social-media h3 {
+    font-size: 15px;
+  }
+
+  .footer-logo {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .footer-logo img {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .features-section {
+    gap: 32px;
+  }
+
+  .for-who-feature-card {
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page {
+    --section-gap: 2.5rem;
+    --section-block: 2rem;
+  }
+
+  /* Navbar – unified on all pages */
+  .main-header .container_css {
+    padding-inline: 16px;
+    flex-wrap: nowrap;
+  }
+
+  .main-header .logo img {
+    max-height: 36px;
+    width: auto;
+  }
+
+  .footer {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 28px 0 8px;
+  }
+
+  .footer-container {
+    padding: 12px;
+  }
+
+  .footer-logo img {
+    max-width: 110px;
+  }
+
+  .showcase-section {
+    padding-inline: 1.25rem;
+    gap: 1.75rem;
+  }
+
+  .showcase-section .feature-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .showcase-section .feature-card h3 {
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  .showcase-section .feature-card p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .showcase-section .phone-image {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero.landing-section {
+    padding-inline: 12px;
+  }
+
+  .home-hero .container_css {
+    padding: 0 12px;
+  }
+
+  .home-hero h1 {
+    font-size: 40px;
+    line-height: 50px;
+    margin: 16px auto;
+  }
+
+  .home-hero p {
+    font-size: 16px;
+  }
+
+  .home-features-section.landing-section {
+    padding-inline: 16px;
+  }
+
+  .home-features-section {
+    gap: 40px;
+  }
+
+  .home-features-section .hero-content-column h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .home-features-section .sub-heading {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .home-features-section .phone-mockup {
+    max-width: 260px;
+  }
+
+  .home-how-we-work.landing-section {
+    padding-inline: 0.75rem;
+  }
+
+  .home-how-we-work .how-we-work__container {
+    margin: 0 0.75rem;
+    gap: 20px;
+  }
+
+  .home-how-we-work .how-we-work__text h2 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .home-how-we-work .how-we-work__text h4 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .home-how-we-work .how-we-work__desc {
+    font-size: 15px;
+  }
+
+  .home-for-who {
+    gap: 24px;
+    padding-inline: 0.75rem;
+  }
+
+  .home-for-who .for-who-feature-card {
+    padding: 24px;
+    min-height: 280px;
+    height: auto;
+  }
+
+  .home-for-who .for-who-feature-card h3 {
+    font-size: 20px;
+  }
+
+  .home-for-who .for-who-feature-card p {
+    font-size: 15px;
+  }
+
+  .home-for-who .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-page {
+    --section-gap: 2rem;
+    --section-block: 1.5rem;
+  }
+
+  /* Navbar – unified on all pages */
+  .main-header .container_css {
+    padding-inline: 12px;
+    min-height: 52px;
+  }
+
+  .main-header .logo img {
+    max-height: 32px;
+    width: auto;
+  }
+
+  .footer {
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    padding: 20px 0 8px;
+    border-radius: 24px;
+  }
+
+  .footer-container {
+    padding: 12px 8px;
+  }
+
+  .footer-logo img {
+    max-width: 100px;
+  }
+
+  .links-column h3,
+  .social-media h3 {
+    font-size: 14px;
+  }
+
+  .links-column ul li a {
+    font-size: 14px;
+  }
+
+  .showcase-section {
+    padding-inline: 1rem;
+    gap: 1.5rem;
+  }
+
+  .showcase-section .feature-card {
+    max-width: 100%;
+    padding: 0.875rem 1rem;
+  }
+
+  .showcase-section .feature-card h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .showcase-section .feature-card p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .showcase-section .card-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 0.75rem;
+  }
+
+  .showcase-section .phone-image {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-hero.landing-section {
+    padding-inline: 10px;
+  }
+
+  .home-hero .container_css {
+    padding: 0 10px;
+  }
+
+  .home-hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+    margin: 12px auto;
+  }
+
+  .home-hero p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .home-features-section.landing-section {
+    padding-inline: 12px;
+  }
+
+  .home-features-section {
+    gap: 32px;
+  }
+
+  .home-features-section .hero-content-column {
+    max-width: 100%;
+  }
+
+  .home-features-section .hero-content-column h1 {
+    font-size: 26px;
+    margin-bottom: 28px;
+  }
+
+  .home-features-section .sub-heading {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .home-features-section .features-list {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .home-features-section .phone-mockup {
+    max-width: 220px;
+  }
+
+  .home-how-we-work.landing-section {
+    padding-inline: 0.5rem;
+  }
+
+  .home-how-we-work .how-we-work__container {
+    margin: 0 0.5rem;
+    gap: 16px;
+  }
+
+  .home-how-we-work .how-we-work__text h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .home-how-we-work .how-we-work__text h4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .home-how-we-work .how-we-work__desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .home-for-who {
+    gap: 20px;
+    padding-inline: 0.5rem;
+  }
+
+  .home-for-who .for-who-feature-card {
+    padding: 20px 16px;
+    min-height: auto;
+  }
+
+  .home-for-who .for-who-feature-card h3 {
+    font-size: 18px;
+  }
+
+  .home-for-who .for-who-feature-card p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .home-for-who .icon-wrapper {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 1280px) {}
+
+@media (max-width: 1440px) {}

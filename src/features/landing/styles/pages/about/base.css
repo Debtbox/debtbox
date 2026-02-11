@@ -1,0 +1,38 @@
+/* About page – base layout and spacing variables */
+.about-page {
+  position: relative;
+  font-family: 'Cairo', sans-serif;
+  background-color: #f3f5f5;
+  --page-section-gap: 4rem;
+  --page-section-block: 3rem;
+}
+
+.about-page .about-section + .about-section {
+  margin-top: var(--page-section-gap);
+}
+
+.about-page .about-vector-1,
+.about-page .about-vector-2,
+.about-page .about-vector-3 {
+  position: absolute;
+  z-index: 0;
+}
+
+.about-page .about-vector-1 {
+  top: 40%;
+  right: 0;
+}
+
+.about-page .about-vector-2 {
+  top: 50%;
+  left: 0;
+}
+
+.about-page .about-vector-3 {
+  bottom: 5%;
+  right: 0;
+}
+
+.about-page .about-container {
+  max-width: 1200px;
+}

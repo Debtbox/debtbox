@@ -6,7 +6,7 @@ const FeaturesSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="hero-section">
+    <section className="hero-section home-features-section landing-section" aria-label={t('features.ariaLabel', 'Features')}>
       <div className="hero-content-column">
         <p className="sub-heading">{t('features.subHeading')}</p>
         <h1>{t('features.title')}</h1>

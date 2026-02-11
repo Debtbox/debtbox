@@ -11,7 +11,7 @@ const ContactUsForm = () => {
 
   return (
     <>
-      <section className="contact-section">
+      <section className="contact-section contact-section-form" aria-label={t('contactUsPage.form.ariaLabel', 'Contact form')}>
         <div className="contact-container">
           <form
             className="contact-form"

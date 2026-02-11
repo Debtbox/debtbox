@@ -5,7 +5,7 @@ const ShowCaseSection = () => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.dir(i18n.language) === 'rtl';
   return (
-    <section className="features-section">
+    <section className="features-section showcase-section landing-section" aria-label={t('showcase.ariaLabel', 'Features showcase')}>
       <div className="feature-card bottom-left">
         <img src={blueIcon} alt="Icon" className="card-icon" loading="lazy" decoding="async" />
         <h3>{t('showcase.card1.title')}</h3>

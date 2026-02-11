@@ -13,10 +13,10 @@ const WhyUsSection = () => {
 
   return (
     <>
-      <h2 className="section-title" data-directional="rtl">
+      <h2 className="section-title about-section" data-directional="rtl">
         {t('aboutPage.whyUsSection.title')}
       </h2>
-      <section className="features-container" data-directional dir="rtl">
+      <section className="features-container about-section" data-directional dir="rtl">
         <div
           className="for-who-feature-card why-us-card"
           data-directional
@@ -60,7 +60,7 @@ const WhyUsSection = () => {
         </div>
       </section>
 
-      <section className="features-container" data-directional dir="rtl">
+      <section className="features-container about-section" data-directional dir="rtl">
         <div
           className="for-who-feature-card why-us-card"
           data-directional

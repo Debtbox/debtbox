@@ -5,7 +5,7 @@ const MissionSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="vision-section">
+    <div className="vision-section about-section" aria-label={t('aboutPage.missionSection.ariaLabel', 'Mission')}>
       <div className="vision-container about-container">
         <div className="vision-image">
           <img src={mission} alt="" loading="lazy" decoding="async" />

@@ -1,0 +1,35 @@
+/* Contact Us page – base and spacing variables */
+.contact-us-page {
+  font-family: 'Cairo', sans-serif;
+  --page-section-gap: 4rem;
+  --page-section-block: 3rem;
+  overflow: visible;
+  min-height: 100vh;
+}
+
+.contact-us-page .contact-section + .contact-section {
+  margin-top: var(--page-section-gap);
+}
+
+/* Hero */
+.contact-us-page .hero.contact-section {
+  padding-top: var(--page-section-block);
+  padding-bottom: var(--page-section-block);
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.contact-us-page .hero .container_css {
+  padding: 0 20px;
+}
+
+.contact-us-page .hero h1 {
+  width: unset;
+  line-height: unset;
+}
+
+.contact-us-page .hero p {
+  margin: auto;
+  max-width: 778px;
+  width: 100%;
+}

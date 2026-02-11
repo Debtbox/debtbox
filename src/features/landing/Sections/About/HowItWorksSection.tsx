@@ -6,7 +6,7 @@ const HowItWorksSection = () => {
 
   return (
     <>
-      <section className="how-we-work">
+      <section className="how-we-work about-section" aria-label={t('howItWorks.ariaLabel', 'How it works')}>
         <div className="container_css how-we-work__container">
           <div className="how-we-work__text">
             <h4>{t('howItWorks.subtitle')}</h4>
@@ -15,7 +15,7 @@ const HowItWorksSection = () => {
           <p className="how-we-work__desc">{t('howItWorks.description')}</p>
         </div>
       </section>
-      <section className="features-container" data-directional dir="rtl">
+      <section className="features-container about-section" data-directional dir="rtl">
         <div className="for-who-feature-card" data-directional dir="rtl">
           <div className="icon-wrapper">
             <img src={both} alt="" loading="lazy" decoding="async" />

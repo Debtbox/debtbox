@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&display=swap');
+
+:root {
+  --primary-color: #1b40ff;
+  --secondary-color: #5fb095;
+}
+
+.landing-page {
+  all: initial;
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+  display: block;
+}
+
+.landing-page {
+  display: revert;
+  box-sizing: border-box;
+}
+
+.landing-page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --section-gap: 4rem;
+  --section-block: 3rem;
+}
+
+.landing-section + .landing-section {
+  margin-top: var(--section-gap);
+}
+
+.container_css {
+  margin: 0 104px;
+  padding: 20px;
+}
+
+@media (max-width: 480px), (max-width: 768px) {
+  .container_css img {
+    max-width: 75%;
+  }
+}
+
+.main-header,
+.hero-section {
+  position: relative;
+  z-index: 1;
+}

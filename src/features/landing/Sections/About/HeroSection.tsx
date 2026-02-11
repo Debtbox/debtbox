@@ -5,7 +5,7 @@ const HeroSection = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <section className="about-hero">
+    <section className="about-hero about-section" aria-label={t('aboutPage.hero.ariaLabel', 'About us')}>
       <div className="about-overlay">
         <div
           className="about-hero-content"

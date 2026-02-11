@@ -5,7 +5,7 @@ const VisionSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="vision-section">
+    <div className="vision-section about-section" aria-label={t('aboutPage.visionSection.ariaLabel', 'Vision')}>
       <div className="vision-container about-container">
         <div className="vision-text" data-directional="rtl">
           <h2>{t('aboutPage.visionSection.title')}</h2>

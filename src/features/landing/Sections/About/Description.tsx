@@ -8,7 +8,7 @@ const Description = () => {
 
   return (
     <div
-      className={`description-container about-container ${isRtl ? 'is-rtl' : 'is-ltr'}`}
+      className={`description-container about-container about-section ${isRtl ? 'is-rtl' : 'is-ltr'}`}
       dir={dir}
       lang={i18n.language}
       style={{ direction: dir }}
