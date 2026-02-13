@@ -46,6 +46,8 @@ pnpm run preview
 | `pnpm run build` | Production build → `dist/` |
 | `pnpm run preview` | Serve production build locally |
 | `pnpm run lint` | Run ESLint |
+| `pnpm run test` | Run tests (watch mode) |
+| `pnpm run test:run` | Run tests once |
 
 ## Environment Variables
 
