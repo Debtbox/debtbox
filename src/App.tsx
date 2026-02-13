@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
+import { DocumentMeta } from './components/shared/DocumentMeta';
 import { ScrollToTop } from './components/shared/ScrollToTop';
 import { setDocDirection } from './utils/setDocDirection';
 import { useEffect } from 'react';
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <BrowserRouter basename="/">
+      <DocumentMeta />
       <ScrollToTop />
       <AppRoutes />
       <SessionExpiryPopup

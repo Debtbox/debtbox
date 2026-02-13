@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /businesses/
+Disallow: /transactions/
+
+Sitemap: https://debtbox.sa/sitemap.xml

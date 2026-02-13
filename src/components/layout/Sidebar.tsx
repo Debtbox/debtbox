@@ -30,7 +30,7 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
   const navigation: NavItem[] = [
     {
       name: t('navigation.dashboard', 'Dashboard'),
-      href: '/',
+      href: '/dashboard',
       icon: dashboardSidebar,
     },
     // {

@@ -4,6 +4,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 // import { SettingsRoutes } from '@/features/settings';
 import { TransactionsRoutes } from '@/features/transactions';
 import { BusinessesRoutes } from '@/features/businesses';
+import { Navigate } from 'react-router-dom';
 export const protectedRoutes = [
   {
     path: '/',
@@ -11,7 +12,7 @@ export const protectedRoutes = [
     children: [
       {
         path: '/',
-        element: <DashboardRoutes />,
+        element: <Navigate to="/dashboard" replace />,
       },
       {
         path: '/dashboard/*',
