@@ -1,4 +1,10 @@
 {
+  "notFound.title": "الصفحة غير موجودة",
+  "notFound.description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+  "notFound.goHome": "العودة للرئيسية",
+  "error.something_went_wrong": "حدث خطأ ما",
+  "error.try_refreshing": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى بتحديث الصفحة.",
+  "error.refresh_page": "تحديث الصفحة",
   "common.fields.identificationNumber": "رقم الهوية",
   "common.fields.identificationNumberPlaceholder": "مثال: 135 4687 315",
   "common.fields.identificationNumberHelper": "أدخل رقم الهوية، أو رقم السجل التجاري",

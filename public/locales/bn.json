@@ -1,4 +1,10 @@
 {
+  "notFound.title": "পৃষ্ঠা পাওয়া যায়নি",
+  "notFound.description": "আপনি যে পৃষ্ঠাটি খুঁজছেন তা বিদ্যমান নেই বা সরানো হয়েছে।",
+  "notFound.goHome": "হোমে যান",
+  "error.something_went_wrong": "কিছু ভুল হয়েছে",
+  "error.try_refreshing": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। অনুগ্রহ করে পৃষ্ঠাটি রিফ্রেশ করে আবার চেষ্টা করুন।",
+  "error.refresh_page": "পৃষ্ঠা রিফ্রেশ করুন",
   "common.fields.identificationNumber": "পরিচয় নম্বর",
   "common.fields.identificationNumberPlaceholder": "যেমন, ১৩৫ ৪৬৮৭ ৩১৫",
   "common.fields.identificationNumberHelper": "আপনার পরিচয় নম্বর অথবা কমার্শিয়াল রেজিস্টার নম্বর লিখুন",

@@ -31,10 +31,10 @@ export const Dashboard = () => {
   useEffect(() => {
     if (selectedBusiness) {
       getBusinessTotal({
-        businessId: selectedBusiness?.id.toString() as string,
+        businessId: selectedBusiness.id.toString(),
       });
     }
-  }, [selectedBusiness, isSideoverOpen]);
+  }, [selectedBusiness, isSideoverOpen, getBusinessTotal]);
 
   return (
     <section className="space-y-4">

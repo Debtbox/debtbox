@@ -1,4 +1,10 @@
 {
+  "notFound.title": "صفحہ نہیں ملا",
+  "notFound.description": "جس صفحے کی آپ تلاش کر رہے ہیں وہ موجود نہیں ہے یا منتقل کر دیا گیا ہے۔",
+  "notFound.goHome": "ہوم پر جائیں",
+  "error.something_went_wrong": "کچھ غلط ہو گیا",
+  "error.try_refreshing": "ایک غیر متوقع خرابی واقع ہوئی۔ براہ کرم صفحہ ریفریش کر کے دوبارہ کوشش کریں۔",
+  "error.refresh_page": "صفحہ ریفریش کریں",
   "common.fields.identificationNumber": "شناختی نمبر",
   "common.fields.identificationNumberPlaceholder": "مثلاً، 135 4687 315",
   "common.fields.identificationNumberHelper": "اپنا شناختی نمبر یا کمرشل رجسٹر نمبر درج کریں",

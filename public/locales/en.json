@@ -1,4 +1,10 @@
 {
+  "notFound.title": "Page Not Found",
+  "notFound.description": "The page you are looking for does not exist or has been moved.",
+  "notFound.goHome": "Go to Home",
+  "error.something_went_wrong": "Something went wrong",
+  "error.try_refreshing": "An unexpected error occurred. Please try refreshing the page.",
+  "error.refresh_page": "Refresh Page",
   "common.fields.identificationNumber": "Identification Number",
   "common.fields.identificationNumberPlaceholder": "e.g, 135 4687 315",
   "common.fields.identificationNumberHelper": "Enter your Identification Number or Commercial Register Number",

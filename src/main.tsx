@@ -6,11 +6,14 @@ import './i18n';
 import App from './App.tsx';
 import { queryClient } from '@/lib/queryClient';
 import { Toaster } from 'sonner';
+import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
       <Toaster
         position="top-center"
         richColors
