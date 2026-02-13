@@ -1,7 +1,7 @@
 {
   "name": "debtbox",
   "private": true,
-  "version": "0.0.1-dev",
+  "version": "1.0.0",
   "type": "module",
   "homepage": "https://debtbox.sa",
   "scripts": {

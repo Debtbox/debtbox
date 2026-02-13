@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# Debtbox
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Debt management platform for merchants and customers. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+**Live:** [https://debtbox.sa](https://debtbox.sa)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** + **TypeScript**
+- **Vite 7** – build tool
+- **Tailwind CSS 4** – styling
+- **React Router 7** – routing
+- **TanStack Query** – data fetching
+- **Zustand** – state management
+- **i18next** – internationalization (EN, AR, BN, UR)
+- **React Hook Form** + **Zod** – forms & validation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Node.js 20+
+- pnpm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Install & Run
+
+```bash
+# Install dependencies
+pnpm install
+
+# Development
+pnpm dev
+
+# Build for production
+pnpm run build
+
+# Preview production build locally
+pnpm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start dev server (http://localhost:5173) |
+| `pnpm run build` | Production build → `dist/` |
+| `pnpm run preview` | Serve production build locally |
+| `pnpm run lint` | Run ESLint |
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_API_BASE_URL` | API endpoint | `https://api.debtbox.sa/v0.0.1/api` |
+| `VITE_ENV` | Environment (`development` / `production`) | - |
+
+Set at **build time** (Vite embeds them in the bundle).
+
+## Deployment
+
+- **Docker:** See [docs/DOCKER.md](docs/DOCKER.md)
+- **Production SSL & DevOps:** See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+
+## Project Structure
+
 ```
+src/
+├── components/     # Shared UI components
+├── features/       # Feature modules (auth, dashboard, landing, etc.)
+├── lib/            # Axios, query client
+├── routes/        # Route definitions
+├── stores/        # Zustand stores
+├── utils/         # Helpers, storage
+└── types/         # TypeScript types
+```
+
+## License
+
+Private – Debtbox
