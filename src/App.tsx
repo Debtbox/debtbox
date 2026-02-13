@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
+import { ScrollToTop } from './components/shared/ScrollToTop';
 import { setDocDirection } from './utils/setDocDirection';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <BrowserRouter basename="/">
+      <ScrollToTop />
       <AppRoutes />
       <SessionExpiryPopup
         isOpen={showSessionExpiryPopup}

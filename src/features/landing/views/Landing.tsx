@@ -1,3 +1,4 @@
+import { AnimateOnScroll } from '@/components/shared/AnimateOnScroll';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SVGBackground from '../components/SVGBackground';
@@ -13,11 +14,21 @@ export const Landing = () => {
     <div className="landing-page">
       <Header />
       <SVGBackground />
-      <HeroSection />
-      <ShowCaseSection />
-      <HowItWorksSection />
-      <FeaturesSection />
-      <Footer />
+      <AnimateOnScroll>
+        <HeroSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <ShowCaseSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll stagger>
+        <HowItWorksSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <FeaturesSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <Footer />
+      </AnimateOnScroll>
     </div>
   );
 };

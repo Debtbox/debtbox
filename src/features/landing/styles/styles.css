@@ -2,5 +2,6 @@
 @import './base/base.css';
 @import './layout/header.css';
 @import './home/sections.css';
+@import './animations.css';
 @import './layout/footer.css';
 @import './responsive.css';

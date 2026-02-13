@@ -236,7 +236,7 @@
   "footer.privacyPolicy": "গোপনীয়তা নীতি",
   "footer.termsConditions": "শর্তাবলী",
   "footer.aboutDebtBox": "ডেট বক্স সম্পর্কে",
-  "footer.copyright": "© সর্বস্বত্ব সংরক্ষিত ডেট বক্স",
+  "footer.copyright": "© {year} সর্বস্বত্ব সংরক্ষিত ডেট বক্স",
   "contactUsPage.hero.title": "যেকোন সময় সাহায্যের জন্য আমরা আছি।",
   "contactUsPage.hero.description": "আপনার কোনো প্রশ্ন থাকলে অথবা সহযোগিতা চাইলে, আমাদের সাথে যোগাযোগ করতে দ্বিধা করবেন না।",
   "contactUsPage.form.firstNamePlaceholder": "মোহাম্মদ",

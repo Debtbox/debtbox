@@ -236,7 +236,7 @@
   "footer.privacyPolicy": "سياسة الخصوصية",
   "footer.termsConditions": "الشروط و الأحكام",
   "footer.aboutDebtBox": "عن ديبت بوكس",
-  "footer.copyright": "© جميع الحقوق محفوظة، لشركة ديبت بوكس",
+  "footer.copyright": "© {year} جميع الحقوق محفوظة، لشركة ديبت بوكس",
   "contactUsPage.hero.title": "نحن هنا لمساعدتك في أي وقت.",
   "contactUsPage.hero.description": "إذا كان لديك أي استفسار أو تحتاج إلى دعم، لا تتردد في التواصل معنا",
   "contactUsPage.form.firstNamePlaceholder": "محمد",

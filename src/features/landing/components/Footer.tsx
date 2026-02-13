@@ -59,7 +59,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="footer-small">{t('footer.copyright')}</p>
+      <p className="footer-small">{t('footer.copyright', { year: new Date().getFullYear() })}</p>
     </footer>
   );
 };

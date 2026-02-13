@@ -236,7 +236,7 @@
   "footer.privacyPolicy": "Privacy Policy",
   "footer.termsConditions": "Terms and Conditions",
   "footer.aboutDebtBox": "About Debt Box",
-  "footer.copyright": "© All rights reserved to Debt Box",
+  "footer.copyright": "© {year} All rights reserved to Debt Box",
   "contactUsPage.hero.title": "We are here to help you at any time.",
   "contactUsPage.hero.description": "If you have any questions or need support, please don't hesitate to contact us.",
   "contactUsPage.form.firstNamePlaceholder": "Mohammed",

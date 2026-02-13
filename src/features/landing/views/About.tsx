@@ -1,3 +1,4 @@
+import { AnimateOnScroll } from '@/components/shared/AnimateOnScroll';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import HeroSection from '../Sections/About/HeroSection';
@@ -17,13 +18,27 @@ export const About = () => {
       <img src={aboutVector2} alt="" className="about-vector-2" loading="lazy" decoding="async" />
       <img src={aboutVector3} alt="" className="about-vector-3" loading="lazy" decoding="async" />
       <Header />
-      <HeroSection />
-      <Description />
-      <VisionSection />
-      <HowItWorksSection />
-      <MissionSection />
-      <WhyUsSection />
-      <Footer />
+      <AnimateOnScroll>
+        <HeroSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <Description />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <VisionSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <HowItWorksSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <MissionSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <WhyUsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <Footer />
+      </AnimateOnScroll>
     </div>
   );
 };

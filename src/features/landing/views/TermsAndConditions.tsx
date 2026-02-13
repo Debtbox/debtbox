@@ -1,3 +1,4 @@
+import { AnimateOnScroll } from '@/components/shared/AnimateOnScroll';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroSection from '../Sections/TermsAndConditions/HeroSection';
@@ -8,9 +9,15 @@ const TermsAndConditions = () => {
   return (
     <div>
       <Header />
-      <HeroSection />
-      <TermsContentSection />
-      <Footer />
+      <AnimateOnScroll>
+        <HeroSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <TermsContentSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <Footer />
+      </AnimateOnScroll>
     </div>
   );
 };

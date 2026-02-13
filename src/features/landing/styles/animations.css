@@ -1,0 +1,65 @@
+/* Light scroll-triggered animations for landing sections */
+
+.landing-animate + .landing-animate {
+  margin-top: var(--section-gap, var(--page-section-gap, 4rem));
+}
+
+/* Footer has its own top margin, avoid double spacing */
+.landing-animate + .landing-animate:has(.footer) {
+  margin-top: 0;
+}
+
+.landing-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.landing-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger: delay children for a subtle cascade effect */
+.landing-animate.animate-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.landing-animate.animate-stagger.animate-in > *:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.landing-animate.animate-stagger.animate-in > *:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.landing-animate.animate-stagger.animate-in > *:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.landing-animate.animate-stagger.animate-in > *:nth-child(4) {
+  transition-delay: 0.2s;
+}
+.landing-animate.animate-stagger.animate-in > *:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.landing-animate.animate-stagger.animate-in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .landing-animate,
+  .landing-animate.animate-in,
+  .landing-animate.animate-stagger > *,
+  .landing-animate.animate-stagger.animate-in > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

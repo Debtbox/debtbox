@@ -236,7 +236,7 @@
   "footer.privacyPolicy": "پرائیویسی پالیسی",
   "footer.termsConditions": "شرائط و ضوابط",
   "footer.aboutDebtBox": "ڈیٹ باکس کے بارے میں",
-  "footer.copyright": "© جملہ حقوق ڈیٹ باکس کے نام محفوظ ہیں",
+  "footer.copyright": "© {year} جملہ حقوق ڈیٹ باکس کے نام محفوظ ہیں",
   "contactUsPage.hero.title": "ہم ہر وقت آپ کی مدد کے لیے حاضر ہیں۔",
   "contactUsPage.hero.description": "اگر آپ کے کوئی سوالات ہیں یا مدد چاہیے، براہ کرم ہم سے رابطہ کرنے میں ہچکچاہٹ محسوس نہ کریں۔",
   "contactUsPage.form.firstNamePlaceholder": "محمد",

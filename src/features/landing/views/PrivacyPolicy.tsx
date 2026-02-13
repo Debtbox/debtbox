@@ -1,3 +1,4 @@
+import { AnimateOnScroll } from '@/components/shared/AnimateOnScroll';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import HeroSection from '../Sections/PrivacyPolicy/HeroSection';
@@ -8,9 +9,15 @@ const PrivacyPolicy = () => {
   return (
     <div>
       <Header />
-      <HeroSection />
-      <PrivacyContentSection />
-      <Footer />
+      <AnimateOnScroll>
+        <HeroSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <PrivacyContentSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <Footer />
+      </AnimateOnScroll>
     </div>
   );
 };
