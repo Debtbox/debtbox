@@ -381,6 +381,7 @@ const SignUpForm = () => {
 
     updateFormData({ nationalId: data.nationalId });
     startFallbackRegistration({
+      variant: 'registration',
       nationalId: data.nationalId,
       email: data.email,
       idCardAttachment: data.idCardAttachment[0],

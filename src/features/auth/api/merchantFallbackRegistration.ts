@@ -18,12 +18,26 @@ type MerchantFallbackResponse<TData> = {
   success: boolean;
 };
 
-export type MerchantFallbackStartPayload = {
+/** Merchant registration: ID document + nationalId (per registration API). */
+export type MerchantFallbackRegistrationStartPayload = {
+  variant: 'registration';
+  startPath: string;
   nationalId: string;
   email: string;
   idCardAttachment: File;
-  startPath: string;
 };
+
+/** Merchant password reset: email only, no attachment; uses commercialRegister in form data. */
+export type MerchantFallbackPasswordResetStartPayload = {
+  variant: 'password_reset';
+  startPath: string;
+  commercialRegister: string;
+  email: string;
+};
+
+export type MerchantFallbackStartPayload =
+  | MerchantFallbackRegistrationStartPayload
+  | MerchantFallbackPasswordResetStartPayload;
 
 export type MerchantFallbackVerifyOtpPayload = {
   sessionId: string;
@@ -40,6 +54,9 @@ export type MerchantFallbackVerifyOtpResult = {
   accountId: number;
   status: string;
   accountActive: boolean;
+  accessToken?: string;
+  tokenType?: string;
+  expiresIn?: number;
 };
 
 const FALLBACK_PREFIX_REGEX = /^\/?v\d+\.\d+\.\d+\/api/;
@@ -55,21 +72,23 @@ export const normalizeFallbackPath = (path: string) => {
   return leadingSlashPath.replace(FALLBACK_PREFIX_REGEX, '');
 };
 
-export const startMerchantFallbackRegistration = async ({
-  nationalId,
-  email,
-  idCardAttachment,
-  startPath,
-}: MerchantFallbackStartPayload): Promise<
-  MerchantFallbackResponse<MerchantFallbackSession>
-> => {
+export const startMerchantFallbackRegistration = async (
+  payload: MerchantFallbackStartPayload,
+): Promise<MerchantFallbackResponse<MerchantFallbackSession>> => {
   const language = getLanguageFromCookie();
   const formData = new FormData();
-  formData.append('nationalId', nationalId);
-  formData.append('email', email);
-  formData.append('idCardAttachment', idCardAttachment);
 
-  return axios.post(normalizeFallbackPath(startPath), formData, {
+  if (payload.variant === 'password_reset') {
+    formData.append('commercialRegister', payload.commercialRegister);
+    formData.append('email', payload.email);
+    formData.append('isForgetPassword', 'true');
+  } else {
+    formData.append('nationalId', payload.nationalId);
+    formData.append('email', payload.email);
+    formData.append('idCardAttachment', payload.idCardAttachment);
+  }
+
+  return axios.post(normalizeFallbackPath(payload.startPath), formData, {
     headers: {
       'Accept-Language': language,
       'Content-Type': 'multipart/form-data',

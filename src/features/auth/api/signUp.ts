@@ -25,6 +25,8 @@ export type MerchantFallbackRequiredData = {
   fallbackStartPath: string;
   fallbackVerifyPath: string;
   fallbackResendPath: string;
+  isForgetPassword?: boolean;
+  fallbackFlow?: string;
 };
 
 export type SignUpResponse = {
