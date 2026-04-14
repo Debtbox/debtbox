@@ -2,6 +2,7 @@ import { axios } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 import type { QueryConfig, ExtractFnReturnType } from '@/lib/react-query';
 import type { NotificationDto } from '@/types/NotificationDto';
+import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
 
 export type NotificationsResponse = {
   data: NotificationDto[];
@@ -10,7 +11,12 @@ export type NotificationsResponse = {
 };
 
 export const getNotifications = (): Promise<NotificationsResponse> => {
-  return axios.get('/notification/get-notifications');
+  const language = getLanguageFromCookie();
+  return axios.get('/notification/get-notifications', {
+    headers: {
+      'Accept-Language': language,
+    },
+  });
 };
 type QueryFnType = typeof getNotifications;
 type UseGetNotificationsOptions = {

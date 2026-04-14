@@ -48,3 +48,4 @@ flatten-translations.js
 GH_PAGES_FIX.md
 
 backendTemplates/*
+.cursor/*

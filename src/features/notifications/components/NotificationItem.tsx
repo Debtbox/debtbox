@@ -6,6 +6,7 @@ import DotsIcon from '../../../components/icons/DotsIcon';
 import ActionDropdown from '../../../components/shared/ActionDropdown';
 import { CheckIcon, TrashIcon, Square } from 'lucide-react';
 import type { NotificationItemProps } from './types';
+import { getTimeAgo } from '@/utils/getTimeAgo';
 
 const NotificationItem = ({
   notification,
@@ -19,6 +20,7 @@ const NotificationItem = ({
   onToggleSelectionMode,
 }: NotificationItemProps) => {
   const { i18n, t } = useTranslation();
+  const createdAtAgo = getTimeAgo(notification.created_at, i18n.language);
 
   return (
     <div
@@ -55,15 +57,15 @@ const NotificationItem = ({
 
       <div className="flex-1 flex flex-col gap-1">
         <h6 className="text-sm font-medium text-gray-600">
-          {i18n.language === 'ar' ? notification.titleAr : notification.titleEn}
+          {notification.title}
         </h6>
         <p className="text-xs text-gray-500">
-          {i18n.language === 'ar' ? notification.bodyAr : notification.bodyEn}
+          {notification.body}
         </p>
       </div>
 
       <div className="flex flex-col gap-1 relative">
-        <span className="text-xs text-gray-500">15H</span>
+        <span className="text-xs text-gray-500">{createdAtAgo}</span>
         <ActionDropdown
           trigger={
             <button className="cursor-pointer">

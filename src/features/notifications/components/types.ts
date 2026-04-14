@@ -1,14 +1,7 @@
-export interface NotificationItem {
-  id: string;
-  titleAr: string;
-  titleEn: string;
-  bodyAr: string;
-  bodyEn: string;
-  isRead: boolean;
-}
+import type { NotificationDto } from "@/types/NotificationDto";
 
 export interface NotificationItemProps {
-  notification: NotificationItem;
+  notification: NotificationDto;
   isSelectionMode: boolean;
   isSelected: boolean;
   isMarkingAsRead: boolean;
