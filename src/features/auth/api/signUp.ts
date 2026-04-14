@@ -9,8 +9,26 @@ export type SignUpCredentialsDTO = {
   isForgetPassword?: boolean;
 };
 
+export type NafathSignUpData = {
+  state: string;
+  redirectUrl: string;
+  locale: 'en' | 'ar' | 'ur' | 'bn';
+  fallbackRequired?: false;
+};
+
+export type MerchantFallbackRequiredData = {
+  nafathEnabled: boolean;
+  fallbackRequired: true;
+  code: string;
+  reason: string;
+  actorType: 'MERCHANT' | 'CUSTOMER';
+  fallbackStartPath: string;
+  fallbackVerifyPath: string;
+  fallbackResendPath: string;
+};
+
 export type SignUpResponse = {
-  data: { state: string; redirectUrl: string; locale: 'en' | 'ar' | '' };
+  data: NafathSignUpData | MerchantFallbackRequiredData;
   message: string;
   success: boolean;
 };
