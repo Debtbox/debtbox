@@ -1,12 +1,11 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Settings } from '../views/Settings';
 
 export const SettingsRoutes = () => {
   return (
     <Routes>
-      <Route>
-        <Route path="/" element={<Settings />} />
-      </Route>
+      <Route path="/" element={<Settings />} />
+      <Route path="*" element={<Navigate to="/settings" replace />} />
     </Routes>
   );
 };

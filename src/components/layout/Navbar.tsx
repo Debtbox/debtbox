@@ -38,7 +38,7 @@ const Navbar = ({ onMenuToggle }: NavbarProps) => {
           <span className="text-sm font-medium text-gray-500">
             {t('navbar.welcome', 'Welcome!')}
           </span>
-          <h1 className="text-lg font-bold text-gray-900">
+          <h1 className="lg:text-lg font-bold text-gray-900">
             {i18n.language === 'en' ? user?.full_name_en : user?.full_name_ar}
           </h1>
         </div>

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { clearCookie } from '@/utils/storage';
 import { queryClient } from '@/lib/queryClient';
 import { useTranslation } from 'react-i18next';
-import { UserIcon } from 'lucide-react';
+import { UserIcon, UserCircle, Settings, LogOut } from 'lucide-react';
 
 const UserDropdown = () => {
   const { t } = useTranslation();
@@ -50,10 +51,28 @@ const UserDropdown = () => {
             : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
         }`}
       >
+        <Link
+          to="/profile"
+          onClick={() => setIsOpen(false)}
+          className="flex items-center gap-2 w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+        >
+          <UserCircle className="w-4 h-4" />
+          {t('common.nav.profile', 'Profile')}
+        </Link>
+        <Link
+          to="/settings"
+          onClick={() => setIsOpen(false)}
+          className="flex items-center gap-2 w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+        >
+          <Settings className="w-4 h-4" />
+          {t('common.nav.settings', 'Settings')}
+        </Link>
+        <div className="border-t border-gray-100 my-1" />
         <button
           onClick={handleLogout}
-          className="w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer"
+          className="flex items-center gap-2 w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer"
         >
+          <LogOut className="w-4 h-4" />
           {t('common.buttons.logout', 'Logout')}
         </button>
       </div>

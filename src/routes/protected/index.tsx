@@ -1,7 +1,8 @@
 import { DashboardRoutes } from '@/features/dashboard';
 import ProtectedRoutes from './ProtectedRoutes';
 // import { ClientsRoutes } from '@/features/clients';
-// import { SettingsRoutes } from '@/features/settings';
+import { SettingsRoutes } from '@/features/settings';
+import { ProfileRoutes } from '@/features/profile';
 import { TransactionsRoutes } from '@/features/transactions';
 import { BusinessesRoutes } from '@/features/businesses';
 import { Navigate } from 'react-router-dom';
@@ -30,10 +31,14 @@ export const protectedRoutes = [
         path: '/transactions/*',
         element: <TransactionsRoutes />,
       },
-      // {
-      //   path: '/settings/*',
-      //   element: <SettingsRoutes />,
-      // },
+      {
+        path: '/settings/*',
+        element: <SettingsRoutes />,
+      },
+      {
+        path: '/profile/*',
+        element: <ProfileRoutes />,
+      },
     ],
   },
 ];
