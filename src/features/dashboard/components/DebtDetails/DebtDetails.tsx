@@ -9,7 +9,7 @@ import CalendarIcon from '@/components/icons/CalendarIcon';
 import { type Debt } from '../../types/debt';
 import { useTranslation } from 'react-i18next';
 import { useCancelDebt } from '../../api/cancelDebt';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { useConsentReAttempt } from '../../api/consentReAttempt';
 import { useState } from 'react';
 import { useDebtConsentWaiting } from '../../hooks/useDebtConsentWaiting';

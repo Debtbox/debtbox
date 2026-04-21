@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useMarkNotificationsAsRead } from '../api/markNotificationsAsRead';
 import { useDeleteNotifications } from '../api/deleteNotifications';
 import type { ApiError } from '@/types/ApiError';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { queryClient } from '@/lib/queryClient';
 import { NotificationItem, SelectionHeader, BulkActions } from '../components';
 

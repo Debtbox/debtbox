@@ -12,7 +12,7 @@ import {
   formatIBAN,
   getCountryName,
 } from '@/utils/ibanValidation';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { useRegisterIBAN } from '../../api/registerIBAN';
 
 type IBANFormData = z.infer<ReturnType<typeof createIBANSchema>>;

@@ -7,7 +7,7 @@ import { useUrlBooleanState } from '@/utils/urlState';
 import { useGetBusinessTotal } from '../api/getBusinessTotal';
 import { useUserStore } from '@/stores/UserStore';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import type { Step } from '../types';
 import DebtsTable from '../components/DebtsTable/DebtsTable';
 

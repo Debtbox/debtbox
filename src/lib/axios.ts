@@ -1,4 +1,4 @@
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import Axios, {
   type AxiosError,
   type AxiosRequestConfig,
@@ -59,21 +59,25 @@ axios.interceptors.response.use(
         }
         break;
       case 403:
-        toast.error(
-          i18n.t('error.access_denied', "Access denied. You don't have permission for this action."),
+        console.error(
+          i18n.t(
+            'error.access_denied',
+            "Access denied. You don't have permission for this action.",
+          ),
         );
         break;
       case 404:
-        toast.error(
+        console.error(
           i18n.t('error.resource_not_found', 'Resource not found.'),
         );
         break;
       case 500:
-        toast.error(
+        console.error(
           i18n.t('error.server_error', 'Server error. Please try again later.'),
         );
         break;
       default:
+        console.error(i18n.t('error.unknown', 'An unknown error occurred.'));
         break;
     }
 

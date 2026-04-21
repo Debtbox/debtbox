@@ -10,7 +10,7 @@ import { type DebtTableData, type Debt } from '../../dashboard/types/debt';
 import { useGetMerchantDebts } from '../../dashboard/api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
 import { SaudiRiyal } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { StatusBadge, type StatusBadgeStatus } from '@/components/shared/StatusBadge';
 import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';

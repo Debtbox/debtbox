@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 import { useRegisterBusinesses } from '../../api/registerBusinesses';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import type { BusinessDto } from '@/types/BusinessDto';
 import type { DropdownOption } from '@/components/shared/DropdownFilter';
 import { CITIES, CATEGORIES } from '../../data';

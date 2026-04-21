@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { useState, useEffect } from 'react';
 import Input from '@/components/shared/Input';
 import IdIcon from '@/components/icons/IdIcon';

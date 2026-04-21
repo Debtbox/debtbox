@@ -8,7 +8,7 @@ import Button from '@/components/shared/Button';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 import { useCreatePassword } from '../../api/createPassword';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 
 type FirstPasswordFormData = z.infer<
   ReturnType<typeof createFirstPasswordSchema>

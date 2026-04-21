@@ -7,7 +7,7 @@ import { z } from 'zod';
 import Button from '@/components/shared/Button';
 import { useSignUp } from '../../api/signUp';
 import { useCheckMerchantSignupStatus } from '../../api/checkMerchantSignupStatus';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 import type { UserDto } from '@/types/UserDto';

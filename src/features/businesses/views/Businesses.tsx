@@ -3,7 +3,7 @@ import BusinessCard from '../components/BusinessCard';
 import { useGetMerchantBusinesses } from '../api/getMerchantBusinesses';
 import { useTranslation } from 'react-i18next';
 import { useRegisterBusinesses } from '@/features/auth';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import { useState } from 'react';
 import Sideover from '@/components/shared/Sideover';
 import { useUserStore } from '@/stores/UserStore';

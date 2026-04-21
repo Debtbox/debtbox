@@ -10,7 +10,7 @@ import { type DebtTableData, type Debt } from '../../types/debt';
 import { useGetMerchantDebts } from '../../api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
 import { SaudiRiyal } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 import {
   DueDateStatusBadge,
   StatusBadge,
