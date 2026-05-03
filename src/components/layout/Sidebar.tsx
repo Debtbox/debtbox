@@ -10,7 +10,7 @@ import {
 } from '@/assets/images';
 import clsx from 'clsx';
 import LineIcon from '../icons/LineIcon';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Headphones } from 'lucide-react';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -20,7 +20,8 @@ interface SidebarProps {
 interface NavItem {
   name: string;
   href: string;
-  icon: string;
+  icon?: string;
+  Icon?: React.ComponentType<{ className?: string }>;
 }
 
 const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
@@ -53,6 +54,11 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
     //   href: '/settings',
     //   icon: settingsSidebar,
     // },
+    {
+      name: t('navigation.support', 'Support'),
+      href: '/support',
+      Icon: Headphones,
+    },
   ];
 
   const isActive = (href: string) => {
@@ -104,17 +110,29 @@ const Sidebar = ({ isCollapsed = true, onToggle }: SidebarProps) => {
             )}
             title={isCollapsed ? item.name : undefined}
           >
-            <img
-              src={item.icon}
-              alt={item.name}
-              className={clsx(
-                isCollapsed ? 'w-5 h-5 mx-auto' : 'w-5 h-5 me-3',
-                'shrink-0 transition-all duration-200',
-                isActive(item.href)
-                  ? 'brightness-100 invert'
-                  : 'group-hover:brightness-100 group-hover:invert',
-              )}
-            />
+            {item.Icon ? (
+              <item.Icon
+                className={clsx(
+                  isCollapsed ? 'w-5 h-5 mx-auto' : 'w-5 h-5 me-3',
+                  'shrink-0 transition-all duration-200',
+                  isActive(item.href)
+                    ? 'text-gray-800'
+                    : 'text-gray-400 group-hover:text-gray-800',
+                )}
+              />
+            ) : (
+              <img
+                src={item.icon}
+                alt={item.name}
+                className={clsx(
+                  isCollapsed ? 'w-5 h-5 mx-auto' : 'w-5 h-5 me-3',
+                  'shrink-0 transition-all duration-200',
+                  isActive(item.href)
+                    ? 'brightness-100 invert'
+                    : 'group-hover:brightness-100 group-hover:invert',
+                )}
+              />
+            )}
             {!isCollapsed && (
               <span
                 className="flex-1 transition-opacity duration-200"

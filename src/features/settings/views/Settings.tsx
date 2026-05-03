@@ -3,10 +3,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from '@/lib/toast';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useUpdateIBAN } from '@/features/auth/api/updateIBAN';
 import Input from '@/components/shared/Input';
 import Button from '@/components/shared/Button';
-import { CreditCard } from 'lucide-react';
+import { ChevronLeft, Landmark } from 'lucide-react';
 
 const ibanSchema = z.object({
   iban: z
@@ -18,31 +19,6 @@ const ibanSchema = z.object({
 });
 
 type IBANFormValues = z.infer<typeof ibanSchema>;
-
-const SettingSection = ({
-  icon,
-  title,
-  description,
-  children,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) => (
-  <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-    <div className="flex items-start gap-4 p-6 border-b border-gray-100">
-      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-        {icon}
-      </div>
-      <div>
-        <h2 className="text-sm font-semibold text-gray-900">{title}</h2>
-        <p className="text-sm text-gray-500 mt-0.5">{description}</p>
-      </div>
-    </div>
-    <div className="p-6">{children}</div>
-  </div>
-);
 
 const IBANForm = () => {
   const { t } = useTranslation();
@@ -68,28 +44,24 @@ const IBANForm = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit((v) => updateIBAN(v))} className="space-y-4 max-w-md">
-      <div className="flex flex-col gap-1">
-        <Input
-          id="iban"
-          type="text"
-          label={t('settings.iban.ibanLabel', 'New IBAN')}
-          placeholder="SA0000000000000000000000"
-          error={errors.iban?.message}
-          {...register('iban')}
-        />
-      </div>
-      <div className="flex flex-col gap-1">
-        <Input
-          id="password"
-          type="password"
-          label={t('settings.iban.passwordLabel', 'Current Password')}
-          placeholder="••••••••"
-          error={errors.password?.message}
-          {...register('password')}
-        />
-      </div>
-      <div className="pt-2">
+    <form onSubmit={handleSubmit((v) => updateIBAN(v))} className="space-y-4">
+      <Input
+        id="iban"
+        type="text"
+        label={t('settings.iban.ibanLabel', 'New IBAN')}
+        placeholder="SA0000000000000000000000"
+        error={errors.iban?.message}
+        {...register('iban')}
+      />
+      <Input
+        id="password"
+        type="password"
+        label={t('settings.iban.passwordLabel', 'Current Password')}
+        placeholder="••••••••"
+        error={errors.password?.message}
+        {...register('password')}
+      />
+      <div className="pt-1">
         <Button
           type="submit"
           text={t('settings.iban.submit', 'Update IBAN')}
@@ -105,27 +77,43 @@ const IBANForm = () => {
 
 export const Settings = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
-    <section className="space-y-4">
-      <div>
-        <h1 className="text-xl sm:text-2xl font-bold">
-          {t('settings.title', 'Settings')}
-        </h1>
-        <p className="text-sm text-gray-500 mt-1">
-          {t('settings.description', 'Manage your account settings')}
-        </p>
+    <div className="space-y-6">
+      <div className="flex items-center gap-2 text-sm">
+        <button
+          type="button"
+          onClick={() => navigate('/profile')}
+          className="flex items-center gap-1 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
+          <span>{t('profile.settings.title', 'Settings')}</span>
+        </button>
+        <span className="text-gray-300">/</span>
+        <span className="font-bold text-gray-900">
+          {t('profile.settings.accountSettings', 'Account Settings')}
+        </span>
       </div>
 
-      <div className="space-y-4 max-w-2xl">
-        <SettingSection
-          icon={<CreditCard className="w-5 h-5" />}
-          title={t('settings.iban.title', 'Bank Account (IBAN)')}
-          description={t('settings.iban.description', 'Update the IBAN linked to your merchant account. Your current password is required to confirm the change.')}
-        >
+      <div className="bg-white rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100">
+          <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
+            <Landmark className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-sm font-semibold text-gray-900">
+              {t('settings.iban.title', 'Bank Account (IBAN)')}
+            </h2>
+            <p className="text-xs text-gray-400 mt-0.5">
+              {t('settings.iban.description', 'Update the IBAN linked to your merchant account')}
+            </p>
+          </div>
+        </div>
+        <div className="p-6 max-w-md">
           <IBANForm />
-        </SettingSection>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };

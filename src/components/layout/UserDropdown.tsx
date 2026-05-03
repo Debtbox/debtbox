@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { clearCookie } from '@/utils/storage';
 import { queryClient } from '@/lib/queryClient';
 import { useTranslation } from 'react-i18next';
-import { UserIcon, UserCircle, Settings, LogOut } from 'lucide-react';
+import { UserIcon, UserCircle, LogOut } from 'lucide-react';
 
 const UserDropdown = () => {
   const { t } = useTranslation();
@@ -58,14 +58,6 @@ const UserDropdown = () => {
         >
           <UserCircle className="w-4 h-4" />
           {t('common.nav.profile', 'Profile')}
-        </Link>
-        <Link
-          to="/settings"
-          onClick={() => setIsOpen(false)}
-          className="flex items-center gap-2 w-full text-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
-        >
-          <Settings className="w-4 h-4" />
-          {t('common.nav.settings', 'Settings')}
         </Link>
         <div className="border-t border-gray-100 my-1" />
         <button

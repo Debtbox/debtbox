@@ -5,6 +5,7 @@ import { SettingsRoutes } from '@/features/settings';
 import { ProfileRoutes } from '@/features/profile';
 import { TransactionsRoutes } from '@/features/transactions';
 import { BusinessesRoutes } from '@/features/businesses';
+import { SupportRoutes } from '@/features/support';
 import { Navigate } from 'react-router-dom';
 export const protectedRoutes = [
   {
@@ -38,6 +39,10 @@ export const protectedRoutes = [
       {
         path: '/profile/*',
         element: <ProfileRoutes />,
+      },
+      {
+        path: '/support/*',
+        element: <SupportRoutes />,
       },
     ],
   },
