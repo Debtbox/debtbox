@@ -9,11 +9,14 @@ import { cn } from '@/utils/cn';
 import { toast } from '@/lib/toast';
 import Button from '@/components/shared/Button';
 import Input from '@/components/shared/Input';
+import CustomPagination from '@/components/shared/CustomPagination';
 import { useGetTickets } from '../api/getTickets';
 import { useCreateTicket } from '../api/createTicket';
 import { getStatusColor } from '../utils';
 import type { TicketDTO, TicketType, TicketPriority } from '../types';
 import { formatDate } from '@/utils/formatDate';
+
+const PAGE_SIZE = 10;
 
 const createSchema = z.object({
   subject: z.string().min(3, 'Subject must be at least 3 characters'),
@@ -258,9 +261,13 @@ export const ContactSupport = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [showCreate, setShowCreate] = useState(false);
+  const [page, setPage] = useState(0);
 
-  const { data, isLoading, refetch } = useGetTickets({ params: { limit: 50 } });
+  const { data, isLoading, refetch } = useGetTickets({
+    params: { page, limit: PAGE_SIZE },
+  });
   const tickets = data?.data.tickets ?? [];
+  const total = data?.data.total ?? 0;
 
   return (
     <div>
@@ -322,15 +329,23 @@ export const ContactSupport = () => {
           />
         </div>
       ) : (
-        <div className="space-y-3">
-          {tickets.map((ticket) => (
-            <TicketCard
-              key={ticket.id}
-              ticket={ticket}
-              onClick={() => navigate(`/support/contact/${ticket.id}`)}
-            />
-          ))}
-        </div>
+        <>
+          <div className="space-y-3">
+            {tickets.map((ticket) => (
+              <TicketCard
+                key={ticket.id}
+                ticket={ticket}
+                onClick={() => navigate(`/support/contact/${ticket.id}`)}
+              />
+            ))}
+          </div>
+          <CustomPagination
+            current={page + 1}
+            pageSize={PAGE_SIZE}
+            total={total}
+            onChange={(newPage) => setPage(newPage - 1)}
+          />
+        </>
       )}
 
       {showCreate && (
@@ -338,6 +353,7 @@ export const ContactSupport = () => {
           onClose={() => setShowCreate(false)}
           onSuccess={() => {
             setShowCreate(false);
+            setPage(0);
             void refetch();
           }}
         />
