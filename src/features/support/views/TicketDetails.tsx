@@ -5,6 +5,7 @@ import { ChevronLeft, Send, RefreshCw, XCircle } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { toast } from '@/lib/toast';
 import Button from '@/components/shared/Button';
+import ConfirmationPopup from '@/components/shared/ConfirmationPopup';
 import { useGetTicket } from '../api/getTicket';
 import { useReplyTicket } from '../api/replyTicket';
 import { useCloseTicket } from '../api/closeTicket';
@@ -53,6 +54,8 @@ export const TicketDetails = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [replyText, setReplyText] = useState('');
   const [reopenText, setReopenText] = useState('');
+  const [confirmCloseOpen, setConfirmCloseOpen] = useState(false);
+  const [confirmReopenOpen, setConfirmReopenOpen] = useState(false);
 
   const { data, isLoading } = useGetTicket({ id: id! });
   const ticket = data?.data.ticket;
@@ -71,8 +74,10 @@ export const TicketDetails = () => {
 
   const { mutate: close, isPending: isClosing } = useCloseTicket({
     config: {
-      onSuccess: () =>
-        toast.success(t('support.close.success', 'Ticket closed')),
+      onSuccess: () => {
+        setConfirmCloseOpen(false);
+        toast.success(t('support.close.success', 'Ticket closed'));
+      },
       onError: (err: unknown) => {
         const msg = (err as { response?: { data?: { message?: string } } })
           ?.response?.data?.message;
@@ -85,6 +90,7 @@ export const TicketDetails = () => {
     config: {
       onSuccess: () => {
         setReopenText('');
+        setConfirmReopenOpen(false);
         toast.success(t('support.reopen.success', 'Ticket reopened'));
       },
       onError: (err: unknown) => {
@@ -121,7 +127,7 @@ export const TicketDetails = () => {
     reply({ id: ticket.id, body: replyText.trim() });
   };
 
-  const handleReopen = () => {
+  const handleConfirmReopen = () => {
     if (!reopenText.trim()) return;
     reopen({ id: ticket.id, details: reopenText.trim() });
   };
@@ -234,8 +240,7 @@ export const TicketDetails = () => {
                 text={t('support.reopenBtn', 'Reopen Ticket')}
                 variant="secondary"
                 icon={<RefreshCw className="w-4 h-4 me-1.5" />}
-                onClick={handleReopen}
-                isLoading={isReopening}
+                onClick={() => setConfirmReopenOpen(true)}
                 disabled={!reopenText.trim()}
                 className="px-4 py-2 text-sm flex items-center gap-1"
               />
@@ -274,8 +279,7 @@ export const TicketDetails = () => {
                   text={t('support.closeTicket', 'Close Ticket')}
                   variant="gray"
                   icon={<XCircle className="w-4 h-4 me-1.5" />}
-                  onClick={() => close({ id: ticket.id })}
-                  isLoading={isClosing}
+                  onClick={() => setConfirmCloseOpen(true)}
                   className="px-4 py-2 text-xs flex items-center gap-1"
                 />
               </div>
@@ -283,6 +287,35 @@ export const TicketDetails = () => {
           )}
         </div>
       </div>
+
+      <ConfirmationPopup
+        isOpen={confirmCloseOpen}
+        onClose={() => setConfirmCloseOpen(false)}
+        onConfirm={() => close({ id: ticket.id })}
+        title={t('support.close.confirmTitle', 'Close Ticket')}
+        description={t(
+          'support.close.confirmDescription',
+          'Are you sure you want to close this ticket? You can reopen it later if needed.',
+        )}
+        confirmText={t('support.closeTicket', 'Close Ticket')}
+        cancelText={t('common.buttons.cancel', 'Cancel')}
+        isLoading={isClosing}
+      />
+
+      <ConfirmationPopup
+        isOpen={confirmReopenOpen}
+        onClose={() => setConfirmReopenOpen(false)}
+        onConfirm={handleConfirmReopen}
+        title={t('support.reopen.confirmTitle', 'Reopen Ticket')}
+        description={t(
+          'support.reopen.confirmDescription',
+          'Are you sure you want to reopen this ticket?',
+        )}
+        confirmText={t('support.reopenBtn', 'Reopen Ticket')}
+        cancelText={t('common.buttons.cancel', 'Cancel')}
+        confirmButtonClassName="bg-primary hover:bg-primary/90 text-white"
+        isLoading={isReopening}
+      />
     </div>
   );
 };
