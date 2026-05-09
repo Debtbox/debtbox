@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '@/components/shared/Button';
 import FilterSection, {
@@ -36,6 +36,8 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const [isViewAll, setIsViewAll] = useState(false);
   const [debts, setDebts] = useState<Debt[]>([]);
   const [totalCount, setTotalCount] = useState(0);
+  const totalCountRef = useRef(0);
+  totalCountRef.current = totalCount;
   const [loading, setLoading] = useState(false);
   const [isDetailsSideoverOpen, setIsDetailsSideoverOpen] = useState(false);
   const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(undefined);
@@ -87,7 +89,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       getMerchantDebts({
         businessId: selectedBusiness.id.toString(),
         pageIndex: currentPage - 1,
-        pageSize: isViewAll ? totalCount : pageSize,
+        pageSize: isViewAll ? totalCountRef.current : pageSize,
         customerName: searchTerm || undefined,
         debtDueStatus: selectedStatuses.includes('all')
           ? undefined
@@ -104,7 +106,6 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
     currentPage,
     pageSize,
     isViewAll,
-    totalCount,
     searchTerm,
     selectedStatuses,
     getMerchantDebts,
