@@ -251,10 +251,12 @@ export const processDebtData = (
   const customerName =
     language === 'ar' ? debt.full_name_ar : debt.full_name_en;
 
+  const displayAmount = debt.groupAmount ?? debt.amount;
+
   return {
     ...debt,
     customerName,
-    formattedAmount: formatCurrency(debt.amount, locale),
+    formattedAmount: formatCurrency(displayAmount, locale),
     formattedDueDate: formatDate(debt.due_date, {
       includeTime,
       locale,
@@ -329,9 +331,27 @@ export const sortDebts = (
   sortKey: string,
   direction: 'asc' | 'desc',
 ): Debt[] => {
+  type Sortable = string | number | boolean | null | undefined;
+
   return [...debts].sort((a, b) => {
-    let aValue: string | number | boolean | null = a[sortKey as keyof Debt];
-    let bValue: string | number | boolean | null = b[sortKey as keyof Debt];
+    const rawA = a[sortKey as keyof Debt];
+    const rawB = b[sortKey as keyof Debt];
+    let aValue: Sortable =
+      typeof rawA === 'string' ||
+      typeof rawA === 'number' ||
+      typeof rawA === 'boolean' ||
+      rawA === null ||
+      rawA === undefined
+        ? rawA
+        : null;
+    let bValue: Sortable =
+      typeof rawB === 'string' ||
+      typeof rawB === 'number' ||
+      typeof rawB === 'boolean' ||
+      rawB === null ||
+      rawB === undefined
+        ? rawB
+        : null;
 
     // Handle date sorting
     if (
@@ -355,10 +375,12 @@ export const sortDebts = (
       bValue = bValue.toLowerCase();
     }
 
+    if (aValue === null || aValue === undefined) return 0;
+    if (bValue === null || bValue === undefined) return 0;
+
     if (direction === 'asc') {
-      return aValue !== null && bValue !== null ? (aValue > bValue ? 1 : -1) : 0;
-    } else {
-      return aValue !== null && bValue !== null ? (aValue < bValue ? 1 : -1) : 0;
+      return aValue > bValue ? 1 : -1;
     }
+    return aValue < bValue ? 1 : -1;
   });
 };

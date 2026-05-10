@@ -3,6 +3,7 @@ import type { MutationConfig } from '@/lib/react-query';
 import type { ApiError } from '@/types/ApiError';
 import { useMutation } from '@tanstack/react-query';
 import { getLanguageFromCookie } from '@/utils/getLanguageFromCookies';
+import type { ExpectedFeeBreakdown } from '../types/debt';
 
 export type GetBusinessTotalDTO = {
   businessId: string;
@@ -25,12 +26,24 @@ export const getBusinessTotal = (
   );
 };
 
+export type BusinessDashboardData = {
+  total: number;
+  totalDebtAmount?: number;
+  totalDebtAmountHalala?: number;
+  totalCollectedAmount?: number;
+  totalCollectedAmountHalala?: number;
+  successfulPaymentsCount?: number;
+  activeDebtsCount?: number;
+  overdueDebtsCount?: number;
+  inArrearsDebtsCount?: number;
+  pendingDebtsCount?: number;
+  expectedFeeBreakdown?: ExpectedFeeBreakdown;
+};
+
 export type GetBusinessTotalResponse = {
   message: string;
   success: boolean;
-  data: {
-    total: number;
-  };
+  data: BusinessDashboardData;
 };
 
 type UseGetBusinessTotal = {

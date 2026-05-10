@@ -26,7 +26,7 @@ const NotificationItem = ({
     <div
       className={clsx(
         'flex items-start gap-2 px-8 md:px-4 py-3 hover:bg-gray-100 transition-colors duration-200',
-        notification.isRead && 'bg-gray-100',
+        !notification.isRead && 'bg-gray-50',
         isSelectionMode && isSelected && 'bg-blue-50',
       )}
     >

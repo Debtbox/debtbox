@@ -16,13 +16,21 @@ import { useDebtConsentWaiting } from '../../hooks/useDebtConsentWaiting';
 import DebtConsentWaiting from '../shared/DebtConsentWaiting';
 import { useMarkDebtAsOverDue } from '../../api/markDebtAsOverDue';
 import { useExtendDebtDueDate } from '../../api/extendDebtDueDate';
-import { formatDate, type SupportedLocale } from '../../utils/debtUtils';
-import { FileDown, SaudiRiyal } from 'lucide-react';
+import {
+  formatCurrency,
+  formatDate,
+  type SupportedLocale,
+} from '../../utils/debtUtils';
+import { FileDown, Info, SaudiRiyal } from 'lucide-react';
 import { useExportSanad } from '../../api/exportSanad';
 import { useMarkDebtAsCashPaid } from '../../api/markDebtAsCashPaid';
 import ConfirmationPopup from '@/components/shared/ConfirmationPopup';
 import { downloadFile } from '@/utils/downloadFile';
 import { Banknote } from 'lucide-react';
+import Sideover from '@/components/shared/Sideover';
+import FeeBreakdown, {
+  type FeeBreakdownItem,
+} from '../FeeBreakdown';
 const DebtDetails = ({
   debtData,
   setIsSideoverOpen,
@@ -42,6 +50,45 @@ const DebtDetails = ({
     useState(false);
   const [newDueDate, setNewDueDate] = useState('');
   const [reason, setReason] = useState('');
+  const [isBreakdownOpen, setIsBreakdownOpen] = useState(false);
+
+  const locale = i18n.language as SupportedLocale;
+  const displayAmount = debtData.groupAmount ?? debtData.amount;
+  const isGroupedRow =
+    !!debtData.isGrouped && (debtData.debtsCount ?? 0) > 1;
+  const breakdown = debtData.expectedFeeBreakdown;
+  const breakdownItems: FeeBreakdownItem[] = (() => {
+    if (isGroupedRow && debtData.debts && debtData.debts.length > 0) {
+      return debtData.debts
+        .filter((child) => !!child.expectedFeeBreakdown)
+        .map((child) => ({
+          label:
+            child.title ||
+            debtData.title ||
+            `${t('dashboard.invoicePrefix', 'INV')}-${child.debtId}`,
+          amount: child.amount,
+          amountHalala:
+            child.expectedMerchantNetAmountHalala ?? child.amount * 100,
+          status:
+            child.status ?? (debtData.groupStatus as Debt['status']) ??
+            debtData.status,
+          breakdown: child.expectedFeeBreakdown!,
+        }));
+    }
+    if (breakdown) {
+      return [
+        {
+          label: debtData.title || t('dashboard.debtAmount', 'Debt Amount'),
+          amount: displayAmount,
+          amountHalala:
+            debtData.expectedMerchantNetAmountHalala ?? displayAmount * 100,
+          status: (debtData.groupStatus as Debt['status']) ?? debtData.status,
+          breakdown,
+        },
+      ];
+    }
+    return [];
+  })();
 
   const { mutate: cancelDebt, isPending: isCancellingDebt } = useCancelDebt({
     onSuccess: () => {
@@ -236,12 +283,26 @@ const DebtDetails = ({
           <div className="flex justify-between items-end">
             <div className="flex flex-col gap-2">
               <div className="text-xs text-gray-500">
-                {t('dashboard.debtAmount', 'Debt Amount')}
+                {breakdown
+                  ? t('dashboard.youllReceive', "You'll Receive")
+                  : t('dashboard.debtAmount', 'Debt Amount')}
               </div>
               <div className="text-2xl font-bold flex items-center gap-1">
-                {debtData?.amount.toLocaleString()}
+                {breakdown
+                  ? formatCurrency(
+                      breakdown.expectedMerchantNetAmount,
+                      locale,
+                    )
+                  : displayAmount.toLocaleString()}
                 <SaudiRiyal className="text-gray-900" />
               </div>
+              {isGroupedRow && (
+                <div className="text-xs text-gray-500">
+                  {t('dashboard.invoicesCount', '{count} Invoices', {
+                    count: debtData.debtsCount,
+                  })}
+                </div>
+              )}
               {(() => {
                 const isPending =
                   debtData?.isPending || debtData?.status === 'pending';
@@ -279,6 +340,66 @@ const DebtDetails = ({
               />
             )}
           </div>
+
+          {breakdown && (
+            <div className="mt-4 flex items-end justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-6">
+                <div className="flex flex-col">
+                  <span className="text-xs text-gray-500">
+                    {t('dashboard.outOf', 'Out of')}
+                  </span>
+                  <span className="text-sm font-semibold text-gray-900 flex items-center gap-1">
+                    {formatCurrency(displayAmount, locale)}
+                    <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs text-gray-500">
+                    {t('dashboard.fees', 'Fees')}
+                  </span>
+                  <span className="text-sm font-semibold text-gray-900 flex items-center gap-1">
+                    {formatCurrency(breakdown.totalDeductions, locale)}
+                    <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsBreakdownOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-gray-700 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors"
+              >
+                <Info className="w-3.5 h-3.5" />
+                {t('dashboard.viewBreakdown', 'View Breakdown')}
+              </button>
+            </div>
+          )}
+
+          {isGroupedRow && debtData.debts && debtData.debts.length > 0 && (
+            <div className="mt-4 rounded-lg border border-gray-100 bg-gray-50/50 divide-y divide-gray-100">
+              <div className="px-4 py-2 text-xs font-medium text-gray-500">
+                {t('dashboard.debtsInGroup', 'Debts in this group')}
+              </div>
+              {debtData.debts.map((child) => (
+                <div
+                  key={child.debtId}
+                  className="flex items-center justify-between gap-4 px-4 py-3"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-wide text-gray-400">
+                      {t('dashboard.invoicePrefix', 'INV')}-{child.debtId}
+                    </span>
+                    <span className="text-sm text-gray-800">
+                      {child.title || debtData.title || '-'}
+                    </span>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900 flex items-center gap-1">
+                    {formatCurrency(child.amount, locale)}
+                    <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div>
           <div className="flex justify-between items-end">
@@ -704,6 +825,15 @@ const DebtDetails = ({
           isLoading={isMarkingDebtAsCashPaid}
         />
       )}
+      <Sideover
+        isOpen={isBreakdownOpen}
+        onClose={() => setIsBreakdownOpen(false)}
+        title={t('dashboard.totalDebtsBreakdown', 'Total Debts Breakdown')}
+        direction={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+        className="flex flex-col h-full"
+      >
+        <FeeBreakdown items={breakdownItems} />
+      </Sideover>
     </div>
   );
 };

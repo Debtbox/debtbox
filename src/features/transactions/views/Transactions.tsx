@@ -5,13 +5,20 @@ import FilterSection, {
   type FilterConfig,
 } from '@/components/shared/FilterSection';
 import Table, { type TableColumn } from '@/components/shared/Table';
-import { processDebtData } from '../../dashboard/utils/debtUtils';
+import {
+  formatCurrency,
+  processDebtData,
+  type SupportedLocale,
+} from '../../dashboard/utils/debtUtils';
 import { type DebtTableData, type Debt } from '../../dashboard/types/debt';
 import { useGetMerchantDebts } from '../../dashboard/api/getMerchantDebts';
 import { useUserStore } from '@/stores/UserStore';
-import { SaudiRiyal } from 'lucide-react';
+import { ChevronDown, SaudiRiyal } from 'lucide-react';
 import { toast } from '@/lib/toast';
-import { StatusBadge, type StatusBadgeStatus } from '@/components/shared/StatusBadge';
+import {
+  StatusBadge,
+  type StatusBadgeStatus,
+} from '@/components/shared/StatusBadge';
 import MultiSelectDropdown from '@/components/shared/MultiSelectDropdown';
 import StatusBadges from '@/components/shared/StatusBadges';
 import Sideover from '@/components/shared/Sideover';
@@ -34,9 +41,9 @@ export const Transactions = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isDetailsSideoverOpen, setIsDetailsSideoverOpen] = useState(false);
-  const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(
-    undefined,
-  );
+  const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(undefined);
+  const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
+  const locale = i18n.language as SupportedLocale;
 
   const statusOptions = [
     { value: 'normal', label: t('common.buttons.normal') },
@@ -150,7 +157,18 @@ export const Transactions = () => {
       title: t('dashboard.debt_title'),
       dataIndex: 'title',
       render: (_, record) => (
-        <div className="text-gray-900">{record.title || '-'}</div>
+        <div className="text-gray-900">
+          <span>{record.title || '-'}</span>
+          {record.isGrouped && (record.debtsCount ?? 0) > 1 && (
+            <span className="ms-2 text-xs font-medium text-gray-500">
+              (
+              {t('dashboard.invoicesCount', '{count} Invoices', {
+                count: record.debtsCount,
+              })}
+              )
+            </span>
+          )}
+        </div>
       ),
     },
     {
@@ -195,17 +213,43 @@ export const Transactions = () => {
       key: 'actions',
       title: t('common.buttons.actions'),
       dataIndex: 'actions',
-      render: (_, record) => (
-        <Button
-          text={t('common.buttons.view')}
-          variant="gray"
-          className="w-full md:w-32 h-10 transition-colors duration-200"
-          onClick={() => {
-            setSelectedDebt(record);
-            setIsDetailsSideoverOpen(true);
-          }}
-        />
-      ),
+      render: (_, record) => {
+        const isExpandable = record.isGrouped && (record.debtsCount ?? 0) > 1;
+        const isExpanded = !!expandedRows[record.debtId];
+        return (
+          <div className="flex items-center justify-end gap-2">
+            {isExpandable && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setExpandedRows((prev) => ({
+                    ...prev,
+                    [record.debtId]: !prev[record.debtId],
+                  }));
+                }}
+                aria-label={t('dashboard.toggleInvoices', 'Toggle invoices')}
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
+              >
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isExpanded ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+            )}
+            <Button
+              text={t('common.buttons.view')}
+              variant="gray"
+              className="w-full md:w-32 h-10 transition-colors duration-200"
+              onClick={() => {
+                setSelectedDebt(record);
+                setIsDetailsSideoverOpen(true);
+              }}
+            />
+          </div>
+        );
+      },
     },
   ];
 
@@ -269,6 +313,37 @@ export const Transactions = () => {
           data={processedData}
           loading={loading}
           rowKey="debtId"
+          rowExtra={(record) => {
+            const isExpandable =
+              record.isGrouped && (record.debtsCount ?? 0) > 1;
+            const isExpanded = isExpandable && !!expandedRows[record.debtId];
+            if (!isExpanded || !record.debts || record.debts.length === 0) {
+              return null;
+            }
+            return (
+              <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100 border-s-2 border-s-primary/30">
+                {record.debts.map((child) => (
+                  <div
+                    key={child.debtId}
+                    className="flex items-center justify-between gap-4 px-4 py-3"
+                  >
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-wide text-gray-400">
+                        {t('dashboard.invoicePrefix', 'INV')}-{child.debtId}
+                      </span>
+                      <span className="text-sm text-gray-800">
+                        {child.title || record.title || '-'}
+                      </span>
+                    </div>
+                    <div className="text-sm font-semibold text-gray-900 flex items-center gap-1">
+                      {formatCurrency(child.amount, locale)}
+                      <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          }}
           pagination={{
             current: currentPage,
             pageSize: pageSize,

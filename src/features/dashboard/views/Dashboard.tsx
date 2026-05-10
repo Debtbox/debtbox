@@ -4,24 +4,32 @@ import DueAmountCard from '../components/DueAmountCard';
 import { useTranslation } from 'react-i18next';
 import { AddDebtFlow } from '../components/AddDebtFlow';
 import { useUrlBooleanState } from '@/utils/urlState';
-import { useGetBusinessTotal } from '../api/getBusinessTotal';
+import {
+  useGetBusinessTotal,
+  type BusinessDashboardData,
+} from '../api/getBusinessTotal';
 import { useUserStore } from '@/stores/UserStore';
 import { useEffect, useState } from 'react';
 import { toast } from '@/lib/toast';
 import type { Step } from '../types';
 import DebtsTable from '../components/DebtsTable/DebtsTable';
+import FeeBreakdown, {
+  type FeeBreakdownItem,
+} from '../components/FeeBreakdown';
 
 export const Dashboard = () => {
   const { t, i18n } = useTranslation();
   const { selectedBusiness } = useUserStore();
   const [isSideoverOpen, toggleSideover] =
     useUrlBooleanState('purchase-sideover');
-  const [totalDueAmount, setTotalDueAmount] = useState<number>(0);
+  const [dashboardData, setDashboardData] =
+    useState<BusinessDashboardData | null>(null);
+  const [isBreakdownOpen, setIsBreakdownOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState<Step>('form');
 
   const { mutate: getBusinessTotal } = useGetBusinessTotal({
     onSuccess: (data) => {
-      setTotalDueAmount(data.data.total);
+      setDashboardData(data.data);
     },
     onError: (error) => {
       toast.error(error.response.data.message);
@@ -36,13 +44,40 @@ export const Dashboard = () => {
     }
   }, [selectedBusiness, isSideoverOpen, getBusinessTotal]);
 
+  const totalDueAmount =
+    dashboardData?.totalDebtAmount ?? dashboardData?.total ?? 0;
+  const breakdown = dashboardData?.expectedFeeBreakdown;
+  const netAmount = breakdown?.expectedMerchantNetAmount ?? totalDueAmount;
+  const serviceFee = breakdown?.totalDeductions;
+  const breakdownItems: FeeBreakdownItem[] = breakdown
+    ? [
+        {
+          label: t('dashboard.openDebtsTotal', 'Open Debts Total'),
+          amount: totalDueAmount,
+          amountHalala: dashboardData?.totalDebtAmountHalala,
+          status: 'active',
+          breakdown,
+        },
+      ]
+    : [];
+
+  const formatAmount = (value: number) =>
+    new Intl.NumberFormat(i18n.language === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(value);
+
   return (
     <section className="space-y-4">
       <div className="flex items-stretch justify-between gap-4 flex-wrap lg:flex-nowrap">
         <div className="flex-1 animate-fade-in">
           <DueAmountCard
-            totalDueAmount={totalDueAmount.toLocaleString()}
+            netAmount={formatAmount(netAmount)}
+            pendingAmount={formatAmount(totalDueAmount)}
+            serviceFee={serviceFee !== undefined ? formatAmount(serviceFee) : undefined}
             onAddPayment={() => toggleSideover(true)}
+            onViewBreakdown={() => setIsBreakdownOpen(true)}
+            showViewBreakdown={!!breakdown}
           />
         </div>
         <div className="md:flex-1 flex flex-col gap-4">
@@ -86,6 +121,15 @@ export const Dashboard = () => {
           setCurrentStep={setCurrentStep}
           onClose={() => toggleSideover(false)}
         />
+      </Sideover>
+      <Sideover
+        isOpen={isBreakdownOpen}
+        onClose={() => setIsBreakdownOpen(false)}
+        title={t('dashboard.totalDebtsBreakdown', 'Total Debts Breakdown')}
+        direction={i18n.language === 'ar' ? 'rtl' : 'ltr'}
+        className="flex flex-col h-full"
+      >
+        <FeeBreakdown items={breakdownItems} />
       </Sideover>
     </section>
   );
