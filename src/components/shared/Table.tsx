@@ -13,6 +13,7 @@ export interface TableColumn<T = object> {
   sortable?: boolean;
   render?: (value: unknown, record: T, index: number) => ReactNode;
   className?: string;
+  headerClassName?: string;
 }
 
 export interface TableProps<T = object> {
@@ -140,7 +141,12 @@ const Table = <T extends object>({
                   )}
                   onClick={() => column.sortable && handleSort(column)}
                 >
-                  <div className="flex items-center gap-2">
+                  <div
+                    className={clsx(
+                      'flex items-center space-x-1',
+                      column.headerClassName,
+                    )}
+                  >
                     <span>{column.title}</span>
                     {column.sortable && sortConfig && (
                       <div className="flex flex-col">

@@ -54,7 +54,6 @@ export const Dashboard = () => {
         {
           label: t('dashboard.openDebtsTotal', 'Open Debts Total'),
           amount: totalDueAmount,
-          amountHalala: dashboardData?.totalDebtAmountHalala,
           status: 'active',
           breakdown,
         },

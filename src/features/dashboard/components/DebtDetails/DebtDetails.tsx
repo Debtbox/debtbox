@@ -57,38 +57,22 @@ const DebtDetails = ({
   const isGroupedRow =
     !!debtData.isGrouped && (debtData.debtsCount ?? 0) > 1;
   const breakdown = debtData.expectedFeeBreakdown;
-  const breakdownItems: FeeBreakdownItem[] = (() => {
-    if (isGroupedRow && debtData.debts && debtData.debts.length > 0) {
-      return debtData.debts
-        .filter((child) => !!child.expectedFeeBreakdown)
-        .map((child) => ({
-          label:
-            child.title ||
-            debtData.title ||
-            `${t('dashboard.invoicePrefix', 'INV')}-${child.debtId}`,
-          amount: child.amount,
-          amountHalala:
-            child.expectedMerchantNetAmountHalala ?? child.amount * 100,
-          status:
-            child.status ?? (debtData.groupStatus as Debt['status']) ??
-            debtData.status,
-          breakdown: child.expectedFeeBreakdown!,
-        }));
-    }
-    if (breakdown) {
-      return [
+  const breakdownItems: FeeBreakdownItem[] = breakdown
+    ? [
         {
-          label: debtData.title || t('dashboard.debtAmount', 'Debt Amount'),
+          label:
+            isGroupedRow
+              ? t('dashboard.debtsCount', '{{count}} Invoices', {
+                  count: debtData.debtsCount,
+                })
+              : debtData.title || t('dashboard.debtAmount', 'Debt Amount'),
           amount: displayAmount,
-          amountHalala:
-            debtData.expectedMerchantNetAmountHalala ?? displayAmount * 100,
-          status: (debtData.groupStatus as Debt['status']) ?? debtData.status,
+          status:
+            (debtData.groupStatus as Debt['status']) ?? debtData.status,
           breakdown,
         },
-      ];
-    }
-    return [];
-  })();
+      ]
+    : [];
 
   const { mutate: cancelDebt, isPending: isCancellingDebt } = useCancelDebt({
     onSuccess: () => {
@@ -298,7 +282,7 @@ const DebtDetails = ({
               </div>
               {isGroupedRow && (
                 <div className="text-xs text-gray-500">
-                  {t('dashboard.invoicesCount', '{count} Invoices', {
+                  {t('dashboard.debtsCount', '{count} Invoices', {
                     count: debtData.debtsCount,
                   })}
                 </div>

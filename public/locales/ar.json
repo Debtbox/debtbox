@@ -724,9 +724,9 @@
   "dashboard.youllReceive": "ستستلم",
   "dashboard.outOf": "من أصل",
   "dashboard.fees": "الرسوم",
-  "dashboard.invoicesCount_one": "فاتورة واحدة",
-  "dashboard.invoicesCount_other": "{count} فواتير",
-  "dashboard.invoicesCount": "{count} فواتير",
+  "dashboard.debtsCount_one": "دين واحد",
+  "dashboard.debtsCount_other": "{count} ديون",
+  "dashboard.debtsCount": "{count} ديون",
   "dashboard.invoicePrefix": "فاتورة",
   "dashboard.toggleInvoices": "عرض/إخفاء الفواتير",
   "dashboard.debtsInGroup": "الديون في هذه المجموعة",
@@ -735,6 +735,6 @@
   "dashboard.allStores": "كل المتاجر",
   "dashboard.youWillReceive": "ستستلم",
   "dashboard.from": "من",
-  "dashboard.rsPendingPayments": "ر.س دفعات معلّقة",
+  "dashboard.pendingPayments": "دفعات معلّقة",
   "dashboard.service": "الخدمة"
 }

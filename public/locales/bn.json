@@ -731,9 +731,9 @@
   "dashboard.youllReceive": "আপনি পাবেন",
   "dashboard.outOf": "এর মধ্যে",
   "dashboard.fees": "ফি",
-  "dashboard.invoicesCount_one": "{count}টি চালান",
-  "dashboard.invoicesCount_other": "{count}টি চালান",
-  "dashboard.invoicesCount": "{count}টি চালান",
+  "dashboard.debtsCount_one": "{count}টি ঋণ",
+  "dashboard.debtsCount_other": "{count}টি ঋণ",
+  "dashboard.debtsCount": "{count}টি ঋণ",
   "dashboard.invoicePrefix": "চালানী",
   "dashboard.toggleInvoices": "চালান দেখান/লুকান",
   "dashboard.debtsInGroup": "এই গ্রুপের ঋণসমূহ",
@@ -742,6 +742,6 @@
   "dashboard.allStores": "সমস্ত স্টোর",
   "dashboard.youWillReceive": "আপনি পাবেন",
   "dashboard.from": "থেকে",
-  "dashboard.rsPendingPayments": "আর.এস বকেয়া পেমেন্ট",
+  "dashboard.pendingPayments": "বকেয়া পেমেন্ট",
   "dashboard.service": "পরিষেবা"
 }

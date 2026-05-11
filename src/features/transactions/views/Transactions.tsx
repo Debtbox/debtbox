@@ -146,11 +146,29 @@ export const Transactions = () => {
       key: 'customer',
       title: t('common.buttons.customer'),
       dataIndex: 'customerName',
-      render: (_, record) => (
-        <div>
-          <div className="font-medium text-gray-900">{record.customerName}</div>
-        </div>
-      ),
+      render: (_, record) => {
+        const isGrouped = !!record.isGrouped && (record.debtsCount ?? 0) > 1;
+        if (!isGrouped) {
+          return (
+            <div className="font-medium text-gray-900">
+              {record.customerName}
+            </div>
+          );
+        }
+        const isExpanded = !!expandedRows[record.debtId];
+        const hasExtra =
+          isExpanded && !!record.debts && record.debts.length > 0;
+        const radius = hasExtra ? 'rounded-ts-sm' : 'rounded-s-sm';
+        return (
+          <div
+            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 border-s-primary/30 ${radius}`}
+          >
+            <div className="font-medium text-gray-900">
+              {record.customerName}
+            </div>
+          </div>
+        );
+      },
     },
     {
       key: 'title',
@@ -162,7 +180,7 @@ export const Transactions = () => {
           {record.isGrouped && (record.debtsCount ?? 0) > 1 && (
             <span className="ms-2 text-xs font-medium text-gray-500">
               (
-              {t('dashboard.invoicesCount', '{count} Invoices', {
+              {t('dashboard.debtsCount', '{count} Invoices', {
                 count: record.debtsCount,
               })}
               )
@@ -213,6 +231,7 @@ export const Transactions = () => {
       key: 'actions',
       title: t('common.buttons.actions'),
       dataIndex: 'actions',
+      headerClassName: 'justify-center',
       render: (_, record) => {
         const isExpandable = record.isGrouped && (record.debtsCount ?? 0) > 1;
         const isExpanded = !!expandedRows[record.debtId];
@@ -278,7 +297,7 @@ export const Transactions = () => {
             />
           }
         >
-          <div className="min-w-[200px]">
+          <div className="min-w-50">
             <MultiSelectDropdown
               options={statusOptions}
               values={selectedStatuses.filter((status) => status !== 'all')}
@@ -321,26 +340,28 @@ export const Transactions = () => {
               return null;
             }
             return (
-              <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100 border-s-2 border-s-primary/30">
-                {record.debts.map((child) => (
-                  <div
-                    key={child.debtId}
-                    className="flex items-center justify-between gap-4 px-4 py-3"
-                  >
-                    <div className="flex flex-col">
-                      <span className="text-[10px] uppercase tracking-wide text-gray-400">
-                        {t('dashboard.invoicePrefix', 'INV')}-{child.debtId}
-                      </span>
-                      <span className="text-sm text-gray-800">
-                        {child.title || record.title || '-'}
-                      </span>
+              <div className="-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 border-s-primary/30 rounded-bs-sm">
+                <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100">
+                  {record.debts.map((child) => (
+                    <div
+                      key={child.debtId}
+                      className="flex items-center justify-between gap-4 px-4 py-3"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-wide text-gray-400">
+                          {t('dashboard.invoicePrefix', 'INV')}-{child.debtId}
+                        </span>
+                        <span className="text-sm text-gray-800">
+                          {child.title || record.title || '-'}
+                        </span>
+                      </div>
+                      <div className="text-sm font-semibold text-gray-900 flex items-center gap-1">
+                        {formatCurrency(child.amount, locale)}
+                        <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
+                      </div>
                     </div>
-                    <div className="text-sm font-semibold text-gray-900 flex items-center gap-1">
-                      {formatCurrency(child.amount, locale)}
-                      <SaudiRiyal className="text-gray-900 w-3.5 h-3.5" />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             );
           }}

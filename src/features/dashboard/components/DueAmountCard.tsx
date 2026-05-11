@@ -134,7 +134,7 @@ const DueAmountCard = ({
                 <SaudiRiyal className="text-white w-3 h-3" />
                 {pendingAmount}
               </span>{' '}
-              {t('dashboard.rsPendingPayments', 'R.S pending payments')}
+              {t('dashboard.pendingPayments', 'pending payments')}
             </p>
           )}
         </div>

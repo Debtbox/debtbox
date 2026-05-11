@@ -1,14 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { Info } from 'lucide-react';
-import type {
-  ExpectedFeeBreakdown,
-  GroupStatusValue,
-} from '../../types/debt';
+import { Info, SaudiRiyal } from 'lucide-react';
+import type { ExpectedFeeBreakdown, GroupStatusValue } from '../../types/debt';
 
 export interface FeeBreakdownItem {
   label: string;
   amount: number;
-  amountHalala?: number;
   status?: GroupStatusValue;
   breakdown: ExpectedFeeBreakdown;
 }
@@ -36,23 +32,34 @@ const badgeColorByStatus = (status?: GroupStatusValue): string => {
   }
 };
 
-const formatNumber = (value: number | undefined, fractionDigits = 2): string => {
+const formatSar = (value: number | undefined, fractionDigits = 2): string => {
   if (value === undefined || value === null || Number.isNaN(value)) return '-';
-  const fmt = new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 0,
     maximumFractionDigits: fractionDigits,
-  });
-  return fmt.format(value);
+  }).format(value);
 };
+
+const Amount = ({
+  value,
+  iconClass = 'w-3.5 h-3.5',
+  textClass = '',
+}: {
+  value: number | undefined;
+  iconClass?: string;
+  textClass?: string;
+}) => (
+  <span className={`inline-flex items-center gap-1 ${textClass}`}>
+    <SaudiRiyal className={`shrink-0 ${iconClass}`} />
+    <span>{formatSar(value)}</span>
+  </span>
+);
 
 const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
   const { t } = useTranslation();
   const noticeText =
     notice ??
-    t(
-      'dashboard.expectedFeesNotice',
-      'Please find below the Expected fees.',
-    );
+    t('dashboard.expectedFeesNotice', 'Please find below the Expected fees.');
 
   if (items.length === 0) {
     return (
@@ -93,12 +100,10 @@ const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
                 {t('dashboard.debtsTotal', 'Debts Total')}
               </div>
               <div className="text-base font-bold">
-                {formatNumber(item.amountHalala ?? item.amount * 100, 0)}
-                <span className="text-xs font-medium ms-1">
-                  {item.breakdown?.currency
-                    ? t('dashboard.halalaSuffix', 'h')
-                    : ''}
-                </span>
+                <Amount
+                  value={item.amount}
+                  iconClass="w-3.5 h-3.5 text-white"
+                />
               </div>
             </div>
           </div>
@@ -109,22 +114,15 @@ const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
                 {t('dashboard.debtboxFees', 'Debtbox Fees')}
               </div>
               <div className="text-sm font-semibold text-gray-900">
-                {formatNumber(item.breakdown.debtboxFees)}
-                <span className="text-xs text-gray-500 ms-1">
-                  {item.breakdown.currency}
-                </span>
+                <Amount value={item.breakdown.debtboxFees} />
               </div>
             </div>
             <div>
               <div className="text-xs text-gray-500 mb-1">
                 {t('dashboard.paymentFees', 'Payment fees')}
               </div>
-              <div className="text-sm font-semibold text-gray-900">
-                {(item.breakdown.paymentServiceFees.percentageBps / 100).toFixed(2)}
-                % = {formatNumber(item.breakdown.paymentServiceFees.total)}
-                <span className="text-xs text-gray-500 ms-1">
-                  {item.breakdown.currency}
-                </span>
+              <div className="text-sm font-semibold text-gray-900 inline-flex items-center gap-1">
+                <Amount value={item.breakdown.paymentServiceFees.total} />
               </div>
             </div>
             <div>
@@ -132,10 +130,7 @@ const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
                 {t('dashboard.instantPayoutFees', 'Instant payout fees')}
               </div>
               <div className="text-sm font-semibold text-gray-900">
-                {formatNumber(item.breakdown.instantPayoutFees)}
-                <span className="text-xs text-gray-500 ms-1">
-                  {item.breakdown.currency}
-                </span>
+                <Amount value={item.breakdown.instantPayoutFees} />
               </div>
             </div>
             <div>
@@ -143,10 +138,7 @@ const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
                 {t('dashboard.totalFees', 'Total fees')}
               </div>
               <div className="text-sm font-semibold text-gray-900">
-                {formatNumber(item.breakdown.totalDeductions)}
-                <span className="text-xs text-gray-500 ms-1">
-                  {item.breakdown.currency}
-                </span>
+                <Amount value={item.breakdown.totalDeductions} />
               </div>
             </div>
             <div className="col-span-2">
@@ -154,10 +146,7 @@ const FeeBreakdown = ({ items, notice }: FeeBreakdownProps) => {
                 {t('dashboard.merchantNet', 'Merchant net')}
               </div>
               <div className="text-sm font-semibold text-gray-900">
-                {formatNumber(item.breakdown.expectedMerchantNetAmount)}
-                <span className="text-xs text-gray-500 ms-1">
-                  {item.breakdown.currency}
-                </span>
+                <Amount value={item.breakdown.expectedMerchantNetAmount} />
               </div>
             </div>
           </div>

@@ -731,9 +731,9 @@
   "dashboard.youllReceive": "You'll Receive",
   "dashboard.outOf": "Out of",
   "dashboard.fees": "Fees",
-  "dashboard.invoicesCount_one": "{count} Invoice",
-  "dashboard.invoicesCount_other": "{count} Invoices",
-  "dashboard.invoicesCount": "{count} Invoices",
+  "dashboard.debtsCount_one": "{count} Debt",
+  "dashboard.debtsCount_other": "{count} Debts",
+  "dashboard.debtsCount": "{count} Debts",
   "dashboard.invoicePrefix": "INV",
   "dashboard.toggleInvoices": "Toggle invoices",
   "dashboard.debtsInGroup": "Debts in this group",
@@ -742,6 +742,6 @@
   "dashboard.allStores": "All stores",
   "dashboard.youWillReceive": "You will receive",
   "dashboard.from": "From",
-  "dashboard.rsPendingPayments": "R.S pending payments",
+  "dashboard.pendingPayments": "pending payments",
   "dashboard.service": "Service"
 }

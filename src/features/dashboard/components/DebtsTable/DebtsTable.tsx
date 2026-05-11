@@ -47,6 +47,19 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const [selectedDebt, setSelectedDebt] = useState<Debt | undefined>(undefined);
   const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
 
+  const hasRowExtraBelow = (record: Debt): boolean => {
+    const isExpandable =
+      !!record.isGrouped && (record.debtsCount ?? 0) > 1;
+    const isExpanded = isExpandable && !!expandedRows[record.debtId];
+    const hasChildren =
+      isExpanded && !!record.debts && record.debts.length > 0;
+    const hasPending =
+      record.isPending || record.status === 'pending' || record.isOverdue;
+    const hasExtension =
+      !!record.original_date && record.original_date !== record.due_date;
+    return hasChildren || hasPending || hasExtension;
+  };
+
   const statusOptions = [
     { value: 'normal', label: t('common.buttons.normal') },
     { value: 'overdue', label: t('common.buttons.overdue') },
@@ -144,11 +157,29 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       key: 'customer',
       title: t('common.buttons.customer'),
       dataIndex: 'customerName',
-      render: (_, record) => (
-        <div>
-          <div className="font-medium text-gray-900">{record.customerName}</div>
-        </div>
-      ),
+      render: (_, record) => {
+        const isGrouped =
+          !!record.isGrouped && (record.debtsCount ?? 0) > 1;
+        if (!isGrouped) {
+          return (
+            <div className="font-medium text-gray-900">
+              {record.customerName}
+            </div>
+          );
+        }
+        const radius = hasRowExtraBelow(record)
+          ? 'rounded-ts-sm'
+          : 'rounded-s-sm';
+        return (
+          <div
+            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 border-s-primary/30 ${radius}`}
+          >
+            <div className="font-medium text-gray-900">
+              {record.customerName}
+            </div>
+          </div>
+        );
+      },
     },
     {
       key: 'title',
@@ -156,11 +187,13 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       dataIndex: 'title',
       render: (_, record) => (
         <div className="text-gray-900">
-          <span>{record.title || '-'}</span>
+          {record.isGrouped && (record.debtsCount ?? 0) > 1 ? null : (
+            <span>{record.title || '-'}</span>
+          )}
           {record.isGrouped && (record.debtsCount ?? 0) > 1 && (
             <span className="ms-2 text-xs font-medium text-gray-500">
               (
-              {t('dashboard.invoicesCount', '{count} Invoices', {
+              {t('dashboard.debtsCount', '{count} Debts', {
                 count: record.debtsCount,
               })}
               )
@@ -232,6 +265,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
       key: 'actions',
       title: t('common.buttons.actions'),
       dataIndex: 'actions',
+      headerClassName: 'justify-center',
       render: (_, record) => {
         const isExpandable = record.isGrouped && (record.debtsCount ?? 0) > 1;
         const isExpanded = !!expandedRows[record.debtId];
@@ -395,8 +429,12 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
 
           if (messages.length === 0 && children.length === 0) return null;
 
+          const groupedBorder = isExpandable
+            ? '-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 border-s-primary/30 rounded-bs-sm'
+            : '';
+
           return (
-            <div className="w-full flex flex-col gap-2">
+            <div className={`w-full flex flex-col gap-2 ${groupedBorder}`}>
               {messages.map((m, idx) => (
                 <div
                   key={idx}
@@ -406,7 +444,7 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
                 </div>
               ))}
               {children.length > 0 && (
-                <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100 border-s-2 border-s-primary/30">
+                <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100">
                   {children.map((child) => (
                     <div
                       key={child.debtId}

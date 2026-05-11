@@ -731,9 +731,9 @@
   "dashboard.youllReceive": "آپ کو ملے گا",
   "dashboard.outOf": "میں سے",
   "dashboard.fees": "فیس",
-  "dashboard.invoicesCount_one": "{count} انوائس",
-  "dashboard.invoicesCount_other": "{count} انوائسز",
-  "dashboard.invoicesCount": "{count} انوائسز",
+  "dashboard.debtsCount_one": "{count} قرض",
+  "dashboard.debtsCount_other": "{count} قرضے",
+  "dashboard.debtsCount": "{count} قرضے",
   "dashboard.invoicePrefix": "انوائس",
   "dashboard.toggleInvoices": "انوائسز دکھائیں/چھپائیں",
   "dashboard.debtsInGroup": "اس گروپ میں قرضے",
@@ -742,6 +742,6 @@
   "dashboard.allStores": "تمام اسٹورز",
   "dashboard.youWillReceive": "آپ کو ملے گا",
   "dashboard.from": "سے",
-  "dashboard.rsPendingPayments": "آر.ایس بقایا ادائیگیاں",
+  "dashboard.pendingPayments": "بقایا ادائیگیاں",
   "dashboard.service": "سروس"
 }
