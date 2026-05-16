@@ -52,6 +52,7 @@
   "common.buttons.send": "Send",
   "common.buttons.getStarted": "Get Started",
   "common.buttons.logout": "Logout",
+  "common.nav.profile": "Profile",
   "common.buttons.cancel": "Cancel",
   "common.buttons.export": "Export",
   "common.buttons.done": "Done",
@@ -748,5 +749,15 @@
   "dashboard.dueAmount": "Due Amount",
   "dashboard.fromTotal": "From Total",
   "dashboard.pendingPayments": "pending payments",
-  "dashboard.service": "Service"
+  "dashboard.service": "Service",
+  "receivables.outstandingFees": "Outstanding Fees",
+  "receivables.totalFees": "Total Fees",
+  "receivables.forDebtsCount": "For {count} Debts paid in cash",
+  "receivables.customerFullName": "Customer full name",
+  "receivables.debt": "Debt",
+  "receivables.noOutstandingFees": "No outstanding fees at the moment.",
+  "receivables.fee": "Fee",
+  "receivables.cashPaymentNote": "If a customer paid you directly in cash, the platform fees will be automatically deducted from your upcoming payouts.",
+  "profile.settings.outstandingFees": "Outstanding Fees",
+  "profile.settings.outstandingFeesDesc": "View your outstanding platform fees"
 }

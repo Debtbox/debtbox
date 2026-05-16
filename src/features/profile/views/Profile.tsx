@@ -13,6 +13,7 @@ import {
   // CreditCard,
   Headphones,
   LogOut,
+  Wallet,
 } from 'lucide-react';
 import MaskIconTop from '@/features/dashboard/components/icons/MaskIconTop';
 import MaskIconBottom from '@/features/dashboard/components/icons/MaskIconBottom';
@@ -205,6 +206,17 @@ export const Profile = () => {
         'Manage your account details',
       ),
       onClick: () => navigate('/settings'),
+    },
+    {
+      icon: <Wallet className="w-5 h-5" />,
+      iconBg: 'bg-red-100',
+      iconColor: 'text-red-500',
+      title: t('profile.settings.outstandingFees', 'Outstanding Fees'),
+      description: t(
+        'profile.settings.outstandingFeesDesc',
+        'View your outstanding platform fees',
+      ),
+      onClick: () => navigate('/settings/outstanding-fees'),
     },
     // {
     //   icon: <Bell className="w-5 h-5" />,

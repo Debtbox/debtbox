@@ -52,6 +52,7 @@
   "common.buttons.send": "إرسال",
   "common.buttons.getStarted": "ابدأ معنا",
   "common.buttons.logout": "تسجيل الخروج",
+  "common.nav.profile": "الملف الشخصي",
   "common.buttons.cancel": "إلغاء",
   "common.buttons.export": "تصدير",
   "common.buttons.done": "تم",
@@ -765,5 +766,15 @@
   "notifications.selected": "محدد",
   "notifications.cancel": "إلغاء",
   "notifications.markAllSelectedAsRead": "تحديد كل المحدد كمقروء",
-  "notifications.deleteAllSelected": "حذف كل المحدد"
+  "notifications.deleteAllSelected": "حذف كل المحدد",
+  "receivables.outstandingFees": "الرسوم المستحقة",
+  "receivables.totalFees": "إجمالي الرسوم",
+  "receivables.forDebtsCount": "مقابل {count} ديون مدفوعة نقداً",
+  "receivables.customerFullName": "اسم العميل",
+  "receivables.debt": "الدين",
+  "receivables.noOutstandingFees": "لا توجد رسوم مستحقة في الوقت الحالي.",
+  "receivables.fee": "الرسوم",
+  "receivables.cashPaymentNote": "إذا دفع العميل لك مباشرةً نقداً، سيتم خصم رسوم المنصة تلقائياً من مستحقاتك القادمة.",
+  "profile.settings.outstandingFees": "الرسوم المستحقة",
+  "profile.settings.outstandingFeesDesc": "عرض رسوم المنصة المستحقة عليك"
 }

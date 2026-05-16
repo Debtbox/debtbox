@@ -21,6 +21,8 @@ export type GetMerchantProfileResponse = {
     full_name_ar: string;
     phone_number: string;
     iban: string;
+    outstandingReceivablesHalala?: number;
+    outstandingReceivablesDebtsCount?: number;
   };
 };
 

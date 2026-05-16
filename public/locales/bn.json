@@ -52,6 +52,7 @@
   "common.buttons.send": "পাঠান",
   "common.buttons.getStarted": "শুরু করুন",
   "common.buttons.logout": "লগআউট",
+  "common.nav.profile": "প্রোফাইল",
   "common.buttons.cancel": "বাতিল করুন",
   "common.buttons.export": "রপ্তানি",
   "common.buttons.done": "সম্পন্ন",
@@ -749,5 +750,15 @@
   "dashboard.dueAmount": "বকেয়া পরিমাণ",
   "dashboard.fromTotal": "মোট থেকে",
   "dashboard.pendingPayments": "বকেয়া পেমেন্ট",
-  "dashboard.service": "পরিষেবা"
+  "dashboard.service": "পরিষেবা",
+  "receivables.outstandingFees": "বকেয়া ফি",
+  "receivables.totalFees": "মোট ফি",
+  "receivables.forDebtsCount": "{count}টি নগদে পরিশোধিত ঋণের জন্য",
+  "receivables.customerFullName": "গ্রাহকের পুরো নাম",
+  "receivables.debt": "ঋণ",
+  "receivables.noOutstandingFees": "এই মুহূর্তে কোনো বকেয়া ফি নেই।",
+  "receivables.fee": "ফি",
+  "receivables.cashPaymentNote": "যদি কোনো গ্রাহক আপনাকে সরাসরি নগদে অর্থ প্রদান করেন, তাহলে প্ল্যাটফর্ম ফি স্বয়ংক্রিয়ভাবে আপনার আসন্ন পেআউট থেকে কেটে নেওয়া হবে।",
+  "profile.settings.outstandingFees": "বকেয়া ফি",
+  "profile.settings.outstandingFeesDesc": "আপনার বকেয়া প্ল্যাটফর্ম ফি দেখুন"
 }

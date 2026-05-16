@@ -52,6 +52,7 @@
   "common.buttons.send": "بھیجیں",
   "common.buttons.getStarted": "شروع کریں",
   "common.buttons.logout": "لاگ آوٹ",
+  "common.nav.profile": "پروفائل",
   "common.buttons.cancel": "منسوخ کریں",
   "common.buttons.export": "ایکسپورٹ",
   "common.buttons.done": "مکمل",
@@ -748,5 +749,15 @@
   "dashboard.dueAmount": "واجب الاداء",
   "dashboard.fromTotal": "کل سے",
   "dashboard.pendingPayments": "بقایا ادائیگیاں",
-  "dashboard.service": "سروس"
+  "dashboard.service": "سروس",
+  "receivables.outstandingFees": "بقایا فیس",
+  "receivables.totalFees": "کل فیس",
+  "receivables.forDebtsCount": "{count} نقد ادا کردہ قرضوں کے لیے",
+  "receivables.customerFullName": "گاہک کا پورا نام",
+  "receivables.debt": "قرض",
+  "receivables.noOutstandingFees": "ابھی کوئی بقایا فیس نہیں ہے۔",
+  "receivables.fee": "فیس",
+  "receivables.cashPaymentNote": "اگر کسی گاہک نے آپ کو براہ راست نقد ادائیگی کی ہے، تو پلیٹ فارم فیس خود بخود آپ کی آنے والی ادائیگیوں سے کاٹ لی جائے گی۔",
+  "profile.settings.outstandingFees": "بقایا فیس",
+  "profile.settings.outstandingFeesDesc": "اپنی بقایا پلیٹ فارم فیس دیکھیں"
 }

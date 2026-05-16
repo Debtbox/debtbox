@@ -62,7 +62,7 @@ const DebtDetails = ({
         {
           label:
             isGroupedRow
-              ? t('dashboard.debtsCount', '{{count}} Invoices', {
+              ? t('dashboard.debtsCount', '{count} Invoices', {
                   count: debtData.debtsCount,
                 })
               : debtData.title || t('dashboard.debtAmount', 'Debt Amount'),
