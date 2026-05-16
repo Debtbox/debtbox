@@ -27,6 +27,18 @@ import NoData from '@/components/shared/NoData';
 
 type DebtStatus = 'all' | 'normal' | 'overdue' | 'in 7 days' | 'soon';
 
+const statusBorderColor: Record<string, string> = {
+  cancelled: '#4F5154',
+  paid: '#22C55E',
+  overdue: '#FF4757',
+  active: '#0E1F80',
+  pending: '#F8AC1F',
+  expired: '#FF4757',
+};
+
+const getStatusBorderColor = (status: string) =>
+  statusBorderColor[status] ?? '#4F5154';
+
 export const Transactions = () => {
   const { t, i18n } = useTranslation();
   const { selectedBusiness } = useUserStore();
@@ -161,7 +173,8 @@ export const Transactions = () => {
         const radius = hasExtra ? 'rounded-ts-sm' : 'rounded-s-sm';
         return (
           <div
-            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 border-s-primary/30 ${radius}`}
+            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 ${radius}`}
+            style={{ borderColor: getStatusBorderColor(record.status) }}
           >
             <div className="font-medium text-gray-900">
               {record.customerName}
@@ -340,7 +353,10 @@ export const Transactions = () => {
               return null;
             }
             return (
-              <div className="-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 border-s-primary/30 rounded-bs-sm">
+              <div
+                className="-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 rounded-bs-sm"
+                style={{ borderColor: getStatusBorderColor(record.status) }}
+              >
                 <div className="w-full lg:w-1/2 rounded-md border border-gray-100 bg-gray-50/50 divide-y divide-gray-100">
                   {record.debts.map((child) => (
                     <div

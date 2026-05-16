@@ -28,6 +28,18 @@ import NoData from '@/components/shared/NoData';
 
 type DebtStatus = 'all' | 'normal' | 'overdue' | 'in 7 days' | 'soon';
 
+const statusBorderColor: Record<string, string> = {
+  cancelled: '#4F5154',
+  paid: '#22C55E',
+  overdue: '#FF4757',
+  active: '#0E1F80',
+  pending: '#F8AC1F',
+  expired: '#FF4757',
+};
+
+const getStatusBorderColor = (status: string) =>
+  statusBorderColor[status] ?? '#4F5154';
+
 const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
   const { t, i18n } = useTranslation();
   const { selectedBusiness } = useUserStore();
@@ -172,7 +184,8 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
           : 'rounded-s-sm';
         return (
           <div
-            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 border-s-primary/30 ${radius}`}
+            className={`-my-4 -ms-6 ps-6 py-4 border-s-2 ${radius}`}
+            style={{ borderColor: getStatusBorderColor(record.status) }}
           >
             <div className="font-medium text-gray-900">
               {record.customerName}
@@ -429,12 +442,19 @@ const DebtsTable = ({ isSideoverOpen }: { isSideoverOpen: boolean }) => {
 
           if (messages.length === 0 && children.length === 0) return null;
 
-          const groupedBorder = isExpandable
-            ? '-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 border-s-primary/30 rounded-bs-sm'
+          const groupedBorderClass = isExpandable
+            ? '-mt-3 -mb-3 -ms-6 ps-6 pt-3 pb-3 border-s-2 rounded-bs-sm'
             : '';
 
           return (
-            <div className={`w-full flex flex-col gap-2 ${groupedBorder}`}>
+            <div
+              className={`w-full flex flex-col gap-2 ${groupedBorderClass}`}
+              style={
+                isExpandable
+                  ? { borderColor: getStatusBorderColor(record.status) }
+                  : undefined
+              }
+            >
               {messages.map((m, idx) => (
                 <div
                   key={idx}
