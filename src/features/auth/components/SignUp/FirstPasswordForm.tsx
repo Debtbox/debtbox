@@ -9,6 +9,7 @@ import { useAuthFlowStore } from '@/stores/AuthFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 import { useCreatePassword } from '../../api/createPassword';
 import { toast } from '@/lib/toast';
+import { PasswordValidationSteps } from '../PasswordValidationSteps';
 
 type FirstPasswordFormData = z.infer<
   ReturnType<typeof createFirstPasswordSchema>
@@ -49,6 +50,7 @@ const FirstPasswordForm = ({ onSuccess: onSuccessCallback }: FirstPasswordFormPr
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    watch,
   } = useForm<FirstPasswordFormData>({
     resolver: zodResolver(firstPasswordSchema),
     defaultValues: {
@@ -56,6 +58,8 @@ const FirstPasswordForm = ({ onSuccess: onSuccessCallback }: FirstPasswordFormPr
       confirmPassword: formData.confirmPassword || '',
     },
   });
+
+  const password = watch('password');
 
   useEffect(() => {
     if (formData.password) {
@@ -119,6 +123,7 @@ const FirstPasswordForm = ({ onSuccess: onSuccessCallback }: FirstPasswordFormPr
             id="password"
             error={errors.password?.message}
           />
+          <PasswordValidationSteps password={password} />
         </div>
         <div className="flex flex-col w-full mb-8">
           <Input
