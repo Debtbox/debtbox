@@ -719,6 +719,7 @@
   "dashboard.customerExpiredCashPayment": "نقد ادائیگی کی تصدیق کی میعاد ختم",
   "dashboard.debtMarkedAsCashPaidFailed": "قرض کو نقد ادائیگی کے طور پر نشان زد کرنے میں ناکامی",
   "dashboard.viewBreakdown": "تفصیل دیکھیں",
+  "dashboard.feesBreakdown": "فیس کی تفصیل",
   "dashboard.totalDebtsBreakdown": "کل قرضوں کی تفصیل",
   "dashboard.expectedFeesNotice": "براہ کرم متوقع فیس درج ذیل ہے۔",
   "dashboard.debtsTotal": "کل قرضے",
@@ -740,8 +741,8 @@
   "dashboard.halalaSuffix": "گھ",
   "dashboard.store": "اسٹور",
   "dashboard.allStores": "تمام اسٹورز",
-  "dashboard.youWillReceive": "آپ کو ملے گا",
-  "dashboard.from": "سے",
+  "dashboard.dueAmount": "واجب الاداء",
+  "dashboard.fromTotal": "کل سے",
   "dashboard.pendingPayments": "بقایا ادائیگیاں",
   "dashboard.service": "سروس"
 }

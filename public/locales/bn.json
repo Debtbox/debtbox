@@ -719,6 +719,7 @@
   "dashboard.customerExpiredCashPayment": "নগদ পেমেন্ট নিশ্চিতকরণের মেয়াদ শেষ",
   "dashboard.debtMarkedAsCashPaidFailed": "ঋণ নগদ পরিশোধ হিসাবে চিহ্নিত করতে ব্যর্থ",
   "dashboard.viewBreakdown": "ব्रेকডাউন দেখুন",
+  "dashboard.feesBreakdown": "ফি ব্রেকডাউন",
   "dashboard.totalDebtsBreakdown": "মোট ঋণের ব्रेকডাউন",
   "dashboard.expectedFeesNotice": "নিচে প্রত্যাশিত ফি দেওয়া হলো।",
   "dashboard.debtsTotal": "মোট ঋণ",
@@ -740,8 +741,8 @@
   "dashboard.halalaSuffix": "ঘ",
   "dashboard.store": "স্টোর",
   "dashboard.allStores": "সমস্ত স্টোর",
-  "dashboard.youWillReceive": "আপনি পাবেন",
-  "dashboard.from": "থেকে",
+  "dashboard.dueAmount": "বকেয়া পরিমাণ",
+  "dashboard.fromTotal": "মোট থেকে",
   "dashboard.pendingPayments": "বকেয়া পেমেন্ট",
   "dashboard.service": "পরিষেবা"
 }

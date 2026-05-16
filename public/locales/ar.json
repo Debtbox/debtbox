@@ -712,6 +712,7 @@
   "dashboard.customerExpiredCashPayment": "انتهت صلاحية تأكيد الدفع النقدي",
   "dashboard.debtMarkedAsCashPaidFailed": "فشل في تحديد الدين كمُدفوع نقداً",
   "dashboard.viewBreakdown": "عرض التفاصيل",
+  "dashboard.feesBreakdown": "تفاصيل الرسوم",
   "dashboard.totalDebtsBreakdown": "تفاصيل إجمالي الديون",
   "dashboard.expectedFeesNotice": "يرجى الاطلاع على الرسوم المتوقعة أدناه.",
   "dashboard.debtsTotal": "إجمالي الدين",
@@ -733,8 +734,8 @@
   "dashboard.halalaSuffix": "ه",
   "dashboard.store": "المتجر",
   "dashboard.allStores": "كل المتاجر",
-  "dashboard.youWillReceive": "ستستلم",
-  "dashboard.from": "من",
+  "dashboard.dueAmount": "المبلغ المستحق",
+  "dashboard.fromTotal": "من إجمالي",
   "dashboard.pendingPayments": "دفعات معلّقة",
   "dashboard.service": "الخدمة"
 }

@@ -719,6 +719,7 @@
   "dashboard.customerExpiredCashPayment": "Cash payment confirmation expired",
   "dashboard.debtMarkedAsCashPaidFailed": "Failed to mark debt as paid in cash",
   "dashboard.viewBreakdown": "View Breakdown",
+  "dashboard.feesBreakdown": "Fees Breakdown",
   "dashboard.totalDebtsBreakdown": "Total Debts Breakdown",
   "dashboard.expectedFeesNotice": "Please find below the Expected fees.",
   "dashboard.debtsTotal": "Debts Total",
@@ -740,8 +741,8 @@
   "dashboard.halalaSuffix": "h",
   "dashboard.store": "Store",
   "dashboard.allStores": "All stores",
-  "dashboard.youWillReceive": "You will receive",
-  "dashboard.from": "From",
+  "dashboard.dueAmount": "Due Amount",
+  "dashboard.fromTotal": "From Total",
   "dashboard.pendingPayments": "pending payments",
   "dashboard.service": "Service"
 }

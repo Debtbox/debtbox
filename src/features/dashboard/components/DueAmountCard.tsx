@@ -121,7 +121,7 @@ const DueAmountCard = ({
       <div className="relative z-10 flex items-end justify-between gap-4 flex-wrap mb-6">
         <div className="flex-1 min-w-[180px]">
           <h6 className="text-xs text-white/80 font-medium mb-2">
-            {t('dashboard.youWillReceive', 'You will receive')}
+            {t('dashboard.dueAmount', 'Due Amount')}
           </h6>
           <h3 className="text-xl md:text-2xl text-white font-extrabold mb-2 flex items-center gap-1.5">
             <SaudiRiyal className="text-white w-5 h-5 md:w-6 md:h-6" />
@@ -129,7 +129,7 @@ const DueAmountCard = ({
           </h3>
           {pendingAmount && (
             <p className="text-xs text-white/80 font-medium flex items-center gap-1 flex-wrap">
-              {t('dashboard.from', 'From')}{' '}
+              {t('dashboard.fromTotal', 'From Total')}{' '}
               <span className="text-white font-semibold inline-flex items-center gap-1">
                 <SaudiRiyal className="text-white w-3 h-3" />
                 {pendingAmount}
@@ -158,7 +158,7 @@ const DueAmountCard = ({
             className="inline-flex items-center gap-2 text-sm text-white border border-white/40 hover:bg-white/10 transition-colors rounded-lg px-4 py-2.5"
           >
             <Info className="w-4 h-4" />
-            {t('dashboard.viewBreakdown', 'View Breakdown')}
+            {t('dashboard.feesBreakdown', 'Fees Breakdown')}
           </button>
         )}
       </div>
