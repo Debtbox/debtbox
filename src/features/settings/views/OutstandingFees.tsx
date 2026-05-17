@@ -4,7 +4,7 @@ import { ChevronLeft, Info } from 'lucide-react';
 import { SaudiRiyal } from 'lucide-react';
 import { useGetReceivables, type Receivable } from '../api/getReceivables';
 import { useGetMerchantProfile } from '@/features/auth/api/getMerchantProfile';
-import WalletOutIcon from '@/components/icons/walletOutIcon';
+import WalletOutIcon from '@/components/icons/WalletOutIcon';
 
 const halalaToSAR = (halala: number) =>
   (halala / 100).toLocaleString('en-US', {
